@@ -80,6 +80,12 @@ p.subtitle {
   color: #b0b7c3;
 }
 
+p a {
+  color: #4388f8;
+}
+
+/* LISTS--------------------- */
+
 ul.large-list {
   list-style-type: none;
   padding: 0;

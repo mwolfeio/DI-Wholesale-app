@@ -21,42 +21,42 @@ let linkMap = [
     title: "Customers",
     link: "customers",
     img: CustomersIcon,
-    description: "This is a test",
+    description: "Read and edit customer information.",
     active: true,
   },
   {
     title: "Orders",
     link: "customers",
     img: Orders,
-    description: "",
+    description: "Read and edit orders and their status.",
     active: false,
   },
   {
     title: "Membership Program",
     link: "customers",
     img: Membership,
-    description: "",
+    description: "Add rules and monitor membership points.",
     active: false,
   },
   {
     title: "Alert Settings",
     link: "customers",
     img: Alerts,
-    description: "",
+    description: "Adjust alert cadence and triggers.",
     active: false,
   },
   {
     title: "Reviews",
     link: "customers",
     img: Reviews,
-    description: "",
+    description: "Monitor customer reviews and how they appear.",
     active: false,
   },
   {
     title: "Indexer",
     link: "customers",
     img: Indexer,
-    description: "",
+    description: "Adjust the sites search and filter settings.",
     active: false,
   },
 ];
@@ -65,7 +65,12 @@ const Index = () => {
     <main>
       <section>
         <h1>Dashboard</h1>
-        <p></p>
+        <p>
+          Welcome to the DI Admin app. From here you can control any of the
+          custom features developed outside of Shopify. If you have any
+          questions, feature request or issues please contact{" "}
+          <a href="mailto:matt@mwolfe.io">customer support</a>.
+        </p>
         <ul className="large-list ">
           {linkMap.map((link) => {
             let Comp = link.img ? link.img : CustomersIcon;
