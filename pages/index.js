@@ -22,36 +22,7 @@ const Index = () => {
     <main>
       <section>
         <h1>Dashboard</h1>
-        <ul class="large-list ">
-          {linkMap.map((link) => (
-            <li class="large-list-item">
-              <Link href={link.link} class="flex-center-btw">
-                <div class="flex-center-left">
-                  <img src={link.img} />
-                  <div>
-                    <p>{link.title}</p>
-                    <p class="subtitle">{link.description}</p>
-                  </div>
-                </div>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.5 7L14.5 12L9.5 17"
-                    stroke="#b0b7c3"
-                    stroke-width="1.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ul class="large-list ">test</ul>
       </section>
     </main>
   );
