@@ -65,7 +65,7 @@ const Index = () => {
     <main>
       <section>
         <h1>Dashboard</h1>
-        <p>
+        <p className="light">
           Welcome to the DI Admin app. From here you can control any of the
           custom features developed outside of Shopify. If you have any
           questions, feature request or issues please contact{" "}
