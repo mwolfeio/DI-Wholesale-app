@@ -194,20 +194,8 @@ ul.large-list li.list-header {
   min-width: 220px;
   width: 220px !important;
 }
-.list-cus-numb {
-  width: 100px;
-  text-align: center;
-}
-.list-cus-numb p,
-.list-cus-order p,
-.list-cus-age p {
-  text-align: center;
-}
-.list-cus-order {
-  width: 100px;
-  text-align: center;
-}
-
+.list-cus-numb,
+.list-cus-order,
 .list-cus-age {
   width: 100px;
   text-align: center;

@@ -36,12 +36,8 @@ export default function SpecialPage({}) {
                   </div>
                 </div>
                 <div className="list-cus-numb">000000</div>
-                <div className="list-cus-order">
-                  <p>0</p>
-                </div>
-                <div className="list-cus-age">
-                  <p>0m 0d</p>
-                </div>
+                <div className="list-cus-order">0</div>
+                <div className="list-cus-age">0m 0d</div>
               </div>
             </Link>
           </li>
