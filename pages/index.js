@@ -8,14 +8,48 @@ import Link from "next/link";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 
+let
+
+
+
 const Index = () => {
   return (
     <main>
       <h1>Dashboard</h1>
       <ul>
         <li>
+          <Link href="/customer">
+            <h2>Customers</h2>
+          </Link>
+        </li>
+        <li>
           <Link href="/wishlist">
-            <button>Wishlist</button>
+            <h2>Orders</h2>
+          </Link>
+        </li>
+        <li>
+          <Link href="/wishlist">
+            <h2>Socials</h2>
+          </Link>
+        </li>
+        <li>
+          <Link href="/wishlist">
+            <h2>Membership Program</h2>
+          </Link>
+        </li>
+        <li>
+          <Link href="/wishlist">
+            <h2>Alert Settings</h2>
+          </Link>
+        </li>
+        <li>
+          <Link href="/wishlist">
+            <h2>Reviews</h2>
+          </Link>
+        </li>
+        <li>
+          <Link href="/wishlist">
+            <h2>Indexer</h2>
           </Link>
         </li>
       </ul>
