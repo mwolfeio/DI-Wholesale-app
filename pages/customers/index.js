@@ -1,11 +1,11 @@
 import Link from "next/link";
+import ButtonNav from "../../components/ButtonNav.js";
 
 export default function SpecialPage({}) {
   return (
     <main>
-      <Link href="/">
-        <button>Back to dashboard</button>
-      </Link>
+      <ButtonNav back="/" />
+
       <section>
         <h1>Customers</h1>
         <p className="light">

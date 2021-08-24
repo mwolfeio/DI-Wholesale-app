@@ -1,21 +1,20 @@
 import Link from "next/link";
+import ButtonNav from "../../components/ButtonNav.js";
 
 export default function SpecialPage({}) {
   return (
     <main>
+      <ButtonNav back="/customers" />
+
       <h1>Customer</h1>
-      <Link href="/customer">
-        <button>Back to Customers</button>
-      </Link>
-      <ul>
-        <li>Information</li>
-        <li>metafields</li>
-        <li>Wishlist</li>
-        <li>Interests</li>
-        <li>Reviews</li>
-        <li>Alerts</li>
-        <li>Rewards</li>
-      </ul>
+
+      <section>Information</section>
+      <section>metafields</section>
+      <section>Wishsectionst</section>
+      <section>Interests</section>
+      <section>Reviews</section>
+      <section>Alerts</section>
+      <section>Rewards</section>
     </main>
   );
 }
