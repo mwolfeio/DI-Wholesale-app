@@ -1,15 +1,19 @@
-/* #__next {
+#__next {
   display: flex;
   justify-content: center;
-} */
-
-.main {
-  margin: auto;
 }
-.section {
+
+main {
+  margin: 16px;
+  max-width: 774px;
+  width: 100vw;
+}
+section {
   background: #ffffff;
   border-radius: 15px;
   padding: 36px;
+  width: 100%;
+  display: block;
 }
 
 h1 {
@@ -37,6 +41,7 @@ p {
 
   display: flex;
   align-items: center;
+  margin: 0;
 
   /* Text 2 */
 
@@ -64,6 +69,7 @@ p.subtitle {
   font-weight: 500;
   font-size: 12px;
   line-height: 23px;
+  margin-top: -4px;
   /* or 196% */
 
   display: flex;
@@ -71,12 +77,55 @@ p.subtitle {
 
   /* Text 3 */
 
-  color: #8a94a6;
+  color: #b0b7c3;
 }
 
 ul.large-list {
+  list-style-type: none;
+  padding: 0;
 }
-li.large-list-item {
+ul.large-list > *:first-child {
+  margin-top: 15px;
+}
+ul.large-list > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+ul.large-list li {
+  height: 69px;
+  padding: 0 21px;
+  background: #ffffff;
+  border-radius: 15px;
+  transition: 0.15s ease;
+  cursor: pointer;
+}
+ul.large-list li:hover {
+  background: #fafbfc;
+}
+ul.large-list li div {
+  width: 100%;
+}
+
+ul.large-list li.disabled-link {
+  cursor: not-allowed;
+}
+ul.large-list li.disabled-link p {
+  color: #b0b7c3;
+}
+ul.large-list li.disabled-link:hover {
+  background: white;
+}
+
+/* ICONS---------------------- */
+.svg-container {
+  min-width: 32px;
+  min-height: 32px;
+  display: block;
+  box-sizing: border-box;
+  background: #fafbfc;
+  border-radius: 100%;
+}
+.svg-container svg {
+  display: block;
 }
 
 /* FLEXBOX-------------------- */
@@ -89,4 +138,9 @@ li.large-list-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.flex-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
