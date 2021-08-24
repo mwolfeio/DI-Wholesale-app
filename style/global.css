@@ -6,7 +6,8 @@
 main {
   margin: 16px;
   max-width: 774px;
-  width: 100vw;
+  width: Calc(100vw - 32px);
+  box-sizing: border-box;
 }
 section {
   background: #ffffff;
@@ -14,8 +15,15 @@ section {
   padding: 36px;
   width: 100%;
   display: block;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
+
+section.clear {
+  background: none;
+  padding: 36px 0;
+}
+
+/* FONT---------------------- */
 
 h1 {
   font-family: Inter;
@@ -31,6 +39,38 @@ h1 {
   /* Text 2 */
 
   color: #4e5d78;
+}
+
+h2 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 29px;
+  /* or 207% */
+
+  display: flex;
+  align-items: center;
+
+  /* Text 2 */
+
+  color: #4e5d78;
+}
+
+h3 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 29px;
+  /* or 207% */
+
+  display: flex;
+  align-items: center;
+
+  /* Text 2 */
+
+  color: #b0b7c3;
 }
 
 p {
@@ -214,6 +254,34 @@ ul.large-list li.list-header {
   display: block;
 }
 
+/* LINES---------------------- */
+.underline {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #b0b7c3;
+}
+
+/* CUSTOEMR PAGE-------------- */
+.cus-numb-edit {
+  transition: 0.15s ease;
+  padding: 4px 8px;
+  margin: -4px -8px;
+  width: auto;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.cus-numb-edit svg {
+  transition: 0.15s ease;
+  opacity: 0;
+  margin-left: 8px;
+}
+.cus-numb-edit:hover {
+  background: white;
+  color: #4e5d78;
+}
+.cus-numb-edit:hover svg {
+  opacity: 1;
+}
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;
@@ -223,6 +291,11 @@ ul.large-list li.list-header {
 .flex-center-btw {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.flex-top-btw {
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
 }
 .flex-center-center {

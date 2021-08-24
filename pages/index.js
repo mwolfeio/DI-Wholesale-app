@@ -70,7 +70,7 @@ const Index = () => {
           <span>
             Welcome to the DI Admin app. From here you can control any of the
             custom features developed outside of Shopify. If you have any
-            questions, feature request or issues please contact{" "}
+            questions, feature requests or issues please contact{" "}
             <a href="mailto:matt@mwolfe.io">customer support</a>.
           </span>
         </p>
