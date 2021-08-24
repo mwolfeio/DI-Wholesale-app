@@ -9,10 +9,10 @@ export default function SpecialPage({}) {
       </Link>
       <ul>
         <li>
-          <Link href="/customer 1">Customer 1</Link>
+          <Link href="/customers/1">Customer 1</Link>
         </li>
         <li>
-          <Link href="/customer 1">Customer 2</Link>
+          <Link href="/customers/1">Customer 2</Link>
         </li>
       </ul>
     </main>

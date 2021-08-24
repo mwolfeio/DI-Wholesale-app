@@ -1,0 +1,107 @@
+/* #__next {
+  display: flex;
+  justify-content: center;
+} */
+
+.main {
+  margin: auto;
+}
+.section {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 36px;
+}
+
+h1 {
+  /* Heading 1 - 80px */
+
+  font-family: Inter;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 80px;
+  line-height: 97px;
+  /* identical to box height, or 121% */
+
+  display: flex;
+  align-items: center;
+
+  color: #000000;
+}
+h2 {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 29px;
+  /* or 132% */
+
+  display: flex;
+  align-items: center;
+  /* Text 2 */
+
+  color: #4e5d78;
+}
+
+p {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 29px;
+  /* or 207% */
+
+  display: flex;
+  align-items: center;
+
+  /* Text 2 */
+
+  color: #4e5d78;
+}
+p.light {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 29px;
+  /* or 207% */
+
+  display: flex;
+  align-items: center;
+
+  /* Text 4 */
+
+  color: #b0b7c3;
+}
+
+p.subtitle {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 23px;
+  /* or 196% */
+
+  display: flex;
+  align-items: center;
+
+  /* Text 3 */
+
+  color: #8a94a6;
+}
+
+ul.large-list {
+}
+li.large-list-item {
+}
+
+/* FLEXBOX-------------------- */
+.flex-center-left {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.flex-center-btw {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
