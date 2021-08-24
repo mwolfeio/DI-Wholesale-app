@@ -6,7 +6,7 @@ import store from "store-js";
 import ResourceListWithProducts from "../components/ResourceList";
 import Link from "next/link";
 
-import "../style/global.css";
+// import "../style/global.css";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 
