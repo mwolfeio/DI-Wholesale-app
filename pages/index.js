@@ -66,13 +66,13 @@ const Index = () => {
       <section>
         <h1>Dashboard</h1>
         <span>
-        <p className="light">
-          Welcome to the DI Admin app. From here you can control any of the
-          custom features developed outside of Shopify. If you have any
-          questions, feature request or issues please contact{" "}
-          <a href="mailto:matt@mwolfe.io">customer support</a>.
-        </p>
-        <span>
+          <p className="light">
+            Welcome to the DI Admin app. From here you can control any of the
+            custom features developed outside of Shopify. If you have any
+            questions, feature request or issues please contact{" "}
+            <a href="mailto:matt@mwolfe.io">customer support</a>.
+          </p>
+        </span>
         <ul className="large-list ">
           {linkMap.map((link) => {
             let Comp = link.img ? link.img : CustomersIcon;
