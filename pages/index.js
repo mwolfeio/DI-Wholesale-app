@@ -23,7 +23,7 @@ const Index = () => {
       <section>
         <h1>Dashboard</h1>
         <ul class="large-list ">
-          {linkMap.map((link) => {
+          {linkMap.map((link) => (
             <li class="large-list-item">
               <Link href={link.link} class="flex-center-btw">
                 <div class="flex-center-left">
@@ -49,8 +49,8 @@ const Index = () => {
                   />
                 </svg>
               </Link>
-            </li>;
-          })}
+            </li>
+          ))}
         </ul>
       </section>
     </main>

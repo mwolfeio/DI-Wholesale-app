@@ -13,21 +13,6 @@
 }
 
 h1 {
-  /* Heading 1 - 80px */
-
-  font-family: Inter;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 80px;
-  line-height: 97px;
-  /* identical to box height, or 121% */
-
-  display: flex;
-  align-items: center;
-
-  color: #000000;
-}
-h2 {
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
