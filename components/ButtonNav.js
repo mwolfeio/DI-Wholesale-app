@@ -5,6 +5,7 @@ import More from "../media/icons/More.js";
 
 export default function SpecialPage(props) {
   let link = props.back ? `/${props.back}` : "/";
+  console.log("link: ", link);
   return (
     <div className="flex-center-btw" style={{ marginBottom: "16px" }}>
       <div className="flex-center-left">

@@ -183,6 +183,36 @@ ul.large-list li.list-header {
   text-transform: uppercase;
 }
 
+.list-icon {
+  display: block;
+  margin-right: 24px;
+  min-width: 48px;
+  width: 48px !important;
+  text-align: center;
+}
+.list-name {
+  min-width: 220px;
+  width: 220px !important;
+}
+.list-cus-numb {
+  width: 100px;
+  text-align: center;
+}
+.list-cus-numb p,
+.list-cus-order p,
+.list-cus-age p {
+  text-align: center;
+}
+.list-cus-order {
+  width: 100px;
+  text-align: center;
+}
+
+.list-cus-age {
+  width: 100px;
+  text-align: center;
+}
+
 /* ICONS---------------------- */
 .svg-container {
   min-width: 32px;

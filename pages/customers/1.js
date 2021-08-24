@@ -4,7 +4,7 @@ import ButtonNav from "../../components/ButtonNav.js";
 export default function SpecialPage({}) {
   return (
     <main>
-      <ButtonNav back="/customers" />
+      <ButtonNav back="customers" />
 
       <h1>Customer</h1>
 

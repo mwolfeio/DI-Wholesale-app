@@ -1,10 +1,12 @@
 import Link from "next/link";
 import ButtonNav from "../../components/ButtonNav.js";
 
+import CustomersIcon from "../../media/icons/Customers.js";
+
 export default function SpecialPage({}) {
   return (
     <main>
-      <ButtonNav back="/" />
+      <ButtonNav />
 
       <section>
         <h1>Customers</h1>
@@ -14,18 +16,39 @@ export default function SpecialPage({}) {
         </p>
 
         <ul className="large-list ">
-          <li className="list-header">
-            <span>Pic</span> <span>Name</span> <span>Orders</span>
+          <li className="list-header flex-center-btw">
+            <div className="list-icon">Pic</div>
+            <div className="list-name">Name</div>
+            <div className="list-cus-numb">Custoemr #</div>
+            <div className="list-cus-order">Orders</div>
+            <div className="list-cus-age">Age</div>
           </li>
-          <li>
+          <li className="flex-center-btw">
             <Link href="/customers/1">
-              <div className="flex-center-btw">Customer 1</div>
+              <div className="flex-center-btw">
+                <div className="flex-center-left">
+                  <span className="list-icon">
+                    <CustomersIcon />
+                  </span>
+                  <div className="list-name">
+                    <p>First Last</p>
+                    <p className="subtitle">email@email.com</p>
+                  </div>
+                </div>
+                <div className="list-cus-numb">000000</div>
+                <div className="list-cus-order">
+                  <p>0</p>
+                </div>
+                <div className="list-cus-age">
+                  <p>0m 0d</p>
+                </div>
+              </div>
             </Link>
           </li>
-          <li>
-            <Link href="/customers/1">Customer 2</Link>
-          </li>
         </ul>
+        <div className="flex-center-center">
+          <button>Load more</button>
+        </div>
       </section>
     </main>
   );
