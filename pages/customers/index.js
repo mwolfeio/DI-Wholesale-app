@@ -15,32 +15,31 @@ export default function SpecialPage({}) {
           things like customer number, metafields and membership points.
         </p>
 
-        <ul className="large-list ">
-          <li className="list-header flex-center-btw">
-            <div className="list-icon">Pic</div>
-            <div className="list-name">Name</div>
-            <div className="list-cus-numb">Custoemr #</div>
-            <div className="list-cus-order">Orders</div>
-            <div className="list-cus-age">Age</div>
+        <ul className="large-list customer-list">
+          <li className="list-header">
+            <p>Pic</p>
+            <p style={{ marginLeft: "16px", justifySelf: "start" }}>Name</p>
+            <p>Custoemr #</p>
+            <p>Orders</p>
+            <p>Age</p>
           </li>
-          <li className="flex-center-btw">
-            <Link href="/customers/1">
-              <div className="flex-center-btw">
-                <div className="flex-center-left">
-                  <span className="list-icon">
-                    <CustomersIcon />
-                  </span>
-                  <div className="list-name">
-                    <p>First Last</p>
-                    <p className="subtitle">email@email.com</p>
-                  </div>
-                </div>
-                <div className="list-cus-numb">000000</div>
-                <div className="list-cus-order">0</div>
-                <div className="list-cus-age">0m 0d</div>
+          <Link href="/customers/1">
+            <li className="">
+              <CustomersIcon />
+
+              <div
+                className="list-name"
+                style={{ marginLeft: "16px", justifySelf: "start" }}
+              >
+                <p>First Last</p>
+                <p className="subtitle">email@email.com</p>
               </div>
-            </Link>
-          </li>
+
+              <p>000000</p>
+              <p>0</p>
+              <p>0m 0d</p>
+            </li>
+          </Link>
         </ul>
         <div className="flex-center-center">
           <button>Load more</button>

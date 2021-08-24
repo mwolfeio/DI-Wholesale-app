@@ -209,18 +209,17 @@ ul.large-list li.list-header {
   cursor: default;
   margin-top: 24px;
   margin-bottom: 15px;
+}
 
-  ont-family: Inter;
+ul.large-list li.list-header p {
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: Inter;
   font-style: normal;
   font-weight: 600;
   font-size: 12px;
-  line-height: 24px;
-  /* or 200% */
-
-  display: flex;
-  align-items: center;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  line-height: 24px; /* or 200% */
+  color: #b0b7c3;
 }
 
 .list-icon {
@@ -228,16 +227,6 @@ ul.large-list li.list-header {
   margin-right: 24px;
   min-width: 48px;
   width: 48px !important;
-  text-align: center;
-}
-.list-name {
-  min-width: 220px;
-  width: 220px !important;
-}
-.list-cus-numb,
-.list-cus-order,
-.list-cus-age {
-  width: 100px;
   text-align: center;
 }
 
@@ -261,6 +250,14 @@ ul.large-list li.list-header {
 }
 
 /* CUSTOEMR PAGE-------------- */
+ul.customer-list li {
+  display: grid;
+  grid-template-columns: 48px 2fr 1fr 1fr 1fr;
+  width: 100%;
+  grid-column-gap: 8px;
+  justify-items: center;
+  align-items: center;
+}
 .cus-numb-edit {
   transition: 0.15s ease;
   padding: 4px 8px;
