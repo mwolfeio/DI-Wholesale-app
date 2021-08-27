@@ -7,7 +7,6 @@ export default function SpecialPage({}) {
   return (
     <main>
       <ButtonNav />
-
       <section>
         <h1>Customers</h1>
         <p className="light">
