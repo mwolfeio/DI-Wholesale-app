@@ -24,6 +24,7 @@ const GET_CUSTOMENTS = gql`
   }
 `;
 
+
 export default function SpecialPage({}) {
   const { loading, error, data } = useQuery(GET_CUSTOMENTS);
 
@@ -33,9 +34,8 @@ export default function SpecialPage({}) {
     ? "Loading..."
     : error
     ? `Error! ${error.message}`
-    : data.customers.edges.map((cus) => {
-      let cusNum ='test'
-      return(<CustomerList
+    : data.customers.edges.map((cus) => {(
+        <CustomerList
           customer={{
             id: cus.node.id,
             name: `${cus.node.firstName} ${cus.node.lastName}`,
@@ -44,8 +44,8 @@ export default function SpecialPage({}) {
             orders: cus.node.ordersCount,
             age: cus.node.lifetimeDuration,
           }}
-        />)
-    };
+        />
+      ));
 
   return (
     <main>
@@ -74,5 +74,3 @@ export default function SpecialPage({}) {
     </main>
   );
 }
-
-{"id":"gid://shopify/Metafield/17152515342515","__typename":"Metafield"}
