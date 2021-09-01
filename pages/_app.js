@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import { ApolloProvider, InMemoryCache } from "@apollo/client";
 import App, { Container } from "next/app";
 import Cookies from "js-cookie";
 import { AppProvider } from "@shopify/polaris";
@@ -13,6 +13,7 @@ import "../style/global.css";
 
 const client = new ApolloClient({
   uri: `${process.env.HOST}/api/shopify/admin/2020-10/graphql`,
+  cache: new InMemoryCache(),
   fetch: fetch,
   fetchOptions: {
     credentials: "include",
