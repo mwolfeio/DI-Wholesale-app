@@ -29,6 +29,8 @@ const GET_CUSTOMENTS = gql`
 export default function SpecialPage({}) {
   const { loading, error, data } = useQuery(GET_CUSTOMENTS);
 
+  let da = data ? JSON.stringify(data) : "no data";
+
   let list = loading
     ? "Loading..."
     : error
@@ -55,7 +57,7 @@ export default function SpecialPage({}) {
           Search, sort and select a store customer from the list below to edit
           things like customer number, metafields and membership points.
         </p>
-
+        <p>da</p>
         <ul className="large-list customer-list">
           <li className="list-header">
             <p>Pic</p>
