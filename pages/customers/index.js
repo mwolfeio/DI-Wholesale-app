@@ -5,7 +5,7 @@ import ButtonNav from "../../components/ButtonNav.js";
 
 import CustomerList from "../../components/lists/CustomerList.js";
 
-// import DataTable from "../../compo/nents/DataTable.js";
+import DataTable from "../../components/DataTable.js";
 import { gql, useQuery } from "@apollo/client";
 
 export default function SpecialPage({}) {
@@ -38,16 +38,19 @@ export default function SpecialPage({}) {
     : error
     ? `Error! ${error.message}`
     : data.customers.edges.map((cus) => (
-        <CustomerList
-          customer={{
-            id: cus.id,
-            name: `${cus.firstName} ${cus.lastName}`,
-            email: cus.email,
-            cusnumb: cus.metafield ? cus.metafield.cus_no : "none",
-            orders: cus.ordersCount,
-            age: cus.lifetimeDuration,
-          }}
-        />
+        <ul className="large-list customer-list">
+          <p>{cus.metafield.cus_no}</p>
+          <CustomerList
+            customer={{
+              id: cus.id,
+              name: `${cus.firstName} ${cus.lastName}`,
+              email: cus.email,
+              cusnumb: cus.metafield ? cus.metafield.cus_no : "none",
+              orders: cus.ordersCount,
+              age: cus.lifetimeDuration,
+            }}
+          />
+        </ul>
       ));
 
   return (
@@ -59,20 +62,19 @@ export default function SpecialPage({}) {
           Search, sort and select a store customer from the list below to edit
           things like customer number, metafields and membership points.
         </p>
-        <ul className="large-list customer-list">
-          <li className="list-header">
-            <p>Pic</p>
-            <p style={{ marginLeft: "16px", justifySelf: "start" }}>Name</p>
-            <p>Custoemr #</p>
-            <p>Orders</p>
-            <p>Age</p>
-          </li>
-          {list}
-        </ul>
+        <li className="list-header">
+          <p>Pic</p>
+          <p style={{ marginLeft: "16px", justifySelf: "start" }}>Name</p>
+          <p>Custoemr #</p>
+          <p>Orders</p>
+          <p>Age</p>
+        </li>
+        {list}
         <div className="flex-center-center">
           <button>Load more</button>
         </div>
       </section>
+      <DataTable />
     </main>
   );
 }
