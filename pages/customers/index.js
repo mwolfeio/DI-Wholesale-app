@@ -15,9 +15,7 @@ const GET_CUSTOMENTS = gql`
           firstName
           lastName
           email
-          metafield(key: "data", namespace: "customer_fields") {
-            id
-          }
+          metafield(key: "data", namespace: "customer_fields")
           ordersCount
           lifetimeDuration
         }
@@ -35,18 +33,19 @@ export default function SpecialPage({}) {
     ? "Loading..."
     : error
     ? `Error! ${error.message}`
-    : data.customers.edges.map((cus) => (
-        <CustomerList
+    : data.customers.edges.map((cus) => {
+      let cusNum ='test'
+      return(<CustomerList
           customer={{
             id: cus.node.id,
             name: `${cus.node.firstName} ${cus.node.lastName}`,
             email: cus.node.email,
-            cusnumb: cus.node.metafield ? cus.node.metafield.cus_no : "none",
+            cusnumb: cus.node.metafield ? JSON.stringify(datacus.node.metafield).cus_no : "none",
             orders: cus.node.ordersCount,
             age: cus.node.lifetimeDuration,
           }}
-        />
-      ));
+        />)
+    };
 
   return (
     <main>
@@ -75,3 +74,5 @@ export default function SpecialPage({}) {
     </main>
   );
 }
+
+{"id":"gid://shopify/Metafield/17152515342515","__typename":"Metafield"}
