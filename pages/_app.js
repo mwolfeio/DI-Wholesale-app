@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
-import { ApolloClient, ApolloProvider } from "@apollo/client";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/client";
 import App, { Container } from "next/app";
 import Cookies from "js-cookie";
 import { AppProvider } from "@shopify/polaris";
