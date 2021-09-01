@@ -3,6 +3,7 @@ import Link from "next/link";
 import CustomersIcon from "../../media/icons/Customers.js";
 
 export default function SpecialPage(props) {
+  console.log(props);
   return (
     <Link href={`/customers/${props.customer.id}`}>
       <li className="">
