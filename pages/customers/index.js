@@ -6,34 +6,8 @@ import ButtonNav from "../../components/ButtonNav.js";
 import CustomerList from "../../components/lists/CustomerList.js";
 
 // import DataTable from "../../compo/nents/DataTable.js";
-import { gql, useQuery } from "@apollo/client";
 
 export default function SpecialPage({}) {
-  const GET_DOGS = gql`
-    {
-      shop {
-        name
-      }
-      customers(first: 10) {
-        edges {
-          node {
-            id
-            firstName
-            lastName
-            email
-            metafield(key: "data", namespace: "customer_fields") {
-              id
-            }
-            ordersCount
-            lifetimeDuration
-          }
-        }
-      }
-    }
-  `;
-  const { loading, error, data } = useQuery(GET_DOGS);
-
-  let list = "trdy";
   return (
     <main>
       <ButtonNav />
@@ -51,7 +25,6 @@ export default function SpecialPage({}) {
             <p>Orders</p>
             <p>Age</p>
           </li>
-          {list}
         </ul>
         <div className="flex-center-center">
           <button>Load more</button>
