@@ -38,12 +38,12 @@ export default function SpecialPage({}) {
     : data.customers.edges.map((cus) => (
         <CustomerList
           customer={{
-            id: cus.id,
-            name: `${cus.firstName} ${cus.lastName}`,
-            email: cus.email,
-            cusnumb: cus.metafield ? cus.metafield.cus_no : "none",
-            orders: cus.ordersCount,
-            age: cus.lifetimeDuration,
+            id: cus.node.id,
+            name: `${cus.node.firstName} ${cus.node.lastName}`,
+            email: cus.node.email,
+            cusnumb: cus.node.metafield ? cus.node.metafield.cus_no : "none",
+            orders: cus.node.ordersCount,
+            age: cus.node.lifetimeDuration,
           }}
         />
       ));
