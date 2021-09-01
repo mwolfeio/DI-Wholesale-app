@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import { ApolloProvider } from "@apollo/client";
 import App, { Container } from "next/app";
 import Cookies from "js-cookie";
 import { AppProvider } from "@shopify/polaris";
@@ -12,7 +12,7 @@ import ClientRouter from "../components/ClientRouter";
 import "../style/global.css";
 
 const client = new ApolloClient({
-  uri: `${process.env.HOST}/api/shopify/admin/2021-07/graphql`,
+  uri: `https://di-wholesale.myshopify.com/api/shopify/admin/2021-07/graphql`,
   fetch: fetch,
   fetchOptions: {
     credentials: "include",
