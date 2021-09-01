@@ -12,7 +12,7 @@ import ClientRouter from "../components/ClientRouter";
 import "../style/global.css";
 
 const client = new ApolloClient({
-  uri: `${process.env.HOST}/api/shopify/admin/2021-07/graphql`,
+  uri: `https://di-wholesale.myshopify.com/api/shopify/admin/2021-07/graphql`,
   fetch: fetch,
   fetchOptions: {
     credentials: "include",
