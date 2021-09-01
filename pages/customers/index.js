@@ -15,9 +15,7 @@ const GET_CUSTOMENTS = gql`
           firstName
           lastName
           email
-          metafield(key: "data", namespace: "customer_fields") {
-            id
-          }
+          metafield(key: "data", namespace: "customer_fields")
           ordersCount
           lifetimeDuration
         }
