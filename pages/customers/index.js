@@ -27,6 +27,8 @@ const GET_CUSTOMENTS = gql`
 `;
 
 export default function SpecialPage({}) {
+  const { loading, error, data } = useQuery(GET_CUSTOMENTS);
+
   let list = loading
     ? "Loading..."
     : error
