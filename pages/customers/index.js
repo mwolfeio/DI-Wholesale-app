@@ -1,56 +1,9 @@
 import Link from "next/link";
 import ButtonNav from "../../components/ButtonNav.js";
 
-// import { gql, useQuery } from "react-apollo";
-
 import CustomerList from "../../components/lists/CustomerList.js";
 
-// import DataTable from "../../compo/nents/DataTable.js";
-import { gql, useQuery } from "@apollo/client";
-
 export default function SpecialPage({}) {
-  const GET_DOGS = gql`
-    {
-      shop {
-        name
-      }
-      customers(first: 10) {
-        edges {
-          node {
-            id
-            firstName
-            lastName
-            email
-            metafield(key: "data", namespace: "customer_fields") {
-              id
-            }
-            ordersCount
-            lifetimeDuration
-          }
-        }
-      }
-    }
-  `;
-  const { loading, error, data } = useQuery(GET_DOGS);
-
-  // let list = "test";
-  let list = loading
-    ? "Loading..."
-    : error
-    ? `Error! ${error.message}`
-    : data.customers.edges.map((cus) => (
-        <CustomerList
-          customer={{
-            id: cus.id,
-            name: `${cus.firstName} ${cus.lastName}`,
-            email: cus.email,
-            cusnumb: cus.metafield ? cus.metafield.cus_no : "none",
-            orders: cus.ordersCount,
-            age: cus.lifetimeDuration,
-          }}
-        />
-      ));
-
   return (
     <main>
       <ButtonNav />
@@ -60,6 +13,7 @@ export default function SpecialPage({}) {
           Search, sort and select a store customer from the list below to edit
           things like customer number, metafields and membership points.
         </p>
+
         <ul className="large-list customer-list">
           <li className="list-header">
             <p>Pic</p>
@@ -68,7 +22,16 @@ export default function SpecialPage({}) {
             <p>Orders</p>
             <p>Age</p>
           </li>
-          {list}
+          <CustomerList
+            customer={{
+              id: "1",
+              name: "Customer Name",
+              email: "email@email.com",
+              cusnumb: "00000",
+              orders: "0",
+              age: "0m 0d",
+            }}
+          />
         </ul>
         <div className="flex-center-center">
           <button>Load more</button>
