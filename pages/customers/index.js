@@ -15,7 +15,9 @@ const GET_CUSTOMENTS = gql`
           firstName
           lastName
           email
-          metafield(key: "data", namespace: "customer_fields")
+          metafield(key: "data", namespace: "customer_fields") {
+            value
+          }
           ordersCount
           lifetimeDuration
         }
@@ -34,7 +36,9 @@ export default function SpecialPage({}) {
     : error
     ? `Error! ${error.message}`
     : data.customers.edges.map((cus) => {
-      let cusNumb = cus.node.metafield ? JSON.stringify(datacus.node.metafield).cus_no : "no Cus #",
+        let cusNumb = cus.node.metafield
+          ? JSON.stringify(datacus.node.metafield).cus_no
+          : "no Cus #";
         return (
           <CustomerList
             customer={{
