@@ -57,7 +57,7 @@ export default function SpecialPage({}) {
           Search, sort and select a store customer from the list below to edit
           things like customer number, metafields and membership points.
         </p>
-        <p>da</p>
+        <p>{da}</p>
         <ul className="large-list customer-list">
           <li className="list-header">
             <p>Pic</p>
