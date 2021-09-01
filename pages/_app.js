@@ -12,13 +12,12 @@ import ClientRouter from "../components/ClientRouter";
 import "../style/global.css";
 
 const client = new ApolloClient({
-  uri: `${process.env.HOST}/api/shopify/admin/2021-07/graphql`,
+  uri: `${process.env.HOST}/api/shopify/admin/2020-10/graphql`,
   fetch: fetch,
   fetchOptions: {
     credentials: "include",
   },
 });
-
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;

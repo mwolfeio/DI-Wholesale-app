@@ -1,11 +1,7 @@
 import Link from "next/link";
 import ButtonNav from "../../components/ButtonNav.js";
 
-import { gql, useQuery } from "react-apollo";
-
 import CustomerList from "../../components/lists/CustomerList.js";
-
-import { Provider, ResourcePicker } from "@shopify/app-bridge-react";
 
 export default function SpecialPage({}) {
   return (
@@ -17,8 +13,6 @@ export default function SpecialPage({}) {
           Search, sort and select a store customer from the list below to edit
           things like customer number, metafields and membership points.
         </p>
-
-        <ResourcePicker resourceType="Product" open />
 
         <ul className="large-list customer-list">
           <li className="list-header">
