@@ -36,7 +36,9 @@ export default function SpecialPage({}) {
     : error
     ? `Error! ${error.message}`
     : data.customers.edges.map((cus) => {
-        let cusNumb = cus.node.metafield ? cus.node.metafield : "no Cus #";
+        let cusNumb = cus.node.metafield
+          ? JSON.parse(cus.node.metafield).cus_no
+          : "no Cus #";
         return (
           <CustomerList
             customer={{
