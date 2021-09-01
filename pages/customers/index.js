@@ -33,7 +33,23 @@ export default function SpecialPage({}) {
   `;
   const { loading, error, data } = useQuery(GET_DOGS);
 
-  let list = "trdy";
+  let list = loading
+    ? "Loading..."
+    : error
+    ? `Error! ${error.message}`
+    : data.customers.edges.map((cus) => (
+        <CustomerList
+          customer={{
+            id: cus.id,
+            name: `${cus.firstName} ${cus.lastName}`,
+            email: cus.email,
+            cusnumb: cus.metafield ? cus.metafield.cus_no : "none",
+            orders: cus.ordersCount,
+            age: cus.lifetimeDuration,
+          }}
+        />
+      ));
+
   return (
     <main>
       <ButtonNav />
