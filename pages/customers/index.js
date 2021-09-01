@@ -33,18 +33,21 @@ export default function SpecialPage({}) {
     ? "Loading..."
     : error
     ? `Error! ${error.message}`
-    : data.customers.edges.map((cus) => (
-        <CustomerList
-          customer={{
-            id: cus.node.id,
-            name: `${cus.node.firstName} ${cus.node.lastName}`,
-            email: cus.node.email,
-            cusnumb: cus.node.metafield ? cus.node.metafield.cus_no : "none",
-            orders: cus.node.ordersCount,
-            age: cus.node.lifetimeDuration,
-          }}
-        />
-      ));
+    : data.customers.edges.map((cus) => {
+      let cusNumb = cus.node.metafield ? JSON.stringify(datacus.node.metafield).cus_no : "no Cus #",
+        return (
+          <CustomerList
+            customer={{
+              id: cus.node.id,
+              name: `${cus.node.firstName} ${cus.node.lastName}`,
+              email: cus.node.email,
+              cusnumb: cusNumb,
+              orders: cus.node.ordersCount,
+              age: cus.node.lifetimeDuration,
+            }}
+          />
+        );
+      });
 
   return (
     <main>
