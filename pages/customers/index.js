@@ -3,7 +3,47 @@ import ButtonNav from "../../components/ButtonNav.js";
 
 import CustomerList from "../../components/lists/CustomerList.js";
 
+import { useQuery } from "react-apollo";
+import { gql } from "apollo-boost";
+
+const GET_CUSTOMENTS = gql`
+  {
+    customers(first: 10) {
+      edges {
+        node {
+          id
+          firstName
+          lastName
+          email
+          metafield(key: "data", namespace: "customer_fields") {
+            id
+          }
+          ordersCount
+          lifetimeDuration
+        }
+      }
+    }
+  }
+`;
+
 export default function SpecialPage({}) {
+  let list = loading
+    ? "Loading..."
+    : error
+    ? `Error! ${error.message}`
+    : data.customers.edges.map((cus) => (
+        <CustomerList
+          customer={{
+            id: cus.id,
+            name: `${cus.firstName} ${cus.lastName}`,
+            email: cus.email,
+            cusnumb: cus.metafield ? cus.metafield.cus_no : "none",
+            orders: cus.ordersCount,
+            age: cus.lifetimeDuration,
+          }}
+        />
+      ));
+
   return (
     <main>
       <ButtonNav />
@@ -22,16 +62,7 @@ export default function SpecialPage({}) {
             <p>Orders</p>
             <p>Age</p>
           </li>
-          <CustomerList
-            customer={{
-              id: "1",
-              name: "Customer Name",
-              email: "email@email.com",
-              cusnumb: "00000",
-              orders: "0",
-              age: "0m 0d",
-            }}
-          />
+          {list}
         </ul>
         <div className="flex-center-center">
           <button>Load more</button>
