@@ -45,12 +45,13 @@ const SpecialPage = ({}) => {
     ? "Loading..."
     : error
     ? `Error! ${error.message}`
-    : data.customers.edges.map((cus) => {
+    : data.customers.edges.map((cus, i) => {
         let cusNumb = cus.node.metafield
           ? JSON.parse(cus.node.metafield.value)
           : { cus_no: "No Metafields" };
         return (
           <CustomerList
+            index={i}
             customer={{
               id: cus.node.id,
               name: `${cus.node.firstName} ${cus.node.lastName}`,
@@ -66,7 +67,6 @@ const SpecialPage = ({}) => {
   const pagnate = () => {
     console.log("load more");
   };
-
   const changeHandler = (event) => {
     setSearchTerm(event.target.value);
   };

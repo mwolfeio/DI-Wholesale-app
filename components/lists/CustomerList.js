@@ -6,7 +6,7 @@ export default function SpecialPage(props) {
   console.log(props);
   return (
     <Link href={`/customers/${props.customer.id}`}>
-      <li className="">
+      <li className="" style={{--delay: `${props.index*.05}s`}} key={`customer-list-item-${props.index}`}>
         <CustomersIcon />
         <div
           className="list-name"
