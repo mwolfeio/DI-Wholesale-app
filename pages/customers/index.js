@@ -6,9 +6,11 @@ import CustomerList from "../../components/lists/CustomerList.js";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
 
+let test = "m";
+
 const GET_CUSTOMENTS = gql`
   {
-    customers(first: 10, query: "b2") {
+    customers(first: 10, query: "${test}") {
       edges {
         node {
           id
@@ -55,6 +57,10 @@ export default function SpecialPage({}) {
         );
       });
 
+  const pagnate = () => {
+    console.log("load more");
+  };
+
   return (
     <main>
       <ButtonNav />
@@ -83,7 +89,7 @@ export default function SpecialPage({}) {
           {loading || error ? (
             ""
           ) : data.customers.pageInfo.hasNextPage ? (
-            <button>Load more</button>
+            <button onClick={pagnate}>Load more</button>
           ) : (
             ""
           )}
