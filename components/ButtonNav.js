@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import Back from "../media/icons/Back.js";
 import Dash from "../media/icons/Dashboard.js";

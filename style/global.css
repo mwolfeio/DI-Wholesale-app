@@ -399,3 +399,8 @@ ul.customer-list li {
   align-items: center;
   justify-content: center;
 }
+.flex-bottom-btw {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}

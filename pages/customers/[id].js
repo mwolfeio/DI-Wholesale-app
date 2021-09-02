@@ -93,12 +93,22 @@ const CustomerPage = () => {
   ) : (
     <div style={{ width: "100%" }}>
       <section className="clear">
-        <h1 className="underline">First Last</h1>
+        <div className="flex-bottom-btw">
+          <h1 className="underline">
+            {data.customer.firstName} {data.customer.lastName}
+          </h1>
+          <h2>${data.customer.totalSpent}</h2>
+        </div>
         <div className="flex-top-btw">
           <div style={{ display: "table" }}>
-            <h3>email@email.com</h3>
+            <h3>{data.customer.email}</h3>
+            {data.customer.defaultAddress.phone ? (
+              <h3>data.customer.defaultAddress.phone</h3>
+            ) : (
+              ""
+            )}
             <span className="flex-center-left cus-numb-edit">
-              <h3>Customer #: 000000</h3>
+              <h3>Customer #: {"00"}}</h3>
               <svg
                 width="24"
                 height="24"
@@ -115,9 +125,18 @@ const CustomerPage = () => {
           </div>
           <div>
             <h2>Default Address</h2>
-            <h3>Street Address 1</h3>
-            <h3>Street Address 2</h3>
-            <h3>City & State</h3>
+            {data.customer.defaultAddress.company ? (
+              <h3>data.customer.defaultAddress.company</h3>
+            ) : (
+              ""
+            )}
+            <h3>{data.customer.defaultAddress.address1}</h3>
+            {data.customer.defaultAddress.address2 ? (
+              <h3>data.customer.defaultAddress.city</h3>
+            ) : (
+              ""
+            )}
+            <h3>{data.customer.defaultAddress}</h3>
           </div>
         </div>
       </section>
