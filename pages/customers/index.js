@@ -29,8 +29,6 @@ const GET_CUSTOMENTS = gql`
 export default function SpecialPage({}) {
   const { loading, error, data } = useQuery(GET_CUSTOMENTS);
 
-  let da = data ? JSON.stringify(data) : "no data";
-
   let list = loading
     ? "Loading..."
     : error
@@ -38,7 +36,7 @@ export default function SpecialPage({}) {
     : data.customers.edges.map((cus) => {
         let cusNumb = cus.node.metafield
           ? JSON.parse(cus.node.metafield.value)
-          : { cus_no: "No Cus #" };
+          : { cus_no: "No Metafields" };
         return (
           <CustomerList
             customer={{
