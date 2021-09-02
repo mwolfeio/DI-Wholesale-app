@@ -132,11 +132,14 @@ const CustomerPage = () => {
             )}
             <h3>{data.customer.defaultAddress.address1}</h3>
             {data.customer.defaultAddress.address2 ? (
-              <h3>{data.customer.defaultAddress.city}</h3>
+              <h3>
+                {data.customer.defaultAddress.city},{" "}
+                {data.customer.defaultAddress.zip}
+              </h3>
             ) : (
               ""
             )}
-            <h3>{data.customer.defaultAddress}</h3>
+            <h3>{data.customer.defaultAddress.country}</h3>
           </div>
         </div>
       </section>
