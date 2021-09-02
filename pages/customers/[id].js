@@ -7,18 +7,16 @@ import Link from "next/link";
 import ButtonNav from "../../components/ButtonNav.js";
 
 const GET_CUSTOMER = gql`
-  query getCustomer($Id: ID!) {
-    customer(id: $Id) {
+
+    customer(id: "gid://shopify/Customer/1310260789270") {
       id
     }
-  }
+
 `;
 
 const CustomerPage = () => {
   const { id } = useRouter().query;
-  const { loading, error, data } = useQuery(GET_CUSTOMER, {
-    variables: { Id: `gid://shopify/Customer/${id}` },
-  });
+  const { loading, error, data } = useQuery(GET_CUSTOMER);
 
   let page = loading ? (
     <div
