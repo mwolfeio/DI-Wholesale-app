@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
+import debounce from "lodash.debounce";
 import Link from "next/link";
 
 import ButtonNav from "../../components/ButtonNav.js";
@@ -64,10 +65,19 @@ const SpecialPage = ({}) => {
   const pagnate = () => {
     console.log("load more");
   };
-  const handleChange = (e) => {
+  const changeHandler = (e) => {
     console.log(e.target.value);
     setSearchTerm(e.target.value);
   };
+  const debouncedChangeHandler = useMemo(
+    () => debounce(changeHandler, 300),
+    []
+  );
+  useEffect(() => {
+    return () => {
+      debouncedChangeHandler.cancel();
+    };
+  }, []);
 
   return (
     <main>
@@ -80,7 +90,7 @@ const SpecialPage = ({}) => {
         </p>
         <input
           className="list-search"
-          onChange={handleChange}
+          onChange={debouncedChangeHandler}
           type="text"
           placeholder="Enter a customer's name..."
         ></input>
