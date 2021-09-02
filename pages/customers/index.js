@@ -23,6 +23,9 @@ const GET_CUSTOMENTS = gql`
         }
       }
     }
+    pageInfo {
+      hasNextPage
+    }
   }
 `;
 
@@ -60,7 +63,7 @@ export default function SpecialPage({}) {
           Search, sort and select a store customer from the list below to edit
           things like customer number, metafields and membership points.
         </p>
-        <p>{da}</p>
+        <input placeholder="Enter a customer's name..."></input>
         <ul className="large-list customer-list">
           <li className="list-header">
             <p>Pic</p>
@@ -72,7 +75,13 @@ export default function SpecialPage({}) {
           {list}
         </ul>
         <div className="flex-center-center">
-          <button>Load more</button>
+          {loading || error ? (
+            ""
+          ) : data.customer.pageInfo.hasNextPage ? (
+            <button>Load more</button>
+          ) : (
+            ""
+          )}
         </div>
       </section>
     </main>
