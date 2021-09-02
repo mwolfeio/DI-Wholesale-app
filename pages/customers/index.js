@@ -22,9 +22,9 @@ const GET_CUSTOMENTS = gql`
           lifetimeDuration
         }
       }
-    }
-    pageInfo {
-      hasNextPage
+      pageInfo {
+        hasNextPage
+      }
     }
   }
 `;
