@@ -19,9 +19,7 @@ export default function SpecialPage(props) {
           <p>{props.customer.name}</p>
           <p className="subtitle">{props.customer.email}</p>
         </div>
-        <p>
-          {props.customer.cusnumb} {`/customers/${props.customer.id}`}
-        </p>
+        <p>{props.customer.cusnumb}</p>
         <p>{props.customer.orders}</p>
         <p>{props.customer.age}</p>
       </li>
