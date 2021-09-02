@@ -215,7 +215,9 @@ ul.large-list li {
   border-radius: 15px;
   transition: 0.15s ease;
   cursor: pointer;
-  animation: fade-in-up 0.15s var(--delay) forwards;
+  animation: fade-in-up 0.15s forwards;
+  transform: translateY(16px);
+  opacity: 0;
 }
 @keyframes fade-in-up {
   from {
