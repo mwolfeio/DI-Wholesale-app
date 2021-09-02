@@ -1,3 +1,16 @@
-export default function Loader() {
-  return <div>test</div>;
-}
+import React from "react";
+
+const Loader = () => {
+  return (
+    <div
+      className="flex-center-center"
+      style={{ margin: "20px 0", width: "100%" }}
+    >
+      <div class="lds-ripple">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
+};
+export default Loader;
