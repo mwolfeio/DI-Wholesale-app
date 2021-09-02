@@ -9,8 +9,8 @@ import { gql } from "apollo-boost";
 let test = "m";
 
 const GET_CUSTOMENTS = gql`
-  {
-    customers(first: 10, query: "m") {
+  query getCustomers($first: Int = 3) {
+    customers(first: $first, query: "m") {
       edges {
         node {
           id
@@ -61,12 +61,8 @@ export default function SpecialPage({}) {
     console.log("load more");
   };
   const handleChange = (e) => {
-    const value = e.target.value;
-    this.handleFilter(value);
+    console.log("changed");
   };
-  const handleFilter = debounce((val) => {
-    this.props.onSearch(val);
-  }, 250);
 
   return (
     <main>
