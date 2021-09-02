@@ -65,9 +65,9 @@ const SpecialPage = ({}) => {
   const pagnate = () => {
     console.log("load more");
   };
-  const changeHandler = (e) => {
-    console.log(e.target.value);
-    setSearchTerm(e.target.value);
+
+  const changeHandler = (event) => {
+    setSearchTerm(event.target.value);
   };
   const debouncedChangeHandler = useMemo(
     () => debounce(changeHandler, 300),
