@@ -9,8 +9,6 @@ import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
 import CustomerList from "../../components/lists/CustomerList.js";
 
-let test = "m";
-
 const GET_CUSTOMENTS = gql`
   query getCustomers($first: Int = 4, $srch: String!, $srt: CustomerSortKeys!) {
     customers(first: $first, query: $srch, sortKey: $srt) {

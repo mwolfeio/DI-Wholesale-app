@@ -202,12 +202,7 @@ ul.large-list {
   list-style-type: none;
   padding: 0;
 }
-ul.large-list > *:first-child {
-  margin-top: 15px;
-}
-ul.large-list > *:not(:last-child) {
-  margin-bottom: 10px;
-}
+
 ul.large-list li {
   height: 69px;
   padding: 0 21px;
@@ -233,6 +228,15 @@ ul.large-list li {
     transform: translateY(0);
     opacity: 1;
   }
+}
+ul.large-list > *:first-child {
+  margin-top: 15px;
+  animation: none !important;
+  transform: translateY(0) !important;
+  opacity: 1 !important;
+}
+ul.large-list > *:not(:last-child) {
+  margin-bottom: 10px;
 }
 ul.large-list li:hover {
   background: #fafbfc;
@@ -336,7 +340,7 @@ ul.customer-list li {
 }
 .lds-ripple div {
   position: absolute;
-  border: 4px solid #fff;
+  border: 4px solid #4e5d78;
   opacity: 1;
   border-radius: 50%;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
