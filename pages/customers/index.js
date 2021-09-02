@@ -6,7 +6,7 @@ import _ from "lodash";
 import Link from "next/link";
 
 import ButtonNav from "../../components/ButtonNav.js";
-import Loader from "../../components/Loader.js";
+
 import CustomerList from "../../components/lists/CustomerList.js";
 
 let test = "m";
@@ -42,30 +42,28 @@ const SpecialPage = ({}) => {
     variables: { first: 22, srch: searchTerm, srt: "RELEVANCE" },
   });
 
-  let list = loading ? (
-    <Loader />
-  ) : error ? (
-    `Error! ${error.message}`
-  ) : (
-    data.customers.edges.map((cus, i) => {
-      let cusNumb = cus.node.metafield
-        ? JSON.parse(cus.node.metafield.value)
-        : { cus_no: "No Metafields" };
-      return (
-        <CustomerList
-          index={i}
-          customer={{
-            id: cus.node.id,
-            name: `${cus.node.firstName} ${cus.node.lastName}`,
-            email: cus.node.email,
-            cusnumb: cusNumb.cus_no,
-            orders: cus.node.ordersCount,
-            age: cus.node.lifetimeDuration,
-          }}
-        />
-      );
-    })
-  );
+  let list = loading
+    ? "Loading..."
+    : error
+    ? `Error! ${error.message}`
+    : data.customers.edges.map((cus, i) => {
+        let cusNumb = cus.node.metafield
+          ? JSON.parse(cus.node.metafield.value)
+          : { cus_no: "No Metafields" };
+        return (
+          <CustomerList
+            index={i}
+            customer={{
+              id: cus.node.id,
+              name: `${cus.node.firstName} ${cus.node.lastName}`,
+              email: cus.node.email,
+              cusnumb: cusNumb.cus_no,
+              orders: cus.node.ordersCount,
+              age: cus.node.lifetimeDuration,
+            }}
+          />
+        );
+      });
 
   const pagnate = () => {
     console.log("load more");
