@@ -1,8 +1,13 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import ButtonNav from "../../components/ButtonNav.js";
 
 const CustomerPage = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  console.log("the user id is: ", id);
+
   return (
     <main>
       <ButtonNav back="customers" />
