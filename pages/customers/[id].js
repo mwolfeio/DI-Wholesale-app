@@ -72,7 +72,7 @@ const GET_CUSTOMER = gql`
 
 const CustomerPage = () => {
   const { id } = useRouter().query;
-  const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
+  const { loading, error, data } = useQuery(GET_CUSTOMER, {
     variables: { id: `gid://shopify/Customer/${id}` },
   });
 
