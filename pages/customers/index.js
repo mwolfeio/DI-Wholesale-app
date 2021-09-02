@@ -60,6 +60,13 @@ export default function SpecialPage({}) {
   const pagnate = () => {
     console.log("load more");
   };
+  const handleChange = (e) => {
+    const value = e.target.value;
+    this.handleFilter(value);
+  };
+  const handleFilter = debounce((val) => {
+    this.props.onSearch(val);
+  }, 250);
 
   return (
     <main>
@@ -72,6 +79,7 @@ export default function SpecialPage({}) {
         </p>
         <input
           className="list-search"
+          onChange={(e) => handleChange(e)}
           type="text"
           placeholder="Enter a customer's name..."
         ></input>
