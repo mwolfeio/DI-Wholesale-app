@@ -20,6 +20,7 @@ const GET_CUSTOMENTS = gql`
           }
           ordersCount
           lifetimeDuration
+          marketingOptInLevel
         }
       }
       pageInfo {
@@ -77,7 +78,7 @@ export default function SpecialPage({}) {
         <div className="flex-center-center">
           {loading || error ? (
             ""
-          ) : data.customer.pageInfo.hasNextPage ? (
+          ) : data.customers.pageInfo.hasNextPage ? (
             <button>Load more</button>
           ) : (
             ""
