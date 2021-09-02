@@ -36,7 +36,9 @@ export default function SpecialPage({}) {
     : error
     ? `Error! ${error.message}`
     : data.customers.edges.map((cus) => {
-        let cusNumb = cus.node.metafield ? JSON.parse(cus.node.metafield.value);
+        let cusNumb = cus.node.metafield
+          ? JSON.parse(cus.node.metafield.value)
+          : { cus_no: "No Cus #" };
         return (
           <CustomerList
             customer={{
@@ -65,7 +67,7 @@ export default function SpecialPage({}) {
           <li className="list-header">
             <p>Pic</p>
             <p style={{ marginLeft: "16px", justifySelf: "start" }}>Name</p>
-            <p>Custoemr #</p>
+            <p>Customer #</p>
             <p>Orders</p>
             <p>Age</p>
           </li>
