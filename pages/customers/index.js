@@ -34,7 +34,7 @@ const GET_CUSTOMENTS = gql`
 
 export default function SpecialPage({}) {
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
-    variables: { first: 20, srch: "ma" },
+    variables: { first: 20, srch: "Holly" },
   });
 
   let list = loading
