@@ -44,7 +44,7 @@ const SpecialPage = ({}) => {
     <Loader />
   ) : error ? (
     `Error! ${error.message}`
-  ) : (
+  ) : data.customers.edges.length ? (
     data.customers.edges.map((cus, i) => {
       let cusNumb = cus.node.metafield
         ? JSON.parse(cus.node.metafield.value)
@@ -63,6 +63,10 @@ const SpecialPage = ({}) => {
         />
       );
     })
+  ) : (
+    <li className="flex-center-center">
+      <p>No Results</p>
+    </li>
   );
 
   const pagnate = () => {
