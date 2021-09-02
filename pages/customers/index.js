@@ -64,7 +64,11 @@ export default function SpecialPage({}) {
           Search, sort and select a store customer from the list below to edit
           things like customer number, metafields and membership points.
         </p>
-        <input placeholder="Enter a customer's name..."></input>
+        <input
+          className="list-search"
+          type="text"
+          placeholder="Enter a customer's name..."
+        ></input>
         <ul className="large-list customer-list">
           <li className="list-header">
             <p>Pic</p>
