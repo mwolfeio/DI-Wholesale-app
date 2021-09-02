@@ -6,7 +6,7 @@ import _ from "lodash";
 import Link from "next/link";
 
 import ButtonNav from "../../components/ButtonNav.js";
-
+import Loader from "../../components/Loader.js";
 import CustomerList from "../../components/lists/CustomerList.js";
 
 let test = "m";
