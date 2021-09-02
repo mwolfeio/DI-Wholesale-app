@@ -33,10 +33,10 @@ const GET_CUSTOMENTS = gql`
 `;
 
 const SpecialPage = ({}) => {
-  const [seachTerm, setSeachTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
-    variables: { first: 20, srch: seachTerm },
+    variables: { first: 22, srch: searchTerm },
   });
 
   let list = loading
@@ -64,6 +64,10 @@ const SpecialPage = ({}) => {
   const pagnate = () => {
     console.log("load more");
   };
+  const handleChange = (e) => {
+    console.log(e.target.value);
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <main>
@@ -76,7 +80,7 @@ const SpecialPage = ({}) => {
         </p>
         <input
           className="list-search"
-          onChange={(e) => setSeachTerm(e.value)}
+          onChange={handleChange}
           type="text"
           placeholder="Enter a customer's name..."
         ></input>
