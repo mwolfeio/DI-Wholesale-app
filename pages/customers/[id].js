@@ -4,8 +4,8 @@ import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
 
 const GET_CUSTOMER = gql`
-  query getCustomer($Id: ID!) {
-    customer(id: $Id) {
+  query getCustomer($id: ID!) {
+    customer(id: $id) {
       acceptsMarketing
     }
   }
@@ -15,14 +15,17 @@ const GET_CUSTOMER = gql`
 
 const CustomerPage = () => {
   const { id } = useRouter().query;
-  const { loading, error, data } = useQuery(GET_CUSTOMER, {
-    variables: { Id: `gid://shopify/Customer/${id}` },
-  });
-
-  if (loading) return;
-  if (error) return <p>{error.message}</p>;
-
-  console.log(data ? data : "no data");
+  let globalId = `gid://shopify/Customer/${id}`;
+  console.log(id);
+  console.log(globalId);
+  // const { loading, error, data } = useQuery(GET_CUSTOMER, {
+  //   variables: { id: `gid://shopify/Customer/${id}` },
+  // });
+  //
+  // if (loading) return;
+  // if (error) return <p>{error.message}</p>;
+  //
+  // console.log(data ? data : "no data");
 
   return <main>test 900</main>;
 };
