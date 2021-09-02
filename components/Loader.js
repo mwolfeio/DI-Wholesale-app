@@ -6,7 +6,7 @@ const Loader = () => {
       className="flex-center-center"
       style={{ margin: "20px 0", width: "100%" }}
     >
-      <div class="lds-ripple">
+      <div className="lds-ripple">
         <div></div>
         <div></div>
       </div>
