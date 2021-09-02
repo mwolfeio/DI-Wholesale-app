@@ -8,7 +8,7 @@ export default function SpecialPage(props) {
     <Link href={`/customers/${props.customer.id}`}>
       <li
         className=""
-        style={{ animationDelay: `${props.index * 0.05}s` }}
+        style={{ animationDelay: `${props.index * 0.03}s` }}
         key={`customer-list-item-${props.index}`}
       >
         <CustomersIcon />
