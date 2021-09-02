@@ -64,9 +64,12 @@ const SpecialPage = ({}) => {
       );
     })
   ) : (
-    <li className="flex-center-center">
+    <div
+      className="flex-center-center"
+      style={{ height: "58px", width: "100%" }}
+    >
       <p>No Results</p>
-    </li>
+    </div>
   );
 
   const pagnate = () => {
