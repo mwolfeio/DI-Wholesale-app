@@ -103,7 +103,7 @@ const CustomerPage = () => {
           <div style={{ display: "table" }}>
             <h3>{data.customer.email}</h3>
             {data.customer.defaultAddress.phone ? (
-              <h3>data.customer.defaultAddress.phone</h3>
+              <h3>{data.customer.defaultAddress.phone}</h3>
             ) : (
               ""
             )}
@@ -126,13 +126,13 @@ const CustomerPage = () => {
           <div>
             <h2>Default Address</h2>
             {data.customer.defaultAddress.company ? (
-              <h3>data.customer.defaultAddress.company</h3>
+              <h3>{data.customer.defaultAddress.company}</h3>
             ) : (
               ""
             )}
             <h3>{data.customer.defaultAddress.address1}</h3>
             {data.customer.defaultAddress.address2 ? (
-              <h3>data.customer.defaultAddress.city</h3>
+              <h3>{data.customer.defaultAddress.city}</h3>
             ) : (
               ""
             )}
@@ -141,7 +141,7 @@ const CustomerPage = () => {
         </div>
       </section>
       <section>
-        <h2>Information</h2>
+        <h2>Orders</h2>
       </section>
       <section>metafields</section>
       <section>Wishlist</section>
