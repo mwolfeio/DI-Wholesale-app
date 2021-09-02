@@ -1,10 +1,10 @@
-import Link from "next/link";
-import ButtonNav from "../../components/ButtonNav.js";
-
-import CustomerList from "../../components/lists/CustomerList.js";
-
+import React, { useState } from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
+import Link from "next/link";
+
+import ButtonNav from "../../components/ButtonNav.js";
+import CustomerList from "../../components/lists/CustomerList.js";
 
 let test = "m";
 
@@ -32,9 +32,11 @@ const GET_CUSTOMENTS = gql`
   }
 `;
 
-export default function SpecialPage({}) {
+const SpecialPage = ({}) => {
+  const [seachTerm, setSeachTerm] = useState("");
+
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
-    variables: { first: 20, srch: "Holly" },
+    variables: { first: 20, srch: seachTerm },
   });
 
   let list = loading
@@ -62,9 +64,6 @@ export default function SpecialPage({}) {
   const pagnate = () => {
     console.log("load more");
   };
-  const handleChange = (e) => {
-    console.log("changed");
-  };
 
   return (
     <main>
@@ -77,7 +76,7 @@ export default function SpecialPage({}) {
         </p>
         <input
           className="list-search"
-          onChange={(e) => handleChange(e)}
+          onChange={(e) => setSeachTerm(e.value)}
           type="text"
           placeholder="Enter a customer's name..."
         ></input>
@@ -103,4 +102,5 @@ export default function SpecialPage({}) {
       </section>
     </main>
   );
-}
+};
+export default SpecialPage;
