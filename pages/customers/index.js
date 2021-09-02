@@ -10,7 +10,7 @@ let test = "m";
 
 const GET_CUSTOMENTS = gql`
   {
-    customers(first: 10, query: "${test}") {
+    customers(first: 10, query: "m") {
       edges {
         node {
           id
