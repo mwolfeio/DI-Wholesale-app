@@ -36,19 +36,14 @@ export default function SpecialPage({}) {
     : error
     ? `Error! ${error.message}`
     : data.customers.edges.map((cus) => {
-        console.log(cus.node.metafield);
-        console.log(cus.node.metafield.value);
-        console.log(cus.node.metafield.value.cus_no);
-        console.log(JSON.parse(cus.node.metafield.value));
-        console.log(JSON.parse(cus.node.metafield.value).cus_no);
-        let cusNumb = JSON.parse(cus.node.metafield.value);
+        let cusNumb = cus.node.metafield ? JSON.parse(cus.node.metafield.value);
         return (
           <CustomerList
             customer={{
               id: cus.node.id,
               name: `${cus.node.firstName} ${cus.node.lastName}`,
               email: cus.node.email,
-              cusnumb: cusNumb,
+              cusnumb: cusNumb.cus_no,
               orders: cus.node.ordersCount,
               age: cus.node.lifetimeDuration,
             }}
