@@ -11,8 +11,8 @@ import CustomerList from "../../components/lists/CustomerList.js";
 let test = "m";
 
 const GET_CUSTOMENTS = gql`
-  query getCustomers($first: Int = 4, $srch: String!) {
-    customers(first: $first, query: $srch) {
+  query getCustomers($first: Int = 4, $srch: String!, $srt: CustomerSortKeys!) {
+    customers(first: $first, query: $srch, sortKey: $srt) {
       edges {
         node {
           id
@@ -38,7 +38,7 @@ const SpecialPage = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
-    variables: { first: 22, srch: searchTerm },
+    variables: { first: 22, srch: searchTerm, srt: "RELEVANCE" },
   });
 
   let list = loading
