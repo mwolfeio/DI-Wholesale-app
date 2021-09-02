@@ -1,7 +1,8 @@
 import { useState, useMemo, useEffect } from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
-import debounce from "lodash.debounce";
+import _ from "lodash";
+// import debounce from "lodash.debounce";
 import Link from "next/link";
 
 import ButtonNav from "../../components/ButtonNav.js";
@@ -66,18 +67,18 @@ const SpecialPage = ({}) => {
     console.log("load more");
   };
 
-  // const changeHandler = (event) => {
-  //   setSearchTerm(event.target.value);
-  // };
-  // const debouncedChangeHandler = useMemo(
-  //   () => debounce(changeHandler, 300),
-  //   []
-  // );
-  // useEffect(() => {
-  //   return () => {
-  //     debouncedChangeHandler.cancel();
-  //   };
-  // }, []);
+  const changeHandler = (event) => {
+    setSearchTerm(event.target.value);
+  };
+  const debouncedChangeHandler = useMemo(
+    () => _.debounce(changeHandler, 300),
+    []
+  );
+  useEffect(() => {
+    return () => {
+      debouncedChangeHandler.cancel();
+    };
+  }, []);
 
   return (
     <main>
@@ -89,6 +90,7 @@ const SpecialPage = ({}) => {
           things like customer number, metafields and membership points.
         </p>
         <input
+          onChange={debouncedChangeHandler}
           className="list-search"
           type="text"
           placeholder="Enter a customer's name..."
