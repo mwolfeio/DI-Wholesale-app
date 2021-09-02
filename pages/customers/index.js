@@ -49,7 +49,7 @@ const SpecialPage = ({}) => {
       console.log("cus.node: ", cus.node);
       console.log("cus.node.id: ", cus.node.id);
 
-      let id = cus.node.id.replace("/customers/gid://shopify/Customer/", "");
+      let id = cus.node.id.replace("gid://shopify/Customer/", "");
 
       console.log("id: ", id);
 
