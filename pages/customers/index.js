@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
-// import debounce from "lodash.debounce";
+import debounce from "lodash.debounce";
 import Link from "next/link";
 
 import ButtonNav from "../../components/ButtonNav.js";
