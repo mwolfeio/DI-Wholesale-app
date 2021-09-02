@@ -9,7 +9,7 @@ import { gql } from "apollo-boost";
 let test = "m";
 
 const GET_CUSTOMENTS = gql`
-  query getCustomers($query: String!) {
+  query getCustomers($query) {
     customers(first: 5, query: $query) {
       edges {
         node {
