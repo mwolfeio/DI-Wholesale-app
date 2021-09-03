@@ -6,7 +6,9 @@ import More from "../media/icons/More.js";
 
 export default function SpecialPage(props) {
   //State
-  const [customerNumber, setCustomerNumber] = useState("");
+  const [customerNumber, setCustomerNumber] = useState(
+    props.cnumb ? `CN: ${props.cnumb}` : ""
+  );
   console.log("customerNumber: ", customerNumber);
 
   //Handle input
@@ -31,7 +33,7 @@ export default function SpecialPage(props) {
         className="customer-number-input"
         type="text"
         placeholder="No Customer #"
-        value={props.cnumb ? `CN: ${props.cnumb}` : ""}
+        value={customerNumber}
       />
     </div>
   );

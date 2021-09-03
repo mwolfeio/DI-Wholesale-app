@@ -7,13 +7,13 @@
 main {
   margin: 16px;
   max-width: 774px;
-  width: Calc(100vw - 32px);
+  width: Calc(100% - 32px);
   box-sizing: border-box;
 }
 section {
   background: #ffffff;
   border-radius: 15px;
-  padding: 36px;
+  padding: 24px;
   width: 100%;
   display: block;
   margin-bottom: 24px;
@@ -330,12 +330,12 @@ ul.large-list li.list-header p {
 .card-container {
   background: #f4f6f8;
   padding: 16px;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .card-container .card {
   background: white;
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 16px;
 }
 
@@ -434,6 +434,11 @@ ul.customer-list li {
   align-items: center;
   justify-content: flex-end;
 }
+.flex-center-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .flex-center-btw {
   display: flex;
   align-items: center;
@@ -444,10 +449,10 @@ ul.customer-list li {
   align-items: flex-start;
   justify-content: space-between;
 }
-.flex-center-center {
+.flex-top-right {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-end;
 }
 .flex-bottom-btw {
   display: flex;

@@ -1,13 +1,14 @@
 import React from "react";
-
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
+
+import SectionHeader from "./SectionHeader.js";
 
 const Section = (props) => {
   let fieldsArr = props.fields ? props.fields : [];
   return (
     <section>
-      <h2>Metafields</h2>
+      <SectionHeader title="Metafields" />
       <div className="card-container">
         {fieldsArr.map((metafield) => (
           <div className="card">

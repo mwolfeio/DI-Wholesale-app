@@ -123,7 +123,7 @@ const CustomerPage = () => {
                 : data.customer.defaultAddress.phone}
             </h3>
           </div>
-          <div>
+          <div className="flex-top-right">
             <h3 style={{ textAlign: "right" }}>
               {data.customer.ordersCount} Orders
             </h3>
