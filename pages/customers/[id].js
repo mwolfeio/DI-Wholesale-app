@@ -75,9 +75,15 @@ const GET_CUSTOMER = gql`
 //customer(id: "gid://shopify/Customer/1310260789270")
 
 const CustomerPage = () => {
-  const { Id_CusNumb } = useRouter().query;
-  let id = Id_CusNumb.split("-")[0];
-  let cusNumb = Id_CusNumb.split("-")[1];
+  const { id } = useRouter().query;
+  let ids = "111";
+  let cusNumb = "111"; //Id_CusNumb.split("-")[1];
+  console.log("Id_CusNumb: ", id);
+
+  // var [ids, cusNumb] = id.split("-");
+  // console.log("id: ", ids);
+  // console.log("cusNumb: ", cusNumb);
+
   let globalId = `gid://shopify/Customer/${id}`;
 
   const { loading, error, data } = useQuery(GET_CUSTOMER, {
@@ -149,7 +155,7 @@ const CustomerPage = () => {
   if (data) console.log(data);
   return (
     <main>
-      <ButtonNav back="customers" cnumb={{ display: true, cnumb: cusNumb }} />
+      <ButtonNav back="customers" cnumb={{ display: true, cnumb: id }} />
       {page}
     </main>
   );

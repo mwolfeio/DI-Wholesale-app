@@ -3,6 +3,7 @@ import Link from "next/link";
 import Back from "../media/icons/Back.js";
 import Dash from "../media/icons/Dashboard.js";
 import MoreButton from "./MoreButton.js";
+import CustomerNumber from "./CustomerNumber.js";
 
 export default function SpecialPage(props) {
   let link = props.back ? `/${props.back}` : "/";
@@ -24,7 +25,7 @@ export default function SpecialPage(props) {
       </div>
       <div className="flex-center-right">
         {props.cnumb && props.cnumb.display ? (
-          <CustomeNumber cnumb={props.cnumb.cnumb} />
+          <CustomerNumber cnumb={props.cnumb.cnumb} />
         ) : (
           ""
         )}
