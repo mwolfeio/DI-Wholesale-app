@@ -8,11 +8,33 @@ import More from "../media/icons/More.js";
 
 //graphql
 const UPDATE_CUSTOEMR_NUMBER = gql`
-  mutation updateCustomerNumber($input: customerInput!) {
+  mutation customerUpdate($input: {
+  data: {
+    customerUpdate: {
+      customer: {
+        metafields: {
+          edge: [
+            {
+              node: {
+                key: "Number",
+                value": "00"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}) {
     customerUpdate(input: $input) {
       customer {
-        metafield(key: "data", namespace: "customer_fields") {
-          value
+        metafields(first: 10) {
+          edges {
+            node {
+              key
+              value
+            }
+          }
         }
       }
     }
@@ -30,7 +52,7 @@ const Section = (props) => {
   console.log("Customer fields: ", props.data.fields);
   console.log("Customer globalId: ", props.data.globalId);
 
-  const [updateCustomerNumvber, { loading, error, data }] = useMutation(
+  const [customerUpdate, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
 
@@ -44,7 +66,7 @@ const Section = (props) => {
     console.log("inputed value: ", e.target.value);
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
 
-    updateCustomerNumvber({
+    customerUpdate({
       variables: {
         input: {
           id: "gid://shopify/customer/5510083412147",
