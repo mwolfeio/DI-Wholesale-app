@@ -25,7 +25,7 @@ export default function SpecialPage(props) {
       </div>
       <div className="flex-center-right">
         {props.cnumb && props.cnumb.display ? (
-          <CustomerNumber cnumb={props.cnumb.cnumb} />
+          <CustomerNumber cnumb={props.cnumb} />
         ) : (
           ""
         )}

@@ -7,14 +7,16 @@ import SectionHeader from "./SectionHeader.js";
 const Section = (props) => {
   let fieldsArr = props.fields ? props.fields : [];
 
-  console.log("metafirlds from metafields seciton: ", fieldsArr);
+  // console.log("metafirlds from metafields seciton: ", fieldsArr);
   return (
     <section>
       <SectionHeader title="Metafields" />
       <div className="card-container">
         {fieldsArr.map((metafield) => (
           <div className="card">
-            <p>{metafield.node.key}</p>
+            <p>
+              {metafield.node.namespace} {metafield.node.key}
+            </p>
             <p>{metafield.node.value}</p>
           </div>
         ))}

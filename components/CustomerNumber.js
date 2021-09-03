@@ -25,13 +25,18 @@ const Section = (props) => {
     props.cnumb ? `CN: ${props.cnumb}` : ""
   );
 
-  console.log("Customer Metafields: ", props.fields);
+  console.log("Customer display: ", props.display);
+  console.log("Customer cnumb: ", props.cnumb);
+  console.log("Customer fields: ", props.fields);
+  console.log("Customer globalId: ", props.globalId);
 
   const [updateCustomerNumvber, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
 
   console.log("customerNumber: ", customerNumber);
+  console.log("loading: ", loading);
+  console.log("error: ", error);
   console.log("data: ", data ? data : "No Data");
 
   //Handle input
@@ -42,10 +47,10 @@ const Section = (props) => {
     updateCustomerNumvber({
       variables: {
         input: {
-          id: "gid://shopify/Product/1",
+          id: "gid://shopify/customer/5510083412147",
           metafields: [
             {
-              id: "gid://shopify/Metafield/4143381872696",
+              id: "gid://shopify/Metafield/19929682935987",
               value: "hang dry",
             },
           ],
