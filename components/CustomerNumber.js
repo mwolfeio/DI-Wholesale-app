@@ -11,13 +11,8 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
   mutation updateCustomerNumber($input: customerInput!) {
     customerUpdate(input: $input) {
       customer {
-        metafields(first: 1) {
-          edges {
-            node {
-              key
-              value
-            }
-          }
+        metafield(key: "data", namespace: "customer_fields") {
+          value
         }
       }
     }
@@ -30,6 +25,8 @@ const Section = (props) => {
     props.cnumb ? `CN: ${props.cnumb}` : ""
   );
 
+  console.log("Customer Metafields: ", props.fields);
+
   const [updateCustomerNumvber, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
@@ -40,6 +37,20 @@ const Section = (props) => {
   const changeHandler = (e) => {
     console.log("inputed value: ", e.target.value);
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
+
+    updateCustomerNumvber({
+      variables: {
+        input: {
+          id: "gid://shopify/Product/1",
+          metafields: [
+            {
+              id: "gid://shopify/Metafield/4143381872696",
+              value: "hang dry",
+            },
+          ],
+        },
+      },
+    });
   };
 
   const debouncedChangeHandler = useMemo(

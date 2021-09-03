@@ -52,6 +52,9 @@ const GET_CUSTOMER = gql`
         edges {
           node {
             id
+            namespace
+            key
+            value
           }
         }
       }
@@ -145,26 +148,16 @@ const CustomerPage = () => {
   if (data) console.log(data);
   return (
     <main>
-      <ButtonNav back="customers" cnumb={{ display: true, cnumb: cusNumb }} />
+      <ButtonNav
+        back="customers"
+        cnumb={{
+          display: true,
+          cnumb: cusNumb,
+          fields: data.customer.metafields.edges,
+        }}
+      />
       {page}
     </main>
   );
 };
 export default CustomerPage;
-
-// <span className="flex-center-left cus-numb-edit">
-//   <h3>Customer #: {"00"}}</h3>
-//   <svg
-//     width="24"
-//     height="24"
-//     viewBox="0 0 24 24"
-//     fill="none"
-//     xmlns="http://www.w3.org/2000/svg"
-//   >
-//     <path
-//       d="M20.4745 8.33237C21.0488 8.90667 21.0617 9.83374 20.5036 10.4238L10.9438 20.5307C10.6605 20.8303 10.2664 21 9.85405 21L5.49995 21C4.67153 21 3.99995 20.3284 3.99995 19.5L3.99995 15.1074C3.99995 14.7178 4.15155 14.3435 4.42266 14.0637L14.0817 4.09442C14.6646 3.49279 15.6273 3.48519 16.2196 4.07753L20.4745 8.33237Z"
-//       fill="#b0b7c3"
-//     />
-//   </svg>
-// </span>
-//
