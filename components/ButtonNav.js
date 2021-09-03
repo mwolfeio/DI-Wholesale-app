@@ -22,9 +22,12 @@ export default function SpecialPage(props) {
           </button>
         </Link>
       </div>
-      <button className="icon">
-        <More />
-      </button>
+      <div>
+        {props.cnumb ? <h1>{props.cnumb}</h1> : ""}
+        <button className="icon">
+          <More />
+        </button>
+      </div>
     </div>
   );
 }
