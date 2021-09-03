@@ -65,20 +65,21 @@ const Section = (props) => {
   const changeHandler = (e) => {
     console.log("inputed value: ", e.target.value);
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
+    customerUpdate();
 
-    customerUpdate({
-      variables: {
-        input: {
-          id: "gid://shopify/customer/5510083412147",
-          metafields: [
-            {
-              id: "gid://shopify/Metafield/19929682935987",
-              value: "hang dry",
-            },
-          ],
-        },
-      },
-    });
+    // customerUpdate({
+    //   variables: {
+    //     input: {
+    //       id: "gid://shopify/customer/5510083412147",
+    //       metafields: [
+    //         {
+    //           id: "gid://shopify/Metafield/19929682935987",
+    //           value: "hang dry",
+    //         },
+    //       ],
+    //     },
+    //   },
+    // });
   };
 
   const debouncedChangeHandler = useMemo(
