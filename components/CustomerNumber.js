@@ -18,6 +18,10 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
           value
         }
       }
+      userErrors {
+        field
+        message
+      }
     }
   }
 `;
