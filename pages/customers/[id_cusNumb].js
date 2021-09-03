@@ -124,10 +124,10 @@ const CustomerPage = () => {
             </h3>
           </div>
           <div>
-            <h3 style={{ textAlign: right }}>
+            <h3 style={{ textAlign: "right" }}>
               {data.customer.ordersCount} Orders
             </h3>
-            <h3 style={{ textAlign: right }}>
+            <h3 style={{ textAlign: "right" }}>
               Account created <br />
               {data.customer.lifetimeDuration}
             </h3>
