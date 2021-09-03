@@ -80,10 +80,6 @@ var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
-const update = (val: any) => {
-  var formatter = new Intl.NumberFormat("en-US"); // Intl language tag,
-  updateValue(formatter.format(val.replace(/,/g, ""))); //Remove ',' to format number again
-};
 
 const CustomerPage = () => {
   const { id_cusNumb } = useRouter().query;
