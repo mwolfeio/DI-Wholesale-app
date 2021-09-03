@@ -22,13 +22,13 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 const Section = (props) => {
   //State
   const [customerNumber, setCustomerNumber] = useState(
-    props.cnumb ? `CN: ${props.cnumb}` : ""
+    props.data.cnumb ? `CN: ${props.data.cnumb}` : ""
   );
-
-  console.log("Customer display: ", props.display);
-  console.log("Customer cnumb: ", props.cnumb);
-  console.log("Customer fields: ", props.fields);
-  console.log("Customer globalId: ", props.globalId);
+  console.log("Customer props: ", props);
+  console.log("Customer display: ", props.data.display);
+  console.log("Customer cnumb: ", props.data.cnumb);
+  console.log("Customer fields: ", props.data.fields);
+  console.log("Customer globalId: ", props.data.globalId);
 
   const [updateCustomerNumvber, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
