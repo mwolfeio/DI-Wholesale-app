@@ -82,12 +82,12 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 const CustomerPage = () => {
-  const { id_cusNumb } = useRouter().query;
+  const { id } = useRouter().query;
 
-  let hasCusNumb = id_cusNumb && id_cusNumb.includes("-");
-  let id = hasCusNumb ? id_cusNumb.split("-")[0] : id_cusNumb;
-  let cusNumb = hasCusNumb ? id_cusNumb.split("-")[1] : "";
-  let globalId = `gid://shopify/Customer/${id}`;
+  // let hasCusNumb = id_cusNumb && id_cusNumb.includes("-");
+  // let id = hasCusNumb ? id_cusNumb.split("-")[0] : id_cusNumb;
+  // let cusNumb = hasCusNumb ? id_cusNumb.split("-")[1] : "";
+  // let globalId = `gid://shopify/Customer/${id}`;
 
   const { loading, error, data } = useQuery(GET_CUSTOMER, {
     variables: { id: globalId },
@@ -121,6 +121,8 @@ const CustomerPage = () => {
   }
 
   let matafieldsArr = data.customer.metafields.edges;
+  let customerNumberObj = matafieldsArr.find((o) => o.node.key === "Number");
+  let cusNumb = customerNumberObj.node.value;
 
   return (
     <main>
@@ -128,9 +130,8 @@ const CustomerPage = () => {
         back="customers"
         cnumb={{
           display: true,
-          cnumb: cusNumb,
+          cnumbObj: customerNumberObj,
           globalId: globalId,
-          fields: matafieldsArr,
         }}
       />
       <div style={{ width: "100%" }}>

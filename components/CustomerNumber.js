@@ -8,17 +8,15 @@ import More from "../media/icons/More.js";
 
 //graphql
 const UPDATE_CUSTOEMR_NUMBER = gql`
-  mutation {
-    customerUpdate(
-      input: {
-        id: "gid://shopify/Customer/5510083412147"
-        metafields: [
-          { id: "gid://shopify/Metafield/19929682935987", value: "000" }
-        ]
-      }
-    ) {
+  mutation customerUpdate($input: CustomerInput!) {
+    customerUpdate(input: $input) {
       customer {
-        id
+        metafield(namespace: "Customer", key: "Number") {
+          id
+          namespace
+          key
+          value
+        }
       }
     }
   }
@@ -27,7 +25,7 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 const Section = (props) => {
   //State
   const [customerNumber, setCustomerNumber] = useState(
-    props.data.cnumb ? `CN: ${props.data.cnumb}` : ""
+    props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
   );
   console.log("Customer props: ", props);
   console.log("Customer display: ", props.data.display);
@@ -48,21 +46,20 @@ const Section = (props) => {
   const changeHandler = (e) => {
     console.log("inputed value: ", e.target.value);
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
-    customerUpdate();
+    // customerUpdate();
 
-    // customerUpdate({
-    //   variables: {
-    //     input: {
-    //       id: "gid://shopify/customer/5510083412147",
-    //       metafields: [
-    //         {
-    //           id: "gid://shopify/Metafield/19929682935987",
-    //           value: "hang dry",
-    //         },
-    //       ],
-    //     },
-    //   },
-    // });
+    customerUpdate({
+      variables: {
+        input: {
+          id: props.data.globalId,
+          metafields: {
+            id: props.data.cnumbObj.id,
+            value: customerNumber,
+            valueType: "STRING",
+          },
+        },
+      },
+    });
   };
 
   const debouncedChangeHandler = useMemo(
