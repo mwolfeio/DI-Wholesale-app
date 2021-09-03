@@ -13,12 +13,7 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
       input: {
         id: "gid://shopify/customer/5510083412147"
         metafields: [
-          {
-            key: "Number"
-            namespace: "Customer"
-            value: "000"
-            valueType: STRING
-          }
+          { id: "gid://shopify/Metafield/19929682935987", value: "000" }
         ]
       }
     ) {
