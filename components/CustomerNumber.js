@@ -1,25 +1,38 @@
-import React from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useQuery } from "react-apollo";
+import { gql } from "apollo-boost";
+import _ from "lodash";
 import More from "../media/icons/More.js";
 
 export default function SpecialPage(props) {
-  const handleChange = (e) => {
-    console.log(e.target.value);
-  };
-  const autoGrow = (e) => {
-    let value = e.target.value;
-    return "auto";
-  };
+  //State
+  const [customerNumber, setCustomerNumber] = useState("");
+  console.log("customerNumber: ", customerNumber);
 
+  //Handle input
+  const changeHandler = (event) => {
+    setCustomerNumber(`CN: ${event.target.value}`);
+  };
+  const debouncedChangeHandler = useMemo(
+    () => _.debounce(changeHandler, 300),
+    []
+  );
+  useEffect(() => {
+    return () => {
+      debouncedChangeHandler.cancel();
+    };
+  }, []);
+
+  //return component
   return (
     <div className="flex-center-center">
       <h1 style={{ margin: 0 }}>CN:</h1>
       <input
-        onChange={handleChange}
+        onChange={debouncedChangeHandler}
         className="customer-number-input"
         type="text"
-        placeholder="No number"
-        value={props.cnumb}
-        style={{ width: autoGrow }}
+        placeholder="No Customer #"
+        value={props.cnumb ? `CN: ${props.cnumb}` : ""}
       />
     </div>
   );
