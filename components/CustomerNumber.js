@@ -5,7 +5,10 @@ export default function SpecialPage(props) {
   const handleChange = (e) => {
     console.log(e.target.value);
   };
-  const autoGrow = (value, placeholder) => {};
+  const autoGrow = (e) => {
+    let value = e.target.value;
+    return "auto";
+  };
 
   return (
     <div className="flex-center-center">
@@ -16,7 +19,7 @@ export default function SpecialPage(props) {
         type="text"
         placeholder="No number"
         value={props.cnumb}
-        style={{ width: autoGrow(this.value, "No number") }}
+        style={{ width: autoGrow }}
       />
     </div>
   );
