@@ -126,7 +126,7 @@ const CustomerPage = () => {
         back="customers"
         cnumb={{
           display: true,
-          cnumbObj: customerNumberObj,
+          cnumbObj: customerNumberObj.node,
           globalId: globalId,
         }}
       />
