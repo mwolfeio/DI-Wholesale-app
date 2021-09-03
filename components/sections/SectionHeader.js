@@ -1,7 +1,4 @@
 import React from "react";
-import { useQuery } from "react-apollo";
-import { gql } from "apollo-boost";
-
 import MoreButton from "../MoreButton.js";
 import AddButton from "../AddButton.js";
 

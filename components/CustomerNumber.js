@@ -1,19 +1,44 @@
 import { useState, useMemo, useEffect } from "react";
-import { useQuery } from "react-apollo";
+import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 import _ from "lodash";
+
+//components
 import More from "../media/icons/More.js";
 
-export default function SpecialPage(props) {
+//graphql
+const UPDATE_CUSTOEMR_NUMBER = gql`
+  mutation updateCustomerNumber($input: customerInput!) {
+    customerUpdate(input: $input) {
+      customer {
+        metafields(first: 1) {
+          edges {
+            node {
+              key
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const Section = (props) => {
   //State
   const [customerNumber, setCustomerNumber] = useState(
     props.cnumb ? `CN: ${props.cnumb}` : ""
   );
+
+  const [updateCustomerNumvber, { loading, error, data }] = useMutation(
+    UPDATE_CUSTOEMR_NUMBER
+  );
+
   console.log("customerNumber: ", customerNumber);
 
   //Handle input
   const changeHandler = (event) => {
-    setCustomerNumber(`CN: ${event.target.value}`);
+    setCustomerNumber(`CN: ${event.target.value.replace("CN: ", "")}`);
   };
   const debouncedChangeHandler = useMemo(
     () => _.debounce(changeHandler, 300),
@@ -37,7 +62,5 @@ export default function SpecialPage(props) {
       />
     </div>
   );
-}
-// <span class=input role="textbox" contenteditable>
-//   {props.cnumb}
-// </span>
+};
+export default Section;

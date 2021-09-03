@@ -5,9 +5,9 @@
 }
 
 main {
-  margin: 16px;
-  max-width: 774px;
-  width: Calc(100% - 32px);
+  padding: 16px;
+  max-width: 806px;
+  width: 100%;
   box-sizing: border-box;
 }
 section {
