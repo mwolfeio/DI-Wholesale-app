@@ -83,11 +83,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 const CustomerPage = () => {
   const { id } = useRouter().query;
-
-  // let hasCusNumb = id_cusNumb && id_cusNumb.includes("-");
-  // let id = hasCusNumb ? id_cusNumb.split("-")[0] : id_cusNumb;
-  // let cusNumb = hasCusNumb ? id_cusNumb.split("-")[1] : "";
-  // let globalId = `gid://shopify/Customer/${id}`;
+  let globalId = `gid://shopify/Customer/${id}`;
 
   const { loading, error, data } = useQuery(GET_CUSTOMER, {
     variables: { id: globalId },
