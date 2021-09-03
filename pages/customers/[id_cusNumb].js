@@ -146,6 +146,7 @@ const CustomerPage = () => {
   );
 
   if (data) console.log(data);
+
   return (
     <main>
       <ButtonNav
@@ -153,7 +154,7 @@ const CustomerPage = () => {
         cnumb={{
           display: true,
           cnumb: cusNumb,
-          fields: data.customer.metafields.edges,
+          fields: data ? data.customer.metafields.edges : [],
         }}
       />
       {page}
