@@ -135,7 +135,7 @@ const CustomerPage = () => {
         </div>
       </section>
       <Orders address={data.customer.defaultAddress} />
-      <MatafieldSection fields={data.customer.metafields} />
+      <MatafieldSection fields={data.customer.metafields.edges} />
       <section className="disabled">Wishlist</section>
       <section className="disabled">Interests</section>
       <section className="disabled">Reviews</section>
