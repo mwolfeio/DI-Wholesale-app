@@ -37,14 +37,16 @@ const Section = (props) => {
   console.log("customerNumber: ", customerNumber);
 
   //Handle input
-  const changeHandler = (event) => {
-    console.log("inputed value: ", event.target.value);
-    setCustomerNumber(`CN: ${event.target.value.replace("CN: ", "")}`);
+  const changeHandler = (e) => {
+    console.log("inputed value: ", e.target.value);
+    setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
   };
+
   const debouncedChangeHandler = useMemo(
     () => _.debounce(changeHandler, 300),
     []
   );
+
   useEffect(() => {
     return () => {
       debouncedChangeHandler.cancel();
@@ -55,7 +57,7 @@ const Section = (props) => {
   return (
     <div className="flex-center-center">
       <input
-        onChange={debouncedChangeHandler}
+        onChange={changeHandler}
         className="customer-number-input"
         type="text"
         placeholder="No Customer #"
