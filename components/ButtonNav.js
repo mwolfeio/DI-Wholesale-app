@@ -22,9 +22,9 @@ export default function SpecialPage(props) {
           </button>
         </Link>
       </div>
-      <div>
-        {props.cnumb ? <h1>{props.cnumb}</h1> : ""}
-        <button className="icon">
+      <div className="flex-center-right">
+        {props.cnumb ? <h1>CN: {props.cnumb}</h1> : ""}
+        <button className="icon" style={{ marginLeft: "16px" }}>
           <More />
         </button>
       </div>

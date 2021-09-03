@@ -384,6 +384,11 @@ ul.customer-list li {
   align-items: center;
   justify-content: flex-start;
 }
+.flex-center-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 .flex-center-btw {
   display: flex;
   align-items: center;

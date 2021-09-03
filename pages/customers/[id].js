@@ -147,7 +147,7 @@ const CustomerPage = () => {
   if (data) console.log(data);
   return (
     <main>
-      <ButtonNav back="customers" cnumb="#1111" />
+      <ButtonNav back="customers" cnumb="1111" />
       {page}
     </main>
   );

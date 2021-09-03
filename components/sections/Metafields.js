@@ -1,16 +1,13 @@
 import React from "react";
 
-const Loader = () => {
+import { useQuery } from "react-apollo";
+import { gql } from "apollo-boost";
+
+const Section = (props) => {
   return (
-    <div
-      className="flex-center-center"
-      style={{ margin: "20px 0", width: "100%" }}
-    >
-      <div className="lds-ripple">
-        <div></div>
-        <div></div>
-      </div>
-    </div>
+    <section>
+      <h2>Metafields</h2>
+    </section>
   );
 };
-export default Loader;
+export default Section;
