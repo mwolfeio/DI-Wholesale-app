@@ -11,7 +11,7 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
   mutation {
     customerUpdate(
       input: {
-        id: "gid://shopify/customer/5510083412147"
+        id: "gid://shopify/Customer/5510083412147"
         metafields: [
           { id: "gid://shopify/Metafield/19929682935987", value: "000" }
         ]
