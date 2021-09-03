@@ -46,34 +46,30 @@ const Section = (props) => {
   console.log("error: ", error);
   console.log("data: ", data ? data : "No Data");
 
-  const debouncedChangeHandler = useMemo(
-    () =>
-      _.debounce(
-        customerUpdate({
-          variables: {
-            input: {
-              id: props.data.globalId,
-              metafields: {
-                id: props.data.cnumbObj.id,
-                value: customerNumber,
-                valueType: "STRING",
-              },
-            },
-          },
-        }),
-        300
-      ),
-    []
-  );
-
   //Handle input
   const changeHandler = (e) => {
     console.log("inputed value: ", e.target.value);
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
     // customerUpdate();
 
-    debouncedChangeHandler;
+    customerUpdate({
+      variables: {
+        input: {
+          id: props.data.globalId,
+          metafields: {
+            id: props.data.cnumbObj.id,
+            value: customerNumber.replace("CN: ", ""),
+            valueType: "STRING",
+          },
+        },
+      },
+    });
   };
+
+  const debouncedChangeHandler = useMemo(
+    () => _.debounce(changeHandler, 300),
+    []
+  );
 
   useEffect(() => {
     return () => {
