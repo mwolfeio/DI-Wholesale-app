@@ -79,7 +79,7 @@ const CustomerPage = () => {
 
   let hasCusNumb = id_cusNumb && id_cusNumb.includes("-");
   let id = hasCusNumb ? id_cusNumb.split("-")[0] : id_cusNumb;
-  let cusNumb = hasCusNumb ? id_cusNumb.split("-")[1] : undefined;
+  let cusNumb = hasCusNumb ? id_cusNumb.split("-")[1] : "";
 
   console.log("Id_CusNumb: ", id_cusNumb);
   console.log("id: ", id);
