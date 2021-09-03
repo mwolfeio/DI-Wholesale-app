@@ -175,7 +175,7 @@ button.primary {
 }
 
 button.icon {
-  padding: 4px;
+  padding: 9.5px;
 }
 
 /* INPUTS--------------------- */
@@ -207,6 +207,36 @@ input::placeholder {
 }
 input.list-search {
   margin-top: 20px;
+}
+
+input.customer-number-input {
+  background: #f4f6f8;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 29px;
+  display: -moz-box;
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  color: #4e5d78;
+  font-size: 22px;
+
+  padding: 0;
+  border: 1px solid #f4f6f8;
+  height: 43px;
+  margin-left: 8px;
+}
+
+input.customer-number-input:hover {
+  background: white;
+  border: 1px solid #f3f3f3;
+}
+
+input.customer-number-input:focus {
+  background: white;
+  border: 1px solid #4e5d78;
+  box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
 }
 
 /* LISTS--------------------- */

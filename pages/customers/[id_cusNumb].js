@@ -79,15 +79,11 @@ const CustomerPage = () => {
 
   let hasCusNumb = id_cusNumb && id_cusNumb.includes("-");
   let id = hasCusNumb ? id_cusNumb.split("-")[0] : id_cusNumb;
-  let cusNumb = hasCusNumb ? id_cusNumb.split("-")[1] : "";
+  let cusNumb = hasCusNumb ? id_cusNumb.split("-")[1] : undefined;
 
   console.log("Id_CusNumb: ", id_cusNumb);
   console.log("id: ", id);
   console.log("cusNumb: ", cusNumb);
-
-  // var [ids, cusNumb] = id.split("-");
-  // console.log("id: ", ids);
-  // console.log("cusNumb: ", cusNumb);
 
   let globalId = `gid://shopify/Customer/${id}`;
 
@@ -160,7 +156,7 @@ const CustomerPage = () => {
   if (data) console.log(data);
   return (
     <main>
-      <ButtonNav back="customers" cnumb={{ display: true, cnumb: id }} />
+      <ButtonNav back="customers" cnumb={{ display: true, cnumb: cusNumb }} />
       {page}
     </main>
   );
