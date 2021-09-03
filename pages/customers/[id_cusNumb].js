@@ -99,28 +99,30 @@ const CustomerPage = () => {
   });
 
   if (loading) {
-    return;
-    <main>
-      <ButtonNav back="customers" />
-      <div
-        style={{ height: "100%", width: "100%" }}
-        className="flex-center-center"
-      >
-        <Loader />
-      </div>
-    </main>;
+    return (
+      <main>
+        <ButtonNav back="customers" />
+        <div
+          style={{ height: "100%", width: "100%" }}
+          className="flex-center-center"
+        >
+          <Loader />
+        </div>
+      </main>
+    );
   }
   if (error) {
-    return;
-    <main>
-      <ButtonNav back="customers" />
-      <div
-        style={{ height: "100%", width: "100%" }}
-        className="flex-center-center"
-      >
-        {error.message}
-      </div>
-    </main>;
+    return (
+      <main>
+        <ButtonNav back="customers" />
+        <div
+          style={{ height: "100%", width: "100%" }}
+          className="flex-center-center"
+        >
+          {error.message}
+        </div>
+      </main>
+    );
   }
 
   let matafieldsArr = data.customer.metafields.edges;
