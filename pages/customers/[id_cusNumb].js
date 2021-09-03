@@ -76,7 +76,10 @@ const GET_CUSTOMER = gql`
   }
 `;
 
-//customer(id: "gid://shopify/Customer/1310260789270")
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
 
 const CustomerPage = () => {
   const { id_cusNumb } = useRouter().query;
@@ -95,57 +98,32 @@ const CustomerPage = () => {
     variables: { id: globalId },
   });
 
-  let page = loading ? (
-    <div
-      style={{ height: "100%", width: "100%" }}
-      className="flex-center-center"
-    >
-      <Loader />
-    </div>
-  ) : error ? (
-    `Error! ${error.message}`
-  ) : (
-    <div style={{ width: "100%" }}>
-      <section className="clear">
-        <div className="flex-bottom-btw underline">
-          <h1 className>
-            {data.customer.firstName} {data.customer.lastName}
-          </h1>
-          <h1 style={{ fontSize: "20px" }}>
-            ${data.customer.totalSpent} spent
-          </h1>
-        </div>
-        <div className="flex-top-btw">
-          <div style={{ display: "table" }}>
-            <h3 stule>Shopify id: {id}</h3>
-            <h3 stule>Email: {data.customer.email}</h3>
-            <h3>
-              Phone:{" "}
-              {data.customer.phone
-                ? data.customer.phone
-                : data.customer.defaultAddress.phone}
-            </h3>
-          </div>
-          <div style={{ textAlign: "right" }}>
-            <h3 style={{ textAlign: "right" }}>
-              {data.customer.ordersCount} Orders <br />
-              Account created <br />
-              {data.customer.lifetimeDuration}
-            </h3>
-          </div>
-        </div>
-      </section>
-      <Orders address={data.customer.defaultAddress} />
-      <MatafieldSection fields={data.customer.metafields.edges} />
-      <section className="disabled">Wishlist</section>
-      <section className="disabled">Interests</section>
-      <section className="disabled">Reviews</section>
-      <section className="disabled">Alerts</section>
-      <section className="disabled">Rewards</section>
-    </div>
-  );
+  if (loading) {
+    return;
+    <main>
+      <ButtonNav back="customers" />
+      <div
+        style={{ height: "100%", width: "100%" }}
+        className="flex-center-center"
+      >
+        <Loader />
+      </div>
+    </main>;
+  }
+  if (error) {
+    return;
+    <main>
+      <ButtonNav back="customers" />
+      <div
+        style={{ height: "100%", width: "100%" }}
+        className="flex-center-center"
+      >
+        {error.message}
+      </div>
+    </main>;
+  }
 
-  if (data) console.log(data);
+  let matafieldsArr = data.customer.metafields.edges;
 
   return (
     <main>
@@ -154,10 +132,47 @@ const CustomerPage = () => {
         cnumb={{
           display: true,
           cnumb: cusNumb,
-          fields: data ? data.customer.metafields.edges : [],
+          fields: matafieldsArr,
         }}
       />
-      {page}
+      <div style={{ width: "100%" }}>
+        <section className="clear">
+          <div className="flex-bottom-btw underline">
+            <h1 className>
+              {data.customer.firstName} {data.customer.lastName}
+            </h1>
+            <h1 style={{ fontSize: "20px" }}>
+              {formatter(data.customer.totalSpent)} spent
+            </h1>
+          </div>
+          <div className="flex-top-btw">
+            <div style={{ display: "table" }}>
+              <h3 stule>Shopify id: {id}</h3>
+              <h3 stule>Email: {data.customer.email}</h3>
+              <h3>
+                Phone:{" "}
+                {data.customer.phone
+                  ? data.customer.phone
+                  : data.customer.defaultAddress.phone}
+              </h3>
+            </div>
+            <div style={{ textAlign: "right" }}>
+              <h3 style={{ textAlign: "right" }}>
+                {data.customer.ordersCount} Orders <br />
+                Account created <br />
+                {data.customer.lifetimeDuration} ago
+              </h3>
+            </div>
+          </div>
+        </section>
+        <Orders address={data.customer.defaultAddress} />
+        <MatafieldSection fields={matafieldsArr} />
+        <section className="disabled">Wishlist</section>
+        <section className="disabled">Interests</section>
+        <section className="disabled">Reviews</section>
+        <section className="disabled">Alerts</section>
+        <section className="disabled">Rewards</section>
+      </div>
     </main>
   );
 };

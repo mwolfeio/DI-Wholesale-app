@@ -6,6 +6,8 @@ import SectionHeader from "./SectionHeader.js";
 
 const Section = (props) => {
   let fieldsArr = props.fields ? props.fields : [];
+
+  console.log("metafirlds from metafields seciton: ", fieldsArr);
   return (
     <section>
       <SectionHeader title="Metafields" />

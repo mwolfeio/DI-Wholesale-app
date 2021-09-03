@@ -32,6 +32,7 @@ const Section = (props) => {
   );
 
   console.log("customerNumber: ", customerNumber);
+  console.log("data: ", data ? data : "No Data");
 
   //Handle input
   const changeHandler = (e) => {
