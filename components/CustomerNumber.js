@@ -8,34 +8,22 @@ import More from "../media/icons/More.js";
 
 //graphql
 const UPDATE_CUSTOEMR_NUMBER = gql`
-  mutation customerUpdate($input: {
-  data: {
-    customerUpdate: {
-      customer: {
-        metafields: {
-          edge: [
-            {
-              node: {
-                key: "Number",
-                value": "00"
-              }
-            }
-          ]
-        }
-      }
-    }
-  }
-}) {
-    customerUpdate(input: $input) {
-      customer {
-        metafields(first: 10) {
-          edges {
-            node {
-              key
-              value
-            }
+  mutation {
+    customerUpdate(
+      input: {
+        id: "gid://shopify/customer/5510083412147"
+        metafields: [
+          {
+            key: "Number"
+            namespace: "Customer"
+            value: "000"
+            valueType: STRING
           }
-        }
+        ]
+      }
+    ) {
+      customer {
+        id
       }
     }
   }
