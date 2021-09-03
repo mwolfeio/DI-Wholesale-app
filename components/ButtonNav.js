@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import Back from "../media/icons/Back.js";
 import Dash from "../media/icons/Dashboard.js";
-import More from "../media/icons/More.js";
+import MoreButton from "./MoreButton.js";
 
 export default function SpecialPage(props) {
   let link = props.back ? `/${props.back}` : "/";
@@ -23,10 +23,12 @@ export default function SpecialPage(props) {
         </Link>
       </div>
       <div className="flex-center-right">
-        {props.cnumb ? <h1>CN: {props.cnumb}</h1> : ""}
-        <button className="icon" style={{ marginLeft: "16px" }}>
-          <More />
-        </button>
+        {props.cnumb && props.cnumb.display ? (
+          <CustomeNumber cnumb={props.cnumb.cnumb} />
+        ) : (
+          ""
+        )}
+        <MoreButton />
       </div>
     </div>
   );
