@@ -14,7 +14,8 @@ const Section = (props) => {
       <div className="card-container">
         {fieldsArr.map((metafield) => (
           <div className="card">
-            <p>{metafield.node.id}</p>
+            <p>{metafield.node.key}</p>
+            <p>{metafield.node.value}</p>
           </div>
         ))}
       </div>

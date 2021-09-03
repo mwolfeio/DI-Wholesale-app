@@ -80,6 +80,10 @@ var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
+const update = (val: any) => {
+  var formatter = new Intl.NumberFormat("en-US"); // Intl language tag,
+  updateValue(formatter.format(val.replace(/,/g, ""))); //Remove ',' to format number again
+};
 
 const CustomerPage = () => {
   const { id_cusNumb } = useRouter().query;
@@ -144,7 +148,7 @@ const CustomerPage = () => {
               {data.customer.firstName} {data.customer.lastName}
             </h1>
             <h1 style={{ fontSize: "20px" }}>
-              {formatter(data.customer.totalSpent)} spent
+              {formatter.format(data.customer.totalSpent)} spent
             </h1>
           </div>
           <div className="flex-top-btw">
