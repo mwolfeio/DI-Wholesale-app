@@ -5,12 +5,7 @@ import CustomersIcon from "../../media/icons/Customers.js";
 export default function SpecialPage(props) {
   console.log(props);
   return (
-    <Link
-      href={`/customers/${props.customer.id}${
-        props.customer.cusnumb ? `-${props.customer.cusnumb}` : ""
-      }`}
-      passHref
-    >
+    <Link href={`/customers/${props.customer.id}$`} passHref>
       <li
         className=""
         style={{ animationDelay: `${props.index * 0.03}s` }}
