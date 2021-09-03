@@ -47,9 +47,6 @@ const SpecialPage = ({}) => {
   ) : data.customers.edges.length ? (
     data.customers.edges.map((cus, i) => {
       let id = cus.node.id.replace("gid://shopify/Customer/", "");
-      let metafieldID = cus.node.metafield
-        ? JSON.parse(cus.node.metafield.id)
-        : "";
       let cusNumb = cus.node.metafield
         ? JSON.parse(cus.node.metafield.value)
         : { cus_no: "No Metafields" };
@@ -60,7 +57,6 @@ const SpecialPage = ({}) => {
             id: id,
             name: `${cus.node.firstName} ${cus.node.lastName}`,
             email: cus.node.email,
-            metafieldID: metafieldID,
             cusnumb: cusNumb.cus_no,
             orders: cus.node.ordersCount,
             age: cus.node.lifetimeDuration,
