@@ -135,7 +135,7 @@ const CustomerPage = () => {
       <section>
         <h2>Orders</h2>
       </section>
-      <Metafields />
+      <MatafieldSection />
       <section>Wishlist</section>
       <section>Interests</section>
       <section>Reviews</section>
