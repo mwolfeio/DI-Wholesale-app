@@ -222,6 +222,7 @@ input.customer-number-input {
   color: #4e5d78;
   font-size: 22px;
   text-align: right;
+  width: 240px;
 
   padding: 0 8px;
   border: 1px solid #f4f6f8;

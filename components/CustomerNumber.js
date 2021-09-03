@@ -26,7 +26,6 @@ export default function SpecialPage(props) {
   //return component
   return (
     <div className="flex-center-center">
-      <h1 style={{ margin: 0 }}>CN:</h1>
       <input
         onChange={debouncedChangeHandler}
         className="customer-number-input"

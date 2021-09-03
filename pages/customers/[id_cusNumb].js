@@ -7,6 +7,7 @@ import Link from "next/link";
 import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
+import Orders from "../../components/sections/Orders.js";
 
 const GET_CUSTOMER = gql`
   query getCustomer($id: ID!) {
@@ -113,6 +114,7 @@ const CustomerPage = () => {
         </div>
         <div className="flex-top-btw">
           <div style={{ display: "table" }}>
+            <h3 stule>Shopify id: {id}</h3>
             <h3 stule>{data.customer.email}</h3>
             {data.customer.defaultAddress.phone ? (
               <h3>{data.customer.defaultAddress.phone}</h3>
@@ -121,29 +123,13 @@ const CustomerPage = () => {
             )}
           </div>
           <div>
-            <h2>Default Address</h2>
-            {data.customer.defaultAddress.company ? (
-              <h3>{data.customer.defaultAddress.company}</h3>
-            ) : (
-              ""
-            )}
-            <h3>{data.customer.defaultAddress.address1}</h3>
-            {data.customer.defaultAddress.address2 ? (
-              <h3>{data.customer.defaultAddress.address2}</h3>
-            ) : (
-              ""
-            )}
-            <h3>
-              {data.customer.defaultAddress.city},{" "}
-              {data.customer.defaultAddress.zip}
-            </h3>
-            <h3>{data.customer.defaultAddress.country}</h3>
+            <h3>{data.customer.ordersCount} Orders</h3>
+            <h3>{data.customer.lifetimeDuration} Age</h3>
+            <h3>{data.customer.ordersCount} Orders</h3>
           </div>
         </div>
       </section>
-      <section>
-        <h2>Orders</h2>
-      </section>
+      <Orders address={data.customer.defaultAddress} />
       <MatafieldSection />
       <section className="disabled">Wishlist</section>
       <section className="disabled">Interests</section>
