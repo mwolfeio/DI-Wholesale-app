@@ -6,7 +6,7 @@ const Section = (props) => {
   return (
     <div className="flex-center-btw" style={{ marginBottom: "8px" }}>
       <h2>{props.title}</h2>
-      <div className="flex-cent-right">
+      <div className="flex-center-right">
         <AddButton />
         <MoreButton />
       </div>
