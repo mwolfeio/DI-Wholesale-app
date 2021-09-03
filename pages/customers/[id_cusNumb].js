@@ -115,22 +115,27 @@ const CustomerPage = () => {
         <div className="flex-top-btw">
           <div style={{ display: "table" }}>
             <h3 stule>Shopify id: {id}</h3>
-            <h3 stule>{data.customer.email}</h3>
-            {data.customer.defaultAddress.phone ? (
-              <h3>{data.customer.defaultAddress.phone}</h3>
-            ) : (
-              ""
-            )}
+            <h3 stule>Email: {data.customer.email}</h3>
+            <h3>
+              Phone:{" "}
+              {data.customer.phone
+                ? data.customer.phone
+                : data.customer.defaultAddress.phone}
+            </h3>
           </div>
           <div>
-            <h3>{data.customer.ordersCount} Orders</h3>
-            <h3>{data.customer.lifetimeDuration} Age</h3>
-            <h3>{data.customer.ordersCount} Orders</h3>
+            <h3 style={{ textAlign: right }}>
+              {data.customer.ordersCount} Orders
+            </h3>
+            <h3 style={{ textAlign: right }}>
+              Account created <br />
+              {data.customer.lifetimeDuration}
+            </h3>
           </div>
         </div>
       </section>
       <Orders address={data.customer.defaultAddress} />
-      <MatafieldSection />
+      <MatafieldSection fields={data.customer.metafields} />
       <section className="disabled">Wishlist</section>
       <section className="disabled">Interests</section>
       <section className="disabled">Reviews</section>

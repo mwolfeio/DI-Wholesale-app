@@ -326,6 +326,19 @@ ul.large-list li.list-header p {
   text-align: center;
 }
 
+/* CARD LIST---------------------- */
+.card-container {
+  background: #f4f6f8;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.card-container .card {
+  background: white;
+  border-radius: 10px;
+  padding: 16px;
+}
+
 /* ICONS---------------------- */
 .svg-container {
   min-width: 32px;
