@@ -38,6 +38,7 @@ const Section = (props) => {
 
   //Handle input
   const changeHandler = (event) => {
+    console.log("inputed value: ", event.target.value);
     setCustomerNumber(`CN: ${event.target.value.replace("CN: ", "")}`);
   };
   const debouncedChangeHandler = useMemo(
