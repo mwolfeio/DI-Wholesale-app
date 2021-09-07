@@ -8,11 +8,16 @@ const Section = (props) => {
   const [open, setOpen] = useState(true);
   let ordersArr = props.fields ? props.fields : [];
 
+  const toggleOpen = () => {
+    console.log("clicked");
+    setOpen(!open);
+  };
+
   return (
     <section>
       <SectionHeader
         status={open}
-        minimize={() => setOpen()}
+        minimize={toggleOpen}
         title={`Orders (${ordersArr.length})`}
       />
       <div className="card-container">

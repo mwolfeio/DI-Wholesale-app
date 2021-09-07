@@ -10,7 +10,7 @@ const Section = (props) => {
       <div className="flex-center-right">
         <AddButton />
         <MoreButton />
-        <MinimizeButton status={props.status} func={() => props.minimize()} />
+        <MinimizeButton status={props.status} func={props.minimize} />
       </div>
     </div>
   );
