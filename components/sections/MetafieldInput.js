@@ -39,24 +39,22 @@ const Section = (props) => {
   //Sumbit
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("inputed value: ", e.target.value);
+    console.log("saving: ", e.target.value);
     setOldMetafield(e.target.value);
     // customerUpdate();
 
-    // customerUpdate({
-    //   variables: {
-    //     namespace: props.namespace,
-    //     key: props.key,
-    //     input: {
-    //       id: props.custoemrId,
-    //       metafields: {
-    //         id: props.MetafieldId,
-    //         value: Metafield.replace("CN: ", ""),
-    //         valueType: "STRING",
-    //       },
-    //     },
-    //   },
-    // });
+    customerUpdate({
+      variables: {
+        input: {
+          id: props.custoemrId,
+          metafields: {
+            id: props.MetafieldId,
+            value: e.target.value.replace("CN: ", ""),
+            valueType: "STRING",
+          },
+        },
+      },
+    });
   };
 
   //return component
@@ -71,7 +69,12 @@ const Section = (props) => {
         value={metafield}
       />
       {metafield !== oldMetafield ? (
-        <button style={{ height: "48px", marginLeft: "8px" }}>Save</button>
+        <button
+          style={{ height: "48px", marginLeft: "8px" }}
+          onClick={submitHandler}
+        >
+          Save
+        </button>
       ) : (
         ""
       )}
