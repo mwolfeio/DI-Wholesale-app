@@ -14,6 +14,7 @@ const Section = (props) => {
         <div
           style={{
             display: "block",
+            height: "24px",
             transform: `rotate(${props.status ? 180 : 0}deg)`,
           }}
         >
