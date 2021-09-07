@@ -326,6 +326,10 @@ ul.large-list li.list-header p {
   text-align: center;
 }
 
+.active-sort {
+  color: #4388f8;
+}
+
 /* CARD LIST---------------------- */
 .card-container {
   background: #f4f6f8;

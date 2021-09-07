@@ -10,9 +10,10 @@ import Loader from "../../components/Loader.js";
 import CustomerList from "../../components/lists/CustomerList.js";
 
 const GET_CUSTOMENTS = gql`
-  query getCustomers($first: Int = 4, $srch: String!, $srt: CustomerSortKeys!) {
+  query getCustomers($first: Int, $srch: String!, $srt: CustomerSortKeys!) {
     customers(first: $first, query: $srch, sortKey: $srt) {
       edges {
+        cursor
         node {
           id
           firstName
@@ -35,10 +36,13 @@ const GET_CUSTOMENTS = gql`
 
 const SpecialPage = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [results, setResults] = useState([]);
+  const [pagnation, setPagnation] = useState(0);
+  const [sort, setSort] = useState("RELEVANCE");
 
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
-    variables: { first: 22, srch: searchTerm, srt: "RELEVANCE" },
+    variables: { first: 20, srch: searchTerm, srt: sort },
   });
 
   let list = loading ? (
@@ -110,10 +114,26 @@ const SpecialPage = ({}) => {
         <ul className="large-list customer-list">
           <li className="list-header">
             <p>Pic</p>
-            <p style={{ marginLeft: "16px", justifySelf: "start" }}>Name</p>
+            <p
+              className={`${sort == "NAME" ? "active-sort" : ""}`}
+              onClick={setSort("NAME")}
+              style={{ marginLeft: "16px", justifySelf: "start" }}
+            >
+              Name
+            </p>
             <p>Customer #</p>
-            <p>Orders</p>
-            <p>Age</p>
+            <p
+              onClick={setSort("ORDERS_COUNT")}
+              className={`${sort == "ORDERS_COUNT" ? "active-sort" : ""}`}
+            >
+              Orders
+            </p>
+            <p
+              onClick={setSort("UPDATED_AT")}
+              className={`${sort == "UPDATED_AT" ? "active-sort" : ""}`}
+            >
+              Age
+            </p>
           </li>
           {list}
         </ul>
