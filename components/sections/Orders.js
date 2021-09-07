@@ -36,7 +36,7 @@ const Section = (props) => {
                 </div>
                 <div className="virticle-divider"></div>
                 <div style={{ width: "100%" }} className="flex-center-left">
-                  {order.lineItems.edges.map((product) => {
+                  {order.node.lineItems.edges.map((product) => {
                     <div className="order-product-wrapper">
                       <span className="order-quant-badge">
                         {product.node.quantity}

@@ -11,13 +11,14 @@ const Section = (props) => {
       }}
     >
       <button className="icon">
-        <span
+        <div
           style={{
+            display: "block",
             transform: `rotate(${props.status ? 180 : 0}deg)`,
           }}
         >
           <Minimize />
-        </span>
+        </div>
       </button>
     </div>
   );
