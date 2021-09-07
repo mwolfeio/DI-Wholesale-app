@@ -34,6 +34,12 @@ const Section = (props) => {
   const [customerNumber, setCustomerNumber] = useState(
     props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
   );
+  // const [metafieldExists, setMetafieldExists] = useState(
+  //   props.data ? true : false
+  // );
+  // const [mfieldId, setMfieldId] = useState(
+  //   props.data.cnumbObj ? props.data.cnumbObj.id : false
+  // );
 
   //Query
   const [customerUpdate, { loading, error, data }] = useMutation(
@@ -48,32 +54,34 @@ const Section = (props) => {
   //Handle input
   const submitQuery = (e) => {
     // console.log("updating customer number to value: ", e.target.value);
-    let payload = customerNumber
-      ? {
-          variables: {
-            input: {
-              id: props.data.globalId,
-              metafields: {
-                id: props.data.cnumbObj.id,
-                value: e.target.value.replace("CN: ", ""),
-                valueType: "STRING",
+    // let payload = mfieldId
+    let payload =
+      data && data.customerUpdate.customer.metafield.id
+        ? {
+            variables: {
+              input: {
+                id: props.data.globalId,
+                metafields: {
+                  id: data.customerUpdate.customer.metafield.id,
+                  value: e.target.value.replace("CN: ", ""),
+                  valueType: "STRING",
+                },
               },
             },
-          },
-        }
-      : {
-          variables: {
-            input: {
-              id: props.data.globalId,
-              metafields: {
-                namespace: "Customer",
-                key: "Number",
-                value: e.target.value.replace("CN: ", ""),
-                valueType: "STRING",
+          }
+        : {
+            variables: {
+              input: {
+                id: props.data.globalId,
+                metafields: {
+                  namespace: "Customer",
+                  key: "Number",
+                  value: e.target.value.replace("CN: ", ""),
+                  valueType: "STRING",
+                },
               },
             },
-          },
-        };
+          };
 
     customerUpdate(payload);
   };
