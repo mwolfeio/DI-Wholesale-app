@@ -15,17 +15,17 @@ const Section = (props) => {
         minimize={setOpen}
         title={`Orders (${ordersArr.length})`}
       />
-      {open ? (
-        <div className="card-container">
-          {ordersArr.map((order, i) => (
+      <div className="card-container">
+        {open ? (
+          ordersArr.map((order, i) => (
             <div className="card">
               <p>{i}</p>
             </div>
-          ))}
-        </div>
-      ) : (
-        ""
-      )}
+          ))
+        ) : (
+          <div className="flex-center-center">No Orders</div>
+        )}
+      </div>
     </section>
   );
 };

@@ -116,6 +116,8 @@ const CustomerPage = () => {
     );
   }
 
+  console.log(data);
+
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
   let customerNumberObj = matafieldsArr.find((o) => o.node.key === "Number");
