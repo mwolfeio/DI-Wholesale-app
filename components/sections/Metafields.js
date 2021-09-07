@@ -8,15 +8,20 @@ import MetafieldInput from "./MetafieldInput.js";
 const Section = (props) => {
   const [open, setOpen] = useState(true);
   let fieldsArr = props.fields ? props.fields : [];
+
   const toggleOpen = () => {
     console.log("clicked");
     setOpen(!open);
   };
 
-  // console.log("metafirlds from metafields seciton: ", fieldsArr);
+  const addMetafield = () => {
+    console.log("clicked");
+  };
+
   return (
     <section>
       <SectionHeader
+        add={{ display: true, func: addMetafield }}
         status={open}
         minimize={toggleOpen}
         title={`Metafields (${fieldsArr.length})`}
