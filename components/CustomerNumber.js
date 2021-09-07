@@ -66,7 +66,6 @@ const Section = (props) => {
   };
 
   const debouncedChangeHandler = useMemo(
-    console.log('Clicked');
     () => _.debounce(changeHandler, 300),
     []
   );
