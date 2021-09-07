@@ -24,7 +24,7 @@ const Section = (props) => {
       />
       <div className="card-container">
         {open ? (
-          orders.length < 1 ? (
+          ordersArr.length < 1 ? (
             <div className="flex-center-center">No Orders</div>
           ) : (
             ordersArr.map((order, i) => (
