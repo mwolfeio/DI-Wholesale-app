@@ -61,7 +61,7 @@ const Section = (props) => {
 
   //return component
   return (
-    <form onSubmit={submitHandler} syle={{ display: "flex" }}>
+    <form onSubmit={submitHandler} style={{ display: "flex" }}>
       <input
         onChange={changeHandler}
         style={{ borderRadius: "10px" }}
