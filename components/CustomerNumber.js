@@ -63,7 +63,7 @@ const Section = (props) => {
     });
   };
 
-  const debouncedChangeHandler = useMemo(() => {
+  const debouncedChangeHandler = useMemo((e) => {
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
     _.debounce(submitQuery, 300);
   }, []);
