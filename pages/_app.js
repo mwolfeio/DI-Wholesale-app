@@ -18,6 +18,9 @@ const client = new ApolloClient({
     credentials: "include",
   },
 });
+
+console.log("Host: ", process.env.HOST);
+
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
