@@ -54,7 +54,9 @@ const Section = (props) => {
         input: {
           id: props.data.globalId,
           metafields: {
-            id: props.data.cnumbObj.id,
+            // id: props.data.cnumbObj.id,
+            namespace: "Customer",
+            key: "Number",
             value: e.target.value.replace("CN: ", ""),
             valueType: "STRING",
           },

@@ -41,7 +41,7 @@ const Section = (props) => {
                       <span className="order-quant-badge">
                         {product.node.quantity}
                       </span>
-                      <img src={product.node.imgage.originalSrc} />
+                      <img src={product.node.image.originalSrc} />
                       <p>{product.node.title}</p>
                       <p>{product.node.price}</p>
                     </div>;
