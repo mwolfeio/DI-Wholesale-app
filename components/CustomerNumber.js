@@ -46,10 +46,8 @@ const Section = (props) => {
   console.log("data: ", data ? data : "No Data");
 
   //Handle input
-  const changeHandler = (e) => {
+  const submitQuery = (e) => {
     console.log("updating customer number to value: ", e.target.value);
-    setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
-    // customerUpdate();
 
     customerUpdate({
       variables: {
@@ -65,10 +63,10 @@ const Section = (props) => {
     });
   };
 
-  const debouncedChangeHandler = useMemo(
-    () => _.debounce(changeHandler, 300),
-    []
-  );
+  const debouncedChangeHandler = useMemo(() => {
+    setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
+    _.debounce(submitQuery, 300);
+  }, []);
 
   useEffect(() => {
     return () => {
