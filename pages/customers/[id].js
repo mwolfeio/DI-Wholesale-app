@@ -118,7 +118,7 @@ const CustomerPage = () => {
 
   let matafieldsArr = data.customer.metafields.edges;
   let customerNumberObj = matafieldsArr.find((o) => o.node.key === "Number");
-  let cusNumb = customerNumberObj.node.value;
+  let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
 
   return (
     <main>
@@ -126,7 +126,7 @@ const CustomerPage = () => {
         back="customers"
         cnumb={{
           display: true,
-          cnumbObj: customerNumberObj.node,
+          cnumbObj: customerNumberObj ? customerNumberObj.node : { value: "" },
           globalId: globalId,
         }}
       />

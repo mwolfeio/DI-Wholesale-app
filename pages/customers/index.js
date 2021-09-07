@@ -42,7 +42,7 @@ const SpecialPage = ({}) => {
 
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
-    variables: { first: 20, srch: searchTerm, srt: sort },
+    variables: { first: 30, srch: searchTerm, srt: sort },
   });
 
   let list = loading ? (
