@@ -10,8 +10,13 @@ import Loader from "../../components/Loader.js";
 import CustomerList from "../../components/lists/CustomerList.js";
 
 const GET_CUSTOMENTS = gql`
-  query getCustomers($first: Int, $srch: String!, $srt: CustomerSortKeys!) {
-    customers(first: $first, query: $srch, sortKey: $srt) {
+  query getCustomers(
+    $first: Int
+    $after: String = null
+    $srch: String!
+    $srt: CustomerSortKeys!
+  ) {
+    customers(first: $first, after: $after, query: $srch, sortKey: $srt) {
       edges {
         cursor
         node {
@@ -36,13 +41,13 @@ const GET_CUSTOMENTS = gql`
 
 const SpecialPage = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState([]);
+  // const [results, setResults] = useState([]);
   const [pagnation, setPagnation] = useState(0);
   const [sort, setSort] = useState("RELEVANCE");
 
-  const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
+  const { loading, error, data, fetchMore } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
-    variables: { first: 30, srch: searchTerm, srt: sort },
+    variables: { first: 30, srch: searchTerm, srt: sort, after: "" },
   });
 
   let list = loading ? (
@@ -82,6 +87,11 @@ const SpecialPage = ({}) => {
 
   const pagnate = () => {
     console.log("load more");
+    fetchMore({
+      variables: {
+        after: data.customers.edges.length - 1,
+      },
+    });
   };
   const changeHandler = (event) => {
     setSearchTerm(event.target.value);
