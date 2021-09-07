@@ -47,7 +47,7 @@ const SpecialPage = ({}) => {
 
   const { loading, error, data, fetchMore } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
-    variables: { srch: searchTerm, srt: sort, after: "" },
+    variables: { srch: searchTerm, srt: sort },
   });
 
   let list = loading ? (
@@ -85,18 +85,18 @@ const SpecialPage = ({}) => {
     </div>
   );
 
-  const pagnate = () => {
-    let after = data.customers.edges.length - 1;
-    console.log("loading everything after ", after);
-    fetchMore({
-      variables: {
-        srch: searchTerm,
-        srt: sort,
-        after: after,
-      },
-    });
-    console.log("error: ", error);
-  };
+  // const pagnate = () => {
+  //   let after = data.customers.edges.length - 1;
+  //   console.log("loading everything after ", after);
+  //   fetchMore({
+  //     variables: {
+  //       srch: searchTerm,
+  //       srt: sort,
+  //       after: after,
+  //     },
+  //   });
+  //   console.log("error: ", error);
+  // };
   const changeHandler = (event) => {
     setSearchTerm(event.target.value);
     setSort("RELEVANCE");
@@ -160,7 +160,21 @@ const SpecialPage = ({}) => {
           {loading || error ? (
             ""
           ) : data.customers.pageInfo.hasNextPage ? (
-            <button onClick={pagnate}>Load more</button>
+            <button
+              onClick={() =>
+                fetchMore({
+                  variables: {
+                    srch: searchTerm,
+                    srt: sort,
+                    after: data.customers.edges
+                      ? data.customers.edges.length - 1
+                      : null,
+                  },
+                })
+              }
+            >
+              Load more
+            </button>
           ) : (
             ""
           )}
