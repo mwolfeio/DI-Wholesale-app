@@ -22,12 +22,15 @@ const Section = (props) => {
         minimize={toggleOpen}
         title={`Orders (${ordersArr.length})`}
       />
-      <div className="card-container">
-        {open ? (
-          ordersArr.length < 1 ? (
+
+      {open ? (
+        ordersArr.length < 1 ? (
+          <div className="card-container">
             <div className="flex-center-center">No Orders</div>
-          ) : (
-            ordersArr.map((order, i) => (
+          </div>
+        ) : (
+          <div className="card-container">
+            {ordersArr.map((order, i) => (
               <div className="card flex-center-btw">
                 <div>
                   <p>{order.node.totalPrice}</p>
@@ -48,12 +51,12 @@ const Section = (props) => {
                   })}
                 </div>
               </div>
-            ))
-          )
-        ) : (
-          ""
-        )}
-      </div>
+            ))}
+          </div>
+        )
+      ) : (
+        ""
+      )}
     </section>
   );
 };
