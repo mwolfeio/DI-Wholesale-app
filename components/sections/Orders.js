@@ -12,7 +12,7 @@ const Section = (props) => {
     <section>
       <SectionHeader
         status={open}
-        minimize={setOpen()}
+        minimize={() => setOpen()}
         title={`Orders (${ordersArr.length})`}
       />
       <div className="card-container">
