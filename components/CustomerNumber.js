@@ -47,7 +47,7 @@ const Section = (props) => {
 
   //Handle input
   const submitQuery = (e) => {
-    console.log("updating customer number to value: ", e.target.value);
+    // console.log("updating customer number to value: ", e.target.value);
 
     customerUpdate({
       variables: {
@@ -67,10 +67,10 @@ const Section = (props) => {
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
   };
 
-  const debouncedChangeHandler = useMemo(() => {
-    updateState();
-    _.debounce(submitQuery, 300);
-  }, []);
+  const debouncedChangeHandler = useMemo(
+    () => _.debounce(submitQuery, 300),
+    []
+  );
 
   useEffect(() => {
     return () => {
@@ -82,7 +82,10 @@ const Section = (props) => {
   return (
     <div className="flex-center-center">
       <input
-        onChange={debouncedChangeHandler}
+        onChange={(e) => {
+          updateState(e);
+          debouncedChangeHandler(e);
+        }}
         className="customer-number-input"
         type="text"
         placeholder="No Customer #"
