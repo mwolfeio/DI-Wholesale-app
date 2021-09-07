@@ -179,7 +179,7 @@ const CustomerPage = () => {
           </div>
         </section>
         <Orders fields={ordersArr} />
-        <MatafieldSection fields={matafieldsArr} customerId={id} />
+        <MatafieldSection fields={matafieldsArr} customerId={globalId} />
         <section className="disabled">Wishlist</section>
         <section className="disabled">Interests</section>
         <section className="disabled">Reviews</section>
