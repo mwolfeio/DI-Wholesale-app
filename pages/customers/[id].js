@@ -161,7 +161,7 @@ const CustomerPage = () => {
           </div>
         </section>
         <Orders address={data.customer.defaultAddress} />
-        <MatafieldSection fields={matafieldsArr} />
+        <MatafieldSection fields={matafieldsArr} customerId={id} />
         <section className="disabled">Wishlist</section>
         <section className="disabled">Interests</section>
         <section className="disabled">Reviews</section>

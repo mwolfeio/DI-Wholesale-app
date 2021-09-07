@@ -18,7 +18,13 @@ const Section = (props) => {
             <p>
               {metafield.node.namespace} {metafield.node.key}
             </p>
-            <MetafieldInput vlaue={metafield.node.value} />
+            <MetafieldInput
+              value={metafield.node.value}
+              namespace={metafield.node.namespace}
+              key={metafield.node.key}
+              MetafieldId={metafield.node.id}
+              custoemrId={props.customerId}
+            />
           </div>
         ))}
       </div>
