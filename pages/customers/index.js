@@ -69,17 +69,12 @@ const SpecialPage = ({}) => {
   const pagnate = () => {
     let after = data.customers.edges[data.customers.edges.length - 1].cursor;
     // let after = data.customers.edges[]
-<<<<<<< HEAD
     console.log("loading everything after: ", after);
     fetchMore({
       variables: {
         after: after,
       },
     });
-=======
-    console.log("loading everything after ", after);
-    fetchData(after);
->>>>>>> 70be9dea03becf0e1f9bf10ee45a4eb6d8015709
     console.log("error: ", error);
   };
   const changeHandler = (event) => {
