@@ -11,7 +11,7 @@ import CustomerList from "../../components/lists/CustomerList.js";
 
 const GET_CUSTOMENTS = gql`
   query getCustomers(
-    $first: Int
+    $first: Int = 30
     $after: String = null
     $srch: String!
     $srt: CustomerSortKeys!
@@ -47,7 +47,7 @@ const SpecialPage = ({}) => {
 
   const { loading, error, data, fetchMore } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
-    variables: { first: 30, srch: searchTerm, srt: sort, after: "" },
+    variables: { srch: searchTerm, srt: sort, after: "" },
   });
 
   let list = loading ? (
@@ -86,12 +86,16 @@ const SpecialPage = ({}) => {
   );
 
   const pagnate = () => {
-    console.log("load more");
+    let after = data.customers.edges.length - 1;
+    console.log("loading everything after ", after);
     fetchMore({
       variables: {
-        after: data.customers.edges.length - 1,
+        srch: searchTerm,
+        srt: sort,
+        after: after,
       },
     });
+    console.log("error: ", error);
   };
   const changeHandler = (event) => {
     setSearchTerm(event.target.value);
