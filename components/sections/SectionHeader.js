@@ -8,7 +8,11 @@ const Section = (props) => {
     <div className="flex-center-btw" style={{ marginBottom: "8px" }}>
       <h2>{props.title}</h2>
       <div className="flex-center-right">
-        {props.add.display ? <AddButton func={props.add.func} /> : ""}
+        {props.add && props.add.display ? (
+          <AddButton func={props.add.func} />
+        ) : (
+          ""
+        )}
         <MoreButton />
         <MinimizeButton status={props.status} func={props.minimize} />
       </div>
