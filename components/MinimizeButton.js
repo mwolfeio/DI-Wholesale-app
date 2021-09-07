@@ -1,5 +1,5 @@
 import React from "react";
-import Add from "../media/icons/Minimize.js";
+import Minimize from "../media/icons/Minimize.js";
 
 const Section = (props) => {
   return (
@@ -7,14 +7,15 @@ const Section = (props) => {
       className="flex-center-btw"
       onClick={() => props.minimize(!props.status)}
     >
-      <button
-        className="icon"
-        style={{
-          marginLeft: "8px",
-          transform: `rotate(${props.status ? 180 : 0}deg)`,
-        }}
-      >
-        <Add />
+      <button className="icon">
+        <span
+          style={{
+            marginLeft: "8px",
+            transform: `rotate(${props.status ? 180 : 0}deg)`,
+          }}
+        >
+          <Minimize />
+        </span>
       </button>
     </div>
   );
