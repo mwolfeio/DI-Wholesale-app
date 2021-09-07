@@ -1,6 +1,7 @@
 import React from "react";
 import MoreButton from "../MoreButton.js";
 import AddButton from "../AddButton.js";
+import MinimizeButton from "../MinimizeButton.js";
 
 const Section = (props) => {
   return (
@@ -9,6 +10,7 @@ const Section = (props) => {
       <div className="flex-center-right">
         <AddButton />
         <MoreButton />
+        <MinimizeButton status={porps.status} func={props.minimize} />
       </div>
     </div>
   );
