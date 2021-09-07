@@ -3,6 +3,7 @@ import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import SectionHeader from "./SectionHeader.js";
+import MetafieldInput from "./MetafieldInput.js";
 
 const Section = (props) => {
   let fieldsArr = props.fields ? props.fields : [];
@@ -17,7 +18,7 @@ const Section = (props) => {
             <p>
               {metafield.node.namespace} {metafield.node.key}
             </p>
-            <p>{metafield.node.value}</p>
+            <MetafieldInput vlaue={metafield.node.value} />
           </div>
         ))}
       </div>

@@ -27,45 +27,32 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 `;
 
 const Section = (props) => {
-  //Props
-  //props.data.display
-  //props.data.cnumb
-  //props.data.fields
-  //props.data.globalId
-
   //State
-  const [customerNumber, setCustomerNumber] = useState(
-    props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
-  );
+  const [metafield, setMetafield] = useState(props.value);
 
   //Query
   const [customerUpdate, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
 
-  console.log("customerNumber: ", customerNumber);
-  console.log("loading: ", loading);
-  console.log("error: ", error);
-  console.log("data: ", data ? data : "No Data");
-
   //Handle input
   const changeHandler = (e) => {
     console.log("inputed value: ", e.target.value);
-    setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
+    setMetafield(`CN: ${e.target.value.replace("CN: ", "")}`);
     // customerUpdate();
 
-    customerUpdate({
-      variables: {
-        input: {
-          id: props.data.globalId,
-          metafields: {
-            id: props.data.cnumbObj.id,
-            value: customerNumber.replace("CN: ", ""),
-            valueType: "STRING",
-          },
-        },
-      },
-    });
+    // customerUpdate({
+    //   variables: {
+    //     input: {
+    //       id: props.data.globalId,
+    //       metafields: {
+    //         id: props.data.cnumbObj.id,
+    //         value: Metafield.replace("CN: ", ""),
+    //         valueType: "STRING",
+    //       },
+    //     },
+    //   },
+    // });
   };
 
   const debouncedChangeHandler = useMemo(
@@ -81,15 +68,13 @@ const Section = (props) => {
 
   //return component
   return (
-    <div className="flex-center-center">
-      <input
-        onChange={changeHandler}
-        className="customer-number-input"
-        type="text"
-        placeholder="No Customer #"
-        value={customerNumber}
-      />
-    </div>
+    <input
+      onChange={changeHandler}
+      className=""
+      type="text"
+      placeholder="No Customer #"
+      value={metafield}
+    />
   );
 };
 export default Section;
