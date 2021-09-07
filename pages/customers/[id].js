@@ -139,6 +139,9 @@ const CustomerPage = () => {
   let customerNumberObj = matafieldsArr.find(
     (o) => o.node.namespace === "Customer" && o.node.key === "Number"
   );
+  let resaleNumberObj = matafieldsArr.find(
+    (o) => o.node.namespace === "Resale" && o.node.key === "Number"
+  );
   let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
 
   return (
@@ -163,7 +166,12 @@ const CustomerPage = () => {
           </div>
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
-              <h3 stule>Shopify id: {id}</h3>
+              <h3 stule>Shopify id: {id.remove("$")}</h3>
+              {resaleNumberObj ? (
+                <h3 stule>Resale Number: {resaleNumberObj.node.value}</h3>
+              ) : (
+                ""
+              )}
               <h3 stule>Email: {data.customer.email}</h3>
               <h3>
                 Phone:{" "}
