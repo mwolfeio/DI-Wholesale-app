@@ -88,7 +88,7 @@ const SpecialPage = ({}) => {
   const pagnate = () => {
     let after = data.customers.edges[data.customers.edges.length - 1].cursor;
     // let after = data.customers.edges[]
-    console.log("loading everything after ", after);
+    console.log("loading everything after: ", after);
     fetchMore({
       variables: {
         after: after,
