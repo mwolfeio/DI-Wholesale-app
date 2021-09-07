@@ -37,6 +37,7 @@ const SpecialPage = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
+    fetchPolicy: "no-cache",
     variables: { first: 22, srch: searchTerm, srt: "RELEVANCE" },
   });
 
