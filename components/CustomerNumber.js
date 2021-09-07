@@ -3,9 +3,6 @@ import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 import _ from "lodash";
 
-//components
-import More from "../media/icons/More.js";
-
 //graphql
 const UPDATE_CUSTOEMR_NUMBER = gql`
   mutation customerUpdate($input: CustomerInput!) {

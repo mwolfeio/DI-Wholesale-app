@@ -3,11 +3,8 @@ import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 import _ from "lodash";
 
-//components
-import More from "../media/icons/More.js";
-
 //graphql
-const UPDATE_CUSTOEMR_NUMBER = gql`
+const UPDATE_METAFIELD = gql`
   mutation customerUpdate($input: CustomerInput!) {
     customerUpdate(input: $input) {
       customer {
@@ -31,9 +28,8 @@ const Section = (props) => {
   const [metafield, setMetafield] = useState(props.value);
 
   //Query
-  const [customerUpdate, { loading, error, data }] = useMutation(
-    UPDATE_CUSTOEMR_NUMBER
-  );
+  const [customerUpdate, { loading, error, data }] =
+    useMutation(UPDATE_METAFIELD);
 
   //Handle input
   const changeHandler = (e) => {
