@@ -48,21 +48,34 @@ const Section = (props) => {
   //Handle input
   const submitQuery = (e) => {
     // console.log("updating customer number to value: ", e.target.value);
-
-    customerUpdate({
-      variables: {
-        input: {
-          id: props.data.globalId,
-          metafields: {
-            // id: props.data.cnumbObj.id,
-            namespace: "Customer",
-            key: "Number",
-            value: e.target.value.replace("CN: ", ""),
-            valueType: "STRING",
+    let payload = customerNumber
+      ? {
+          variables: {
+            input: {
+              id: props.data.globalId,
+              metafields: {
+                id: props.data.cnumbObj.id,
+                value: e.target.value.replace("CN: ", ""),
+                valueType: "STRING",
+              },
+            },
           },
-        },
-      },
-    });
+        }
+      : {
+          variables: {
+            input: {
+              id: props.data.globalId,
+              metafields: {
+                namespace: "Customer",
+                key: "Number",
+                value: e.target.value.replace("CN: ", ""),
+                valueType: "STRING",
+              },
+            },
+          },
+        };
+
+    customerUpdate(payload);
   };
 
   const updateState = (e) => {

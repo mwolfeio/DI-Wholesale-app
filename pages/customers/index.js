@@ -146,9 +146,7 @@ const SpecialPage = ({}) => {
             </p>
             <p
               onClick={() => setSort("UPDATED_AT")}
-              className={`sortable ${
-                sort == "UPDATED_AT" ? "active-sort" : ""
-              }`}
+              className={`sortable ${sort == "RELEVANCE" ? "active-sort" : ""}`}
             >
               Age
             </p>
