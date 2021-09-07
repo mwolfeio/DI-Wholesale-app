@@ -55,7 +55,7 @@ const Section = (props) => {
           id: props.data.globalId,
           metafields: {
             id: props.data.cnumbObj.id,
-            value: customerNumber.replace("CN: ", ""),
+            value: e.target.value.replace("CN: ", ""),
             valueType: "STRING",
           },
         },
@@ -67,10 +67,12 @@ const Section = (props) => {
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
   };
 
-  const debouncedChangeHandler = useMemo(
-    () => _.debounce(submitQuery, 300),
-    []
-  );
+  // const debouncedChangeHandler = useMemo(
+  //   () => _.debounce(submitQuery, 300),
+  //   []
+  // );
+
+  const debouncedChangeHandler = _.debounce(submitQuery, 300);
 
   useEffect(() => {
     return () => {
