@@ -63,8 +63,12 @@ const Section = (props) => {
     });
   };
 
-  const debouncedChangeHandler = useMemo((e) => {
+  const updateState = (e) => {
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
+  };
+
+  const debouncedChangeHandler = useMemo(() => {
+    updateState();
     _.debounce(submitQuery, 300);
   }, []);
 
