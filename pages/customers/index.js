@@ -11,7 +11,7 @@ import CustomerList from "../../components/lists/CustomerList.js";
 
 const GET_CUSTOMENTS = gql`
   query getCustomers(
-    $first: Int = 30
+    $first: Int = 50
     $after: String = null
     $srch: String!
     $srt: CustomerSortKeys!
