@@ -101,6 +101,7 @@ const CustomerPage = () => {
   let globalId = `gid://shopify/Customer/${id}`;
 
   const { loading, error, data } = useQuery(GET_CUSTOMER, {
+    fetchPolicy: "no-cache",
     variables: { id: globalId },
   });
 

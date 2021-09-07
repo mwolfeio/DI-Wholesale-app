@@ -109,7 +109,7 @@ const Section = (props) => {
       <input
         onChange={(e) => {
           updateState(e);
-          debouncedChangeHandler(e);
+          data ? debouncedChangeHandler(e) : submitQuery(e);
         }}
         className="customer-number-input"
         type="text"
