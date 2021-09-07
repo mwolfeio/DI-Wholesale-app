@@ -116,20 +116,20 @@ const SpecialPage = ({}) => {
             <p>Pic</p>
             <p
               className={`${sort == "NAME" ? "active-sort" : ""}`}
-              onClick={setSort("NAME")}
+              onClick={() => setSort("NAME")}
               style={{ marginLeft: "16px", justifySelf: "start" }}
             >
               Name
             </p>
             <p>Customer #</p>
             <p
-              onClick={setSort("ORDERS_COUNT")}
+              onClick={() => setSort("ORDERS_COUNT")}
               className={`${sort == "ORDERS_COUNT" ? "active-sort" : ""}`}
             >
               Orders
             </p>
             <p
-              onClick={setSort("UPDATED_AT")}
+              onClick={() => setSort("UPDATED_AT")}
               className={`${sort == "UPDATED_AT" ? "active-sort" : ""}`}
             >
               Age
