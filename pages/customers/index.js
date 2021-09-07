@@ -85,6 +85,7 @@ const SpecialPage = ({}) => {
   };
   const changeHandler = (event) => {
     setSearchTerm(event.target.value);
+    setSort("RELEVANCE");
   };
   const debouncedChangeHandler = useMemo(
     () => _.debounce(changeHandler, 300),
@@ -115,7 +116,7 @@ const SpecialPage = ({}) => {
           <li className="list-header">
             <p>Pic</p>
             <p
-              className={`${sort == "NAME" ? "active-sort" : ""}`}
+              className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
               onClick={() => setSort("NAME")}
               style={{ marginLeft: "16px", justifySelf: "start" }}
             >
@@ -124,13 +125,17 @@ const SpecialPage = ({}) => {
             <p>Customer #</p>
             <p
               onClick={() => setSort("ORDERS_COUNT")}
-              className={`${sort == "ORDERS_COUNT" ? "active-sort" : ""}`}
+              className={`sortable ${
+                sort == "ORDERS_COUNT" ? "active-sort" : ""
+              }`}
             >
               Orders
             </p>
             <p
               onClick={() => setSort("UPDATED_AT")}
-              className={`${sort == "UPDATED_AT" ? "active-sort" : ""}`}
+              className={`sortable ${
+                sort == "UPDATED_AT" ? "active-sort" : ""
+              }`}
             >
               Age
             </p>

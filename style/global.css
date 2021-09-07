@@ -326,8 +326,14 @@ ul.large-list li.list-header p {
   text-align: center;
 }
 
-.active-sort {
-  color: #4388f8;
+li p.active-sort {
+  color: #4388f8 !important;
+}
+li p.sortable {
+  cursor: pointer !important;
+}
+li p.sortable:hover {
+  color: #4388f8 !important;
 }
 
 /* CARD LIST---------------------- */
