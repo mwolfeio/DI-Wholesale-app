@@ -117,6 +117,7 @@ const CustomerPage = () => {
   }
 
   let matafieldsArr = data.customer.metafields.edges;
+  let ordersArr = data.customer.orders.edges;
   let customerNumberObj = matafieldsArr.find((o) => o.node.key === "Number");
   let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
 
@@ -160,7 +161,7 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
-        <Orders address={data.customer.defaultAddress} />
+        <Orders fields={ordersArr} />
         <MatafieldSection fields={matafieldsArr} customerId={id} />
         <section className="disabled">Wishlist</section>
         <section className="disabled">Interests</section>
