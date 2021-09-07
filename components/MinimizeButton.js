@@ -1,7 +1,7 @@
 import React from "react";
 import Add from "../media/icons/Minimize.js";
 
-export default function SpecialPage(props) {
+const Section = (props) => {
   return (
     <div
       className="flex-center-btw"
@@ -18,4 +18,5 @@ export default function SpecialPage(props) {
       </button>
     </div>
   );
-}
+};
+export default Section;

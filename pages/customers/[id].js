@@ -59,10 +59,25 @@ const GET_CUSTOMER = gql`
         }
       }
       note
-      orders(first: 10) {
+      orders(first: 5) {
         edges {
           node {
             id
+            totalPrice
+            lineItems(first: 4) {
+              edges {
+                node {
+                  image(maxHeight: 500, maxWidth: 500) {
+                    originalSrc
+                  }
+                  quantity
+                  sku
+                  title
+                  vendor
+                }
+              }
+            }
+            createdAt
           }
         }
       }
