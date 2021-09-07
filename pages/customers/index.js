@@ -41,35 +41,54 @@ const GET_CUSTOMENTS = gql`
 
 const SpecialPage = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState([]);
+  // const [results, setResults] = useState([]);
   const [pagnation, setPagnation] = useState(0);
   const [sort, setSort] = useState("RELEVANCE");
 
-  const fetchData = (after) => {
-    const offset = after ? after : null;
-    const { loading, error, data, fetchMore } = useQuery(GET_CUSTOMENTS, {
-      fetchPolicy: "no-cache",
-      variables: { srch: searchTerm, srt: sort, after: offset },
-    });
-    if (loading) {
-      setIsLoading(true);
-      return;
-    }
-    if (error) {
-      console.log(error);
-      return;
-    }
-    if (data) {
-      setIsLoading(false);
-      setResults([...results, ...data.customers.edges]);
-    }
-  };
+  const { loading, error, data, fetchMore } = useQuery(GET_CUSTOMENTS, {
+    fetchPolicy: "no-cache",
+    variables: { srch: searchTerm, srt: sort },
+  });
+
+  let list = loading ? (
+    <Loader />
+  ) : error ? (
+    `Error! ${error.message}`
+  ) : data.customers.edges.length ? (
+    data.customers.edges.map((cus, i) => {
+      let id = cus.node.id.replace("gid://shopify/Customer/", "");
+      let cusNumb =
+        cus.node.metafield && cus.node.metafield.value
+          ? cus.node.metafield.value
+          : "";
+
+      return (
+        <CustomerList
+          index={i}
+          customer={{
+            id: id,
+            name: `${cus.node.firstName} ${cus.node.lastName}`,
+            email: cus.node.email,
+            cusnumb: cusNumb,
+            orders: cus.node.ordersCount,
+            age: cus.node.lifetimeDuration,
+          }}
+        />
+      );
+    })
+  ) : (
+    <div
+      className="flex-center-center"
+      style={{ height: "58px", width: "100%" }}
+    >
+      <p>No Results</p>
+    </div>
+  );
 
   const pagnate = () => {
     let after = data.customers.edges[data.customers.edges.length - 1].cursor;
     // let after = data.customers.edges[]
-    console.log("loading everything after: ", after);
+    console.log("loading everything after", after);
     fetchMore({
       variables: {
         after: after,
@@ -90,8 +109,6 @@ const SpecialPage = ({}) => {
       debouncedChangeHandler.cancel();
     };
   }, []);
-
-  if (!results) fetchData();
 
   return (
     <main>
@@ -136,41 +153,10 @@ const SpecialPage = ({}) => {
               Age
             </p>
           </li>
-          {!results ? (
-            <Loader />
-          ) : results.length ? (
-            results.map((cus, i) => {
-              let id = cus.node.id.replace("gid://shopify/Customer/", "");
-              let cusNumb =
-                cus.node.metafield && cus.node.metafield.value
-                  ? cus.node.metafield.value
-                  : "";
-
-              return (
-                <CustomerList
-                  index={i}
-                  customer={{
-                    id: id,
-                    name: `${cus.node.firstName} ${cus.node.lastName}`,
-                    email: cus.node.email,
-                    cusnumb: cusNumb,
-                    orders: cus.node.ordersCount,
-                    age: cus.node.lifetimeDuration,
-                  }}
-                />
-              );
-            })
-          ) : (
-            <div
-              className="flex-center-center"
-              style={{ height: "58px", width: "100%" }}
-            >
-              <p>No Results</p>
-            </div>
-          )}
+          {list}
         </ul>
         <div className="flex-center-center">
-          {isLoading ? (
+          {loading || error ? (
             ""
           ) : data.customers.pageInfo.hasNextPage ? (
             <button onClick={pagnate}>Load more</button>
