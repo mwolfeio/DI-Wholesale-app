@@ -26,7 +26,9 @@ const Section = (props) => {
       {open ? (
         ordersArr.length < 1 ? (
           <div className="card-container">
-            <div className="flex-center-center">No Orders</div>
+            <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+              <b>No Orders</b>
+            </div>
           </div>
         ) : (
           <div className="card-container">
