@@ -85,18 +85,17 @@ const SpecialPage = ({}) => {
     </div>
   );
 
-  // const pagnate = () => {
-  //   let after = data.customers.edges.length - 1;
-  //   console.log("loading everything after ", after);
-  //   fetchMore({
-  //     variables: {
-  //       srch: searchTerm,
-  //       srt: sort,
-  //       after: after,
-  //     },
-  //   });
-  //   console.log("error: ", error);
-  // };
+  const pagnate = () => {
+    let after = data.customers.edges[data.customers.edges.length - 1].cursor;
+    // let after = data.customers.edges[]
+    console.log("loading everything after ", after);
+    fetchMore({
+      variables: {
+        after: after,
+      },
+    });
+    console.log("error: ", error);
+  };
   const changeHandler = (event) => {
     setSearchTerm(event.target.value);
     setSort("RELEVANCE");
@@ -125,7 +124,7 @@ const SpecialPage = ({}) => {
           className="list-search"
           type="text"
           placeholder="Enter a customer's name..."
-        ></input>
+        />
         <ul className="large-list customer-list">
           <li className="list-header">
             <p>Pic</p>
@@ -160,21 +159,7 @@ const SpecialPage = ({}) => {
           {loading || error ? (
             ""
           ) : data.customers.pageInfo.hasNextPage ? (
-            <button
-              onClick={() =>
-                fetchMore({
-                  variables: {
-                    srch: searchTerm,
-                    srt: sort,
-                    after: data.customers.edges
-                      ? data.customers.edges.length - 1
-                      : null,
-                  },
-                })
-              }
-            >
-              Load more
-            </button>
+            <button onClick={pagnate}>Load more</button>
           ) : (
             ""
           )}
