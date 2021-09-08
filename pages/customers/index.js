@@ -151,9 +151,9 @@ const SpecialPage = ({}) => {
             >
               Name
             </p>
-            <p>CN</p>
-            <p style={{ justifySelf: "start" }}>Company</p>
 
+            <p style={{ justifySelf: "start" }}>Company</p>
+            <p>CN</p>
             <p
               onClick={() => setSort("ORDERS_COUNT")}
               className={`sortable ${

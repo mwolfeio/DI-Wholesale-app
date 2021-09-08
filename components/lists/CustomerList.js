@@ -20,13 +20,17 @@ export default function SpecialPage(props) {
           <p>{props.customer.name}</p>
           <p className="subtitle">{props.customer.email}</p>
         </div>
-        <p>{props.customer.cusnumb ? `#${props.customer.cusnumb}` : ""}</p>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{props.customer.company}</p>
           <p className="subtitle">{props.customer.address}</p>
         </div>
-        <div className="list-name">
+        <p>{props.customer.cusnumb ? `#${props.customer.cusnumb}` : ""}</p>
+
+        <div
+          className="list-name"
+          style={{ justifySelf: "center", textAligh: "center" }}
+        >
           <p>{props.customer.orders}</p>
           <p className="subtitle">
             {formatter.format(props.customer.totalSpent)}

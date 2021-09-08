@@ -2,6 +2,8 @@ import { useState, useMemo, useEffect } from "react";
 import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
+import Loader from "./Loader.js";
+
 //graphql
 const UPDATE_CUSTOEMR_NUMBER = gql`
   mutation customerUpdate($input: CustomerInput!) {
@@ -53,6 +55,11 @@ const Section = (props) => {
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
   };
 
+  const erase = (e) => {
+    e.preventDefault();
+    setCustomerNumber(oldCustomerNumber);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitting: ", customerNumber.replace("CN: ", ""));
@@ -102,8 +109,19 @@ const Section = (props) => {
         value={customerNumber}
       />
       {customerNumber !== oldCustomerNumber ? (
-        <button style={{ height: "48px", marginLeft: "8px" }} type="submit">
-          Save
+        <button
+          className="submit-button"
+          onClick={erase}
+          style={{ height: "48px", marginLeft: "8px" }}
+        >
+          Cancel
+        </button>
+      ) : (
+        ""
+      )}
+      {customerNumber !== oldCustomerNumber ? (
+        <button style={{ height: "48px" }} type="submit">
+          {loading ? <Loader size={24} /> : Save}
         </button>
       ) : (
         ""

@@ -378,7 +378,7 @@ li p.sortable:hover {
 /* CUSTOEMR PAGE-------------- */
 ul.customer-list li {
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr 1fr;
+  grid-template-columns: 2fr 2fr 1fr 1fr;
   width: 100%;
   grid-column-gap: 8px;
   justify-items: center;
@@ -413,21 +413,39 @@ ul.customer-list li {
   margin: 0 16px;
 }
 
+/* CUSTOMER PAGE WRAPPER--------------- */
+
 .customer-number-wrapper {
   position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-row-gap: 4px;
+  border-radius: 15px;
+  padding: 4px;
+  margin: -4px -4px 0 0;
+}
+.customer-number-wrapper:focus-within {
+  background: white;
+  transition: 0.15s ease;
+  box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
+}
+.customer-number-wrapper input {
+  grid-column: 1 / span 2;
 }
 .customer-number-wrapper button {
-  position: absolute;
-  right: 0;
-  top: Calc(100% + 8px);
+  /* position: absolute; */
+  /* right: 0;
+  top: Calc(100% + 8px); */
+}
+.customer-number-wrapper button.submit-button {
+  background: #54e4a6;
+  color: white;
 }
 
 /* LOADER----------------------- */
 .lds-ripple {
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
   opacity: 0.5;
 }
 .lds-ripple div {
