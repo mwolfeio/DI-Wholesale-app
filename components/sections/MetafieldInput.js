@@ -6,8 +6,8 @@ import { gql } from "apollo-boost";
 const UPDATE_METAFIELD = gql`
   mutation customerUpdate(
     $input: CustomerInput!
-    $namespace: String!
-    $key: String!
+    $namespace: String! = "Customer"
+    $key: String! = "Number"
   ) {
     customerUpdate(input: $input) {
       customer {
@@ -49,7 +49,7 @@ const Section = (props) => {
   const [metafield, setMetafield] = useState(props.value);
   const [oldMetafield, setOldMetafield] = useState(props.value);
 
-  console.log("Metafield key: ", props.metafieldKey);
+  console.log("Metafield metafieldKey: ", props.metafieldKey);
   console.log("Metafield namespace: ", props.namespace);
   console.log("Metafield custoemrId: ", props.custoemrId);
   console.log("Metafield MetafieldId: ", props.MetafieldId);

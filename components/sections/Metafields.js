@@ -27,20 +27,29 @@ const Section = (props) => {
       />
       {open ? (
         <div className="card-container">
-          {fieldsArr.map((metafield) => (
-            <div className="card">
-              <p>
-                {metafield.node.namespace} {metafield.node.key}
-              </p>
-              <MetafieldInput
-                value={metafield.node.value}
-                namespace={metafield.node.namespace}
-                key={metafield.node.key}
-                MetafieldId={metafield.node.id}
-                custoemrId={props.customerId}
-              />
-            </div>
-          ))}
+          {fieldsArr.map((metafield) => {
+            let namespace = metafield.node.namespace;
+            let metafieldKey = metafield.node.key;
+
+            console.log("metafield Parent = ", metafield);
+            console.log("Metafield parent namespace = ", namespace);
+            console.log("Metafield parent metafieldKey = ", metafieldKey);
+
+            return (
+              <div className="card">
+                <p>
+                  {namespace} {metafieldKey}
+                </p>
+                <MetafieldInput
+                  value={metafield.node.value}
+                  namespace={namespace}
+                  metafieldKey={metafieldKey}
+                  MetafieldId={metafield.node.id}
+                  custoemrId={props.customerId}
+                />
+              </div>
+            );
+          })}
         </div>
       ) : (
         ""

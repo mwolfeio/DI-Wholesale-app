@@ -57,13 +57,13 @@ const Section = (props) => {
     e.preventDefault();
     console.log("submitting: ", customerNumber.replace("CN: ", ""));
 
-    let payload = data.customerUpdate.customer.metafield.id
+    let payload = props.data.cnumbObj.id
       ? {
           variables: {
             input: {
               id: props.data.globalId,
               metafields: {
-                id: data.customerUpdate.customer.metafield.id,
+                id: props.data.cnumbObj.id,
                 value: customerNumber.replace("CN: ", ""),
                 valueType: "STRING",
               },
