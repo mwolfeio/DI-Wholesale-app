@@ -2,7 +2,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
-import Loader from "./Loader.js";
+import Loader from "../Loader.js";
 
 //graphql
 const UPDATE_CUSTOEMR_NUMBER = gql`
@@ -25,18 +25,12 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 `;
 
 const Section = (props) => {
-  //Props
-  //props.data.display
-  //props.data.cnumb
-  //props.data.fields
-  //props.data.globalId
-
   //State
   const [customerNumber, setCustomerNumber] = useState(
-    props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
+    props.cnumb ? `#${props.cnumb}` : ""
   );
   const [oldCustomerNumber, setOldCustomerNumber] = useState(
-    props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
+    props.data.cnumb ? `#${props.cnumb}` : ""
   );
 
   //Query
@@ -44,15 +38,10 @@ const Section = (props) => {
     UPDATE_CUSTOEMR_NUMBER
   );
 
-  console.log("customer Number customerNumber: ", customerNumber);
-  console.log("customer Number loading: ", loading);
-  console.log("customer Number error: ", error);
-  console.log("customer Number data: ", data ? data : "No Data");
-
   //Handle input
   const changeHandler = (e) => {
-    console.log(`CN: ${e.target.value.replace("CN: ", "")}`);
-    setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
+    console.log(`#${e.target.value.replace("#", "")}`);
+    setCustomerNumber(`#${e.target.value.replace("#", "")}`);
   };
 
   const erase = (e) => {
@@ -62,16 +51,16 @@ const Section = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting: ", customerNumber.replace("CN: ", ""));
+    console.log("submitting: ", customerNumber.replace("#", ""));
 
-    let payload = props.data.cnumbObj.id
+    let payload = props.fieldId
       ? {
           variables: {
             input: {
-              id: props.data.globalId,
+              id: props.cusId,
               metafields: {
-                id: props.data.cnumbObj.id,
-                value: customerNumber.replace("CN: ", ""),
+                id: props.fieldId,
+                value: customerNumber.replace("#", ""),
                 valueType: "STRING",
               },
             },
@@ -80,11 +69,11 @@ const Section = (props) => {
       : {
           variables: {
             input: {
-              id: props.data.globalId,
+              id: props.cusId,
               metafields: {
                 namespace: "Customer",
                 key: "Number",
-                value: customerNumber.replace("CN: ", ""),
+                value: customerNumber.replace("#", ""),
                 valueType: "STRING",
               },
             },
@@ -98,7 +87,7 @@ const Section = (props) => {
   //return component
   let needsSaving = customerNumber !== oldCustomerNumber;
   return (
-    <div style={{ position: "relative", height: "43px", width: "248px" }}>
+    <div style={{ position: "relative", height: "43px", width: "100%" }}>
       <form
         className={`customer-number-wrapper ${
           needsSaving ? "customerNumber-form-open" : ""

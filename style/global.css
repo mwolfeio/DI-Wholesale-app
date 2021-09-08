@@ -424,12 +424,11 @@ ul.customer-list li {
   grid-row-gap: 4px;
   border-radius: 15px;
   padding: 4px;
+  margin: -4px -4px 0 0;
 }
 .customerNumber-form-open {
   background: white;
-  transition: 0.15s ease;
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
-  margin: -4px -4px 0 0;
 }
 
 button.submit-button {
@@ -438,6 +437,9 @@ button.submit-button {
 }
 .customer-number-wrapper input {
   margin-left: 0 !important;
+}
+.customer-number-wrapper input:focus {
+  box-shadow: none;
 }
 
 /* LOADER----------------------- */

@@ -26,6 +26,7 @@ const GET_CUSTOMENTS = gql`
           email
           metafield(key: "Number", namespace: "Customer") {
             value
+            id
           }
           ordersCount
           lifetimeDuration
@@ -75,12 +76,17 @@ const SpecialPage = ({}) => {
         cus.node.metafield && cus.node.metafield.value
           ? cus.node.metafield.value
           : "";
+      let fieldId =
+        cus.node.metafield && cus.node.metafield.id
+          ? cus.node.metafield.id
+          : "";
 
       return (
         <CustomerList
           index={i}
           customer={{
             id: id,
+            gid: cus.node.id,
             name: `${cus.node.firstName} ${cus.node.lastName}`,
             email: cus.node.email,
             cusnumb: cusNumb,
@@ -89,6 +95,7 @@ const SpecialPage = ({}) => {
             address: address,
             company: company,
             totalSpent: cus.node.totalSpent,
+            fieldId: fieldId,
           }}
         />
       );

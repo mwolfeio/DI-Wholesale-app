@@ -81,9 +81,9 @@ const Section = (props) => {
         value={metafield}
       />
       {metafield !== oldMetafield ? (
-        <div>
+        <div style={{ display: "flex" }}>
           <button style={{ height: "48px" }} onClick={cancel}>
-            Save
+            Cancel
           </button>
           <button
             className="submit-button"

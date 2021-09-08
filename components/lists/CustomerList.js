@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import CustomersIcon from "../../media/icons/Customers.js";
+import ListInput from "./ListInput.js";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -25,8 +26,12 @@ export default function SpecialPage(props) {
           <p>{props.customer.company}</p>
           <p className="subtitle">{props.customer.address}</p>
         </div>
-        <p>{props.customer.cusnumb ? `#${props.customer.cusnumb}` : ""}</p>
 
+        <ListInput
+          cusId={props.customer.gid}
+          fieldId={props.customer.fieldId}
+          cnumb={props.customer.cusnumb}
+        />
         <div
           className="list-name"
           style={{
@@ -47,3 +52,4 @@ export default function SpecialPage(props) {
 
 //<CustomersIcon />
 // <p>{props.customer.age}</p>
+//<p>{props.customer.cusnumb ? `#${props.customer.cusnumb}` : ""}</p>
