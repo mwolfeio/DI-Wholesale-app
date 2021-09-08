@@ -17,6 +17,8 @@ const Section = (props) => {
     console.log("clicked");
   };
 
+  console.log("Metafield parent------------------");
+
   return (
     <section>
       <SectionHeader
@@ -38,14 +40,11 @@ const Section = (props) => {
             return (
               <div className="card">
                 <p>
-                  {namespace} {metafieldKey}
+                  {namespace}.{metafieldKey}
                 </p>
                 <MetafieldInput
-                  value={metafield.node.value}
-                  namespace={namespace}
-                  metafieldKey={metafieldKey}
-                  MetafieldId={metafield.node.id}
-                  custoemrId={props.customerId}
+                  customerId={props.customerId}
+                  field={metafield.node}
                 />
               </div>
             );
@@ -58,3 +57,9 @@ const Section = (props) => {
   );
 };
 export default Section;
+
+// value={metafield.node.value}
+// namespace={namespace}
+// metafieldKey={metafieldKey}
+// MetafieldId={metafield.node.id}
+// custoemrId={props.customerId}

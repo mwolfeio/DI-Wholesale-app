@@ -85,7 +85,7 @@ const Section = (props) => {
         };
 
     customerUpdate(payload);
-    setOldCustomerNumber(metafield);
+    setOldCustomerNumber(customerNumber);
   };
 
   //return component
