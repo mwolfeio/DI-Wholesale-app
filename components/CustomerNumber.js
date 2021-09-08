@@ -98,7 +98,7 @@ const Section = (props) => {
         placeholder="No Customer #"
         value={customerNumber}
       />
-      {metafield !== oldMetafield ? (
+      {customerNumber !== oldCustomerNumber ? (
         <button style={{ height: "48px", marginLeft: "8px" }} type="submit">
           Save
         </button>
