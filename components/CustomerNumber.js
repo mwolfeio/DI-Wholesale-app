@@ -99,7 +99,7 @@ const Section = (props) => {
   let needsSaving = customerNumber !== oldCustomerNumber;
   return (
     <form
-      className={`flex-center-center customer-number-wrapper ${
+      className={`customer-number-wrapper ${
         needsSaving ? "customerNumber-form-open" : ""
       }`}
       onSubmit={handleSubmit}
@@ -112,20 +112,18 @@ const Section = (props) => {
         value={customerNumber}
       />
       {needsSaving ? (
-        <button
-          className="submit-button"
-          onClick={erase}
-          style={{ height: "48px", marginLeft: "8px" }}
-        >
-          Cancel
-        </button>
-      ) : (
-        ""
-      )}
-      {needsSaving ? (
-        <button style={{ height: "48px" }} type="submit">
-          {loading ? <Loader size={24} /> : "Save"}
-        </button>
+        <div className="flex-center-center">
+          <button onClick={erase} style={{ height: "36px", width: "100%" }}>
+            Cancel
+          </button>
+          <button
+            className="submit-button"
+            style={{ height: "36px", marginLeft: "8px", width: "100%" }}
+            type="submit"
+          >
+            {loading ? <Loader size={24} /> : "Save"}
+          </button>
+        </div>
       ) : (
         ""
       )}
