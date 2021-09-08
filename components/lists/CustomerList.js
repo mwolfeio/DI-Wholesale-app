@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import CustomersIcon from "../../media/icons/Customers.js";
-import ListInput from "./ListInput.js";
+import ListInput from "./InterlistInput.js";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
