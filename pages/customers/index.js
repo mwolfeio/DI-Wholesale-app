@@ -194,3 +194,20 @@ export default SpecialPage;
 // >
 //   Age
 // </p>
+
+// <CustomerList
+//   index="1"
+//   customer={{
+//     id: "test",
+//     gid: "test",
+//     name: "test",
+//     email: "test",
+//     cusnumb: "test",
+//     orders: "test",
+//     age: "test",
+//     address: "test",
+//     company: "test",
+//     totalSpent: "test",
+//     fieldId: "test",
+//   }}
+// />

@@ -100,6 +100,7 @@ p {
 
   color: #4e5d78;
 }
+
 p.light {
   font-family: Inter;
   font-style: normal;
@@ -240,7 +241,27 @@ input.customer-number-input:focus {
   background: white;
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
 }
+.list-input-wrapper input {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 28px;
+  /* or 207% */
 
+  display: flex;
+  align-items: center;
+  margin: 0;
+
+  /* Text 2 */
+
+  color: #4e5d78;
+  text-align: center;
+  background: white;
+  border: 1px solid white;
+  height: 36px;
+  border-radius: 10px;
+}
 /* LISTS--------------------- */
 
 ul.large-list {

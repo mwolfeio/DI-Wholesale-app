@@ -30,7 +30,7 @@ const Section = (props) => {
     props.cnumb ? `#${props.cnumb}` : ""
   );
   const [oldCustomerNumber, setOldCustomerNumber] = useState(
-    props.data.cnumb ? `#${props.cnumb}` : ""
+    props.cnumb ? `#${props.cnumb}` : ""
   );
 
   //Query
@@ -87,7 +87,10 @@ const Section = (props) => {
   //return component
   let needsSaving = customerNumber !== oldCustomerNumber;
   return (
-    <div style={{ position: "relative", height: "43px", width: "100%" }}>
+    <div
+      class="list-input-wrapper "
+      style={{ position: "relative", height: "36px", width: "100%" }}
+    >
       <form
         className={`customer-number-wrapper ${
           needsSaving ? "customerNumber-form-open" : ""
@@ -96,7 +99,6 @@ const Section = (props) => {
       >
         <input
           onChange={changeHandler}
-          className="customer-number-input"
           type="text"
           placeholder="No Customer #"
           value={customerNumber}
@@ -107,14 +109,14 @@ const Section = (props) => {
               onClick={erase}
               style={{ height: "36px", marginLeft: "8px", width: "100%" }}
             >
-              Cancel
+              X
             </button>
             <button
               className="submit-button"
               style={{ height: "36px", marginLeft: "8px", width: "100%" }}
               type="submit"
             >
-              {loading ? <Loader size={24} /> : "Save"}
+              {loading ? <Loader size={24} /> : "✔"}
             </button>
           </div>
         ) : (
