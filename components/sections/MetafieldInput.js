@@ -31,6 +31,11 @@ const Section = (props) => {
   const [metafield, setMetafield] = useState(props.value);
   const [oldMetafield, setOldMetafield] = useState(props.value);
 
+  console.log("Metafield key: ", props.key);
+  console.log("Metafield namespace: ", props.namespace);
+  console.log("Metafield custoemrId: ", props.custoemrId);
+  console.log("Metafield MetafieldId: ", props.MetafieldId);
+
   //Query
   const [customerUpdate, { loading, error, data }] =
     useMutation(UPDATE_METAFIELD);

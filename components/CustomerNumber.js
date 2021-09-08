@@ -42,10 +42,10 @@ const Section = (props) => {
     UPDATE_CUSTOEMR_NUMBER
   );
 
-  console.log("customerNumber: ", customerNumber);
-  console.log("loading: ", loading);
-  console.log("error: ", error);
-  console.log("data: ", data ? data : "No Data");
+  console.log("customer Number customerNumber: ", customerNumber);
+  console.log("customer Number loading: ", loading);
+  console.log("customer Number error: ", error);
+  console.log("customer Number data: ", data ? data : "No Data");
 
   //Handle input
   const changeHandler = (e) => {
@@ -55,7 +55,7 @@ const Section = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting: ", metafield);
+    console.log("submitting: ", e.target.value.replace("CN: ", ""));
 
     let payload = data.customerUpdate.customer.metafield.id
       ? {
