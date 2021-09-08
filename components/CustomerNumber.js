@@ -114,10 +114,7 @@ const Section = (props) => {
         />
         {needsSaving ? (
           <div className="flex-center-center">
-            <button
-              onClick={erase}
-              style={{ height: "36px", marginLeft: "8px", width: "100%" }}
-            >
+            <button onClick={erase} style={{ height: "36px", width: "100%" }}>
               Cancel
             </button>
             <button

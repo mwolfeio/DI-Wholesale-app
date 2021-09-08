@@ -82,12 +82,15 @@ const Section = (props) => {
       />
       {metafield !== oldMetafield ? (
         <div style={{ display: "flex" }}>
-          <button style={{ height: "48px" }} onClick={cancel}>
+          <button
+            style={{ height: "48px", marginLeft: "8px" }}
+            onClick={cancel}
+          >
             Cancel
           </button>
           <button
             className="submit-button"
-            style={{ height: "48px", marginLeft: "8px", width: "100%" }}
+            style={{ height: "48px", marginLeft: "8px" }}
             type="submit"
           >
             {loading ? <Loader size={24} /> : "Save"}

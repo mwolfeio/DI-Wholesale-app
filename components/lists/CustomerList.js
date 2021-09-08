@@ -11,7 +11,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 export default function SpecialPage(props) {
   console.log(props);
   return (
-    <Link href={`/customers/${props.customer.id}$`} passHref>
+    <Link href={`/customers/${props.customer.id}`} passHref>
       <li
         className=""
         style={{ animationDelay: `${props.index * 0.03}s` }}
