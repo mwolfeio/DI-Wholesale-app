@@ -41,6 +41,12 @@ const Section = (props) => {
     setMetafield(e.target.value);
   };
 
+  //Handle cancelation
+  const cancel = (e) => {
+    e.preventDefault();
+    setMetafield(oldMetafield);
+  };
+
   //Sumbit
   const submitHandler = (e) => {
     e.preventDefault();
@@ -65,23 +71,34 @@ const Section = (props) => {
 
   //return component
   return (
-    <form onSubmit={submitHandler} style={{ display: "flex" }}>
-      <input
-        onChange={changeHandler}
-        style={{ borderRadius: "10px" }}
-        className=""
-        type="text"
-        placeholder="No Metafield"
-        value={metafield}
-      />
-      {metafield !== oldMetafield ? (
-        <button style={{ height: "48px", marginLeft: "8px" }} type="submit">
-          Save
-        </button>
-      ) : (
-        ""
-      )}
-    </form>
+    <div style={{ position: "relative", height: "43px", width: "248px" }}>
+      <form onSubmit={submitHandler} style={{ display: "flex" }}>
+        <input
+          onChange={changeHandler}
+          style={{ borderRadius: "10px" }}
+          className=""
+          type="text"
+          placeholder="No Metafield"
+          value={metafield}
+        />
+        {metafield !== oldMetafield ? (
+          <div>
+            <button style={{ height: "48px" }} onClick={cancel}>
+              Save
+            </button>
+            <button
+              className="submit-button"
+              style={{ height: "48px", marginLeft: "8px", width: "100%" }}
+              type="submit"
+            >
+              {loading ? <Loader size={24} /> : "Save"}
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
+      </form>
+    </div>
   );
 };
 export default Section;
