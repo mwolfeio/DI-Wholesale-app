@@ -30,6 +30,13 @@ const GET_CUSTOMENTS = gql`
           ordersCount
           lifetimeDuration
           marketingOptInLevel
+          defaultAddress {
+            company
+            address1
+            city
+            provinceCode
+            country
+          }
         }
       }
       pageInfo {
@@ -57,6 +64,12 @@ const SpecialPage = ({}) => {
   ) : data.customers.edges.length ? (
     data.customers.edges.map((cus, i) => {
       let id = cus.node.id.replace("gid://shopify/Customer/", "");
+      let address = cus.node.defaultAddress
+        ? `${cus.node.defaultAddress.city}, ${cus.node.defaultAddress.provinceCode}`
+        : "";
+      let company = cus.node.defaultAddress
+        ? cus.node.defaultAddress.company
+        : "-";
       let cusNumb =
         cus.node.metafield && cus.node.metafield.value
           ? cus.node.metafield.value
@@ -72,6 +85,8 @@ const SpecialPage = ({}) => {
             cusnumb: cusNumb,
             orders: cus.node.ordersCount,
             age: cus.node.lifetimeDuration,
+            address: address,
+            company: company,
           }}
         />
       );
@@ -127,7 +142,6 @@ const SpecialPage = ({}) => {
         />
         <ul className="large-list customer-list">
           <li className="list-header">
-            <p>Pic</p>
             <p
               className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
               onClick={() => setSort("NAME")}
@@ -135,6 +149,7 @@ const SpecialPage = ({}) => {
             >
               Name
             </p>
+            <p style={{ justifySelf: "start" }}>Company</p>
             <p>Customer #</p>
             <p
               onClick={() => setSort("ORDERS_COUNT")}

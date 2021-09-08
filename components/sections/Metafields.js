@@ -17,8 +17,6 @@ const Section = (props) => {
     console.log("clicked");
   };
 
-  console.log("Metafield parent------------------");
-
   return (
     <section>
       <SectionHeader
@@ -32,10 +30,6 @@ const Section = (props) => {
           {fieldsArr.map((metafield) => {
             let namespace = metafield.node.namespace;
             let metafieldKey = metafield.node.key;
-
-            console.log("metafield Parent = ", metafield);
-            console.log("Metafield parent namespace = ", namespace);
-            console.log("Metafield parent metafieldKey = ", metafieldKey);
 
             return (
               <div className="card">

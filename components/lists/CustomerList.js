@@ -11,13 +11,13 @@ export default function SpecialPage(props) {
         style={{ animationDelay: `${props.index * 0.03}s` }}
         key={`customer-list-item-${props.index}`}
       >
-        <CustomersIcon />
-        <div
-          className="list-name"
-          style={{ marginLeft: "16px", justifySelf: "start" }}
-        >
+        <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{props.customer.name}</p>
           <p className="subtitle">{props.customer.email}</p>
+        </div>
+        <div className="list-name" style={{ justifySelf: "start" }}>
+          <p>{props.customer.company}</p>
+          <p className="subtitle">{props.customer.address}</p>
         </div>
         <p>{props.customer.cusnumb ? `#${props.customer.cusnumb}` : ""}</p>
         <p>{props.customer.orders}</p>
@@ -26,3 +26,5 @@ export default function SpecialPage(props) {
     </Link>
   );
 }
+
+//<CustomersIcon />

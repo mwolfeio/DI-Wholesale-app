@@ -25,31 +25,11 @@ const UPDATE_METAFIELD = gql`
     }
   }
 `;
-// const UPDATE_METAFIELD = gql`
-//   mutation customerUpdate($input: CustomerInput!) {
-//     customerUpdate(input: $input) {
-//       customer {
-//         metafield(namespace: "Customer", key: "Number") {
-//           id
-//           namespace
-//           key
-//           value
-//         }
-//       }
-//       userErrors {
-//         field
-//         message
-//       }
-//     }
-//   }
-// `;
 
 const Section = (props) => {
   //State
-  const [metafield, setMetafield] = useState(props.value);
-  const [oldMetafield, setOldMetafield] = useState(props.value);
-
-  console.log("Metafield: ", props.field);
+  const [metafield, setMetafield] = useState(props.field.value);
+  const [oldMetafield, setOldMetafield] = useState(props.field.value);
 
   //Query
   const [customerUpdate, { loading, error, data }] =
@@ -83,9 +63,6 @@ const Section = (props) => {
     });
   };
 
-  console.log("Metafield Data: ", data);
-  console.log("Metafield error: ", error);
-
   //return component
   return (
     <form onSubmit={submitHandler} style={{ display: "flex" }}>
@@ -94,7 +71,7 @@ const Section = (props) => {
         style={{ borderRadius: "10px" }}
         className=""
         type="text"
-        placeholder="No Customer #"
+        placeholder="No Metafield"
         value={metafield}
       />
       {metafield !== oldMetafield ? (
