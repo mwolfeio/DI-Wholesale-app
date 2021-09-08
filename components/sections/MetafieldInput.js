@@ -3,33 +3,15 @@ import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
 //graphql
-// const UPDATE_METAFIELD = gql`
-//   mutation customerUpdate(
-//     $input: CustomerInput!
-//     $namespace: String!
-//     $key: String!
-//   ) {
-//     customerUpdate(input: $input) {
-//       customer {
-//         metafield(namespace: $namespace, key: $key) {
-//           id
-//           namespace
-//           key
-//           value
-//         }
-//       }
-//       userErrors {
-//         field
-//         message
-//       }
-//     }
-//   }
-// `;
 const UPDATE_METAFIELD = gql`
-  mutation customerUpdate($input: CustomerInput!) {
+  mutation customerUpdate(
+    $input: CustomerInput!
+    $namespace: String!
+    $key: String!
+  ) {
     customerUpdate(input: $input) {
       customer {
-        metafield(namespace: "Customer", key: "Number") {
+        metafield(namespace: $namespace, key: $key) {
           id
           namespace
           key
@@ -43,13 +25,31 @@ const UPDATE_METAFIELD = gql`
     }
   }
 `;
+// const UPDATE_METAFIELD = gql`
+//   mutation customerUpdate($input: CustomerInput!) {
+//     customerUpdate(input: $input) {
+//       customer {
+//         metafield(namespace: "Customer", key: "Number") {
+//           id
+//           namespace
+//           key
+//           value
+//         }
+//       }
+//       userErrors {
+//         field
+//         message
+//       }
+//     }
+//   }
+// `;
 
 const Section = (props) => {
   //State
   const [metafield, setMetafield] = useState(props.value);
   const [oldMetafield, setOldMetafield] = useState(props.value);
 
-  console.log("Metafield key: ", props.key);
+  console.log("Metafield key: ", props.metafieldKey);
   console.log("Metafield namespace: ", props.namespace);
   console.log("Metafield custoemrId: ", props.custoemrId);
   console.log("Metafield MetafieldId: ", props.MetafieldId);
@@ -72,8 +72,8 @@ const Section = (props) => {
 
     customerUpdate({
       variables: {
-        // namespace: props.namespace,
-        // key: props.key,
+        namespace: props.namespace,
+        key: props.metafieldKey,
         input: {
           id: props.custoemrId,
           metafields: {
@@ -87,14 +87,11 @@ const Section = (props) => {
   };
 
   console.log("Metafield Data: ", data);
+  console.log("Metafield error: ", error);
 
   //return component
   return (
-    <form
-      onSubmit={submitHandler}
-      onClick={submitHandler}
-      style={{ display: "flex" }}
-    >
+    <form onSubmit={submitHandler} style={{ display: "flex" }}>
       <input
         onChange={changeHandler}
         style={{ borderRadius: "10px" }}

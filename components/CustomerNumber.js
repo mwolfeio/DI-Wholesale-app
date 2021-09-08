@@ -55,7 +55,7 @@ const Section = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting: ", e.target.value.replace("CN: ", ""));
+    console.log("submitting: ", customerNumber.replace("CN: ", ""));
 
     let payload = data.customerUpdate.customer.metafield.id
       ? {
@@ -64,7 +64,7 @@ const Section = (props) => {
               id: props.data.globalId,
               metafields: {
                 id: data.customerUpdate.customer.metafield.id,
-                value: e.target.value.replace("CN: ", ""),
+                value: customerNumber.replace("CN: ", ""),
                 valueType: "STRING",
               },
             },
@@ -77,7 +77,7 @@ const Section = (props) => {
               metafields: {
                 namespace: "Customer",
                 key: "Number",
-                value: e.target.value.replace("CN: ", ""),
+                value: customerNumber.replace("CN: ", ""),
                 valueType: "STRING",
               },
             },

@@ -10,7 +10,6 @@ const Section = (props) => {
   let fieldsArr = props.fields ? props.fields : [];
 
   const toggleOpen = () => {
-    console.log("clicked");
     setOpen(!open);
   };
 
