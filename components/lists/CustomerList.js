@@ -29,7 +29,11 @@ export default function SpecialPage(props) {
 
         <div
           className="list-name"
-          style={{ justifySelf: "center", textAligh: "center" }}
+          style={{
+            display: "flex",
+            alignItems: "end",
+            flexDirection: "column",
+          }}
         >
           <p>{props.customer.orders}</p>
           <p className="subtitle">

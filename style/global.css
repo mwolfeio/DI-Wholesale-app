@@ -424,7 +424,7 @@ ul.customer-list li {
   padding: 4px;
   margin: -4px -4px 0 0;
 }
-.customer-number-wrapper:focus-within {
+.customerNumber-form-open {
   background: white;
   transition: 0.15s ease;
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);

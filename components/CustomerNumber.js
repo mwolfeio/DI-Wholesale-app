@@ -96,9 +96,12 @@ const Section = (props) => {
   };
 
   //return component
+  let needsSaving = customerNumber !== oldCustomerNumber;
   return (
     <form
-      className="flex-center-center customer-number-wrapper"
+      className={`flex-center-center customer-number-wrapper ${
+        needsSaving ? "customerNumber-form-open" : ""
+      }`}
       onSubmit={handleSubmit}
     >
       <input
@@ -108,7 +111,7 @@ const Section = (props) => {
         placeholder="No Customer #"
         value={customerNumber}
       />
-      {customerNumber !== oldCustomerNumber ? (
+      {needsSaving ? (
         <button
           className="submit-button"
           onClick={erase}
@@ -119,9 +122,9 @@ const Section = (props) => {
       ) : (
         ""
       )}
-      {customerNumber !== oldCustomerNumber ? (
+      {needsSaving ? (
         <button style={{ height: "48px" }} type="submit">
-          {loading ? <Loader size={24} /> : Save}
+          {loading ? <Loader size={24} /> : "Save"}
         </button>
       ) : (
         ""

@@ -155,6 +155,7 @@ const SpecialPage = ({}) => {
             <p style={{ justifySelf: "start" }}>Company</p>
             <p>CN</p>
             <p
+              style={{ justifySelf: "end" }}
               onClick={() => setSort("ORDERS_COUNT")}
               className={`sortable ${
                 sort == "ORDERS_COUNT" ? "active-sort" : ""
