@@ -4,10 +4,14 @@ import { gql } from "apollo-boost";
 
 //graphql
 const UPDATE_METAFIELD = gql`
-  mutation customerUpdate($input: CustomerInput!) {
+  mutation customerUpdate(
+    $input: CustomerInput!
+    $namespace: String!
+    $key: String!
+  ) {
     customerUpdate(input: $input) {
       customer {
-        metafield(namespace: "Customer", key: "Number") {
+        metafield(namespace: $namespace, key: $key) {
           id
           namespace
           key
@@ -33,23 +37,25 @@ const Section = (props) => {
 
   //Handle input
   const changeHandler = (e) => {
+    console.log(e.target.value);
     setMetafield(e.target.value);
   };
 
   //Sumbit
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("saving: ", e.target.value);
-    setOldMetafield(e.target.value);
-    // customerUpdate();
+    console.log("submitting: ", metafield);
+    setOldMetafield(metafield);
 
     customerUpdate({
       variables: {
+        namespace: props.namespace,
+        key: props.key,
         input: {
           id: props.custoemrId,
           metafields: {
             id: props.MetafieldId,
-            value: e.target.value.replace("CN: ", ""),
+            value: metafield,
             valueType: "STRING",
           },
         },
@@ -57,9 +63,15 @@ const Section = (props) => {
     });
   };
 
+  console.log("Metafield Data: ", data);
+
   //return component
   return (
-    <form onSubmit={submitHandler} style={{ display: "flex" }}>
+    <form
+      onSubmit={submitHandler}
+      onClick={submitHandler}
+      style={{ display: "flex" }}
+    >
       <input
         onChange={changeHandler}
         style={{ borderRadius: "10px" }}
@@ -69,10 +81,7 @@ const Section = (props) => {
         value={metafield}
       />
       {metafield !== oldMetafield ? (
-        <button
-          style={{ height: "48px", marginLeft: "8px" }}
-          onClick={submitHandler}
-        >
+        <button style={{ height: "48px", marginLeft: "8px" }} type="submit">
           Save
         </button>
       ) : (

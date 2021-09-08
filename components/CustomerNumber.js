@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
-import _ from "lodash";
 
 //graphql
 const UPDATE_CUSTOEMR_NUMBER = gql`
@@ -34,12 +33,9 @@ const Section = (props) => {
   const [customerNumber, setCustomerNumber] = useState(
     props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
   );
-  // const [metafieldExists, setMetafieldExists] = useState(
-  //   props.data ? true : false
-  // );
-  // const [mfieldId, setMfieldId] = useState(
-  //   props.data.cnumbObj ? props.data.cnumbObj.id : false
-  // );
+  const [oldCustomerNumber, setOldCustomerNumber] = useState(
+    props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
+  );
 
   //Query
   const [customerUpdate, { loading, error, data }] = useMutation(
@@ -52,71 +48,64 @@ const Section = (props) => {
   console.log("data: ", data ? data : "No Data");
 
   //Handle input
-  const submitQuery = (e) => {
-    // console.log("updating customer number to value: ", e.target.value);
-    // let payload = mfieldId
-    let payload =
-      data && data.customerUpdate.customer.metafield.id
-        ? {
-            variables: {
-              input: {
-                id: props.data.globalId,
-                metafields: {
-                  id: data.customerUpdate.customer.metafield.id,
-                  value: e.target.value.replace("CN: ", ""),
-                  valueType: "STRING",
-                },
+  const changeHandler = (e) => {
+    console.log(`CN: ${e.target.value.replace("CN: ", "")}`);
+    setMetafield(`CN: ${e.target.value.replace("CN: ", "")}`);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitting: ", metafield);
+    setOldMetafield(metafield);
+
+    let payload = data.customerUpdate.customer.metafield.id
+      ? {
+          variables: {
+            input: {
+              id: props.data.globalId,
+              metafields: {
+                id: data.customerUpdate.customer.metafield.id,
+                value: e.target.value.replace("CN: ", ""),
+                valueType: "STRING",
               },
             },
-          }
-        : {
-            variables: {
-              input: {
-                id: props.data.globalId,
-                metafields: {
-                  namespace: "Customer",
-                  key: "Number",
-                  value: e.target.value.replace("CN: ", ""),
-                  valueType: "STRING",
-                },
+          },
+        }
+      : {
+          variables: {
+            input: {
+              id: props.data.globalId,
+              metafields: {
+                namespace: "Customer",
+                key: "Number",
+                value: e.target.value.replace("CN: ", ""),
+                valueType: "STRING",
               },
             },
-          };
+          },
+        };
 
     customerUpdate(payload);
   };
 
-  const updateState = (e) => {
-    setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
-  };
-
-  // const debouncedChangeHandler = useMemo(
-  //   () => _.debounce(submitQuery, 300),
-  //   []
-  // );
-
-  const debouncedChangeHandler = _.debounce(submitQuery, 300);
-
-  useEffect(() => {
-    return () => {
-      debouncedChangeHandler.cancel();
-    };
-  }, []);
-
   //return component
   return (
-    <div className="flex-center-center">
+    <form className="flex-center-center" onSubmit={handleSubmit}>
       <input
-        onChange={(e) => {
-          updateState(e);
-          data ? debouncedChangeHandler(e) : submitQuery(e);
-        }}
+        onChange={changeHandler}
         className="customer-number-input"
         type="text"
         placeholder="No Customer #"
         value={customerNumber}
       />
-    </div>
+      {metafield !== oldMetafield ? (
+        <button style={{ height: "48px", marginLeft: "8px" }} type="submit">
+          Save
+        </button>
+      ) : (
+        ""
+      )}
+    </form>
   );
 };
 export default Section;
