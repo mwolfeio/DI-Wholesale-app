@@ -3,15 +3,33 @@ import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
 //graphql
+// const UPDATE_METAFIELD = gql`
+//   mutation customerUpdate(
+//     $input: CustomerInput!
+//     $namespace: String!
+//     $key: String!
+//   ) {
+//     customerUpdate(input: $input) {
+//       customer {
+//         metafield(namespace: $namespace, key: $key) {
+//           id
+//           namespace
+//           key
+//           value
+//         }
+//       }
+//       userErrors {
+//         field
+//         message
+//       }
+//     }
+//   }
+// `;
 const UPDATE_METAFIELD = gql`
-  mutation customerUpdate(
-    $input: CustomerInput!
-    $namespace: String!
-    $key: String!
-  ) {
+  mutation customerUpdate($input: CustomerInput!) {
     customerUpdate(input: $input) {
       customer {
-        metafield(namespace: $namespace, key: $key) {
+        metafield(namespace: "Customer", key: "Number") {
           id
           namespace
           key
@@ -54,8 +72,8 @@ const Section = (props) => {
 
     customerUpdate({
       variables: {
-        namespace: props.namespace,
-        key: props.key,
+        // namespace: props.namespace,
+        // key: props.key,
         input: {
           id: props.custoemrId,
           metafields: {
