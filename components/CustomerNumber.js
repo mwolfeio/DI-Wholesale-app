@@ -50,13 +50,12 @@ const Section = (props) => {
   //Handle input
   const changeHandler = (e) => {
     console.log(`CN: ${e.target.value.replace("CN: ", "")}`);
-    setMetafield(`CN: ${e.target.value.replace("CN: ", "")}`);
+    setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitting: ", metafield);
-    setOldMetafield(metafield);
 
     let payload = data.customerUpdate.customer.metafield.id
       ? {
@@ -86,11 +85,15 @@ const Section = (props) => {
         };
 
     customerUpdate(payload);
+    setOldCustomerNumber(metafield);
   };
 
   //return component
   return (
-    <form className="flex-center-center" onSubmit={handleSubmit}>
+    <form
+      className="flex-center-center customer-number-wrapper"
+      onSubmit={handleSubmit}
+    >
       <input
         onChange={changeHandler}
         className="customer-number-input"

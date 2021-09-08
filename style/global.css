@@ -410,6 +410,15 @@ ul.customer-list li {
   margin: 0 16px;
 }
 
+.customer-number-wrapper {
+  position: relative;
+}
+.customer-number-wrapper button {
+  position: absolute;
+  right: 0;
+  top: Calc(100% + 8px);
+}
+
 /* LOADER----------------------- */
 .lds-ripple {
   display: inline-block;
