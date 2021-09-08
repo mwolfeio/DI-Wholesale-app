@@ -98,36 +98,38 @@ const Section = (props) => {
   //return component
   let needsSaving = customerNumber !== oldCustomerNumber;
   return (
-    <form
-      className={`customer-number-wrapper ${
-        needsSaving ? "customerNumber-form-open" : ""
-      }`}
-      onSubmit={handleSubmit}
-    >
-      <input
-        onChange={changeHandler}
-        className="customer-number-input"
-        type="text"
-        placeholder="No Customer #"
-        value={customerNumber}
-      />
-      {needsSaving ? (
-        <div className="flex-center-center">
-          <button onClick={erase} style={{ height: "36px", width: "100%" }}>
-            Cancel
-          </button>
-          <button
-            className="submit-button"
-            style={{ height: "36px", marginLeft: "8px", width: "100%" }}
-            type="submit"
-          >
-            {loading ? <Loader size={24} /> : "Save"}
-          </button>
-        </div>
-      ) : (
-        ""
-      )}
-    </form>
+    <div style={{ position: "relative", height: "43px", width: "248px" }}>
+      <form
+        className={`customer-number-wrapper ${
+          needsSaving ? "customerNumber-form-open" : ""
+        }`}
+        onSubmit={handleSubmit}
+      >
+        <input
+          onChange={changeHandler}
+          className="customer-number-input"
+          type="text"
+          placeholder="No Customer #"
+          value={customerNumber}
+        />
+        {needsSaving ? (
+          <div className="flex-center-center">
+            <button onClick={erase} style={{ height: "36px", width: "100%" }}>
+              Cancel
+            </button>
+            <button
+              className="submit-button"
+              style={{ height: "36px", marginLeft: "8px", width: "100%" }}
+              type="submit"
+            >
+              {loading ? <Loader size={24} /> : "Save"}
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
+      </form>
+    </div>
   );
 };
 export default Section;

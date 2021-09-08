@@ -429,9 +429,10 @@ ul.customer-list li {
   background: white;
   transition: 0.15s ease;
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
+  margin: -4px -4px 0 0;
 }
 
-.customer-number-wrapper button.submit-button {
+button.submit-button {
   background: #54e4a6;
   color: white;
 }
