@@ -37,6 +37,7 @@ const GET_CUSTOMENTS = gql`
             provinceCode
             country
           }
+          totalSpent
         }
       }
       pageInfo {
@@ -87,6 +88,7 @@ const SpecialPage = ({}) => {
             age: cus.node.lifetimeDuration,
             address: address,
             company: company,
+            totalSpent: cus.node.totalSpent,
           }}
         />
       );
@@ -149,8 +151,9 @@ const SpecialPage = ({}) => {
             >
               Name
             </p>
+            <p>CN</p>
             <p style={{ justifySelf: "start" }}>Company</p>
-            <p>Customer #</p>
+
             <p
               onClick={() => setSort("ORDERS_COUNT")}
               className={`sortable ${
@@ -158,12 +161,6 @@ const SpecialPage = ({}) => {
               }`}
             >
               Orders
-            </p>
-            <p
-              onClick={() => setSort("UPDATED_AT")}
-              className={`sortable ${sort == "RELEVANCE" ? "active-sort" : ""}`}
-            >
-              Age
             </p>
           </li>
           {list}
@@ -182,3 +179,10 @@ const SpecialPage = ({}) => {
   );
 };
 export default SpecialPage;
+
+// <p
+//   onClick={() => setSort("UPDATED_AT")}
+//   className={`sortable ${sort == "RELEVANCE" ? "active-sort" : ""}`}
+// >
+//   Age
+// </p>
