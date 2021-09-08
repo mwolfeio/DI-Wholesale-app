@@ -83,6 +83,9 @@ const Section = (props) => {
     customerUpdate(payload);
     setOldCustomerNumber(customerNumber);
   };
+  const preventClickthrough = (e) => {
+    e.stopPropagation();
+  };
 
   //return component
   let needsSaving = customerNumber !== oldCustomerNumber;
@@ -90,6 +93,7 @@ const Section = (props) => {
     <div
       class="list-input-wrapper "
       style={{ position: "relative", height: "36px", width: "100%" }}
+      onClick={preventClickthrough}
     >
       <form
         className={`customer-number-wrapper ${
