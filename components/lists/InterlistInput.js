@@ -97,24 +97,27 @@ const Section = (props) => {
     >
       <form
         className={`customer-number-wrapper ${
-          needsSaving ? "customerNumber-form-open" : ""
+          needsSaving
+            ? "customerNumber-form-open customerNumber-form-list-input"
+            : ""
         }`}
         onSubmit={handleSubmit}
       >
         <input
           onChange={changeHandler}
           type="text"
-          placeholder="No #"
+          placeholder="Empty"
           value={customerNumber}
+          style={{ padding: 0 }}
         />
         {needsSaving ? (
           <div className="flex-center-center">
-            <button onClick={erase} style={{ height: "36px", width: "100%" }}>
-              X
-            </button>
+            <button onClick={erase}>X</button>
             <button
               className="submit-button"
-              style={{ height: "36px", marginLeft: "8px", width: "100%" }}
+              style={{
+                marginLeft: "4px",
+              }}
               type="submit"
             >
               {loading ? <Loader size={24} /> : "✔"}

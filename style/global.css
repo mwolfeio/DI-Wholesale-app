@@ -444,8 +444,8 @@ ul.customer-list li {
   right: 0;
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: 4px;
-  border-radius: 15px;
+  grid-gap: 4px;
+  border-radius: 10px;
   padding: 4px;
   margin: -4px -4px 0 0;
 }
@@ -463,6 +463,15 @@ button.submit-button {
 }
 .customer-number-wrapper input:focus {
   box-shadow: none;
+}
+.customerNumber-form-list-input {
+  margin-right: -80px;
+  grid-template-columns: auto 76px;
+}
+.customerNumber-form-list-input button {
+  height: 36px !important;
+  width: 36px !important;
+  padding: 0 !important;
 }
 
 /* LOADER----------------------- */
