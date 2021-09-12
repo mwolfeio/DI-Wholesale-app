@@ -24,7 +24,7 @@ const GET_CUSTOMENTS = gql`
           firstName
           lastName
           email
-          metafield(key: "Number", namespace: "Customer") {
+          metafield(key: "Customer Number", namespace: "cus_no") {
             value
             id
           }

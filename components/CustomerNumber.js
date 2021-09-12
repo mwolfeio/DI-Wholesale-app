@@ -25,12 +25,6 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 `;
 
 const Section = (props) => {
-  //Props
-  //props.data.display
-  //props.data.cnumb
-  //props.data.fields
-  //props.data.globalId
-
   //State
   const [customerNumber, setCustomerNumber] = useState(
     props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
@@ -82,8 +76,8 @@ const Section = (props) => {
             input: {
               id: props.data.globalId,
               metafields: {
-                namespace: "Customer",
-                key: "Number",
+                namespace: "Customer Number",
+                key: "cus_no",
                 value: customerNumber.replace("CN: ", ""),
                 valueType: "STRING",
               },
