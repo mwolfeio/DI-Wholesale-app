@@ -25,6 +25,8 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 `;
 
 const Section = (props) => {
+  console.log("customer number: ", props);
+
   //State
   const [customerNumber, setCustomerNumber] = useState(
     props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""

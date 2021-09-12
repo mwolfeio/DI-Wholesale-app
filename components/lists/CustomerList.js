@@ -8,6 +8,12 @@ var formatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
+let truncate = (str) => {
+  let length = str.length;
+  if (length > 30) return `${str.substring(0, 27)}...`;
+  else return str;
+};
+
 export default function SpecialPage(props) {
   console.log("CustomerList: ", props);
   return (
@@ -19,7 +25,7 @@ export default function SpecialPage(props) {
       >
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{props.customer.name}</p>
-          <p className="subtitle">{props.customer.email}</p>
+          <p className="subtitle">{truncate(props.customer.email)}</p>
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
