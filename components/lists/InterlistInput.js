@@ -9,7 +9,7 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
   mutation customerUpdate($input: CustomerInput!) {
     customerUpdate(input: $input) {
       customer {
-        metafield(namespace: "Customer", key: "Number") {
+        metafield(namespace: "Customer Number", key: "cus_no") {
           id
           namespace
           key
