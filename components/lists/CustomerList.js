@@ -9,7 +9,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 export default function SpecialPage(props) {
-  console.log(props);
+  console.log("CustomerList: ", props);
   return (
     <Link href={`/customers/${props.customer.id}`} passHref>
       <li
