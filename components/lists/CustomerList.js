@@ -15,7 +15,7 @@ let truncate = (str) => {
 };
 
 export default function SpecialPage(props) {
-  console.log("CustomerList: ", props);
+  // console.log("CustomerList: ", props);
   return (
     <Link href={`/customers/${props.customer.id}`} passHref>
       <li

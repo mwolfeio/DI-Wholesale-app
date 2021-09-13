@@ -59,13 +59,13 @@ const SpecialPage = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const [results, setResults] = useState([]);
-  const [lastCursor, setLastCursor] = useState("");
+  const [lastCursor, setLastCursor] = useState(null);
 
   // const [pagnation, setPagnation] = useState(0);
   const [sort, setSort] = useState("RELEVANCE");
   const [reverseSort, setReverseSort] = useState(false);
 
-  const { loading, error, data, fetchMore } = useQuery(GET_CUSTOMENTS, {
+  const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
     variables: {
       srch: searchTerm,
@@ -76,10 +76,11 @@ const SpecialPage = ({}) => {
   });
 
   useEffect(() => {
-    console.log("updating data");
+    console.log("updating results with: ", data);
     if (!data) return;
     const newResults = [...results, ...data.customers.edges];
     setResults(newResults);
+    console.log("resuts updated");
   }, [data]);
 
   const loadMore = () => {
