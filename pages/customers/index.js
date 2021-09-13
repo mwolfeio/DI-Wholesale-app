@@ -90,24 +90,30 @@ const SpecialPage = ({}) => {
     // setOffset(results.data.length);
   };
 
-  let direction = (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="18"
-      height="18"
-      fill="none"
-      viewBox="0 0 24 24"
-      style={{ transform: `rotate(${reverseSort ? 180 : 0}deg)` }}
-    >
-      <path
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-        d="M12 6.5v11m0 0l4-4.588M12 17.5l-4-4.588"
-      ></path>
-    </svg>
-  );
+  let direction = (a, b) => {
+    return (
+      <div style={{ marginLeft: "4px" }}>
+        ({!reverseSort ? a : b}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          fill="none"
+          viewBox="0 0 24 24"
+          style={{ transform: `rotate(-90deg)` }}
+        >
+          <path
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.5"
+            d="M12 6.5v11m0 0l4-4.588M12 17.5l-4-4.588"
+          ></path>
+        </svg>
+        {!reverseSort ? b : a})
+      </div>
+    );
+  };
   let list =
     loading && !results.length ? (
       <Loader />
@@ -201,7 +207,7 @@ const SpecialPage = ({}) => {
               style={{ marginLeft: "16px", justifySelf: "start" }}
             >
               <span>Name</span>
-              {direction}
+              {direction("A", "Z")}
             </p>
 
             <p style={{ justifySelf: "start" }}>Company</p>
@@ -218,7 +224,7 @@ const SpecialPage = ({}) => {
               }`}
             >
               <span>Orders</span>
-              {direction}
+              {direction("N", "O")}
             </p>
             <p
               onClick={() => {
@@ -227,12 +233,13 @@ const SpecialPage = ({}) => {
                 }
                 setSort("RELEVANCE");
               }}
+              style={{ justifySelf: "flex-end" }}
               className={`flex-center-right sortable ${
                 sort == "RELEVANCE" ? "active-sort" : ""
               }`}
             >
               <span>Age</span>
-              {direction}
+              {direction("N", "O")}
             </p>
           </li>
           {list}
