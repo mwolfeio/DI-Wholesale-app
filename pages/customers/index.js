@@ -78,10 +78,30 @@ const SpecialPage = ({}) => {
   useEffect(() => {
     console.log("updating results with: ", data);
     if (!data) return;
-    const newResults = [...results, ...data.customers.edges];
+    const newResults = [];
+    //if search, sort, and reverseSort did not chnage
+    if (
+      sort == usePrevious(sort) &&
+      searchTerm == usePrevious(searchTerm) &&
+      reverseSort == usePrevious(reverseSort)
+    ) {
+      const newResults = [...results, ...data.customers.edges];
+    } else {
+      //if they did chnage
+      const newResults = data.customers.edges;
+    }
+
     setResults(newResults);
     console.log("resuts updated");
   }, [data]);
+
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
 
   const loadMore = () => {
     let lastCursor = results.at(-1).cursor;
