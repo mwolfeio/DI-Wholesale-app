@@ -185,7 +185,7 @@ const SpecialPage = ({}) => {
   useEffect(() => {
     console.log("updating results with: ", data);
     if (!data) return;
-    const newResults = [];
+    // const newResults = [];
     // if search, sort, and reverseSort did not chnage
     console.log(
       "sort changed: ",
@@ -217,13 +217,13 @@ const SpecialPage = ({}) => {
       searchTerm == prevSearchTerm &&
       reverseSort == prevReverseSort
     ) {
-      const newResults = [...results, ...data.customers.edges];
+      console.log("adding data to results");
+      setResults([...results, ...data.customers.edges]);
     } else {
-      //if they did chnage
-      const newResults = data.customers.edges;
+      console.log("resetting resutls");
+      setResults(data.customers.edges);
     }
 
-    setResults(newResults);
     console.log("resuts updated");
   }, [data]);
 
