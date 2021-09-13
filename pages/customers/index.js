@@ -55,13 +55,23 @@ const GET_CUSTOMENTS = gql`
   }
 `;
 
+// Hook
+function usePrevious(value) {
+  // The ref object is a generic container whose current property is mutable ...
+  // ... and can hold any value, similar to an instance property on a class
+  const ref = useRef();
+  // Store current value in ref
+  useEffect(() => {
+    ref.current = value;
+  }, [value]); // Only re-run if value changes
+  // Return previous value (happens before update in useEffect above)
+  return ref.current;
+}
+
 const SpecialPage = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
-
   const [results, setResults] = useState([]);
   const [lastCursor, setLastCursor] = useState(null);
-
-  // const [pagnation, setPagnation] = useState(0);
   const [sort, setSort] = useState("RELEVANCE");
   const [reverseSort, setReverseSort] = useState(false);
 
@@ -74,15 +84,6 @@ const SpecialPage = ({}) => {
       after: lastCursor,
     },
   });
-
-  // const usePrevious = (value) => {
-  //   console.log("running usePreviousc");
-  //   const ref = useRef();
-  //   useEffect(() => {
-  //     ref.current = value;
-  //   });
-  //   return ref.current;
-  // };
 
   const loadMore = () => {
     let lastCursor = results.at(-1).cursor;
@@ -187,31 +188,31 @@ const SpecialPage = ({}) => {
     console.log("updating results with: ", data);
     if (!data) return;
     // const newResults = [];
-    // //if search, sort, and reverseSort did not chnage
-    // console.log(
-    //   "sort changed: ",
-    //   sort == usePrevious(sort),
-    //   " new: ",
-    //   sort,
-    //   " old: ",
-    //   usePrevious(sort)
-    // );
-    // console.log(
-    //   "searchTerm changed: ",
-    //   searchTerm == usePrevious(searchTerm),
-    //   " new: ",
-    //   searchTerm,
-    //   " old: ",
-    //   usePrevious(searchTerm)
-    // );
-    // console.log(
-    //   "sort changed: ",
-    //   reverseSort == usePrevious(reverseSort),
-    //   " new: ",
-    //   reverseSort,
-    //   " old: ",
-    //   usePrevious(reverseSort)
-    // );
+    //if search, sort, and reverseSort did not chnage
+    console.log(
+      "sort changed: ",
+      sort == usePrevious(sort),
+      " new: ",
+      sort,
+      " old: ",
+      usePrevious(sort)
+    );
+    console.log(
+      "searchTerm changed: ",
+      searchTerm == usePrevious(searchTerm),
+      " new: ",
+      searchTerm,
+      " old: ",
+      usePrevious(searchTerm)
+    );
+    console.log(
+      "sort changed: ",
+      reverseSort == usePrevious(reverseSort),
+      " new: ",
+      reverseSort,
+      " old: ",
+      usePrevious(reverseSort)
+    );
 
     // if (
     //   true
@@ -228,9 +229,6 @@ const SpecialPage = ({}) => {
     setResults(newResults);
     console.log("resuts updated");
   }, [data]);
-  useEffect(() => {
-    setResults([]);
-  }, [sort, searchTerm, reverseSort]);
 
   return (
     <main>
