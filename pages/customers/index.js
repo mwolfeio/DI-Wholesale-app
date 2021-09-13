@@ -212,6 +212,14 @@ const SpecialPage = ({}) => {
       " old: ",
       prevReverseSort
     );
+    console.log(
+      "data changed: ",
+      data && data.customers.edges !== results,
+      " results: ",
+      results,
+      " data: ",
+      data ? data.customers.edges : "no Data"
+    );
 
     if (
       sort == prevSort &&
@@ -220,6 +228,7 @@ const SpecialPage = ({}) => {
       data &&
       data.customers.edges !== results
     ) {
+      console.log("addig to resutls");
       setResults([...results, ...data.customers.edges]);
     } else {
       console.log("resetting resutls");
