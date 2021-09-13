@@ -248,9 +248,9 @@ const SpecialPage = ({}) => {
               className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
               onClick={() => {
                 // setResults([]);
-                if (sort == "NAME") {
-                  setReverseSort(!reverseSort);
-                }
+                // if (sort == "NAME") {
+                //   setReverseSort(!reverseSort);
+                // }
                 setSort("NAME");
               }}
               style={{ marginLeft: "16px", justifySelf: "start" }}
