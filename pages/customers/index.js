@@ -229,8 +229,6 @@ const SpecialPage = ({}) => {
     console.log("resuts updated");
   }, [data]);
 
-  change;
-
   return (
     <main>
       <ButtonNav />
