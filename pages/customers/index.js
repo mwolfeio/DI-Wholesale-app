@@ -57,15 +57,34 @@ const GET_CUSTOMENTS = gql`
 
 const SpecialPage = ({}) => {
   const [searchTerm, setSearchTerm] = useState("");
-  // const [results, setResults] = useState([]);
-  const [pagnation, setPagnation] = useState(0);
+
+  const [results, setResults] = useState([]);
+  const [lastCursor, setLastCursor] = useState("");
+
+  // const [pagnation, setPagnation] = useState(0);
   const [sort, setSort] = useState("RELEVANCE");
   const [reverseSort, setReverseSort] = useState(false);
 
   const { loading, error, data, fetchMore } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
-    variables: { srch: searchTerm, srt: sort, rev: reverseSort },
+    variables: {
+      srch: searchTerm,
+      srt: sort,
+      rev: reverseSort,
+      after: lastCursorID,
+    },
   });
+
+  useEffect(() => {
+    const newResults = [...results, ...data];
+    setResults(newResults);
+  }, [data]);
+
+  const loadMore = () => {
+    console.log("setting new after to: ", results.at(-1).edges.cursor);
+    setLastCursor(results.at(-1).edges.cursor);
+    // setOffset(results.data.length);
+  };
 
   let direction = (
     <svg
@@ -135,17 +154,17 @@ const SpecialPage = ({}) => {
     </div>
   );
 
-  const pagnate = () => {
-    let after = data.customers.edges[data.customers.edges.length - 1].cursor;
-
-    console.log("loading everything after", after);
-    fetchMore({
-      variables: {
-        after: after,
-      },
-    });
-    console.log("error: ", error);
-  };
+  // const pagnate = () => {
+  //   let after = data.customers.edges[data.customers.edges.length - 1].cursor;
+  //
+  //   console.log("loading everything after", after);
+  //   fetchMore({
+  //     variables: {
+  //       after: after,
+  //     },
+  //   });
+  //   console.log("error: ", error);
+  // };
   const changeHandler = (event) => {
     setSearchTerm(event.target.value);
     setSort("RELEVANCE");
@@ -214,7 +233,7 @@ const SpecialPage = ({}) => {
                 }
                 setSort("RELEVANCE");
               }}
-              className={`flex-right-column sortable ${
+              className={`flex-center-right sortable ${
                 sort == "RELEVANCE" ? "active-sort" : ""
               }`}
             >
@@ -228,7 +247,7 @@ const SpecialPage = ({}) => {
           {loading || error ? (
             ""
           ) : data.customers.pageInfo.hasNextPage ? (
-            <button onClick={pagnate}>Load more</button>
+            <button onClick={loadMore}>Load more</button>
           ) : (
             ""
           )}
