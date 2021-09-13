@@ -10,7 +10,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 let truncate = (str) => {
   let length = str.length;
-  if (length > 30) return `${str.substring(0, 27)}...`;
+  if (length > 28) return `${str.substring(0, 25)}...`;
   else return str;
 };
 

@@ -137,10 +137,10 @@ const CustomerPage = () => {
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
   let customerNumberObj = matafieldsArr.find(
-    (o) => o.node.namespace === "Customer" && o.node.key === "Number"
+    (o) => o.node.namespace === "Customer Number" && o.node.key === "cus_no"
   );
   let resaleNumberObj = matafieldsArr.find(
-    (o) => o.node.namespace === "Resale" && o.node.key === "Number"
+    (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
   );
   let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
 
