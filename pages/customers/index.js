@@ -108,55 +108,56 @@ const SpecialPage = ({}) => {
       ></path>
     </svg>
   );
-  let list = loading ? (
-    <Loader />
-  ) : error ? (
-    `Error! ${error.message}`
-  ) : results.length ? (
-    results.map((cus, i) => {
-      let id = cus.node.id.replace("gid://shopify/Customer/", "");
-      let address = cus.node.defaultAddress
-        ? `${cus.node.defaultAddress.city}, ${cus.node.defaultAddress.provinceCode}`
-        : "";
-      let company = cus.node.defaultAddress
-        ? cus.node.defaultAddress.company
-        : "-";
-      let cusNumb =
-        cus.node.metafield && cus.node.metafield.value
-          ? cus.node.metafield.value
+  let list =
+    loading && !results.length ? (
+      <Loader />
+    ) : error ? (
+      `Error! ${error.message}`
+    ) : results.length ? (
+      results.map((cus, i) => {
+        let id = cus.node.id.replace("gid://shopify/Customer/", "");
+        let address = cus.node.defaultAddress
+          ? `${cus.node.defaultAddress.city}, ${cus.node.defaultAddress.provinceCode}`
           : "";
-      let fieldId =
-        cus.node.metafield && cus.node.metafield.id
-          ? cus.node.metafield.id
-          : "";
+        let company = cus.node.defaultAddress
+          ? cus.node.defaultAddress.company
+          : "-";
+        let cusNumb =
+          cus.node.metafield && cus.node.metafield.value
+            ? cus.node.metafield.value
+            : "";
+        let fieldId =
+          cus.node.metafield && cus.node.metafield.id
+            ? cus.node.metafield.id
+            : "";
 
-      return (
-        <CustomerList
-          index={i}
-          customer={{
-            id: id,
-            gid: cus.node.id,
-            name: `${cus.node.lastName}, ${cus.node.firstName}`,
-            email: cus.node.email,
-            cusnumb: cusNumb,
-            orders: cus.node.ordersCount,
-            age: cus.node.lifetimeDuration,
-            address: address,
-            company: company,
-            totalSpent: cus.node.totalSpent,
-            fieldId: fieldId,
-          }}
-        />
-      );
-    })
-  ) : (
-    <div
-      className="flex-center-center"
-      style={{ height: "58px", width: "100%" }}
-    >
-      <p>No Results</p>
-    </div>
-  );
+        return (
+          <CustomerList
+            index={i}
+            customer={{
+              id: id,
+              gid: cus.node.id,
+              name: `${cus.node.lastName}, ${cus.node.firstName}`,
+              email: cus.node.email,
+              cusnumb: cusNumb,
+              orders: cus.node.ordersCount,
+              age: cus.node.lifetimeDuration,
+              address: address,
+              company: company,
+              totalSpent: cus.node.totalSpent,
+              fieldId: fieldId,
+            }}
+          />
+        );
+      })
+    ) : (
+      <div
+        className="flex-center-center"
+        style={{ height: "58px", width: "100%" }}
+      >
+        <p>No Results</p>
+      </div>
+    );
 
   // const pagnate = () => {
   //   let after = data.customers.edges[data.customers.edges.length - 1].cursor;
@@ -251,7 +252,9 @@ const SpecialPage = ({}) => {
           {loading || error ? (
             ""
           ) : data.customers.pageInfo.hasNextPage ? (
-            <button onClick={loadMore}>Load more</button>
+            <button onClick={loadMore}>
+              {loading ? <Loader size="24" /> : "Load more"}
+            </button>
           ) : (
             ""
           )}
