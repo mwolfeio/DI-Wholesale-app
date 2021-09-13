@@ -54,14 +54,14 @@ const GET_CUSTOMENTS = gql`
     }
   }
 `;
-
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
+//
+// function usePrevious(value) {
+//   const ref = useRef();
+//   useEffect(() => {
+//     ref.current = value;
+//   });
+//   return ref.current;
+// }
 
 const SpecialPage = ({}) => {
   const [results, setResults] = useState([]);
@@ -69,11 +69,11 @@ const SpecialPage = ({}) => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   // const [oldSerach, setOldSearch] = useState("");
-  const prevSearchTerm = usePrevious(searchTerm);
+  // const prevSearchTerm = usePrevious(searchTerm);
   const [sort, setSort] = useState("RELEVANCE");
-  const prevSort = usePrevious(sort);
+  // const prevSort = usePrevious(sort);
   const [reverseSort, setReverseSort] = useState(false);
-  const prevReverseSort = usePrevious(reverseSort);
+  // const prevReverseSort = usePrevious(reverseSort);
 
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
@@ -172,7 +172,7 @@ const SpecialPage = ({}) => {
     );
 
   const changeHandler = (event) => {
-    // setResults([]);
+    Metafield;
     setSearchTerm(event.target.value);
     setSort("RELEVANCE");
   };
@@ -218,7 +218,7 @@ const SpecialPage = ({}) => {
             <p
               className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
               onClick={() => {
-                // setResults([]);
+                Metafield;
                 if (sort == "NAME") {
                   setReverseSort(!reverseSort);
                 }
@@ -234,7 +234,7 @@ const SpecialPage = ({}) => {
             <p>CN</p>
             <p
               onClick={() => {
-                // setResults([]);
+                Metafield;
                 if (sort == "ORDERS_COUNT") {
                   setReverseSort(!reverseSort);
                 }
@@ -249,7 +249,7 @@ const SpecialPage = ({}) => {
             </p>
             <p
               onClick={() => {
-                // setResults([]);
+                Metafield;
                 if (sort == "RELEVANCE") {
                   setReverseSort(!reverseSort);
                 }
