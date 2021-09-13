@@ -185,9 +185,19 @@ const SpecialPage = ({}) => {
   }, []);
   useEffect(() => {
     console.log("updating results with: ", data);
-    if (!data) return;
+    if (loading || !data) return;
     // const newResults = [];
     // if search, sort, and reverseSort did not chnage
+
+    let dataChanged =
+      data &&
+      data.customers.edges.length > 0 &&
+      results.length > 0 &&
+      data.customers.edges[0].node.id !== results[0].node.id;
+    let sortChanged = sort !== prevSort;
+    let searchChanged = searchTerm !== prevSearchTerm;
+    let orderChanged = reverseSort !== prevReverseSort;
+
     console.log(
       "sort changed: ",
       sort == prevSort,
@@ -214,10 +224,7 @@ const SpecialPage = ({}) => {
     );
     console.log(
       "data changed: ",
-      data &&
-        data.customers.edges.length > 0 &&
-        results.length > 0 &&
-        data.customers.edges[0].node.id !== results[0].node.id,
+      dataChanged,
       " results: ",
       results.length > 0 ? results[0].node.id : "no Results",
       " data: ",
@@ -226,15 +233,7 @@ const SpecialPage = ({}) => {
         : "no Data"
     );
 
-    if (
-      sort == prevSort &&
-      searchTerm == prevSearchTerm &&
-      reverseSort == prevReverseSort &&
-      data &&
-      data.customers.edges.length > 0 &&
-      results.length > 0 &&
-      data.customers.edges[0].node.id !== results[0].node.id
-    ) {
+    if (dataChanged && !sortChanged && !searchChanged && !orderChanged) {
       console.log("addig to resutls");
       setResults([...results, ...data.customers.edges]);
     } else {
