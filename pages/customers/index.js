@@ -71,18 +71,21 @@ const SpecialPage = ({}) => {
       srch: searchTerm,
       srt: sort,
       rev: reverseSort,
-      after: lastCursorID,
+      after: lastCursor,
     },
   });
 
   useEffect(() => {
-    const newResults = [...results, ...data];
+    console.log("updating data");
+    if (!data) return;
+    const newResults = [...results, ...data.customers.edges];
     setResults(newResults);
   }, [data]);
 
   const loadMore = () => {
-    console.log("setting new after to: ", results.at(-1).edges.cursor);
-    setLastCursor(results.at(-1).edges.cursor);
+    let lastCursor = results.at(-1).cursor;
+    console.log("setting new after to: ", lastCursor);
+    setLastCursor(lastCursor);
     // setOffset(results.data.length);
   };
 
@@ -108,8 +111,8 @@ const SpecialPage = ({}) => {
     <Loader />
   ) : error ? (
     `Error! ${error.message}`
-  ) : data.customers.edges.length ? (
-    data.customers.edges.map((cus, i) => {
+  ) : results.length ? (
+    results.map((cus, i) => {
       let id = cus.node.id.replace("gid://shopify/Customer/", "");
       let address = cus.node.defaultAddress
         ? `${cus.node.defaultAddress.city}, ${cus.node.defaultAddress.provinceCode}`
