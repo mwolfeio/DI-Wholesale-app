@@ -542,3 +542,15 @@ button.submit-button {
   align-items: flex-end;
   justify-content: space-between;
 }
+.flex-center-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.flex-right-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}

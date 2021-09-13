@@ -40,12 +40,12 @@ export default function SpecialPage(props) {
         />
         <div className="list-name">
           <p>{props.customer.orders}</p>
-          <p className="subtitle">
+          <p className="subtitle flex-center-column">
             {formatter.format(props.customer.totalSpent)}
           </p>
         </div>
         <div
-          className="list-name"
+          className="list-name flex-right-column"
           style={{
             display: "flex",
             justifyContent: "end",
