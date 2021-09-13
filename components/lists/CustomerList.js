@@ -15,7 +15,7 @@ let truncate = (str) => {
 };
 
 let animationDelayCalc = (index) => {
-  let mod = indexmp % 50;
+  let mod = index % 50;
   return mod * 0.03;
 };
 

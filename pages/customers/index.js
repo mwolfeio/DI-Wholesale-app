@@ -92,12 +92,15 @@ const SpecialPage = ({}) => {
 
   let direction = (a, b) => {
     return (
-      <div style={{ marginLeft: "4px" }}>
+      <span
+        style={{ marginLeft: "4px", opacity: 0.5 }}
+        className="flex-center-center"
+      >
         ({!reverseSort ? a : b}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          width="18"
-          height="18"
+          width="14"
+          height="14"
           fill="none"
           viewBox="0 0 24 24"
           style={{ transform: `rotate(-90deg)` }}
@@ -111,7 +114,7 @@ const SpecialPage = ({}) => {
           ></path>
         </svg>
         {!reverseSort ? b : a})
-      </div>
+      </span>
     );
   };
   let list =
@@ -224,7 +227,7 @@ const SpecialPage = ({}) => {
               }`}
             >
               <span>Orders</span>
-              {direction("N", "O")}
+              {direction("H", "L")}
             </p>
             <p
               onClick={() => {
