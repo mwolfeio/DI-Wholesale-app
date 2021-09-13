@@ -121,7 +121,7 @@ const SpecialPage = ({}) => {
     );
   };
   let list =
-    loading && !results.length ? (
+    loading && !loadingMore ? (
       <Loader />
     ) : error ? (
       `Error! ${error.message}`
@@ -187,57 +187,7 @@ const SpecialPage = ({}) => {
   }, []);
   useEffect(() => {
     console.log("loading more: ", loadingMore);
-    // console.log("updating results with: ", data);
-    // console.log("loading: ", loading);
     if (loading || !data) return;
-    // // const newResults = [];
-    // // if search, sort, and reverseSort did not chnage
-    //
-    // let dataChanged =
-    //   data &&
-    //   data.customers.edges.length > 0 &&
-    //   results.length > 0 &&
-    //   data.customers.edges[0].node.id !== results[0].node.id;
-    // let sortChanged = sort !== prevSort;
-    // let searchChanged = searchTerm !== prevSearchTerm;
-    // let orderChanged = reverseSort !== prevReverseSort;
-    //
-    // console.log(
-    //   "sort changed: ",
-    //   sort == prevSort,
-    //   " new: ",
-    //   sort,
-    //   " old: ",
-    //   prevSort
-    // );
-    // console.log(
-    //   "searchTerm changed: ",
-    //   prevSearchTerm == prevSearchTerm,
-    //   " new: ",
-    //   searchTerm,
-    //   " old: ",
-    //   prevSearchTerm
-    // );
-    // console.log(
-    //   "sort changed: ",
-    //   reverseSort == prevReverseSort,
-    //   " new: ",
-    //   reverseSort,
-    //   " old: ",
-    //   prevReverseSort
-    // );
-    // console.log(
-    //   "data changed: ",
-    //   dataChanged,
-    //   " results: ",
-    //   results.length > 0 ? results[0].node.id : "no Results",
-    //   " data: ",
-    //   data && data.customers.edges.length > 0
-    //     ? data.customers.edges[0].node.id
-    //     : "no Data"
-    // );
-
-    // if (dataChanged && !sortChanged && !searchChanged && !orderChanged) {
     if (loadingMore) {
       console.log("loading more to resutls");
       setResults([...results, ...data.customers.edges]);
