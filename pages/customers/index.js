@@ -75,7 +75,7 @@ const SpecialPage = ({}) => {
     },
   });
 
-  const usePreviousc = (value) => {
+  const usePrevious = (value) => {
     console.log("running usePreviousc");
     const ref = useRef();
     useEffect(() => {
