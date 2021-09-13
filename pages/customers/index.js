@@ -216,6 +216,7 @@ const SpecialPage = ({}) => {
       "data changed: ",
       data &&
         data.customers.edges[0] &&
+        results[0] &&
         data.customers.edges[0].node.id !== results[0].node.id,
       " results: ",
       results,
@@ -229,6 +230,7 @@ const SpecialPage = ({}) => {
       reverseSort == prevReverseSort &&
       data &&
       data.customers.edges[0] &&
+      results[0] &&
       data.customers.edges[0].node.id !== results[0].node.id
     ) {
       console.log("addig to resutls");
