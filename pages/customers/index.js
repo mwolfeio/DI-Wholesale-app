@@ -170,6 +170,13 @@ const SpecialPage = ({}) => {
             >
               Orders
             </p>
+            <p
+              style={{ justifySelf: "end" }}
+              onClick={() => setSort("RELEVANCE")}
+              className={`sortable ${sort == "RELEVANCE" ? "active-sort" : ""}`}
+            >
+              Age
+            </p>
           </li>
           {list}
         </ul>

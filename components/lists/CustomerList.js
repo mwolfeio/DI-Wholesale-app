@@ -38,23 +38,30 @@ export default function SpecialPage(props) {
           fieldId={props.customer.fieldId}
           cnumb={props.customer.cusnumb}
         />
-        <div
-          className="list-name"
-          style={{
-            display: "flex",
-            alignItems: "end",
-            flexDirection: "column",
-          }}
-        >
+        <div className="list-name">
           <p>{props.customer.orders}</p>
           <p className="subtitle">
             {formatter.format(props.customer.totalSpent)}
           </p>
         </div>
+        <div
+          className="list-name"
+          style={{
+            display: "flex",
+            justifyContent: "end",
+            flexDirection: "column",
+          }}
+        >
+          <p>{props.customer.age}</p>
+        </div>
       </li>
     </Link>
   );
 }
+
+// <p className="subtitle">
+//   {formatter.format(props.customer.totalSpent)}
+// </p>
 
 //<CustomersIcon />
 // <p>{props.customer.age}</p>
