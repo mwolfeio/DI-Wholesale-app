@@ -113,7 +113,7 @@ const SpecialPage = ({}) => {
           customer={{
             id: id,
             gid: cus.node.id,
-            name: `${cus.node.firstName} ${cus.node.lastName}`,
+            name: `${cus.node.lastName}, ${cus.node.firstName}`,
             email: cus.node.email,
             cusnumb: cusNumb,
             orders: cus.node.ordersCount,
@@ -208,14 +208,13 @@ const SpecialPage = ({}) => {
               {direction}
             </p>
             <p
-              onClick={() => setSort("RELEVANCE")}
               onClick={() => {
                 if (sort == "RELEVANCE") {
                   setReverseSort(!reverseSort);
                 }
                 setSort("RELEVANCE");
               }}
-              className={`flex-center-center sortable ${
+              className={`flex-right-column sortable ${
                 sort == "RELEVANCE" ? "active-sort" : ""
               }`}
             >

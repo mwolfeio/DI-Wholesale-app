@@ -546,7 +546,7 @@ button.submit-button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
 }
 .flex-right-column {
   display: flex;
