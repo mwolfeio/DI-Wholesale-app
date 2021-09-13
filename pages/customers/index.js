@@ -67,6 +67,7 @@ const SpecialPage = ({}) => {
   const [results, setResults] = useState([]);
   const [lastCursor, setLastCursor] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  // const [oldSerach, setOldSearch] = useState("");
   const prevSearchTerm = usePrevious(searchTerm);
   const [sort, setSort] = useState("RELEVANCE");
   const prevSort = usePrevious(sort);
@@ -215,9 +216,10 @@ const SpecialPage = ({}) => {
     if (
       sort == prevSort &&
       searchTerm == prevSearchTerm &&
-      reverseSort == prevReverseSort
+      reverseSort == prevReverseSort &&
+      data &&
+      data.customers.edges !== results
     ) {
-      console.log("adding data to results");
       setResults([...results, ...data.customers.edges]);
     } else {
       console.log("resetting resutls");
@@ -248,9 +250,9 @@ const SpecialPage = ({}) => {
               className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
               onClick={() => {
                 // setResults([]);
-                // if (sort == "NAME") {
-                //   setReverseSort(!reverseSort);
-                // }
+                if (sort == "NAME") {
+                  setReverseSort(!reverseSort);
+                }
                 setSort("NAME");
               }}
               style={{ marginLeft: "16px", justifySelf: "start" }}
