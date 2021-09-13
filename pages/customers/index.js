@@ -189,7 +189,7 @@ const SpecialPage = ({}) => {
     console.log("loading more: ", loadingMore);
     // console.log("updating results with: ", data);
     // console.log("loading: ", loading);
-    // if (loading || !data) return;
+    if (loading || !data) return;
     // // const newResults = [];
     // // if search, sort, and reverseSort did not chnage
     //
