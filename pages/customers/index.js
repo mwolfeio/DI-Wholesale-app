@@ -75,33 +75,14 @@ const SpecialPage = ({}) => {
     },
   });
 
-  useEffect(() => {
-    console.log("updating results with: ", data);
-    if (!data) return;
-    const newResults = [];
-    //if search, sort, and reverseSort did not chnage
-    if (
-      sort == usePrevious(sort) &&
-      searchTerm == usePrevious(searchTerm) &&
-      reverseSort == usePrevious(reverseSort)
-    ) {
-      const newResults = [...results, ...data.customers.edges];
-    } else {
-      //if they did chnage
-      const newResults = data.customers.edges;
-    }
-
-    setResults(newResults);
-    console.log("resuts updated");
-  }, [data]);
-
-  function usePrevious(value) {
+  const usePreviousc = (value) => {
+    console.log("running usePreviousc");
     const ref = useRef();
     useEffect(() => {
       ref.current = value;
     });
     return ref.current;
-  }
+  };
 
   const loadMore = () => {
     let lastCursor = results.at(-1).cursor;
@@ -201,6 +182,51 @@ const SpecialPage = ({}) => {
       debouncedChangeHandler.cancel();
     };
   }, []);
+  useEffect(() => {
+    console.log("updating results with: ", data);
+    if (!data) return;
+    const newResults = [];
+    //if search, sort, and reverseSort did not chnage
+    console.log(
+      "sort changed: ",
+      sort == usePrevious(sort),
+      " new: ",
+      sort,
+      " old: ",
+      usePrevious(sort)
+    );
+    console.log(
+      "searchTerm changed: ",
+      searchTerm == usePrevious(searchTerm),
+      " new: ",
+      searchTerm,
+      " old: ",
+      usePrevious(searchTerm)
+    );
+    console.log(
+      "sort changed: ",
+      reverseSort == usePrevious(reverseSort),
+      " new: ",
+      reverseSort,
+      " old: ",
+      usePrevious(reverseSort)
+    );
+
+    if (
+      true
+      // sort == usePrevious(sort) &&
+      // searchTerm == usePrevious(searchTerm) &&
+      // reverseSort == usePrevious(reverseSort)
+    ) {
+      const newResults = [...results, ...data.customers.edges];
+    } else {
+      //if they did chnage
+      const newResults = data.customers.edges;
+    }
+
+    setResults(newResults);
+    console.log("resuts updated");
+  }, [data]);
 
   return (
     <main>
