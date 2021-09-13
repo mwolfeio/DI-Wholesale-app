@@ -15,8 +15,15 @@ const GET_CUSTOMENTS = gql`
     $after: String = null
     $srch: String!
     $srt: CustomerSortKeys!
+    $rev: Boolean!
   ) {
-    customers(first: $first, after: $after, query: $srch, sortKey: $srt) {
+    customers(
+      first: $first
+      after: $after
+      query: $srch
+      sortKey: $srt
+      reverse: $rev
+    ) {
       edges {
         cursor
         node {
@@ -53,12 +60,31 @@ const SpecialPage = ({}) => {
   // const [results, setResults] = useState([]);
   const [pagnation, setPagnation] = useState(0);
   const [sort, setSort] = useState("RELEVANCE");
+  const [reverseSort, setReverseSort] = useState(false);
 
   const { loading, error, data, fetchMore } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
-    variables: { srch: searchTerm, srt: sort },
+    variables: { srch: searchTerm, srt: sort, rev: reverseSort },
   });
 
+  let direction = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      fill="none"
+      viewBox="0 0 24 24"
+      style={{ transform: `rotate(${reverseSort ? 180 : 0}deg)` }}
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+        d="M12 6.5v11m0 0l4-4.588M12 17.5l-4-4.588"
+      ></path>
+    </svg>
+  );
   let list = loading ? (
     <Loader />
   ) : error ? (
@@ -111,7 +137,7 @@ const SpecialPage = ({}) => {
 
   const pagnate = () => {
     let after = data.customers.edges[data.customers.edges.length - 1].cursor;
-    // let after = data.customers.edges[]
+
     console.log("loading everything after", after);
     fetchMore({
       variables: {
@@ -153,28 +179,48 @@ const SpecialPage = ({}) => {
           <li className="list-header">
             <p
               className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
-              onClick={() => setSort("NAME")}
+              onClick={() => {
+                if (sort == "NAME") {
+                  setReverseSort(!reverseSort);
+                }
+                setSort("NAME");
+              }}
               style={{ marginLeft: "16px", justifySelf: "start" }}
             >
-              Name
+              <span>Name</span>
+              {direction}
             </p>
 
             <p style={{ justifySelf: "start" }}>Company</p>
             <p>CN</p>
             <p
-              onClick={() => setSort("ORDERS_COUNT")}
+              onClick={() => {
+                if (sort == "ORDERS_COUNT") {
+                  setReverseSort(!reverseSort);
+                }
+                setSort("ORDERS_COUNT");
+              }}
               className={`sortable ${
                 sort == "ORDERS_COUNT" ? "active-sort" : ""
               }`}
             >
-              Orders
+              <span>Orders</span>
+              {direction}
             </p>
             <p
-              style={{ justifySelf: "end" }}
               onClick={() => setSort("RELEVANCE")}
-              className={`sortable ${sort == "RELEVANCE" ? "active-sort" : ""}`}
+              onClick={() => {
+                if (sort == "RELEVANCE") {
+                  setReverseSort(!reverseSort);
+                }
+                setSort("RELEVANCE");
+              }}
+              className={`flex-center-center sortable ${
+                sort == "RELEVANCE" ? "active-sort" : ""
+              }`}
             >
-              Age
+              <span>Age</span>
+              {direction}
             </p>
           </li>
           {list}

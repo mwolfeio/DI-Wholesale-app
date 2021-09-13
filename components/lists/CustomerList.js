@@ -38,7 +38,7 @@ export default function SpecialPage(props) {
           fieldId={props.customer.fieldId}
           cnumb={props.customer.cusnumb}
         />
-        <div className="list-name">
+        <div className="list-name flex-center-column">
           <p>{props.customer.orders}</p>
           <p className="subtitle flex-center-column">
             {formatter.format(props.customer.totalSpent)}
