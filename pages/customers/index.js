@@ -64,10 +64,12 @@ function usePrevious(value) {
 }
 
 const SpecialPage = ({}) => {
-  const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [lastCursor, setLastCursor] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const prevSearchTerm = usePrevious(searchTerm);
   const [sort, setSort] = useState("RELEVANCE");
+  const prevSort = usePrevious(sort);
   const [reverseSort, setReverseSort] = useState(false);
   const prevReverseSort = usePrevious(reverseSort);
 
@@ -183,24 +185,24 @@ const SpecialPage = ({}) => {
   useEffect(() => {
     console.log("updating results with: ", data);
     if (!data) return;
-    // const newResults = [];
-    //if search, sort, and reverseSort did not chnage
-    // console.log(
-    //   "sort changed: ",
-    //   sort == usePrevious(sort),
-    //   " new: ",
-    //   sort,
-    //   " old: ",
-    //   usePrevious(sort)
-    // );
-    // console.log(
-    //   "searchTerm changed: ",
-    //   searchTerm == usePrevious(searchTerm),
-    //   " new: ",
-    //   searchTerm,
-    //   " old: ",
-    //   usePrevious(searchTerm)
-    // );
+    const newResults = [];
+    // if search, sort, and reverseSort did not chnage
+    console.log(
+      "sort changed: ",
+      sort == prevSort,
+      " new: ",
+      sort,
+      " old: ",
+      prevSort
+    );
+    console.log(
+      "searchTerm changed: ",
+      prevSearchTerm == prevSearchTerm,
+      " new: ",
+      searchTerm,
+      " old: ",
+      prevSearchTerm
+    );
     console.log(
       "sort changed: ",
       reverseSort == prevReverseSort,
@@ -210,17 +212,16 @@ const SpecialPage = ({}) => {
       prevReverseSort
     );
 
-    // if (
-    //   true
-    //   // sort == usePrevious(sort) &&
-    //   // searchTerm == usePrevious(searchTerm) &&
-    //   // reverseSort == usePrevious(reverseSort)
-    // ) {
-    const newResults = [...results, ...data.customers.edges];
-    // } else {
-    //   //if they did chnage
-    //   const newResults = data.customers.edges;
-    // }
+    if (
+      sort == prevSort &&
+      searchTerm == prevSearchTerm &&
+      reverseSort == prevReverseSort
+    ) {
+      const newResults = [...results, ...data.customers.edges];
+    } else {
+      //if they did chnage
+      const newResults = data.customers.edges;
+    }
 
     setResults(newResults);
     console.log("resuts updated");
