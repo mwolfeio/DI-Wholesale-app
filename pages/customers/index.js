@@ -159,17 +159,6 @@ const SpecialPage = ({}) => {
       </div>
     );
 
-  // const pagnate = () => {
-  //   let after = data.customers.edges[data.customers.edges.length - 1].cursor;
-  //
-  //   console.log("loading everything after", after);
-  //   fetchMore({
-  //     variables: {
-  //       after: after,
-  //     },
-  //   });
-  //   console.log("error: ", error);
-  // };
   const changeHandler = (event) => {
     setSearchTerm(event.target.value);
     setSort("RELEVANCE");

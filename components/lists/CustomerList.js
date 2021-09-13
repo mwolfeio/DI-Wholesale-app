@@ -14,13 +14,18 @@ let truncate = (str) => {
   else return str;
 };
 
+let animationDelayCalc = (index) => {
+  let mod = indexmp % 50;
+  return mod * 0.03;
+};
+
 export default function SpecialPage(props) {
   // console.log("CustomerList: ", props);
   return (
     <Link href={`/customers/${props.customer.id}`} passHref>
       <li
         className=""
-        style={{ animationDelay: `${props.index * 0.03}s` }}
+        style={{ animationDelay: `${animationDelayCalc(props.index)}s` }}
         key={`customer-list-item-${props.index}`}
       >
         <div className="list-name" style={{ justifySelf: "start" }}>
