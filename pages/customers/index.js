@@ -170,7 +170,7 @@ const SpecialPage = ({}) => {
     );
 
   const changeHandler = (event) => {
-    setResults([]);
+    // setResults([]);
     setSearchTerm(event.target.value);
     setSort("RELEVANCE");
   };
@@ -228,6 +228,9 @@ const SpecialPage = ({}) => {
     setResults(newResults);
     console.log("resuts updated");
   }, [data]);
+  useEffect(() => {
+    setResults([]);
+  }, [sort, searchTerm, reverseSort]);
 
   return (
     <main>
@@ -249,7 +252,7 @@ const SpecialPage = ({}) => {
             <p
               className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
               onClick={() => {
-                setResults([]);
+                // setResults([]);
                 if (sort == "NAME") {
                   setReverseSort(!reverseSort);
                 }
@@ -265,7 +268,7 @@ const SpecialPage = ({}) => {
             <p>CN</p>
             <p
               onClick={() => {
-                setResults([]);
+                // setResults([]);
                 if (sort == "ORDERS_COUNT") {
                   setReverseSort(!reverseSort);
                 }
@@ -280,7 +283,7 @@ const SpecialPage = ({}) => {
             </p>
             <p
               onClick={() => {
-                setResults([]);
+                // setResults([]);
                 if (sort == "RELEVANCE") {
                   setReverseSort(!reverseSort);
                 }
