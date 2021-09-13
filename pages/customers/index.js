@@ -219,9 +219,11 @@ const SpecialPage = ({}) => {
         results.length > 0 &&
         data.customers.edges[0].node.id !== results[0].node.id,
       " results: ",
-      results,
+      results.length > 0 ? results[0].node.id : "no Results",
       " data: ",
-      data ? data.customers.edges : "no Data"
+      data && data.customers.edges.length > 0
+        ? data.customers.edges[0].node.id
+        : "no Data"
     );
 
     if (
