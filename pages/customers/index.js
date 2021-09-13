@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
 import _ from "lodash";
