@@ -44,18 +44,29 @@ const Section = (props) => {
           <div className="card-container">
             {ordersArr.map((order, i) => {
               console.log(order);
+              let date = Date.parse(order.node.createdAt);
               return (
                 <div className="card order-wrapper ">
-                  <div className="order-header">
-                    <h2>{order.node.name}</h2>
-                    <p>{formatter.format(order.node.totalPrice)} spent</p>
-                    <p>
-                      {order.node.lineItems.edges
-                        ? order.node.lineItems.edges.length
-                        : "0"}{" "}
-                      products
-                    </p>
-                    <p>{order.node.createdAt}</p>
+                  <div className="order-header flex-btw-column">
+                    <div>
+                      <h2>Oder: {order.node.name}</h2>
+                      <p className="subtitle" style={{ fontSize: "14px" }}>
+                        {formatter.format(order.node.totalPrice)} spent
+                      </p>
+                      <p className="subtitle" style={{ fontSize: "14px" }}>
+                        {order.node.lineItems.edges
+                          ? order.node.lineItems.edges.length
+                          : "0"}{" "}
+                        items
+                      </p>
+                      <p className="subtitle" style={{ fontSize: "14px" }}>
+                        {date.toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </p>
+                    </div>
                     <Link
                       href={`/orders/${order.node.id.replace(
                         "gid://shopify/Order/"
@@ -67,16 +78,18 @@ const Section = (props) => {
                   <div className="virticle-divider"></div>
                   <div
                     style={{ width: "100%" }}
-                    className="flex-center-left flex-center-column order-line-item-wrapper"
+                    className="flex-center-left order-line-item-wrapper"
                   >
                     {order.node.lineItems.edges.map((product) => (
-                      <div className="order-product-wrapper">
+                      <div className="order-product-wrapper flex-center-column">
                         <span className="order-quant-badge flex-center-center">
-                          {product.node.quantity}
+                          QT: {product.node.quantity}
                         </span>
                         <img src={product.node.image.originalSrc} />
                         <p>{product.node.title}</p>
-                        <p className="subtitle">{product.node.originalTotal}</p>
+                        <p className="subtitle">
+                          {formatter.format(product.node.originalTotal)}
+                        </p>
                       </div>
                     ))}
                   </div>

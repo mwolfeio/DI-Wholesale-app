@@ -504,14 +504,30 @@ button.submit-button {
 .order-wrapper {
   display: grid;
   grid-template-columns: 160px 1px 1fr;
-  grid-gap: 16px;
-  height: 160px;
+  grid-gap: 24px;
+  align-items: center;
+  /* height: 160px; */
+}
+.order-wrapper p {
+  line-height: 18px;
 }
 .virticle-divider {
-  height: 96px;
+  height: 120px;
   border-right: 1px solid #b0b7c3;
   width: 0;
   margin: 0 16px;
+}
+.order-header {
+  height: 100%;
+}
+.order-header a {
+  font-weight: bold;
+  color: #b0b7c3;
+  transition: 0.1s ease;
+  text-decoration: none;
+}
+.order-header a:hover {
+  color: #4388f8 !important;
 }
 .order-line-item-wrapper {
   overflow: hidden;
@@ -526,13 +542,15 @@ button.submit-button {
 }
 .order-line-item-wrapper > * img {
   border-radius: 8px;
+  overflow: hidden;
 }
 .order-line-item-wrapper > * .order-quant-badge {
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: bold;
   border-radius: 20px;
   background: white;
-  padding: 0 8px;
-  height: 24px;
+  padding: 0 12px;
+  height: 28px;
   position: absolute;
   top: -4px;
   left: -4px;
@@ -584,5 +602,11 @@ button.submit-button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
+}
+.flex-btw-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: flex-end;
 }
