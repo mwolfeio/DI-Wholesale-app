@@ -75,6 +75,10 @@ const GET_CUSTOMER = gql`
               provinceCode
               zip
             }
+            fulfillable
+            metafield(key: "drop_ship", namespace: "Drop Shipping") {
+              value
+            }
             lineItems(first: 4) {
               edges {
                 node {

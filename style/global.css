@@ -559,6 +559,21 @@ button.submit-button {
   left: -4px;
   box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
 }
+.tinny-tag {
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 20px;
+  background: white;
+  padding: 0 12px;
+  height: 28px;
+  position: absolute;
+  top: -4px;
+  left: -4px;
+}
+.active-tiny-tab {
+  color: white;
+  background: #4388f8;
+}
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;

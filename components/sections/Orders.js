@@ -69,9 +69,25 @@ const Section = (props) => {
                           : ""}
                         )
                       </p>
-                      <div>Drp Ship</div>
-                      <div>Fulfilled</div>
-                      <div>Unfulfilled</div>
+                      <div
+                        className="flex-center-left"
+                        style={{ marginBottom: "8px" }}
+                      >
+                        {order.node.fulfillable ? (
+                          <div className="tinny-tag active-tiny-tab">
+                            Unfulfilled
+                          </div>
+                        ) : (
+                          <div className="tinny-tag">Fulfilled</div>
+                        )}
+
+                        <div
+                          style={{ marginLeft: "8px" }}
+                          className="tinny-tag active-tiny-tab"
+                        >
+                          Drp Ship
+                        </div>
+                      </div>
                       <span style={{ padding: "8px", borderRadius: "8px" }}>
                         <p>Address:</p>
                         <p
