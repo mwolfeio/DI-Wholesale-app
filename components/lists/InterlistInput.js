@@ -40,7 +40,8 @@ const Section = (props) => {
     UPDATE_CUSTOEMR_NUMBER
   );
 
-  console.log("Listinput cnumb: ", customerNumber);
+  console.log("Listinput props.cnumb: ", props.cnumb);
+  console.log("Listinput customerNumber: ", customerNumber);
 
   //Handle input
   const changeHandler = (e) => {
@@ -88,6 +89,10 @@ const Section = (props) => {
   const preventClickthrough = (e) => {
     e.stopPropagation();
   };
+
+  React.useEffect(() => {
+    setCustomerNumber(props.cnumb);
+  }, [props.cnumb]);
 
   //return component
   let needsSaving = customerNumber !== oldCustomerNumber;
