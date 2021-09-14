@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import SectionHeader from "./SectionHeader.js";
 
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
 const Section = (props) => {
   const [open, setOpen] = useState(true);
-  let ordersArr = props.fields ? props.fields : [];
+  const [ordersArr, setOrdersArr] = useState(props.fields ? props.fields : []);
 
   const toggleOpen = () => {
     console.log("clicked");
@@ -14,6 +19,10 @@ const Section = (props) => {
   };
 
   console.log("ordersArr: ", ordersArr);
+
+  useEffect(() => {
+    setOrdersArr(props.fields ? props.fields : []);
+  }, [props.fields]);
 
   return (
     <section>
