@@ -45,7 +45,7 @@ const Section = (props) => {
               console.log(order);
               return (
                 <div className="card order-wrapper ">
-                  <div>
+                  <div className="order-header">
                     <h2>{order.node.name}</h2>
                     <p>{formatter.format(order.node.totalPrice)} spent</p>
                     <p>
@@ -63,12 +63,12 @@ const Section = (props) => {
                   >
                     {order.node.lineItems.edges.map((product) => (
                       <div className="order-product-wrapper">
-                        <span className="order-quant-badge">
+                        <span className="order-quant-badge flex-center-center">
                           {product.node.quantity}
                         </span>
                         <img src={product.node.image.originalSrc} />
                         <p>{product.node.title}</p>
-                        <p>{product.node.price}</p>
+                        <p className="subtitle">{product.node.originalTotal}</p>
                       </div>
                     ))}
                   </div>

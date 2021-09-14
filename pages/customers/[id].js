@@ -72,8 +72,10 @@ const GET_CUSTOMER = gql`
                   image(maxHeight: 500, maxWidth: 500) {
                     originalSrc
                   }
+                  originalTotal
                   quantity
                   sku
+                  price
                   title
                   vendor
                 }

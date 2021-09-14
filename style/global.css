@@ -505,12 +505,38 @@ button.submit-button {
   display: grid;
   grid-template-columns: 160px 1px 1fr;
   grid-gap: 16px;
+  height: 160px;
 }
 .virticle-divider {
-  height: 100%;
+  height: 96px;
   border-right: 1px solid #b0b7c3;
   width: 0;
   margin: 0 16px;
+}
+.order-line-item-wrapper {
+  overflow: hidden;
+}
+.order-line-item-wrapper > * {
+  width: 160px;
+  margin-left: 8px;
+  background: #f4f6f8;
+  border-radius: 8px;
+  padding: 8px;
+  position: relative;
+}
+.order-line-item-wrapper > * img {
+  border-radius: 8px;
+}
+.order-line-item-wrapper > * .order-quant-badge {
+  font-size: 10px;
+  border-radius: 20px;
+  background: white;
+  padding: 0 8px;
+  height: 24px;
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
 }
 /* FLEXBOX-------------------- */
 .flex-center-left {
