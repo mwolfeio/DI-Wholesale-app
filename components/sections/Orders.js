@@ -44,7 +44,7 @@ const Section = (props) => {
             {ordersArr.map((order, i) => {
               console.log(order);
               return (
-                <div className="card flex-center-btw">
+                <div className="card order-wrapper ">
                   <div>
                     <h2>{order.node.name}</h2>
                     <p>{formatter.format(order.node.totalPrice)} spent</p>
@@ -57,7 +57,10 @@ const Section = (props) => {
                     <p>{order.node.createdAt}</p>
                   </div>
                   <div className="virticle-divider"></div>
-                  <div style={{ width: "100%" }} className="flex-center-left">
+                  <div
+                    style={{ width: "100%" }}
+                    className="flex-center-left flex-center-column order-line-item-wrapper"
+                  >
                     {order.node.lineItems.edges.map((product) => (
                       <div className="order-product-wrapper">
                         <span className="order-quant-badge">
