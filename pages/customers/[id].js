@@ -64,6 +64,7 @@ const GET_CUSTOMER = gql`
         edges {
           node {
             id
+            name
             totalPrice
             lineItems(first: 4) {
               edges {

@@ -46,6 +46,7 @@ const Section = (props) => {
               return (
                 <div className="card flex-center-btw">
                   <div>
+                    <h2>{order.node.name}</h2>
                     <p>{formatter.format(order.node.totalPrice)} spent</p>
                     <p>
                       {order.node.lineItems.edges
