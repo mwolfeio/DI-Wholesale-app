@@ -130,6 +130,12 @@ const SpecialPage = ({}) => {
             ? cus.node.metafield.id
             : "";
 
+        console.log(
+          "raw metafield: ",
+          cus.node.metafield ? cus.node.metafield.value : "-"
+        );
+        console.log("cusNumb: ", cusNumb);
+
         return (
           <CustomerList
             index={i}
