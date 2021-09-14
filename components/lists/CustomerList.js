@@ -63,11 +63,3 @@ export default function SpecialPage(props) {
     </Link>
   );
 }
-
-// <p className="subtitle">
-//   {formatter.format(props.customer.totalSpent)}
-// </p>
-
-//<CustomersIcon />
-// <p>{props.customer.age}</p>
-//<p>{props.customer.cusnumb ? `#${props.customer.cusnumb}` : ""}</p>

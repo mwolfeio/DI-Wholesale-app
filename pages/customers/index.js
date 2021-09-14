@@ -54,26 +54,14 @@ const GET_CUSTOMENTS = gql`
     }
   }
 `;
-//
-// function usePrevious(value) {
-//   const ref = useRef();
-//   useEffect(() => {
-//     ref.current = value;
-//   });
-//   return ref.current;
-// }
 
 const SpecialPage = ({}) => {
   const [results, setResults] = useState([]);
   const [lastCursor, setLastCursor] = useState(null);
   const [loadingMore, setLoadingMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  // const [oldSerach, setOldSearch] = useState("");
-  // const prevSearchTerm = usePrevious(searchTerm);
   const [sort, setSort] = useState("RELEVANCE");
-  // const prevSort = usePrevious(sort);
   const [reverseSort, setReverseSort] = useState(false);
-  // const prevReverseSort = usePrevious(reverseSort);
 
   const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
     fetchPolicy: "no-cache",
@@ -90,9 +78,8 @@ const SpecialPage = ({}) => {
     console.log("setting new after to: ", lastCursor);
     setLoadingMore(true);
     setLastCursor(lastCursor);
-    // setOffset(results.data.length);
   };
-
+  console.log("data: ", data);
   let direction = (a, b) => {
     return (
       <span

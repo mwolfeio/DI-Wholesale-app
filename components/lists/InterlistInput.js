@@ -38,17 +38,17 @@ const Section = (props) => {
     UPDATE_CUSTOEMR_NUMBER
   );
 
+  console.log("List input cnumb: ", customerNumber);
+
   //Handle input
   const changeHandler = (e) => {
     console.log(`#${e.target.value.replace("#", "")}`);
     setCustomerNumber(`#${e.target.value.replace("#", "")}`);
   };
-
   const erase = (e) => {
     e.preventDefault();
     setCustomerNumber(oldCustomerNumber);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitting: ", customerNumber.replace("#", ""));
