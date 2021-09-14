@@ -159,7 +159,6 @@ const SpecialPage = ({}) => {
     );
 
   const changeHandler = (event) => {
-    Metafield;
     setSearchTerm(event.target.value);
     setSort("RELEVANCE");
   };
@@ -269,27 +268,3 @@ const SpecialPage = ({}) => {
   );
 };
 export default SpecialPage;
-
-// <p
-//   onClick={() => setSort("UPDATED_AT")}
-//   className={`sortable ${sort == "RELEVANCE" ? "active-sort" : ""}`}
-// >
-//   Age
-// </p>
-
-// <CustomerList
-//   index="1"
-//   customer={{
-//     id: "test",
-//     gid: "test",
-//     name: "test",
-//     email: "test",
-//     cusnumb: "test",
-//     orders: "test",
-//     age: "test",
-//     address: "test",
-//     company: "test",
-//     totalSpent: "test",
-//     fieldId: "test",
-//   }}
-// />
