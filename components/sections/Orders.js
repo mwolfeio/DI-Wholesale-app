@@ -44,7 +44,7 @@ const Section = (props) => {
           <div className="card-container">
             {ordersArr.map((order, i) => {
               console.log(order);
-              let date = Date.parse(order.node.createdAt);
+              let date = new Date(order.node.createdAt);
               return (
                 <div className="card order-wrapper ">
                   <div className="order-header flex-btw-column">
