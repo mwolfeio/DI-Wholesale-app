@@ -60,12 +60,21 @@ const GET_CUSTOMER = gql`
         }
       }
       note
-      orders(first: 5) {
+      orders(first: 10) {
         edges {
           node {
             id
             name
             totalPrice
+            shippingAddress {
+              address1
+              address2
+              city
+              company
+              countryCode
+              provinceCode
+              zip
+            }
             lineItems(first: 4) {
               edges {
                 node {

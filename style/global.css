@@ -508,8 +508,9 @@ button.submit-button {
   align-items: center;
   /* height: 160px; */
 }
-.order-wrapper p {
+.order-product-wrapper p {
   line-height: 18px;
+  text-align: center;
 }
 .virticle-divider {
   height: 120px;
@@ -543,6 +544,8 @@ button.submit-button {
 .order-line-item-wrapper > * img {
   border-radius: 8px;
   overflow: hidden;
+  height: 144px;
+  width: 144px;
 }
 .order-line-item-wrapper > * .order-quant-badge {
   font-size: 12px;
@@ -608,5 +611,5 @@ button.submit-button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
 }
