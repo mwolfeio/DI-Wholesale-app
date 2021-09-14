@@ -566,14 +566,18 @@ button.submit-button {
   background: white;
   padding: 0 12px;
   height: 28px;
-  position: absolute;
-  top: -4px;
-  left: -4px;
 }
+
 .active-tiny-tab {
   color: white;
   background: #4388f8;
 }
+
+.drop-ship-tiny-tab {
+  color: white;
+  background: #54e4a6;
+}
+
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;

@@ -74,53 +74,70 @@ const Section = (props) => {
                         style={{ marginBottom: "8px" }}
                       >
                         {order.node.fulfillable ? (
-                          <div className="tinny-tag active-tiny-tab">
+                          <div className="tinny-tag active-tiny-tab flex-center-center">
                             Unfulfilled
                           </div>
                         ) : (
-                          <div className="tinny-tag">Fulfilled</div>
+                          <div className="tinny-tag flex-center-center">
+                            Fulfilled
+                          </div>
                         )}
-
-                        <div
-                          style={{ marginLeft: "8px" }}
-                          className="tinny-tag active-tiny-tab"
-                        >
-                          Drp Ship
-                        </div>
+                        {order.node.metafield.value && (
+                          <div
+                            style={{ marginLeft: "8px" }}
+                            className="tinny-tag drop-ship-tiny-tab flex-center-center"
+                          >
+                            Drp Ship
+                          </div>
+                        )}
                       </div>
-                      <span style={{ padding: "8px", borderRadius: "8px" }}>
+                      <div
+                        style={{
+                          padding: "8px",
+                          borderRadius: "8px",
+                          background: "#f4f6f8",
+                        }}
+                      >
                         <p>Address:</p>
-                        <p
-                          className="subtitle"
-                          style={{ fontSize: "14px", lineHeight: "20px" }}
-                        >
-                          {order.node.shippingAddress.address1 && (
-                            <span>
-                              {order.node.shippingAddress.address1}
-                              <br />
-                            </span>
-                          )}
-                          {order.node.shippingAddress.address2 && (
-                            <span>
-                              {order.node.shippingAddress.address2}
-                              <br />
-                            </span>
-                          )}
-                          {order.node.shippingAddress.city && (
-                            <span>
-                              {order.node.shippingAddress.city},{" "}
-                              {order.node.shippingAddress.provinceCode}
-                              <br />
-                            </span>
-                          )}
-                          {order.node.shippingAddress.zip && (
-                            <span>
-                              {order.node.shippingAddress.zip},{" "}
-                              {order.node.shippingAddress.countryCode}
-                            </span>
-                          )}
-                        </p>
-                      </span>
+
+                        {order.node.shippingAddress.address1 && (
+                          <p
+                            className="subtitle"
+                            style={{ fontSize: "14px", lineHeight: "20px" }}
+                          >
+                            {order.node.shippingAddress.address1}
+                            <br />
+                          </p>
+                        )}
+                        {order.node.shippingAddress.address2 && (
+                          <p
+                            className="subtitle"
+                            style={{ fontSize: "14px", lineHeight: "20px" }}
+                          >
+                            {order.node.shippingAddress.address2}
+                            <br />
+                          </p>
+                        )}
+                        {order.node.shippingAddress.city && (
+                          <p
+                            className="subtitle"
+                            style={{ fontSize: "14px", lineHeight: "20px" }}
+                          >
+                            {order.node.shippingAddress.city},{" "}
+                            {order.node.shippingAddress.provinceCode}
+                            <br />
+                          </p>
+                        )}
+                        {order.node.shippingAddress.zip && (
+                          <p
+                            className="subtitle"
+                            style={{ fontSize: "14px", lineHeight: "20px" }}
+                          >
+                            {order.node.shippingAddress.zip},{" "}
+                            {order.node.shippingAddress.countryCode}
+                          </p>
+                        )}
+                      </div>
                     </div>
                     <Link
                       href={`/orders/${order.node.id.replace(
