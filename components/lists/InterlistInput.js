@@ -25,6 +25,8 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 `;
 
 const Section = (props) => {
+  console.log("Listinput props", props);
+
   //State
   const [customerNumber, setCustomerNumber] = useState(
     props.cnumb ? `#${props.cnumb}` : ""
@@ -38,7 +40,7 @@ const Section = (props) => {
     UPDATE_CUSTOEMR_NUMBER
   );
 
-  console.log("List input cnumb: ", customerNumber);
+  console.log("Listinput cnumb: ", customerNumber);
 
   //Handle input
   const changeHandler = (e) => {

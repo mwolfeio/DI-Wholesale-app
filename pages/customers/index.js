@@ -131,10 +131,10 @@ const SpecialPage = ({}) => {
             : "";
 
         console.log(
-          "raw metafield: ",
+          "Index raw metafield: ",
           cus.node.metafield ? cus.node.metafield.value : "-"
         );
-        console.log("cusNumb: ", cusNumb);
+        console.log("Index cusNumb: ", cusNumb);
 
         return (
           <CustomerList
