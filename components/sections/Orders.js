@@ -46,8 +46,8 @@ const Section = (props) => {
                 <div>
                   <p>{formatter.format(order.node.totalPrice)} spent</p>
                   <p>
-                    {order.node.lineItems
-                      ? order.node.lineItems.edge.length
+                    {order.node.lineItems.edges
+                      ? order.node.lineItems.edges.length
                       : "0"}{" "}
                     products
                   </p>

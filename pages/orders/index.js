@@ -191,10 +191,10 @@ const SpecialPage = ({}) => {
     <main>
       <ButtonNav />
       <section>
-        <h1>Customers</h1>
+        <h1>Orders</h1>
         <p className="light">
-          Search, sort and select a store customer from the list below to edit
-          things like customer number, metafields and membership points.
+          Search, sort and select an order from the list below to edit things
+          like customer number, metafields and membership points.
         </p>
         <input
           onChange={debouncedChangeHandler}
