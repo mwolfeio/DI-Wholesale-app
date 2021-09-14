@@ -91,7 +91,8 @@ const Section = (props) => {
   };
 
   useEffect(() => {
-    setCustomerNumber(props.cnumb);
+    setCustomerNumber(props.cnumb ? `#${props.cnumb}` : "");
+    setOldCustomerNumber(props.cnumb ? `#${props.cnumb}` : "");
   }, [props.cnumb]);
 
   //return component
