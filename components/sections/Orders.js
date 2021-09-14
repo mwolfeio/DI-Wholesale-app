@@ -41,33 +41,36 @@ const Section = (props) => {
           </div>
         ) : (
           <div className="card-container">
-            {ordersArr.map((order, i) => (
-              <div className="card flex-center-btw">
-                <div>
-                  <p>{formatter.format(order.node.totalPrice)} spent</p>
-                  <p>
-                    {order.node.lineItems.edges
-                      ? order.node.lineItems.edges.length
-                      : "0"}{" "}
-                    products
-                  </p>
-                  <p>{order.node.createdAt}</p>
+            {ordersArr.map((order, i) => {
+              console.log(order);
+              return (
+                <div className="card flex-center-btw">
+                  <div>
+                    <p>{formatter.format(order.node.totalPrice)} spent</p>
+                    <p>
+                      {order.node.lineItems.edges
+                        ? order.node.lineItems.edges.length
+                        : "0"}{" "}
+                      products
+                    </p>
+                    <p>{order.node.createdAt}</p>
+                  </div>
+                  <div className="virticle-divider"></div>
+                  <div style={{ width: "100%" }} className="flex-center-left">
+                    {order.node.lineItems.edges.map((product) => (
+                      <div className="order-product-wrapper">
+                        <span className="order-quant-badge">
+                          {product.node.quantity}
+                        </span>
+                        <img src={product.node.image.originalSrc} />
+                        <p>{product.node.title}</p>
+                        <p>{product.node.price}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="virticle-divider"></div>
-                <div style={{ width: "100%" }} className="flex-center-left">
-                  {order.node.lineItems.edges.map((product) => {
-                    <div className="order-product-wrapper">
-                      <span className="order-quant-badge">
-                        {product.node.quantity}
-                      </span>
-                      <img src={product.node.image.originalSrc} />
-                      <p>{product.node.title}</p>
-                      <p>{product.node.price}</p>
-                    </div>;
-                  })}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )
       ) : (

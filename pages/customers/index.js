@@ -217,7 +217,7 @@ const SpecialPage = ({}) => {
                 }
                 setSort("NAME");
               }}
-              style={{ marginLeft: "16px", justifySelf: "start" }}
+              style={{ justifySelf: "start" }}
             >
               <span>Name</span>
               {direction("A", "Z")}
