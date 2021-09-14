@@ -210,7 +210,6 @@ const SpecialPage = ({}) => {
             <p
               className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
               onClick={() => {
-                Metafield;
                 if (sort == "NAME") {
                   setReverseSort(!reverseSort);
                 }
@@ -226,7 +225,6 @@ const SpecialPage = ({}) => {
             <p>CN</p>
             <p
               onClick={() => {
-                Metafield;
                 if (sort == "ORDERS_COUNT") {
                   setReverseSort(!reverseSort);
                 }
@@ -241,7 +239,6 @@ const SpecialPage = ({}) => {
             </p>
             <p
               onClick={() => {
-                Metafield;
                 if (sort == "RELEVANCE") {
                   setReverseSort(!reverseSort);
                 }
