@@ -37,7 +37,7 @@ const Section = (props) => {
                   <p>
                     {namespace}.{metafieldKey}
                   </p>
-                  <p className="subtitle">metafield.node.type;</p>
+                  <p className="subtitle">metafield.node.valueType;</p>
                 </div>
                 <MetafieldInput
                   customerId={props.customerId}

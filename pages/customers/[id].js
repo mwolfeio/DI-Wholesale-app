@@ -51,11 +51,11 @@ const GET_CUSTOMER = gql`
       metafields(first: 10) {
         edges {
           node {
-            type
             id
             key
             namespace
             value
+            valueType
           }
         }
       }

@@ -44,8 +44,8 @@ const Section = (props) => {
             {ordersArr.map((order, i) => (
               <div className="card flex-center-btw">
                 <div>
-                  <p>{order.node.totalPrice}</p>
-                  <p>{order.node.totalPrice}</p>
+                  <p>{formatter.format(order.node.totalPrice)} spent</p>
+                  <p>{order.node.lineItems.edge.length} products</p>
                   <p>{order.node.createdAt}</p>
                 </div>
                 <div className="virticle-divider"></div>
