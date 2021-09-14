@@ -62,7 +62,7 @@ const SpecialPage = ({}) => {
   const [lastCursor, setLastCursor] = useState(null);
   const [loadingMore, setLoadingMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sort, setSort] = useState("RELEVANCE");
+  const [sort, setSort] = useState("CREATED_AT");
   const [reverseSort, setReverseSort] = useState(false);
 
   const { loading, error, data } = useQuery(GET_ORDERS, {
@@ -200,7 +200,7 @@ const SpecialPage = ({}) => {
           onChange={debouncedChangeHandler}
           className="list-search"
           type="text"
-          placeholder="Enter a customer's name..."
+          placeholder="Enter an order or customer..."
         />
         <ul className="large-list customer-list">
           <li className="list-header">

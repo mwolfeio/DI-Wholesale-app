@@ -96,6 +96,7 @@ const Section = (props) => {
                           padding: "8px",
                           borderRadius: "8px",
                           background: "#f4f6f8",
+                          marginBottom: "8px",
                         }}
                       >
                         <p>Address:</p>
@@ -151,7 +152,7 @@ const Section = (props) => {
                   </div>
                   <div className="virticle-divider"></div>
                   <div
-                    style={{ width: "100%" }}
+                    style={{ width: "100%", paddingBottom: "16px" }}
                     className="flex-top-left order-line-item-wrapper"
                   >
                     {order.node.lineItems.edges.map((product) => (

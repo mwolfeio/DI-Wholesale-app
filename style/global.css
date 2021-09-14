@@ -174,6 +174,9 @@ button.text-button {
   color: #4388f8;
   background: #ffffff;
 }
+button.text-button:hover {
+  background: #b0b7c3;
+}
 
 button.primary {
   background: #4388f8;
@@ -517,8 +520,10 @@ button.submit-button {
   cursor: pointer;
   transition: 0.15s ease;
 }
+
 .order-product-wrapper:hover {
   box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
+  background: #b0b7c3;
 }
 .order-product-wrapper p {
   line-height: 18px;
