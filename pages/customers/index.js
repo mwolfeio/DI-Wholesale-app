@@ -237,7 +237,7 @@ const SpecialPage = ({}) => {
               }`}
             >
               <span>Orders</span>
-              {direction("H", "L")}
+              {direction("L", "H")}
             </p>
             <p
               onClick={() => {

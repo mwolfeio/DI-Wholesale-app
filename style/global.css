@@ -170,6 +170,11 @@ button:hover {
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
 }
 
+button.text-button {
+  color: #4388f8;
+  background: #ffffff;
+}
+
 button.primary {
   background: #4388f8;
   color: #ffffff;
@@ -508,6 +513,13 @@ button.submit-button {
   align-items: center;
   /* height: 160px; */
 }
+.order-product-wrapper {
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+.order-product-wrapper:hover {
+  box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
+}
 .order-product-wrapper p {
   line-height: 18px;
   text-align: center;
@@ -516,7 +528,7 @@ button.submit-button {
   height: 120px;
   border-right: 1px solid #b0b7c3;
   width: 0;
-  margin: 0 16px;
+  /* margin: 0 16px; */
 }
 .order-header {
   height: 100%;
@@ -566,6 +578,7 @@ button.submit-button {
   background: white;
   padding: 0 12px;
   height: 28px;
+  white-space: nowrap;
 }
 
 .active-tiny-tab {
@@ -603,6 +616,11 @@ button.submit-button {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+}
+.flex-top-left {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 .flex-top-right {
   display: flex;

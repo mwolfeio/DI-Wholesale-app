@@ -85,6 +85,14 @@ const GET_CUSTOMER = gql`
                   image(maxHeight: 500, maxWidth: 500) {
                     originalSrc
                   }
+                  product {
+                    id
+                    priceRange {
+                      maxVariantPrice {
+                        amount
+                      }
+                    }
+                  }
                   originalTotal
                   quantity
                   sku

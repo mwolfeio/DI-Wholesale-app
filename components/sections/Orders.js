@@ -64,14 +64,14 @@ const Section = (props) => {
                           : "0"}{" "}
                         item
                         {order.node.lineItems.edges &&
-                        order.node.lineItems.edges.length
+                        order.node.lineItems.edges.length > 1
                           ? "s"
                           : ""}
                         )
                       </p>
                       <div
                         className="flex-center-left"
-                        style={{ marginBottom: "8px" }}
+                        style={{ marginBottom: "16px" }}
                       >
                         {order.node.fulfillable ? (
                           <div className="tinny-tag active-tiny-tab flex-center-center">
@@ -82,7 +82,7 @@ const Section = (props) => {
                             Fulfilled
                           </div>
                         )}
-                        {order.node.metafield.value && (
+                        {order.node.metafield.value === "true" && (
                           <div
                             style={{ marginLeft: "8px" }}
                             className="tinny-tag drop-ship-tiny-tab flex-center-center"
@@ -144,25 +144,38 @@ const Section = (props) => {
                         "gid://shopify/Order/"
                       )}`}
                     >
-                      more >
+                      <button className="text-button" style={{ width: "100%" }}>
+                        more
+                      </button>
                     </Link>
                   </div>
                   <div className="virticle-divider"></div>
                   <div
                     style={{ width: "100%" }}
-                    className="flex-center-left order-line-item-wrapper"
+                    className="flex-top-left order-line-item-wrapper"
                   >
                     {order.node.lineItems.edges.map((product) => (
-                      <div className="order-product-wrapper flex-center-column">
+                      <a
+                        target="blank"
+                        href={`https://di-wholesale.myshopify.com/admin/products/${product.node.product.id.replace(
+                          "gid://shopify/Product/",
+                          ""
+                        )}`}
+                        style={{ textDecoration: "none" }}
+                        className="order-product-wrapper flex-center-column"
+                      >
                         <span className="order-quant-badge flex-center-center">
                           QT: {product.node.quantity}
                         </span>
                         <img src={product.node.image.originalSrc} />
                         <p style={{ margin: "8px 0" }}>{product.node.title}</p>
                         <p className="subtitle">
-                          {formatter.format(product.node.originalTotal)}
+                          {formatter.format(
+                            product.node.product.priceRange.maxVariantPrice
+                              .amount
+                          )}
                         </p>
-                      </div>
+                      </a>
                     ))}
                   </div>
                 </div>
