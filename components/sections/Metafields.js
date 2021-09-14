@@ -54,9 +54,3 @@ const Section = (props) => {
   );
 };
 export default Section;
-
-// value={metafield.node.value}
-// namespace={namespace}
-// metafieldKey={metafieldKey}
-// MetafieldId={metafield.node.id}
-// custoemrId={props.customerId}
