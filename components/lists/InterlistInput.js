@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
@@ -90,7 +90,7 @@ const Section = (props) => {
     e.stopPropagation();
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCustomerNumber(props.cnumb);
   }, [props.cnumb]);
 
