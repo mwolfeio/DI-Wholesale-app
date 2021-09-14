@@ -75,7 +75,6 @@ const GET_CUSTOMER = gql`
                   originalTotal
                   quantity
                   sku
-                  price
                   title
                   vendor
                 }

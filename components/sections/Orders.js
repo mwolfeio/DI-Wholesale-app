@@ -55,6 +55,13 @@ const Section = (props) => {
                       products
                     </p>
                     <p>{order.node.createdAt}</p>
+                    <Link
+                      href={`/orders/${order.node.id.replace(
+                        "gid://shopify/Order/"
+                      )}`}
+                    >
+                      more >
+                    </Link>
                   </div>
                   <div className="virticle-divider"></div>
                   <div
