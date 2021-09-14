@@ -7,9 +7,9 @@ import Link from "next/link";
 
 import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
-import CustomerList from "../../components/lists/CustomerList.js";
+import OrderList from "../../components/lists/OrderList.js";
 
-const GET_CUSTOMENTS = gql`
+const GET_ORDERS = gql`
   query getCustomers(
     $first: Int = 50
     $after: String = null
@@ -17,7 +17,7 @@ const GET_CUSTOMENTS = gql`
     $srt: CustomerSortKeys!
     $rev: Boolean!
   ) {
-    customers(
+    orders(
       first: $first
       after: $after
       query: $srch
@@ -27,25 +27,27 @@ const GET_CUSTOMENTS = gql`
       edges {
         cursor
         node {
-          id
-          firstName
-          lastName
-          email
-          metafield(key: "cus_no", namespace: "Customer Number") {
-            value
+          metafield(key: "cus_no", namespace: "Customer number") {
             id
+            value
           }
-          ordersCount
-          lifetimeDuration
-          marketingOptInLevel
-          defaultAddress {
+          name
+          totalPrice
+          id
+          fulfillable
+          email
+          displayAddress {
             company
-            address1
             city
-            provinceCode
             country
+            province
+            provinceCode
           }
-          totalSpent
+          customer {
+            firstName
+            email
+            lastName
+          }
         }
       }
       pageInfo {
@@ -63,7 +65,7 @@ const SpecialPage = ({}) => {
   const [sort, setSort] = useState("RELEVANCE");
   const [reverseSort, setReverseSort] = useState(false);
 
-  const { loading, error, data } = useQuery(GET_CUSTOMENTS, {
+  const { loading, error, data } = useQuery(GET_ORDERS, {
     fetchPolicy: "no-cache",
     variables: {
       srch: searchTerm,
@@ -113,43 +115,38 @@ const SpecialPage = ({}) => {
     ) : error ? (
       `Error! ${error.message}`
     ) : results.length ? (
-      results.map((cus, i) => {
-        let id = cus.node.id.replace("gid://shopify/Customer/", "");
-        let address = cus.node.defaultAddress
-          ? `${cus.node.defaultAddress.city}, ${cus.node.defaultAddress.provinceCode}`
+      results.map((ord, i) => {
+        let id = ord.node.id.replace("gid://shopify/Order/", "");
+        let address = ord.node.displayAddress
+          ? `${ord.node.displayAddress.city}, ${ord.node.displayAddress.provinceCode}`
           : "";
-        let company = cus.node.defaultAddress
-          ? cus.node.defaultAddress.company
+        let company = ord.node.displayAddress
+          ? ord.node.displayAddress.company
           : "-";
         let cusNumb =
-          cus.node.metafield && cus.node.metafield.value
-            ? cus.node.metafield.value
+          ord.node.metafield && ord.node.metafield.value
+            ? ord.node.metafield.value
             : "";
         let fieldId =
-          cus.node.metafield && cus.node.metafield.id
-            ? cus.node.metafield.id
+          ord.node.metafield && ord.node.metafield.id
+            ? ord.node.metafield.id
             : "";
 
-        console.log(
-          "Index raw metafield: ",
-          cus.node.metafield ? cus.node.metafield.value : "-"
-        );
-        console.log("Index cusNumb: ", cusNumb);
-
         return (
-          <CustomerList
+          <OrderList
             index={i}
             customer={{
               id: id,
-              gid: cus.node.id,
-              name: `${cus.node.lastName}, ${cus.node.firstName}`,
-              email: cus.node.email,
+              gid: ord.node.id,
+              number: ord.node.name,
+              name: `${ord.node.customer.lastName}, ${ord.node.customer.firstName}`,
+              email: ord.node.email,
               cusnumb: cusNumb,
-              orders: cus.node.ordersCount,
-              age: cus.node.lifetimeDuration,
+              orders: 0,
+              age: 0,
               address: address,
               company: company,
-              totalSpent: cus.node.totalSpent,
+              totalSpent: ord.node.totalPrice,
               fieldId: fieldId,
             }}
           />
@@ -182,11 +179,11 @@ const SpecialPage = ({}) => {
     if (loading || !data) return;
     if (loadingMore) {
       console.log("loading more to resutls");
-      setResults([...results, ...data.customers.edges]);
+      setResults([...results, ...data.orders.edges]);
       setLoadingMore(false);
     } else {
       console.log("resetting resutls");
-      setResults(data.customers.edges);
+      setResults(data.orders.edges);
     }
   }, [data]);
 
@@ -208,7 +205,9 @@ const SpecialPage = ({}) => {
         <ul className="large-list customer-list">
           <li className="list-header">
             <p
-              className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
+              className={`flex-center-left sortable ${
+                sort == "NAME" ? "active-sort" : ""
+              }`}
               onClick={() => {
                 if (sort == "NAME") {
                   setReverseSort(!reverseSort);
@@ -258,7 +257,7 @@ const SpecialPage = ({}) => {
         <div className="flex-center-center">
           {loading || error ? (
             ""
-          ) : data.customers.pageInfo.hasNextPage ? (
+          ) : data.orders.pageInfo.hasNextPage ? (
             <button onClick={loadMore}>
               {loading ? <Loader size="24" /> : "Load more"}
             </button>

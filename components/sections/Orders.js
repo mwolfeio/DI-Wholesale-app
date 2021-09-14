@@ -45,7 +45,12 @@ const Section = (props) => {
               <div className="card flex-center-btw">
                 <div>
                   <p>{formatter.format(order.node.totalPrice)} spent</p>
-                  <p>{order.node.lineItems.edge.length} products</p>
+                  <p>
+                    {order.node.lineItems
+                      ? order.node.lineItems.edge.length
+                      : "0"}{" "}
+                    products
+                  </p>
                   <p>{order.node.createdAt}</p>
                 </div>
                 <div className="virticle-divider"></div>
