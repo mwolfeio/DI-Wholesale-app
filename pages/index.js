@@ -26,10 +26,10 @@ let linkMap = [
   },
   {
     title: "Orders",
-    link: "customers",
+    link: "orders",
     img: Orders,
     description: "Read and edit orders and their status.",
-    active: false,
+    active: true,
   },
   {
     title: "Membership Program",

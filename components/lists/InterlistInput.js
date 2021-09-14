@@ -25,8 +25,6 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 `;
 
 const Section = (props) => {
-  console.log("Listinput props", props);
-
   //State
   const [customerNumber, setCustomerNumber] = useState(
     props.cnumb ? `#${props.cnumb}` : ""
@@ -39,9 +37,6 @@ const Section = (props) => {
   const [customerUpdate, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
-
-  console.log("Listinput props.cnumb: ", props.cnumb);
-  console.log("Listinput customerNumber: ", customerNumber);
 
   //Handle input
   const changeHandler = (e) => {

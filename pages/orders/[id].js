@@ -55,7 +55,6 @@ const GET_CUSTOMER = gql`
             namespace
             key
             value
-            type
           }
         }
       }
@@ -190,13 +189,8 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
-        <Orders fields={ordersArr} />
+
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />
-        <section className="disabled">Wishlist</section>
-        <section className="disabled">Interests</section>
-        <section className="disabled">Reviews</section>
-        <section className="disabled">Alerts</section>
-        <section className="disabled">Rewards</section>
       </div>
     </main>
   );

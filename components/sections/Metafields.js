@@ -33,9 +33,12 @@ const Section = (props) => {
 
             return (
               <div className="card">
-                <p>
-                  {namespace}.{metafieldKey}
-                </p>
+                <div className="felx-center-btw">
+                  <p>
+                    {namespace}.{metafieldKey}
+                  </p>
+                  <p className="subtitle">metafield.node.type;</p>
+                </div>
                 <MetafieldInput
                   customerId={props.customerId}
                   field={metafield.node}

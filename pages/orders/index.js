@@ -208,9 +208,7 @@ const SpecialPage = ({}) => {
         <ul className="large-list customer-list">
           <li className="list-header">
             <p
-              className={`flex-center-left sortable ${
-                sort == "NAME" ? "active-sort" : ""
-              }`}
+              className={`sortable ${sort == "NAME" ? "active-sort" : ""}`}
               onClick={() => {
                 if (sort == "NAME") {
                   setReverseSort(!reverseSort);
