@@ -77,7 +77,6 @@ const SpecialPage = ({}) => {
 
   const loadMore = () => {
     let lastCursor = results.at(-1).cursor;
-    console.log("setting new after to: ", lastCursor);
     setLoadingMore(true);
     setLastCursor(lastCursor);
   };
@@ -206,50 +205,78 @@ const SpecialPage = ({}) => {
           <li className="list-header">
             <p
               className={`flex-center-left sortable ${
-                sort == "NAME" ? "active-sort" : ""
+                sort == "ORDER_NUMBER" ? "active-sort" : ""
               }`}
               onClick={() => {
-                if (sort == "NAME") {
+                if (sort == "ORDER_NUMBER") {
                   setReverseSort(!reverseSort);
                 }
-                setSort("NAME");
+                setSort("ORDER_NUMBER");
               }}
               style={{ marginLeft: "16px", justifySelf: "start" }}
             >
-              <span>Name</span>
-              {direction("A", "Z")}
+              <span>Order</span>
+              {direction("0", "1")}
             </p>
-
-            <p style={{ justifySelf: "start" }}>Company</p>
-            <p>CN</p>
             <p
+              className={` sortable ${
+                sort == "CREATED_AT" ? "active-sort" : ""
+              }`}
               onClick={() => {
-                if (sort == "ORDERS_COUNT") {
+                if (sort == "CREATED_AT") {
                   setReverseSort(!reverseSort);
                 }
-                setSort("ORDERS_COUNT");
+                setSort("CREATED_AT");
+              }}
+              style={{ marginLeft: "16px", justifySelf: "start" }}
+            >
+              <span>Date</span>
+              {direction("N", "O")}
+            </p>
+            <p
+              onClick={() => {
+                if (sort == "CUSTOMER_NAME") {
+                  setReverseSort(!reverseSort);
+                }
+                setSort("CUSTOMER_NAME");
               }}
               className={`sortable ${
-                sort == "ORDERS_COUNT" ? "active-sort" : ""
+                sort == "CUSTOMER_NAME" ? "active-sort" : ""
               }`}
             >
-              <span>Orders</span>
-              {direction("H", "L")}
+              <span>Customer</span>
+              {direction("A", "Z")}
             </p>
             <p
               onClick={() => {
-                if (sort == "RELEVANCE") {
+                if (sort == "TOTAL_PRICE") {
                   setReverseSort(!reverseSort);
                 }
-                setSort("RELEVANCE");
+                setSort("TOTAL_PRICE");
               }}
               style={{ justifySelf: "flex-end" }}
               className={`flex-center-right sortable ${
-                sort == "RELEVANCE" ? "active-sort" : ""
+                sort == "TOTAL_PRICE" ? "active-sort" : ""
               }`}
             >
-              <span>Age</span>
-              {direction("N", "O")}
+              <span>items</span>
+              {direction("0", "1")}
+            </p>
+            <p>Type</p>
+            <p
+              onClick={() => {
+                if (sort == "FULFILLMENT_STATUS") {
+                  setReverseSort(!reverseSort);
+                }
+                setSort("FULFILLMENT_STATUS");
+              }}
+              style={{ justifySelf: "flex-end" }}
+              className={`flex-center-right sortable ${
+                sort == "FULFILLMENT_STATUS" ? "active-sort" : ""
+              }`}
+            >
+              <span>fulfillment </span>
+              {direction("T", "F")}
             </p>
           </li>
           {list}
