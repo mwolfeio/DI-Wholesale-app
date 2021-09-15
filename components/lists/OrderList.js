@@ -28,6 +28,12 @@ export default function SpecialPage(props) {
         style={{ animationDelay: `${animationDelayCalc(props.index)}s` }}
         key={`order-list-item-${props.index}`}
       >
+        <div
+          className="tinny-tag active-tiny-tab"
+          style={{ position: "absolute", top: "-4px", left: "-4px" }}
+        >
+          Drop Ship
+        </div>
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{props.order.number}</p>
         </div>

@@ -203,7 +203,7 @@ const SpecialPage = ({}) => {
           onChange={debouncedChangeHandler}
           className="list-search"
           type="text"
-          placeholder="Enter a customer's name..."
+          placeholder="Enter customer's name, number, Company or email..."
         />
         <ul className="large-list customer-list">
           <li className="list-header">

@@ -262,7 +262,6 @@ const SpecialPage = ({}) => {
               <span>items</span>
               {direction("0", "1")}
             </p>
-            <p>Type</p>
             <p
               onClick={() => {
                 if (sort == "FULFILLMENT_STATUS") {
