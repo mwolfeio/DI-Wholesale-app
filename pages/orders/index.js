@@ -14,7 +14,7 @@ const GET_ORDERS = gql`
     $first: Int = 50
     $after: String = null
     $srch: String!
-    $srt: CustomerSortKeys!
+    $srt: OrderSortKeys!
     $rev: Boolean!
   ) {
     orders(
