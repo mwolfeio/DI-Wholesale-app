@@ -30,12 +30,11 @@ export default function SpecialPage(props) {
       >
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{props.order.number}</p>
-          <p className="subtitle">{truncate(props.order.email)}</p>
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>{props.order.company}</p>
-          <p className="subtitle">{props.order.address}</p>
+          <p>{props.order.name}</p>
+          <p className="subtitle">{props.order.company}</p>
         </div>
 
         <ListInput
@@ -48,6 +47,16 @@ export default function SpecialPage(props) {
           <p className="subtitle flex-center-column">
             {formatter.format(props.order.totalSpent)}
           </p>
+        </div>
+        <div
+          className="list-name flex-right-column"
+          style={{
+            display: "flex",
+            justifyContent: "end",
+            flexDirection: "column",
+          }}
+        >
+          <p>{props.order.age}</p>
         </div>
         <div
           className="list-name flex-right-column"

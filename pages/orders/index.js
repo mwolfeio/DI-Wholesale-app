@@ -201,7 +201,7 @@ const SpecialPage = ({}) => {
           type="text"
           placeholder="Enter an order or customer..."
         />
-        <ul className="large-list customer-list">
+        <ul className="large-list order-list">
           <li className="list-header">
             <p
               className={`flex-center-left sortable ${
@@ -275,7 +275,7 @@ const SpecialPage = ({}) => {
                 sort == "FULFILLMENT_STATUS" ? "active-sort" : ""
               }`}
             >
-              <span>fulfillment </span>
+              <span>Status </span>
               {direction("T", "F")}
             </p>
           </li>

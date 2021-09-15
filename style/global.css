@@ -407,13 +407,19 @@ li p.sortable:hover {
 /* CUSTOEMR PAGE-------------- */
 ul.customer-list li {
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
   width: 100%;
   grid-column-gap: 8px;
   justify-items: center;
   align-items: center;
   position: relative;
 }
+.customer-list {
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+}
+.order-list {
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+}
+
 .cus-numb-edit {
   transition: 0.15s ease;
   padding: 4px 8px;
