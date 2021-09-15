@@ -134,7 +134,7 @@ const SpecialPage = ({}) => {
         return (
           <OrderList
             index={i}
-            customer={{
+            order={{
               id: id,
               gid: ord.node.id,
               number: ord.node.name,

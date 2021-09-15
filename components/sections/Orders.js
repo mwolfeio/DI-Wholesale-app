@@ -44,7 +44,7 @@ const Section = (props) => {
           <div className="card-container">
             {ordersArr.map((order, i) => {
               console.log(order);
-              return <p>{order.name}</p>;
+
               let date = new Date(order.node.createdAt);
               return (
                 <div className="card order-wrapper ">
