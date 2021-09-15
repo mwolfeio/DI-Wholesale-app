@@ -413,10 +413,10 @@ ul.customer-list li {
   align-items: center;
   position: relative;
 }
-.customer-list {
+.customer-list li {
   grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
 }
-.order-list {
+.order-list li {
   grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
 }
 
