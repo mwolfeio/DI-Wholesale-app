@@ -181,12 +181,14 @@ const CustomerPage = () => {
       <div style={{ width: "100%" }}>
         <section className="clear">
           <div className="flex-bottom-btw underline">
-            <h1 className>
+            <h1>
               {data.customer.firstName} {data.customer.lastName}
             </h1>
+            <h2>{data.customer.defaultAddress.company}</h2>
             <h1 style={{ fontSize: "20px" }}>
               {formatter.format(data.customer.totalSpent)} spent
             </h1>
+            <h2>{data.customer.ordersCount} Orders</h2>
           </div>
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
@@ -203,12 +205,35 @@ const CustomerPage = () => {
                   ? data.customer.phone
                   : data.customer.defaultAddress.phone}
               </h3>
+              <h3>
+                Account created <br />
+                {data.customer.lifetimeDuration} ago
+              </h3>
             </div>
             <div style={{ textAlign: "right" }}>
               <h3 style={{ textAlign: "right" }}>
-                {data.customer.ordersCount} Orders <br />
-                Account created <br />
-                {data.customer.lifetimeDuration} ago
+                {data.customer.address1 && (
+                  <span>
+                    {data.customer.address1}
+                    <br />
+                  </span>
+                )}
+                {data.customer.address2 && (
+                  <span>
+                    {data.customer.address2}
+                    <br />
+                  </span>
+                )}
+                {data.customer.city && <span>{data.customer.city}</span>}
+                {data.customer.provinceCode && (
+                  <span>{data.customer.provinceCode}</span>
+                )}{" "}
+                <br />
+                {data.customer.zip && <span>{data.customer.zip}</span>}
+                {data.customer.country && (
+                  <span>{data.customer.country}</span>
+                )}{" "}
+                <br />
               </h3>
             </div>
           </div>

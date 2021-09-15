@@ -10,7 +10,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 let truncate = (str) => {
   let length = str.length;
-  if (length > 28) return `${str.substring(0, 25)}...`;
+  if (length > 30) return `${str.substring(0, 27)}...`;
   else return str;
 };
 
@@ -29,8 +29,13 @@ export default function SpecialPage(props) {
         key={`order-list-item-${props.index}`}
       >
         <div
-          className="tinny-tag active-tiny-tab"
-          style={{ position: "absolute", top: "-4px", left: "-4px" }}
+          className="tinny-tag active-tiny-tab flex-center-center"
+          style={{
+            position: "absolute",
+            top: "-4px",
+            left: "-4px",
+            width: "auto",
+          }}
         >
           Drop Ship
         </div>
@@ -40,7 +45,7 @@ export default function SpecialPage(props) {
 
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{props.order.name}</p>
-          <p className="subtitle">{props.order.company}</p>
+          <p className="subtitle">{truncate(props.order.company)}</p>
         </div>
 
         <ListInput
@@ -53,16 +58,6 @@ export default function SpecialPage(props) {
           <p className="subtitle flex-center-column">
             {formatter.format(props.order.totalSpent)}
           </p>
-        </div>
-        <div
-          className="list-name flex-right-column"
-          style={{
-            display: "flex",
-            justifyContent: "end",
-            flexDirection: "column",
-          }}
-        >
-          <p>{props.order.age}</p>
         </div>
         <div
           className="list-name flex-right-column"

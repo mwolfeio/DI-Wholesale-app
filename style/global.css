@@ -405,7 +405,8 @@ li p.sortable:hover {
 }
 
 /* CUSTOEMR PAGE-------------- */
-ul.customer-list li {
+ul.customer-list li,
+ul.order-list li {
   display: grid;
   width: 100%;
   grid-column-gap: 8px;
@@ -413,11 +414,11 @@ ul.customer-list li {
   align-items: center;
   position: relative;
 }
-.customer-list li {
+ul.customer-list li {
   grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
 }
-.order-list li {
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+ul.order-list li {
+  grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
 }
 
 .cus-numb-edit {

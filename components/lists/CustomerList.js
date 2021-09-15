@@ -57,7 +57,7 @@ export default function SpecialPage(props) {
             flexDirection: "column",
           }}
         >
-          <p>{props.customer.age}</p>
+          <p style={{ textAlign: "right" }}>{props.customer.age}</p>
         </div>
       </li>
     </Link>
