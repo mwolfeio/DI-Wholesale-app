@@ -186,7 +186,7 @@ const CustomerPage = () => {
                 {data.customer.firstName} {data.customer.lastName}
               </h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                {data.customer.defaultAddress.company}
+                <i>{data.customer.defaultAddress.company}</i>
               </h2>
             </div>
             <div style={{ textAlign: "right" }}>
@@ -194,7 +194,7 @@ const CustomerPage = () => {
                 {formatter.format(data.customer.totalSpent)} spent
               </h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                {data.customer.ordersCount} Orders
+                <i>{data.customer.ordersCount} Orders</i>
               </h2>
             </div>
           </div>
@@ -217,32 +217,14 @@ const CustomerPage = () => {
             </div>
             <div style={{ textAlign: "right" }}>
               <h3 style={{ textAlign: "right" }}>
-                {data.customer.defaultAddress.address1 && (
-                  <span>
-                    {data.customer.defaultAddress.address1}
-                    <br />
-                  </span>
-                )}
-                {data.customer.defaultAddress.address2 && (
-                  <span>
-                    {data.customer.defaultAddress.address2}
-                    <br />
-                  </span>
-                )}
-                {data.customer.defaultAddress.city && (
-                  <span>{data.customer.defaultAddress.city}</span>
-                )}
-                {data.customer.defaultAddress.provinceCode && (
-                  <span>{data.customer.defaultAddress.provinceCode}</span>
-                )}
+                {data.customer.defaultAddress.address1} <br />
+                {data.customer.defaultAddress.address2}
                 <br />
-                {data.customer.defaultAddress.zip && (
-                  <span>{data.customer.defaultAddress.zip}</span>
-                )}
-                {data.customer.defaultAddress.country && (
-                  <span>{data.customer.defaultAddress.country}</span>
-                )}{" "}
+                {data.customer.defaultAddress.city},{" "}
+                {data.customer.defaultAddress.provinceCode}
                 <br />
+                {data.customer.defaultAddress.zip},{" "}
+                {data.customer.defaultAddress.country}
               </h3>
             </div>
           </div>

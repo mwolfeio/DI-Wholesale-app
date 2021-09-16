@@ -27,7 +27,7 @@ const GET_ORDERS = gql`
       edges {
         cursor
         node {
-          metafield(key: "cus_no", namespace: "Customer number") {
+          metafield(key: "drop_ship", namespace: "Drop Shipping") {
             id
             value
           }
@@ -36,6 +36,7 @@ const GET_ORDERS = gql`
           id
           fulfillable
           email
+          createdAt
           displayAddress {
             company
             city
@@ -122,10 +123,10 @@ const SpecialPage = ({}) => {
         let company = ord.node.displayAddress
           ? ord.node.displayAddress.company
           : "-";
-        let cusNumb =
-          ord.node.metafield && ord.node.metafield.value
-            ? ord.node.metafield.value
-            : "";
+        let dropShip =
+          ord.node.metafield && ord.node.metafield.value === "true"
+            ? true
+            : false;
         let fieldId =
           ord.node.metafield && ord.node.metafield.id
             ? ord.node.metafield.id
@@ -140,13 +141,15 @@ const SpecialPage = ({}) => {
               number: ord.node.name,
               name: `${ord.node.customer.lastName}, ${ord.node.customer.firstName}`,
               email: ord.node.email,
-              cusnumb: cusNumb,
+              dropShip: dropShip,
               orders: 0,
               age: 0,
               address: address,
               company: company,
               totalSpent: ord.node.totalPrice,
               fieldId: fieldId,
+              fulfillable: fulfillable,
+              createdAt: ord.node.createdAt,
             }}
           />
         );
@@ -213,7 +216,7 @@ const SpecialPage = ({}) => {
                 }
                 setSort("ORDER_NUMBER");
               }}
-              style={{ marginLeft: "16px", justifySelf: "start" }}
+              style={{ justifySelf: "start" }}
             >
               <span>Order</span>
               {direction("0", "1")}
@@ -228,7 +231,7 @@ const SpecialPage = ({}) => {
                 }
                 setSort("CREATED_AT");
               }}
-              style={{ marginLeft: "16px", justifySelf: "start" }}
+              style={{ justifySelf: "start" }}
             >
               <span>Date</span>
               {direction("N", "O")}

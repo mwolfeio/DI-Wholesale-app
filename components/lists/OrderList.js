@@ -28,19 +28,20 @@ export default function SpecialPage(props) {
         style={{ animationDelay: `${animationDelayCalc(props.index)}s` }}
         key={`order-list-item-${props.index}`}
       >
-        <div
-          className="tinny-tag active-tiny-tab flex-center-center"
-          style={{
-            position: "absolute",
-            top: "-4px",
-            left: "-4px",
-            width: "auto",
-          }}
-        >
-          Drop Ship
-        </div>
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{props.order.number}</p>
+          <p className="subtitle">
+            {props.order.dropShip ? (
+              <span style={{ color: "#4388f8" }}>Drop Shipping</span>
+            ) : (
+              "Wholesale"
+            )}
+          </p>
+        </div>
+
+        <div className="list-name" style={{ justifySelf: "start" }}>
+          <p>{props.order.createdAt}</p>
+          <p className="subtitle">{props.order.age}</p>
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
@@ -48,11 +49,6 @@ export default function SpecialPage(props) {
           <p className="subtitle">{truncate(props.order.company)}</p>
         </div>
 
-        <ListInput
-          cusId={props.order.gid}
-          fieldId={props.order.fieldId}
-          cnumb={props.order.cusnumb}
-        />
         <div className="list-name flex-center-column">
           <p>{props.order.orders}</p>
           <p className="subtitle flex-center-column">
@@ -67,9 +63,31 @@ export default function SpecialPage(props) {
             flexDirection: "column",
           }}
         >
-          <p>{props.order.age}</p>
+          {props.order.fulfillable ? (
+            <div className="tinny-tag dissabled-tiny-tab">Unfulfilled</div>
+          ) : (
+            <div className="tinny-tag complete-tiny-tab ">Fulfilled</div>
+          )}
         </div>
       </li>
     </Link>
   );
 }
+
+// <ListInput
+//   cusId={props.order.gid}
+//   fieldId={props.order.fieldId}
+//   cnumb={props.order.cusnumb}
+// />
+
+// <div
+//   className="tinny-tag active-tiny-tab flex-center-center"
+//   style={{
+//     position: "absolute",
+//     top: "-4px",
+//     left: "-4px",
+//     width: "auto",
+//   }}
+// >
+//   Drop Ship
+// </div>

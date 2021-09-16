@@ -418,7 +418,7 @@ ul.customer-list li {
   grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
 }
 ul.order-list li {
-  grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 2fr 1fr 1fr;
 }
 
 .cus-numb-edit {
@@ -601,6 +601,14 @@ button.submit-button {
 .drop-ship-tiny-tab {
   color: white;
   background: #54e4a6;
+}
+.dissabled-tiny-tab {
+  color: #b0b7c3;
+  background: #fafbfc;
+}
+.complete-tiny-tab {
+  color: white;
+  background: #ffd553;
 }
 
 /* FLEXBOX-------------------- */
