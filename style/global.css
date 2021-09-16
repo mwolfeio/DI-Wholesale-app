@@ -555,7 +555,7 @@ button.submit-button {
   text-decoration: none;
 }
 .order-header a:hover {
-  color: #4388f8 !important;
+  color: #fafbfc !important;
 }
 .order-line-item-wrapper {
   overflow: hidden;

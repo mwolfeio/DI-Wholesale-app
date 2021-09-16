@@ -34,6 +34,7 @@ const GET_ORDERS = gql`
           name
           totalPrice
           id
+          currentSubtotalLineItemsQuantity
           fulfillable
           email
           createdAt
@@ -63,7 +64,7 @@ const SpecialPage = ({}) => {
   const [lastCursor, setLastCursor] = useState(null);
   const [loadingMore, setLoadingMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [sort, setSort] = useState("CREATED_AT");
+  const [sort, setSort] = useState("ORDER_NUMBER");
   const [reverseSort, setReverseSort] = useState(false);
 
   const { loading, error, data } = useQuery(GET_ORDERS, {
@@ -142,8 +143,7 @@ const SpecialPage = ({}) => {
               name: `${ord.node.customer.lastName}, ${ord.node.customer.firstName}`,
               email: ord.node.email,
               dropShip: dropShip,
-              orders: 0,
-              age: 0,
+              orders: ord.node.currentSubtotalLineItemsQuantity,
               address: address,
               company: company,
               totalSpent: ord.node.totalPrice,
@@ -234,7 +234,7 @@ const SpecialPage = ({}) => {
               style={{ justifySelf: "start" }}
             >
               <span>Date</span>
-              {direction("N", "O")}
+              {direction("O", "N")}
             </p>
             <p
               onClick={() => {
