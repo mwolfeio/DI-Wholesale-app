@@ -148,7 +148,7 @@ const SpecialPage = ({}) => {
               company: company,
               totalSpent: ord.node.totalPrice,
               fieldId: fieldId,
-              fulfillable: fulfillable,
+              fulfillable: ord.node.fulfillable,
               createdAt: ord.node.createdAt,
             }}
           />
