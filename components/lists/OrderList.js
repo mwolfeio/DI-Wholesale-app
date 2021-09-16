@@ -64,9 +64,13 @@ export default function SpecialPage(props) {
           }}
         >
           {props.order.fulfillable ? (
-            <div className="tinny-tag dissabled-tiny-tab">Unfulfilled</div>
+            <div className="tinny-tag flex-center-center complete-tiny-tab ">
+              Unfulfilled
+            </div>
           ) : (
-            <div className="tinny-tag complete-tiny-tab ">Fulfilled</div>
+            <div className="tinny-tag flex-center-center dissabled-tiny-tab">
+              Fulfilled
+            </div>
           )}
         </div>
       </li>

@@ -189,7 +189,7 @@ const CustomerPage = () => {
                 <i>{data.customer.defaultAddress.company}</i>
               </h2>
             </div>
-            <div style={{ textAlign: "right" }}>
+            <div style={{ textAlign: "right" }} className="flex-right-column ">
               <h1 style={{ fontSize: "20px" }}>
                 {formatter.format(data.customer.totalSpent)} spent
               </h1>
@@ -200,12 +200,6 @@ const CustomerPage = () => {
           </div>
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
-              <h3 stule>Shopify id: {id.replace("$", "")}</h3>
-              {resaleNumberObj ? (
-                <h3 stule>Resale Number: {resaleNumberObj.node.value}</h3>
-              ) : (
-                ""
-              )}
               <h3 stule>Email: {data.customer.email}</h3>
               <h3>
                 Phone:{" "}
@@ -213,13 +207,20 @@ const CustomerPage = () => {
                   ? data.customer.phone
                   : data.customer.defaultAddress.phone}
               </h3>
-              <h3>Jained {data.customer.lifetimeDuration} ago</h3>
+              {resaleNumberObj ? (
+                <h3 stule>Resale Number: {resaleNumberObj.node.value}</h3>
+              ) : (
+                ""
+              )}
+              <h3 stule>Shopify id: {id.replace("$", "")}</h3>
             </div>
             <div style={{ textAlign: "right" }}>
               <h3 style={{ textAlign: "right" }}>
-                {data.customer.defaultAddress.address1} <br />
-                {data.customer.defaultAddress.address2}
+                Default Address:
+                {data.customer.defaultAddress.address1}
                 <br />
+                {data.customer.defaultAddress.address2}
+                {data.customer.defaultAddress.address2 && <br />}
                 {data.customer.defaultAddress.city},{" "}
                 {data.customer.defaultAddress.provinceCode}
                 <br />
@@ -241,3 +242,5 @@ const CustomerPage = () => {
   );
 };
 export default CustomerPage;
+
+// /<h3>Jained {data.customer.lifetimeDuration} ago</h3>

@@ -246,6 +246,7 @@ const SpecialPage = ({}) => {
               className={`sortable ${
                 sort == "CUSTOMER_NAME" ? "active-sort" : ""
               }`}
+              style={{ justifySelf: "start" }}
             >
               <span>Customer</span>
               {direction("A", "Z")}
