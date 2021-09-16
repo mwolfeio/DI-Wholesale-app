@@ -403,6 +403,9 @@ li p.sortable:hover {
   padding-bottom: 8px;
   border-bottom: 1px solid #b0b7c3;
 }
+.underline h1 {
+  margin-bottom: 0;
+}
 
 /* CUSTOEMR PAGE-------------- */
 ul.customer-list li,

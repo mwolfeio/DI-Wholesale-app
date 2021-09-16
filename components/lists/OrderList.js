@@ -1,4 +1,5 @@
 import Link from "next/link";
+import moment from "moment";
 
 import CustomersIcon from "../../media/icons/Customers.js";
 import ListInput from "./InterlistInput.js";
@@ -21,6 +22,7 @@ let animationDelayCalc = (index) => {
 
 export default function SpecialPage(props) {
   console.log("orderList: ", props);
+  let date = new Date(props.order.createdAt);
   return (
     <Link href={`/orders/${props.order.id}`} passHref>
       <li
@@ -40,8 +42,8 @@ export default function SpecialPage(props) {
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>{props.order.createdAt}</p>
-          <p className="subtitle">{props.order.age}</p>
+          <p>{moment(date).format("MMMM Do YYYY")}</p>
+          <p className="subtitle">{moment(date).fromNow()}</p>
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>

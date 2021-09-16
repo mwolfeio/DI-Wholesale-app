@@ -116,7 +116,7 @@ const SpecialPage = ({}) => {
       results.map((cus, i) => {
         let id = cus.node.id.replace("gid://shopify/Customer/", "");
         let address = cus.node.defaultAddress
-          ? `${cus.node.defaultAddress.city}, ${cus.node.defaultAddress.provinceCode}`
+          ? `${cus.node.defaultAddress.address1}, ${cus.node.defaultAddress.city}, ${cus.node.defaultAddress.provinceCode}`
           : "";
         let company = cus.node.defaultAddress
           ? cus.node.defaultAddress.company

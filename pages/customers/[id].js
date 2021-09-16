@@ -216,7 +216,10 @@ const CustomerPage = () => {
             </div>
             <div style={{ textAlign: "right" }}>
               <h3 style={{ textAlign: "right" }}>
-                Default Address:
+                Billing Address:
+                <br />
+                {data.customer.defaultAddress.company}
+                <br />
                 {data.customer.defaultAddress.address1}
                 <br />
                 {data.customer.defaultAddress.address2}
