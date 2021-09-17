@@ -56,14 +56,14 @@ export default function SpecialPage(props) {
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>{moment(date).format("MMM D, YY")}</p>
+          <p>{moment(date).format("MMM D, YYYY")}</p>
           <p className="subtitle">{moment(date).fromNow()}</p>
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>
             {props.order.shiptDate
-              ? moment(shiptDate).format("MMM D, YY")
+              ? moment(shiptDate).format("MMM D, YYYY")
               : shiptDate}
           </p>
           <p className="subtitle">

@@ -562,6 +562,9 @@ button.submit-button {
 .order-header {
   height: 100%;
 }
+.order-header > * {
+  width: 100%;
+}
 .order-header a {
   font-weight: bold;
   color: #b0b7c3;
@@ -605,6 +608,7 @@ button.submit-button {
   font-weight: bold;
   border-radius: 20px;
   background: white;
+  color: #4388f8;
   padding: 0 12px;
   height: 28px;
   white-space: nowrap;
