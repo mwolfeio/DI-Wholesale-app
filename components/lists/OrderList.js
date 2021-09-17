@@ -28,7 +28,9 @@ const customerLink = (id, e) => {
 
 export default function SpecialPage(props) {
   console.log("orderList: ", props);
-  let customerId = props.customerId.replace("gid://shopify/Customer/", "");
+  let customerId = props.customerId
+    ? props.customerId.replace("gid://shopify/Customer/", "")
+    : "";
   let date = new Date(props.order.createdAt);
   return (
     <Link href={`/orders/${props.order.id}`} passHref>
