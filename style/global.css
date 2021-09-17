@@ -257,8 +257,10 @@ input.customer-number-input:focus {
   border-radius: 8px;
 }
 .inter-list-link:hover {
-  color: #4388f8;
   background: #f4f6f8;
+}
+.inter-list-link:hover p {
+  color: #4388f8 !important;
 }
 
 .list-input-wrapper input {

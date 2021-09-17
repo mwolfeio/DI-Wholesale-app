@@ -235,9 +235,10 @@ const SpecialPage = ({}) => {
               }}
               style={{ justifySelf: "start" }}
             >
-              <span>Date</span>
+              <span>Ordered</span>
               {direction("O", "N")}
             </p>
+            <p>Ship Date</p>
             <p
               onClick={() => {
                 if (sort == "CUSTOMER_NAME") {

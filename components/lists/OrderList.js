@@ -11,7 +11,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 let truncate = (str) => {
   let length = str.length;
-  if (length > 30) return `${str.substring(0, 27)}...`;
+  if (length > 28) return `${str.substring(0, 25)}...`;
   else return str;
 };
 
@@ -28,10 +28,12 @@ const customerLink = (id, e) => {
 
 export default function SpecialPage(props) {
   console.log("orderList: ", props);
-  let customerId = props.customerId
-    ? props.customerId.replace("gid://shopify/Customer/", "")
-    : "";
+
   let date = new Date(props.order.createdAt);
+  let customerId = props.order.customerId
+    ? props.customerId.order.replace("gid://shopify/Customer/", "")
+    : "";
+
   return (
     <Link href={`/orders/${props.order.id}`} passHref>
       <li
@@ -51,7 +53,7 @@ export default function SpecialPage(props) {
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>{moment(date).format("MMMM Do YYYY")}</p>
+          <p>{moment(date).format("MMM Do YYYY")}</p>
           <p className="subtitle">{moment(date).fromNow()}</p>
         </div>
 
