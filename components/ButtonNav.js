@@ -4,18 +4,19 @@ import Back from "../media/icons/Back.js";
 import Dash from "../media/icons/Dashboard.js";
 import MoreButton from "./MoreButton.js";
 import CustomerNumber from "./CustomerNumber.js";
+import { useRouter } from "next/router";
 
 export default function SpecialPage(props) {
-  let link = props.back ? `/${props.back}` : "/";
+  // let link = props.back ? `/${props.back}` : "/";
+  const router = useRouter();
+
   return (
     <div className="flex-center-btw" style={{ marginBottom: "16px" }}>
       <div className="flex-center-left">
-        <Link href={link}>
-          <button style={{ marginRight: "8px" }}>
-            <Back />
-            Back
-          </button>
-        </Link>
+        <button style={{ marginRight: "8px" }} onClick={() => router.back()}>
+          <Back />
+          Back
+        </button>
         <Link href="/">
           <button>
             <Dash />

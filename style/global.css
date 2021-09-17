@@ -175,7 +175,7 @@ button.text-button {
   background: #ffffff;
 }
 button.text-button:hover {
-  background: #b0b7c3;
+  background: #fafbfc;
 }
 
 button.primary {
@@ -435,7 +435,7 @@ ul.customer-list li {
   grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
 }
 ul.order-list li {
-  grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr;
+  grid-template-columns: 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr;
 }
 
 .cus-numb-edit {
@@ -547,7 +547,7 @@ button.submit-button {
 
 .order-product-wrapper:hover {
   box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
-  background: #b0b7c3;
+  background: #fafbfc;
 }
 .order-product-wrapper p {
   line-height: 18px;
