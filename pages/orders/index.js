@@ -235,7 +235,7 @@ const SpecialPage = ({}) => {
               }}
               style={{ justifySelf: "start" }}
             >
-              <span>Ordered</span>
+              <span>Date</span>
               {direction("O", "N")}
             </p>
             <p>Ship Date</p>
