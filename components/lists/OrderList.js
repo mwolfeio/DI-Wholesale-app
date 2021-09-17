@@ -30,6 +30,9 @@ export default function SpecialPage(props) {
   console.log("orderList: ", props);
 
   let date = new Date(props.order.createdAt);
+  let shiptDate = props.order.shiptDate
+    ? new Date(props.order.shiptDate)
+    : "N/A";
   let customerId = props.order.customerId
     ? props.order.customerId.replace("gid://shopify/Customer/", "")
     : "";
@@ -53,12 +56,19 @@ export default function SpecialPage(props) {
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>{moment(date).format("MM D YY")}</p>
+          <p>{moment(date).format("MMM D, YY")}</p>
           <p className="subtitle">{moment(date).fromNow()}</p>
         </div>
+
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>{moment(date).format("MMM D YY")}</p>
-          <p className="subtitle">{moment(date).fromNow()}</p>
+          <p>
+            {props.order.shiptDate
+              ? moment(shiptDate).format("MMM D, YY")
+              : shiptDate}
+          </p>
+          <p className="subtitle">
+            {props.order.shiptDate ? moment(shiptDate).fromNow() : "-"}
+          </p>
         </div>
 
         <div

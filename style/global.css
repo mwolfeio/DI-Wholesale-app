@@ -435,7 +435,7 @@ ul.customer-list li {
   grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
 }
 ul.order-list li {
-  grid-template-columns: 1fr 1.5fr 1.5fr 1.5fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr;
 }
 
 .cus-numb-edit {

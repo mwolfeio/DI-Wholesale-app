@@ -27,7 +27,11 @@ const GET_ORDERS = gql`
       edges {
         cursor
         node {
-          metafield(key: "drop_ship", namespace: "Drop Shipping") {
+          metafield_0: metafield(key: "drop_ship", namespace: "Drop Shipping") {
+            id
+            value
+          }
+          metafield_1: metafield(key: "ship_date", namespace: "Ship Date") {
             id
             value
           }
@@ -125,8 +129,9 @@ const SpecialPage = ({}) => {
         let company = ord.node.displayAddress
           ? ord.node.displayAddress.company
           : "-";
+        let shiptDate = ord.node.metafield_1;
         let dropShip =
-          ord.node.metafield && ord.node.metafield.value === "true"
+          ord.node.metafield_0 && ord.node.metafield_0.value === "true"
             ? true
             : false;
         let fieldId =
@@ -145,6 +150,7 @@ const SpecialPage = ({}) => {
               name: `${ord.node.customer.lastName}, ${ord.node.customer.firstName}`,
               email: ord.node.email,
               dropShip: dropShip,
+              shiptDate: shiptDate,
               orders: ord.node.currentSubtotalLineItemsQuantity,
               address: address,
               company: company,
@@ -238,7 +244,7 @@ const SpecialPage = ({}) => {
               <span>Date</span>
               {direction("O", "N")}
             </p>
-            <p>Ship Date</p>
+            <p style={{ justifySelf: "start" }}>Ship Date</p>
             <p
               onClick={() => {
                 if (sort == "CUSTOMER_NAME") {

@@ -9,84 +9,65 @@ import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
 
-const GET_CUSTOMER = gql`
-  query getCustomer($id: ID!) {
-    customer(id: $id) {
-      defaultAddress {
-        address1
-        address2
-        city
-        company
-        country
-        zip
-        provinceCode
-        province
-        phone
+const GET_ORDER = gql`
+  query getOrder($id: ID!) {
+    order(id: $id) {
+      billingAddress {
+        formatted(withCompany: false, withName: false)
       }
-      acceptsMarketing
       createdAt
-      addresses(first: 1) {
-        address1
-        city
-        company
-        country
-        countryCode
-        countryCodeV2
-        phone
-        provinceCode
-        province
-        zip
+      currentSubtotalLineItemsQuantity
+      customer {
+        firstName
+        id
+        lastName
+        defaultAddress {
+          company
+        }
+        ordersCount
+        totalSpent
       }
-      displayName
+      displayFulfillmentStatus
       email
-      firstName
-      hasNote
-      hasTimelineComment
-      image {
-        src
+      fulfillable
+      fullyPaid
+      id
+      lineItems(first: 50) {
+        edges {
+          cursor
+          node {
+            image(maxWidth: 500, maxHeight: 500) {
+              src
+            }
+            fulfillmentStatus
+            name
+            originalTotal
+            originalUnitPrice
+            quantity
+            sku
+            title
+            vendor
+          }
+        }
       }
-      lastName
-      lifetimeDuration
-      marketingOptInLevel
-      metafields(first: 10) {
+      metafields(first: 20) {
         edges {
           node {
+            value
+            key
             id
             namespace
-            key
-            value
+            valueType
           }
         }
       }
-      note
-      orders(first: 5) {
-        edges {
-          node {
-            id
-            totalPrice
-            lineItems(first: 4) {
-              edges {
-                node {
-                  image(maxHeight: 500, maxWidth: 500) {
-                    originalSrc
-                  }
-                  quantity
-                  sku
-                  title
-                  vendor
-                }
-              }
-            }
-            createdAt
-          }
-        }
-      }
+      name
       phone
-      ordersCount
-      tags
-      taxExempt
-      taxExemptions
-      totalSpent
+      shippingAddress {
+        formatted(withCompany: true, withName: true)
+      }
+      totalPrice
+      unpaid
     }
   }
 `;
@@ -98,9 +79,9 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 const CustomerPage = () => {
   const { id } = useRouter().query;
-  let globalId = `gid://shopify/Customer/${id}`;
+  let globalId = `gid://shopify/Order/${id}`;
 
-  const { loading, error, data } = useQuery(GET_CUSTOMER, {
+  const { loading, error, data } = useQuery(GET_ORDER, {
     fetchPolicy: "no-cache",
     variables: { id: globalId },
   });
@@ -131,8 +112,6 @@ const CustomerPage = () => {
       </main>
     );
   }
-
-  console.log(data);
 
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
