@@ -49,6 +49,7 @@ const GET_ORDERS = gql`
             firstName
             email
             lastName
+            id
           }
         }
       }
@@ -65,7 +66,7 @@ const SpecialPage = ({}) => {
   const [loadingMore, setLoadingMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [sort, setSort] = useState("ORDER_NUMBER");
-  const [reverseSort, setReverseSort] = useState(false);
+  const [reverseSort, setReverseSort] = useState(true);
 
   const { loading, error, data } = useQuery(GET_ORDERS, {
     fetchPolicy: "no-cache",
@@ -140,6 +141,7 @@ const SpecialPage = ({}) => {
               id: id,
               gid: ord.node.id,
               number: ord.node.name,
+              customerId: ord.node.customer.id,
               name: `${ord.node.customer.lastName}, ${ord.node.customer.firstName}`,
               email: ord.node.email,
               dropShip: dropShip,

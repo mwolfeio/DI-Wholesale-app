@@ -20,8 +20,15 @@ let animationDelayCalc = (index) => {
   return mod * 0.03;
 };
 
+const customerLink = (id, e) => {
+  e.stopPropagation();
+  console.log("clicked and going to /customers/", id);
+  window.location.href = `/customers/${id}`;
+};
+
 export default function SpecialPage(props) {
   console.log("orderList: ", props);
+  let customerId = props.customerId.replace("gid://shopify/Customer/", "");
   let date = new Date(props.order.createdAt);
   return (
     <Link href={`/orders/${props.order.id}`} passHref>
@@ -46,7 +53,11 @@ export default function SpecialPage(props) {
           <p className="subtitle">{moment(date).fromNow()}</p>
         </div>
 
-        <div className="list-name" style={{ justifySelf: "start" }}>
+        <div
+          className="list-name inter-list-link"
+          onClick={(e) => customerLink(customerId, e)}
+          style={{ justifySelf: "start" }}
+        >
           <p>{props.order.name}</p>
           <p className="subtitle">{truncate(props.order.company)}</p>
         </div>
