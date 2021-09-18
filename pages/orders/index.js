@@ -130,13 +130,13 @@ const SpecialPage = ({}) => {
           ? ord.node.displayAddress.company
           : "-";
         let shiptDate = ord.node.metafield_1
-          ? `${ord.node.metafield_1.substring(
+          ? `${ord.node.metafield_1.value.substring(
               0,
               4
-            )}/${ord.node.metafield_1.substring(
+            )}/${ord.node.metafield_1.value.substring(
               4,
               6
-            )}/${ord.node.metafield_1.substring(6, 8)}`
+            )}/${ord.node.metafield_1.value.substring(6, 8)}`
           : null;
         let dropShip =
           ord.node.metafield_0 && ord.node.metafield_0.value === "true"

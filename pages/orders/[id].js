@@ -114,7 +114,7 @@ const CustomerPage = () => {
   }
 
   let matafieldsArr = data.customer.metafields.edges;
-  let ordersArr = data.customer.orders.edges;
+  let productArr = data.customer.lineItems.edges;
   let customerNumberObj = matafieldsArr.find(
     (o) => o.node.namespace === "Customer Number" && o.node.key === "cus_no"
   );
@@ -128,8 +128,8 @@ const CustomerPage = () => {
       <ButtonNav
         back="customers"
         cnumb={{
-          display: true,
-          cnumbObj: customerNumberObj ? customerNumberObj.node : {},
+          display: false,
+          text: data.order.name,
           globalId: globalId,
         }}
       />

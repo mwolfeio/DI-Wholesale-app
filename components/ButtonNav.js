@@ -25,6 +25,7 @@ export default function SpecialPage(props) {
         </Link>
       </div>
       <div className="flex-center-right">
+        {props.text}
         {props.cnumb && props.cnumb.display ? (
           <CustomerNumber data={props.cnumb} />
         ) : (
