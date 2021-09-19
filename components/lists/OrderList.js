@@ -29,6 +29,7 @@ const customerLink = (id, e) => {
 export default function SpecialPage(props) {
   console.log("orderList: ", props);
 
+  let currentDate = new Date();
   let date = new Date(props.order.createdAt);
   let shiptDate = props.order.shiptDate
     ? new Date(props.order.shiptDate)
@@ -40,7 +41,7 @@ export default function SpecialPage(props) {
   return (
     <Link href={`/orders/${props.order.id}`} passHref>
       <li
-        className=""
+        className={currentDate > shiptDate ? "past-due-list-item" : ""}
         style={{ animationDelay: `${animationDelayCalc(props.index)}s` }}
         key={`order-list-item-${props.index}`}
       >

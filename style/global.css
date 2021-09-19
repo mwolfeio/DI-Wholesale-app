@@ -51,7 +51,6 @@ h1 {
 
   color: #4e5d78;
 }
-
 h2 {
   font-family: Inter;
   font-style: normal;
@@ -67,7 +66,6 @@ h2 {
 
   color: #4e5d78;
 }
-
 h3 {
   font-family: Inter;
   font-style: normal;
@@ -83,7 +81,6 @@ h3 {
 
   color: #b0b7c3;
 }
-
 p {
   font-family: Inter;
   font-style: normal;
@@ -100,7 +97,6 @@ p {
 
   color: #4e5d78;
 }
-
 p.light {
   font-family: Inter;
   font-style: normal;
@@ -116,7 +112,6 @@ p.light {
 
   color: #b0b7c3;
 }
-
 p.subtitle {
   font-family: Inter;
   font-style: normal;
@@ -133,10 +128,17 @@ p.subtitle {
 
   color: #b0b7c3;
 }
-
 p a {
   color: #4388f8;
   text-decoration: none;
+}
+
+.past-due-list-item p {
+  color: #e4545d;
+}
+.past-due-list-item p.subtitle {
+  color: #e4545d;
+  opacity: 0.6;
 }
 
 /* BUTTON-------------------- */
@@ -331,6 +333,10 @@ ul.large-list > *:not(:last-child) {
 }
 ul.large-list li:hover {
   background: #fafbfc;
+}
+ul.large-list li.past-due-list-item,
+ul.large-list li.past-due-list-item:hover {
+  background: #fff6f4;
 }
 ul.large-list li div {
   width: 100%;
