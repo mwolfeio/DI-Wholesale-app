@@ -129,17 +129,18 @@ const SpecialPage = ({}) => {
         let company = ord.node.displayAddress
           ? ord.node.displayAddress.company
           : "-";
-        let shiptDate = ord.node.metafield_1
-          ? ord.node.metafield_1.includes("-")
-            ? ord.node.metafield_1.replace("-", "/")
-            : `${ord.node.metafield_1.value.substring(
-                0,
-                4
-              )}/${ord.node.metafield_1.value.substring(
-                4,
-                6
-              )}/${ord.node.metafield_1.value.substring(6, 8)}`
-          : null;
+        let shiptDate = !ord.node.metafield_1
+          ? null
+          : ord.node.metafield_1.indexOf("-") > -1
+          ? ord.node.metafield_1.replace("-", "/")
+          : `${ord.node.metafield_1.value.substring(
+              0,
+              4
+            )}/${ord.node.metafield_1.value.substring(
+              4,
+              6
+            )}/${ord.node.metafield_1.value.substring(6, 8)}`;
+
         let dropShip =
           ord.node.metafield_0 && ord.node.metafield_0.value === "true"
             ? true
