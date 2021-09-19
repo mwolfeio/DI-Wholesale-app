@@ -638,6 +638,11 @@ button.submit-button {
   background: #ffd553;
 }
 
+.ul.large-list li.past-due-list-item .complete-tiny-tab {
+  color: #e4545d;
+  background: #fff6f4;
+}
+
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;
