@@ -31,9 +31,7 @@ export default function SpecialPage(props) {
 
   let currentDate = new Date();
   let date = new Date(props.order.createdAt);
-  let shiptDate = props.order.shiptDate
-    ? new Date(props.order.shiptDate)
-    : "N/A";
+  let shiptDate = props.order.shiptDate ? new Date(props.order.shiptDate) : "-";
   let customerId = props.order.customerId
     ? props.order.customerId.replace("gid://shopify/Customer/", "")
     : "";

@@ -21,8 +21,11 @@ const GET_ORDER = gql`
         firstName
         id
         lastName
+        email
+        phone
         defaultAddress {
           company
+          phone
         }
         ordersCount
         totalSpent
@@ -114,12 +117,12 @@ const CustomerPage = () => {
   }
 
   let matafieldsArr = data.customer.metafields.edges;
-  let productArr = data.customer.lineItems.edges;
+  let lineItemArr = data.customer.lineItems.edges;
 
-  let resaleNumberObj = matafieldsArr.find(
-    (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
-  );
-  let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
+  // let resaleNumberObj = matafieldsArr.find(
+  //   (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
+  // );
+  // let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
 
   return (
     <main>
@@ -138,17 +141,13 @@ const CustomerPage = () => {
               {data.customer.firstName} {data.customer.lastName}
             </h1>
             <h1 style={{ fontSize: "20px" }}>
-              {formatter.format(data.customer.totalSpent)} spent
+              {formatter.format(data.totalPrice)} spent
             </h1>
           </div>
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
-              <h3 stule>Shopify id: {id.replace("$", "")}</h3>
-              {resaleNumberObj ? (
-                <h3 stule>Resale Number: {resaleNumberObj.node.value}</h3>
-              ) : (
-                ""
-              )}
+              <h3>Shopify id: {id}</h3>
+              {resaleNumberObj ? <h3 stule>Info</h3> : ""}
               <h3 stule>Email: {data.customer.email}</h3>
               <h3>
                 Phone:{" "}
@@ -160,8 +159,8 @@ const CustomerPage = () => {
             <div style={{ textAlign: "right" }}>
               <h3 style={{ textAlign: "right" }}>
                 {data.customer.ordersCount} Orders <br />
-                Account created <br />
-                {data.customer.lifetimeDuration} ago
+                <br />
+                {data.customer.totalSpent} spent
               </h3>
             </div>
           </div>
