@@ -168,14 +168,14 @@ const CustomerPage = () => {
             <div>
               <h2>Customer</h2>
               <p>
-                {data.order.custoemr.firstName} {data.order.custoemr.lastName}
+                {data.order.customer.firstName} {data.order.customer.lastName}
               </p>
-              <p>{data.order.custoemr.defaultAddress.company} </p>
-              <p>Customer #:{data.order.custoemr.cus_no}</p>
-              <p>Resale #: {data.order.custoemr.res_no}</p>
+              <p>{data.order.customer.defaultAddress.company} </p>
+              <p>Customer #:{data.order.customer.cus_no}</p>
+              <p>Resale #: {data.order.customer.res_no}</p>
               <p>
                 Shopify ID:{" "}
-                {data.order.custoemr.id.replace("gid://shopify/Customer/", "")}
+                {data.order.customer.id.replace("gid://shopify/Customer/", "")}
               </p>
             </div>
             <div>
