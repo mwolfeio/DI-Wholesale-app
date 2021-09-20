@@ -141,7 +141,7 @@ const CustomerPage = () => {
         4,
         6
       )}/${rawShipDate.node.value.substring(6, 8)}`;
-  let isLate = currentDate < new Date(shiptDate);
+  let isLate = currentDate > new Date(shiptDate);
   console.log("is late: ", isLate);
 
   // let resaleNumberObj = matafieldsArr.find(
@@ -169,8 +169,8 @@ const CustomerPage = () => {
                   style={{ marginLeft: "16px" }}
                   className={`tinny-tag flex-center-center ${
                     !data.order.fullyPaid
-                      ? "complete-tiny-tab"
-                      : "warning-tiny-tab"
+                      ? "warning-tiny-tab"
+                      : "dissabled-tiny-tab"
                   }`}
                 >
                   {!data.order.fullyPaid ? "Unpaid" : "Paid"}
@@ -251,12 +251,24 @@ const CustomerPage = () => {
                   {data.order.customer.defaultAddress.company}
                 </i>
                 <br />
-                <span className="subtitle">Customer # </span>
+                <span
+                  className="subtitle"
+                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                >
+                  Customer #{" "}
+                </span>{" "}
+                <br />
                 {data.order.customer.cus_no
                   ? data.order.customer.cus_no.value
                   : "-"}
                 <br />
-                <span className="subtitle">Resale # </span>
+                <span
+                  className="subtitle"
+                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                >
+                  Resale #{" "}
+                </span>{" "}
+                <br />
                 {data.order.customer.res_no
                   ? data.order.customer.res_no.value
                   : "-"}
@@ -265,6 +277,8 @@ const CustomerPage = () => {
                   className="subtitle"
                   style={{ marginBottom: "-4px", fontSize: "12px" }}
                 >
+                  {" "}
+                  <br />
                   Shopify ID{" "}
                 </span>
                 {data.order.customer.id.replace("gid://shopify/Customer/", "")}

@@ -44,8 +44,6 @@ h1 {
   line-height: 29px;
   /* or 132% */
 
-  display: flex;
-  align-items: center;
   margin-bottom: 8px;
   /* Text 2 */
 
@@ -59,9 +57,6 @@ h2 {
   line-height: 29px;
   /* or 207% */
 
-  display: flex;
-  align-items: center;
-
   /* Text 2 */
 
   color: #4e5d78;
@@ -73,9 +68,6 @@ h3 {
   font-size: 14px;
   line-height: 29px;
   /* or 207% */
-
-  display: flex;
-  align-items: center;
 
   /* Text 2 */
 
@@ -89,10 +81,6 @@ p {
   line-height: 28px;
   /* or 207% */
 
-  display: flex;
-  align-items: center;
-  margin: 0;
-
   /* Text 2 */
 
   color: #4e5d78;
@@ -105,20 +93,16 @@ p.light {
   line-height: 28px;
   /* or 207% */
 
-  display: flex;
-  align-items: center;
-
   /* Text 4 */
 
   color: #b0b7c3;
 }
-p.subtitle {
+.subtitle {
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
-  line-height: 23px;
-  margin-top: -4px;
+
   /* or 196% */
 
   display: flex;
@@ -128,6 +112,10 @@ p.subtitle {
 
   color: #b0b7c3;
 }
+p.subtitle {
+  line-height: 23px;
+  margin-top: -4px;
+}
 p a {
   color: #4388f8;
   text-decoration: none;
@@ -136,7 +124,7 @@ p a {
 .past-due-list-item p {
   color: #e4545d;
 }
-.past-due-list-item p.subtitle {
+.past-due-list-item .subtitle {
   color: #e4545d;
   opacity: 0.6;
 }
