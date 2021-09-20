@@ -250,37 +250,38 @@ const CustomerPage = () => {
                 <i style={{ marginTop: "-4px" }}>
                   {data.order.customer.defaultAddress.company}
                 </i>
-                <br />
-                <span
-                  className="subtitle"
-                  style={{ marginBottom: "-4px", fontSize: "12px" }}
-                >
-                  Customer #{" "}
-                </span>{" "}
-                <br />
+              </p>
+
+              <p
+                className="subtitle"
+                style={{ marginBottom: "-4px", fontSize: "12px" }}
+              >
+                Customer #
+              </p>
+              <p>
                 {data.order.customer.cus_no
                   ? data.order.customer.cus_no.value
                   : "-"}
-                <br />
-                <span
-                  className="subtitle"
-                  style={{ marginBottom: "-4px", fontSize: "12px" }}
-                >
-                  Resale #{" "}
-                </span>{" "}
-                <br />
+              </p>
+              <p
+                className="subtitle"
+                style={{ marginBottom: "-4px", fontSize: "12px" }}
+              >
+                Resale #
+              </p>
+
+              <p>
                 {data.order.customer.res_no
                   ? data.order.customer.res_no.value
                   : "-"}
-                <br />
-                <span
-                  className="subtitle"
-                  style={{ marginBottom: "-4px", fontSize: "12px" }}
-                >
-                  {" "}
-                  <br />
-                  Shopify ID{" "}
-                </span>
+              </p>
+              <p
+                className="subtitle"
+                style={{ marginBottom: "-4px", fontSize: "12px" }}
+              >
+                Shopify ID
+              </p>
+              <p>
                 {data.order.customer.id.replace("gid://shopify/Customer/", "")}
               </p>
             </div>
