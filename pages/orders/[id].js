@@ -161,11 +161,11 @@ const CustomerPage = () => {
         <section className="clear">
           <div className="flex-bottom-btw underline">
             <div style={{ textAlign: "left" }}>
-              <div clasName="flex-center-left">
+              <div className="flex-center-left">
                 <h1>{data.order.name}</h1>
                 <div
                   style={{ marginLeft: "16px" }}
-                  className={`tinny-tag ${
+                  className={`tinny-tag flex-center-center ${
                     data.order.unpaid
                       ? "complete-tiny-tab"
                       : "dissabled-tiny-tab"
@@ -175,7 +175,7 @@ const CustomerPage = () => {
                 </div>
                 <div
                   style={{ marginLeft: "8px" }}
-                  className={`tinny-tag ${
+                  className={`tinny-tag flex-center-center ${
                     data.order.fulfillable
                       ? "dissabled-tiny-tab"
                       : currentDate > shiptDate
