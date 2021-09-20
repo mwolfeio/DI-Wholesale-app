@@ -143,7 +143,8 @@ const Section = (props) => {
                     </div>
                     <Link
                       href={`/orders/${order.node.id.replace(
-                        "gid://shopify/Order/"
+                        "gid://shopify/Order/",
+                        ""
                       )}`}
                     >
                       <button className="text-button" style={{ width: "100%" }}>

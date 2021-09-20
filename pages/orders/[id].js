@@ -90,6 +90,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 const CustomerPage = () => {
   const { id } = useRouter().query;
+  console.log(id);
   let globalId = `gid://shopify/Order/${id}`;
 
   const { loading, error, data } = useQuery(GET_ORDER, {
@@ -142,7 +143,7 @@ const CustomerPage = () => {
         6
       )}/${rawShipDate.node.value.substring(6, 8)}`;
   let shiptDate = new Date(shiptDateStr);
-  let isLate = rawShipDate && currentDate < shiptDate && data.order.fulfillable;
+  let isLate = rawShipDate && currentDate > shiptDate && data.order.fulfillable;
 
   console.log("currentDate: ", currentDate);
   console.log("shiptDate: ", shiptDate);
@@ -217,14 +218,14 @@ const CustomerPage = () => {
           </div>
 
           <div className="order-page-header">
-            <div>
+            <div className="clickable-card">
               <Link
                 href={`/customers/${data.order.customer.id.replace(
                   "gid://shopify/Customer/",
                   ""
                 )}`}
               >
-                <div className="clickable-card flex-center-btw">
+                <div className=" flex-center-btw">
                   <h2>Customer</h2>
                   <svg
                     width="24"
