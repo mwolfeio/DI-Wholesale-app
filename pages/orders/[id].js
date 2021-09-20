@@ -154,12 +154,12 @@ const CustomerPage = () => {
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
               {data.order.customer.cus_no ? (
-                <h3 stule>{data.order.customer.cus_no}</h3>
+                <h3 stule>{data.order.customer.cus_no.value}</h3>
               ) : (
                 ""
               )}
               {data.order.customer.res_no ? (
-                <h3 stule>{data.order.customer.res_no}</h3>
+                <h3 stule>{data.order.customer.res_no.value}</h3>
               ) : (
                 ""
               )}
