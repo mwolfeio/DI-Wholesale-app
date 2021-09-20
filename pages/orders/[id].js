@@ -118,7 +118,7 @@ const CustomerPage = () => {
 
   console.log("order: ", data);
   let matafieldsArr = data.order.metafields.edges;
-  let lineItemArr = data.order.customer.lineItems.edges;
+  let lineItemArr = data.order.lineItems.edges;
 
   // let resaleNumberObj = matafieldsArr.find(
   //   (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
