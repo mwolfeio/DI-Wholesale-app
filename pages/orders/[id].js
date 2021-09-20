@@ -159,7 +159,9 @@ const CustomerPage = () => {
             <div style={{ textAlign: "left" }}>
               <h1>{data.order.name.firstName}</h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                <i>{moment(data.order.createdAt).format("MMMM DD, YYYY") -> moment(shiptDate).format("MMMM DD, YYYY")}</i>
+                <i>{`${moment(data.order.createdAt).format(
+                  "MMMM DD, YYYY"
+                )} -> ${moment(shiptDate).format("MMMM DD, YYYY")}`}</i>
               </h2>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
