@@ -131,12 +131,15 @@ const CustomerPage = () => {
   let rawShipDate = matafieldsArr.find((o) => o.node.key === "ship_date");
   let shiptDate = !rawShipDate
     ? null
-    : rawShipDate.value.indexOf("-") > -1
-    ? rawShipDate.value.replace("-", "/")
-    : `${rawShipDate.value.substring(0, 4)}/${rawShipDate.value.substring(
+    : rawShipDate.node.value.indexOf("-") > -1
+    ? rawShipDate.node.value.replace("-", "/")
+    : `${rawShipDate.node.value.substring(
+        0,
+        4
+      )}/${rawShipDate.node.value.substring(
         4,
         6
-      )}/${rawShipDate.value.substring(6, 8)}`;
+      )}/${rawShipDate.node.value.substring(6, 8)}`;
 
   // let resaleNumberObj = matafieldsArr.find(
   //   (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
