@@ -40,7 +40,9 @@ export default function SpecialPage(props) {
     <Link href={`/orders/${props.order.id}`} passHref>
       <li
         className={
-          currentDate > shiptDate && fulfillable ? "past-due-list-item" : ""
+          currentDate > shiptDate && props.order.fulfillable
+            ? "past-due-list-item"
+            : ""
         }
         style={{ animationDelay: `${animationDelayCalc(props.index)}s` }}
         key={`order-list-item-${props.index}`}
