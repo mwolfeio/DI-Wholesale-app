@@ -116,7 +116,8 @@ const CustomerPage = () => {
     );
   }
 
-  let matafieldsArr = data.customer.metafields.edges;
+  console.log("order: ", data);
+  let matafieldsArr = data.metafields.edges;
   let lineItemArr = data.customer.lineItems.edges;
 
   // let resaleNumberObj = matafieldsArr.find(
