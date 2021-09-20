@@ -40,6 +40,7 @@ const GET_ORDER = gql`
       displayFulfillmentStatus
       email
       fulfillable
+      name
       fullyPaid
       id
       lineItems(first: 50) {
@@ -126,9 +127,16 @@ const CustomerPage = () => {
   console.log("order: ", data);
   let matafieldsArr = data.order.metafields.edges;
   let lineItemArr = data.order.lineItems.edges;
-  let notes = matafieldsArr.find(
-    (o) => o.node.namespace === "Notes" && o.node.key === "notes"
-  ).value;
+  let notes = matafieldsArr.find((o) => o.node.key === "notes");
+  let rawShipDate = matafieldsArr.find((o) => o.node.key === "ship_date");
+  let shiptDate = !rawShipDate
+    ? null
+    : rawShipDate.value.indexOf("-") > -1
+    ? rawShipDate.value.replace("-", "/")
+    : `${rawShipDate.value.substring(0, 4)}/${rawShipDate.value.substring(
+        4,
+        6
+      )}/${rawShipDate.value.substring(6, 8)}`;
 
   // let resaleNumberObj = matafieldsArr.find(
   //   (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
@@ -151,7 +159,7 @@ const CustomerPage = () => {
             <div style={{ textAlign: "left" }}>
               <h1>{data.order.name.firstName}</h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                <i>{moment(data.order.createdAt).format("MMMM DD, YYYY")}</i>
+                <i>{moment(data.order.createdAt).format("MMMM DD, YYYY") -> moment(shiptDate).format("MMMM DD, YYYY")}</i>
               </h2>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
@@ -169,21 +177,19 @@ const CustomerPage = () => {
               <h2>Customer</h2>
               <p>
                 {data.order.customer.firstName} {data.order.customer.lastName}
-              </p>
-              <p>{data.order.customer.defaultAddress.company} </p>
-              <p>
+                <br />
+                {data.order.customer.defaultAddress.company}
+                <br />
                 Customer #:
                 {data.order.customer.cus_no
                   ? data.order.customer.cus_no.value
                   : "-"}
-              </p>
-              <p>
+                <br />
                 Resale #:{" "}
                 {data.order.customer.res_no
                   ? data.order.customer.res_no.value
                   : "-"}
-              </p>
-              <p>
+                <br />
                 Shopify ID:{" "}
                 {data.order.customer.id.replace("gid://shopify/Customer/", "")}
               </p>
@@ -194,7 +200,7 @@ const CustomerPage = () => {
             </div>
             <div>
               <h2>Notes</h2>
-              <p>{notes}</p>
+              <p>{notes ? notes.value : "no notes"}</p>
             </div>
           </div>
         </section>
