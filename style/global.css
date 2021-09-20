@@ -643,6 +643,18 @@ button.submit-button {
   background: #fff6f4;
 }
 
+/* ORDER PAGE---------------- */
+.order-header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 24px;
+}
+.order-header > * {
+  border-radius: 15px;
+  background: white;
+  padding: 24px;
+}
+
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;

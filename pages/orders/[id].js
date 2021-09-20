@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import { useRouter } from "next/router";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
@@ -125,6 +126,9 @@ const CustomerPage = () => {
   console.log("order: ", data);
   let matafieldsArr = data.order.metafields.edges;
   let lineItemArr = data.order.lineItems.edges;
+  let notes = matafieldsArr.find(
+    (o) => o.node.namespace === "Notes" && o.node.key === "notes"
+  ).value;
 
   // let resaleNumberObj = matafieldsArr.find(
   //   (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
@@ -144,27 +148,60 @@ const CustomerPage = () => {
       <div style={{ width: "100%" }}>
         <section className="clear">
           <div className="flex-bottom-btw underline">
-            <h1 className>
-              {data.order.customer.firstName} {data.order.customer.lastName}
-            </h1>
-            <h1 style={{ fontSize: "20px" }}>
-              {formatter.format(data.order.totalPrice)} spent
-            </h1>
+            <div style={{ textAlign: "left" }}>
+              <h1>{data.order.name.firstName}</h1>
+              <h2 className="subtitle" style={{ fontSize: "16px" }}>
+                <i>{moment(data.order.createdAt).format("MMMM DD, YYYY")}</i>
+              </h2>
+            </div>
+            <div style={{ textAlign: "right" }} className="flex-right-column ">
+              <h1 style={{ fontSize: "20px" }}>
+                {formatter.format(data.order.totalPrice)}
+              </h1>
+              <h2 className="subtitle" style={{ fontSize: "16px" }}>
+                <i>{data.order.currentSubtotalLineItemsQuantity} items</i>
+              </h2>
+            </div>
           </div>
+
+          <div className="order-header">
+            <div>
+              <h2>Customer</h2>
+              <p>
+                {data.order.custoemr.firstName} {data.order.custoemr.lastName}
+              </p>
+              <p>{data.order.custoemr.defaultAddress.company} </p>
+              <p>Customer #:{data.order.custoemr.cus_no}</p>
+              <p>Resale #: {data.order.custoemr.res_no}</p>
+              <p>
+                Shopify ID:{" "}
+                {data.order.custoemr.id.replace("gid://shopify/Customer/", "")}
+              </p>
+            </div>
+            <div>
+              <h2>Address</h2>
+              <p>{data.order.shippingAddress.formatted}</p>
+            </div>
+            <div>
+              <h2>Notes</h2>
+              <p>{notes}</p>
+            </div>
+          </div>
+
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
               {data.order.customer.cus_no ? (
-                <h3 stule>{data.order.customer.cus_no.value}</h3>
+                <h3>{data.order.customer.cus_no.value}</h3>
               ) : (
                 ""
               )}
               {data.order.customer.res_no ? (
-                <h3 stule>{data.order.customer.res_no.value}</h3>
+                <h3>{data.order.customer.res_no.value}</h3>
               ) : (
                 ""
               )}
               <h3>Shopify id: {id}</h3>{" "}
-              <h3 stule>Email: {data.order.customer.email}</h3>
+              <h3>Email: {data.order.customer.email}</h3>
               <h3>
                 Phone:{" "}
                 {data.order.customer.phone

@@ -200,7 +200,7 @@ const CustomerPage = () => {
           </div>
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
-              <h3 stule>Email: {data.customer.email}</h3>
+              <h3>Email: {data.customer.email}</h3>
               <h3>
                 Phone:{" "}
                 {data.customer.phone
