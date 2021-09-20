@@ -27,6 +27,12 @@ const GET_ORDER = gql`
           company
           phone
         }
+        res_no: metafield(key: "res_no", namespace: "Resale Number") {
+          value
+        }
+        cus_no: metafield(key: "cus_no", namespace: "Customer Number") {
+          value
+        }
         ordersCount
         totalSpent
       }
@@ -147,8 +153,17 @@ const CustomerPage = () => {
           </div>
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
-              <h3>Shopify id: {id}</h3>
-              {resaleNumberObj ? <h3 stule>Info</h3> : ""}
+              {data.order.customer.cus_no ? (
+                <h3 stule>{data.order.customer.cus_no}</h3>
+              ) : (
+                ""
+              )}
+              {data.order.customer.res_no ? (
+                <h3 stule>{data.order.customer.res_no}</h3>
+              ) : (
+                ""
+              )}
+              <h3>Shopify id: {id}</h3>{" "}
               <h3 stule>Email: {data.order.customer.email}</h3>
               <h3>
                 Phone:{" "}
