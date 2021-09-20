@@ -164,6 +164,7 @@ const CustomerPage = () => {
               <div clasName="flex-center-left">
                 <h1>{data.order.name}</h1>
                 <div
+                  style={{ marginLeft: "16px" }}
                   className={`tinny-tag ${
                     data.order.unpaid
                       ? "complete-tiny-tab"
@@ -173,6 +174,7 @@ const CustomerPage = () => {
                   {data.order.unpaid ? "Unpaid" : "Paid"}
                 </div>
                 <div
+                  style={{ marginLeft: "8px" }}
                   className={`tinny-tag ${
                     fulfillable
                       ? "dissabled-tiny-tab"
