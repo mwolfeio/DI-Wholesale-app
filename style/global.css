@@ -112,7 +112,7 @@ p.light {
 
   color: #b0b7c3;
 }
-p.subtitle {
+.subtitle {
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -136,7 +136,7 @@ p a {
 .past-due-list-item p {
   color: #e4545d;
 }
-.past-due-list-item p.subtitle {
+.past-due-list-item .subtitle {
   color: #e4545d;
   opacity: 0.6;
 }

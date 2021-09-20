@@ -218,17 +218,17 @@ const CustomerPage = () => {
                 <br />
                 {data.order.customer.defaultAddress.company}
                 <br />
-                Customer #:
+                <span className="subtitle">Customer #: </span>
                 {data.order.customer.cus_no
                   ? data.order.customer.cus_no.value
                   : "-"}
                 <br />
-                Resale #:{" "}
+                <span className="subtitle">Resale #: </span>
                 {data.order.customer.res_no
                   ? data.order.customer.res_no.value
                   : "-"}
                 <br />
-                Shopify ID:{" "}
+                <span className="subtitle">Shopify #: </span>
                 {data.order.customer.id.replace("gid://shopify/Customer/", "")}
               </p>
             </div>
