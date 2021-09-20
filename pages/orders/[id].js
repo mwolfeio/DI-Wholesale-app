@@ -125,6 +125,7 @@ const CustomerPage = () => {
   }
 
   console.log("order: ", data);
+  let currentDate = new Date();
   let matafieldsArr = data.order.metafields.edges;
   let lineItemArr = data.order.lineItems.edges;
   let notes = matafieldsArr.find((o) => o.node.key === "notes");
@@ -160,11 +161,19 @@ const CustomerPage = () => {
         <section className="clear">
           <div className="flex-bottom-btw underline">
             <div style={{ textAlign: "left" }}>
-              <h1>{data.order.name.firstName}</h1>
-              <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                <i>{`${moment(data.order.createdAt).format(
-                  "MMMM DD, YYYY"
-                )} -> ${moment(shiptDate).format("MMMM DD, YYYY")}`}</i>
+              <h1>{data.order.name}</h1>
+              <h2
+                className={`subtitle ${
+                  currentDate > shiptDate ? "late-date" : ""
+                }`}
+                style={{ fontSize: "16px" }}
+              >
+                <i>
+                  Created:{" "}
+                  {`${moment(data.order.createdAt).format(
+                    "MMM DD, YYYY"
+                  )} -> Ships: ${moment(shiptDate).format("MMM DD, YYYY")}`}
+                </i>
               </h2>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
