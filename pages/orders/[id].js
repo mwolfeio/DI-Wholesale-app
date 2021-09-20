@@ -171,8 +171,18 @@ const CustomerPage = () => {
                 {data.order.customer.firstName} {data.order.customer.lastName}
               </p>
               <p>{data.order.customer.defaultAddress.company} </p>
-              <p>Customer #:{data.order.customer.cus_no.value}</p>
-              <p>Resale #: {data.order.customer.res_no.value}</p>
+              <p>
+                Customer #:
+                {data.order.customer.cus_no
+                  ? data.order.customer.cus_no.value
+                  : "-"}
+              </p>
+              <p>
+                Resale #:{" "}
+                {data.order.customer.res_no
+                  ? data.order.customer.res_no.value
+                  : "-"}
+              </p>
               <p>
                 Shopify ID:{" "}
                 {data.order.customer.id.replace("gid://shopify/Customer/", "")}
@@ -187,36 +197,6 @@ const CustomerPage = () => {
               <p>{notes}</p>
             </div>
           </div>
-
-          <div className="flex-top-btw">
-            <div style={{ display: "table" }}>
-              {data.order.customer.cus_no ? (
-                <h3>{data.order.customer.cus_no.value}</h3>
-              ) : (
-                ""
-              )}
-              {data.order.customer.res_no ? (
-                <h3>{data.order.customer.res_no.value}</h3>
-              ) : (
-                ""
-              )}
-              <h3>Shopify id: {id}</h3>{" "}
-              <h3>Email: {data.order.customer.email}</h3>
-              <h3>
-                Phone:{" "}
-                {data.order.customer.phone
-                  ? data.order.customer.phone
-                  : data.order.customer.defaultAddress.phone}
-              </h3>
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <h3 style={{ textAlign: "right" }}>
-                {data.order.customer.ordersCount} Orders <br />
-                <br />
-                {data.order.customer.totalSpent} spent
-              </h3>
-            </div>
-          </div>
         </section>
 
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />
@@ -225,3 +205,33 @@ const CustomerPage = () => {
   );
 };
 export default CustomerPage;
+
+// <div className="flex-top-btw">
+//   <div style={{ display: "table" }}>
+//     {data.order.customer.cus_no ? (
+//       <h3>{data.order.customer.cus_no.value}</h3>
+//     ) : (
+//       ""
+//     )}
+//     {data.order.customer.res_no ? (
+//       <h3>{data.order.customer.res_no.value}</h3>
+//     ) : (
+//       ""
+//     )}
+//     <h3>Shopify id: {id}</h3>{" "}
+//     <h3>Email: {data.order.customer.email}</h3>
+//     <h3>
+//       Phone:{" "}
+//       {data.order.customer.phone
+//         ? data.order.customer.phone
+//         : data.order.customer.defaultAddress.phone}
+//     </h3>
+//   </div>
+//   <div style={{ textAlign: "right" }}>
+//     <h3 style={{ textAlign: "right" }}>
+//       {data.order.customer.ordersCount} Orders <br />
+//       <br />
+//       {data.order.customer.totalSpent} spent
+//     </h3>
+//   </div>
+// </div>
