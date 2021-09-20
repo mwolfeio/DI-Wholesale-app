@@ -117,8 +117,8 @@ const CustomerPage = () => {
   }
 
   console.log("order: ", data);
-  let matafieldsArr = data.metafields.edges;
-  let lineItemArr = data.customer.lineItems.edges;
+  let matafieldsArr = data.order.metafields.edges;
+  let lineItemArr = data.order.customer.lineItems.edges;
 
   // let resaleNumberObj = matafieldsArr.find(
   //   (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
@@ -139,29 +139,29 @@ const CustomerPage = () => {
         <section className="clear">
           <div className="flex-bottom-btw underline">
             <h1 className>
-              {data.customer.firstName} {data.customer.lastName}
+              {data.order.customer.firstName} {data.order.customer.lastName}
             </h1>
             <h1 style={{ fontSize: "20px" }}>
-              {formatter.format(data.totalPrice)} spent
+              {formatter.format(data.order.totalPrice)} spent
             </h1>
           </div>
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
               <h3>Shopify id: {id}</h3>
               {resaleNumberObj ? <h3 stule>Info</h3> : ""}
-              <h3 stule>Email: {data.customer.email}</h3>
+              <h3 stule>Email: {data.order.customer.email}</h3>
               <h3>
                 Phone:{" "}
-                {data.customer.phone
-                  ? data.customer.phone
-                  : data.customer.defaultAddress.phone}
+                {data.order.customer.phone
+                  ? data.order.customer.phone
+                  : data.order.customer.defaultAddress.phone}
               </h3>
             </div>
             <div style={{ textAlign: "right" }}>
               <h3 style={{ textAlign: "right" }}>
-                {data.customer.ordersCount} Orders <br />
+                {data.order.customer.ordersCount} Orders <br />
                 <br />
-                {data.customer.totalSpent} spent
+                {data.order.customer.totalSpent} spent
               </h3>
             </div>
           </div>
