@@ -130,7 +130,7 @@ const CustomerPage = () => {
   let lineItemArr = data.order.lineItems.edges;
   let notes = matafieldsArr.find((o) => o.node.key === "notes");
   let rawShipDate = matafieldsArr.find((o) => o.node.key === "ship_date");
-  let shiptDate = !rawShipDate
+  let shiptDateStr = !rawShipDate
     ? null
     : rawShipDate.node.value.indexOf("-") > -1
     ? rawShipDate.node.value.replace("-", "/")
@@ -141,7 +141,11 @@ const CustomerPage = () => {
         4,
         6
       )}/${rawShipDate.node.value.substring(6, 8)}`;
-  let isLate = currentDate > new Date(shiptDate);
+  let shiptDate = new Date(shiptDateStr);
+  let isLate = rawShipDate && currentDate < shiptDate && data.order.fulfillable;
+
+  console.log("currentDate: ", currentDate);
+  console.log("shiptDate: ", shiptDate);
   console.log("is late: ", isLate);
 
   // let resaleNumberObj = matafieldsArr.find(
@@ -194,9 +198,11 @@ const CustomerPage = () => {
               >
                 <i>
                   Created:{" "}
-                  {`${moment(data.order.createdAt).format(
-                    "MMM DD, YYYY"
-                  )} -> Ships: ${moment(shiptDate).format("MMM DD, YYYY")}`}
+                  {`${moment(data.order.createdAt).format("MMM DD, YYYY")} ${
+                    rawShipDate ? "-> Ships: " : ""
+                  } ${
+                    rawShipDate ? moment(shiptDate).format("MMM DD, YYYY") : ""
+                  }`}
                 </i>
               </h2>
             </div>
@@ -218,7 +224,7 @@ const CustomerPage = () => {
                   ""
                 )}`}
               >
-                <div className="flex-center-btw">
+                <div className="clickable-card flex-center-btw">
                   <h2>Customer</h2>
                   <svg
                     width="24"
@@ -246,7 +252,8 @@ const CustomerPage = () => {
               </Link>
               <p>
                 {data.order.customer.firstName} {data.order.customer.lastName}
-                <br />
+              </p>
+              <p>
                 <i style={{ marginTop: "-4px" }}>
                   {data.order.customer.defaultAddress.company}
                 </i>

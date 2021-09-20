@@ -669,12 +669,32 @@ button.submit-button {
   color: #b0b7c3;
 }
 
+.tinny-tag.late-date {
+  background: #fff6f4;
+}
+
 .late-date {
   color: #e4545d;
-  background: #fff6f4;
+  /* background: #fff6f4;
   padding: 8px;
-  margin: -8px;
+  margin: -8px; */
   border-radius: 10px;
+}
+.clickable-card {
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+.clickable-card svg path,
+.clickable-card svg rect {
+  fill: #b0b7c3;
+}
+.clickable-card:hover {
+  box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
+  background: #fafbfc;
+}
+.clickable-card:hover svg path,
+.clickable-card:hover svg rect {
+  fill: #4388f8;
 }
 
 /* FLEXBOX-------------------- */
