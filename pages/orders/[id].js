@@ -78,7 +78,7 @@ const GET_ORDER = gql`
         formatted(withCompany: true, withName: true)
       }
       totalPrice
-      unpaid
+      fullyPaid
     }
   }
 `;
@@ -166,19 +166,19 @@ const CustomerPage = () => {
                 <div
                   style={{ marginLeft: "16px" }}
                   className={`tinny-tag flex-center-center ${
-                    data.order.unpaid
+                    !data.order.fullyPaid
                       ? "complete-tiny-tab"
                       : "dissabled-tiny-tab"
                   }`}
                 >
-                  {data.order.unpaid ? "Unpaid" : "Paid"}
+                  {!data.order.fullyPaid ? "Unpaid" : "Paid"}
                 </div>
                 <div
                   style={{ marginLeft: "8px" }}
                   className={`tinny-tag flex-center-center ${
-                    data.order.fulfillable
+                    !data.order.fulfillable
                       ? "dissabled-tiny-tab"
-                      : currentDate > shiptDate
+                      : currentDate < shiptDate
                       ? "late-date"
                       : "complete-tiny-tab"
                   }`}
@@ -188,7 +188,7 @@ const CustomerPage = () => {
               </div>
               <h2
                 className={`subtitle ${
-                  currentDate > shiptDate ? "late-date" : ""
+                  currentDate < shiptDate ? "late-date" : ""
                 }`}
                 style={{ fontSize: "16px" }}
               >
@@ -238,7 +238,7 @@ const CustomerPage = () => {
             </div>
             <div>
               <h2>Notes</h2>
-              <p>{notes ? notes.value : "no notes"}</p>
+              <p>{notes ? notes.node.value : "no notes"}</p>
             </div>
           </div>
         </section>
