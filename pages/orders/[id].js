@@ -161,7 +161,29 @@ const CustomerPage = () => {
         <section className="clear">
           <div className="flex-bottom-btw underline">
             <div style={{ textAlign: "left" }}>
-              <h1>{data.order.name}</h1>
+              <div clasName="flex-center-left">
+                <h1>{data.order.name}</h1>
+                <div
+                  className={`tinny-tag ${
+                    data.order.unpaid
+                      ? "complete-tiny-tab"
+                      : "dissabled-tiny-tab"
+                  }`}
+                >
+                  {data.order.unpaid ? "Unpaid" : "Paid"}
+                </div>
+                <div
+                  className={`tinny-tag ${
+                    fulfillable
+                      ? "dissabled-tiny-tab"
+                      : currentDate > shiptDate
+                      ? "late-date"
+                      : "complete-tiny-tab"
+                  }`}
+                >
+                  {fulfillable ? "Unfulfilled" : "Fulfilled"}
+                </div>
+              </div>
               <h2
                 className={`subtitle ${
                   currentDate > shiptDate ? "late-date" : ""
