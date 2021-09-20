@@ -176,14 +176,14 @@ const CustomerPage = () => {
                 <div
                   style={{ marginLeft: "8px" }}
                   className={`tinny-tag ${
-                    fulfillable
+                    data.order.fulfillable
                       ? "dissabled-tiny-tab"
                       : currentDate > shiptDate
                       ? "late-date"
                       : "complete-tiny-tab"
                   }`}
                 >
-                  {fulfillable ? "Unfulfilled" : "Fulfilled"}
+                  {data.order.fulfillable ? "Unfulfilled" : "Fulfilled"}
                 </div>
               </div>
               <h2
