@@ -216,7 +216,7 @@ const CustomerPage = () => {
             </div>
           </div>
 
-          <div className="order-header">
+          <div className="order-page-header">
             <div>
               <Link
                 href={`/customers/${data.order.customer.id.replace(

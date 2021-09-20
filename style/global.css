@@ -652,19 +652,19 @@ button.submit-button {
 }
 
 /* ORDER PAGE---------------- */
-.order-header {
+.order-page-header {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 24px;
   margin-top: 24px;
 }
-.order-header > * {
+.order-page-header > * {
   border-radius: 15px;
   background: white;
   padding: 24px;
   padding-top: 16px;
 }
-.order-header > * h2 {
+.order-page-header > * h2 {
   font-size: 12px;
   color: #b0b7c3;
 }
