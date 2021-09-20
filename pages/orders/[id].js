@@ -171,8 +171,8 @@ const CustomerPage = () => {
                 {data.order.customer.firstName} {data.order.customer.lastName}
               </p>
               <p>{data.order.customer.defaultAddress.company} </p>
-              <p>Customer #:{data.order.customer.cus_no}</p>
-              <p>Resale #: {data.order.customer.res_no}</p>
+              <p>Customer #:{data.order.customer.cus_no.value}</p>
+              <p>Resale #: {data.order.customer.res_no.value}</p>
               <p>
                 Shopify ID:{" "}
                 {data.order.customer.id.replace("gid://shopify/Customer/", "")}
