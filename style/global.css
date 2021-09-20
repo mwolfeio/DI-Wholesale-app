@@ -112,7 +112,7 @@ p.light {
 
   color: #b0b7c3;
 }
-.subtitle {
+p.subtitle {
   font-family: Inter;
   font-style: normal;
   font-weight: 500;
@@ -136,7 +136,7 @@ p a {
 .past-due-list-item p {
   color: #e4545d;
 }
-.past-due-list-item .subtitle {
+.past-due-list-item p.subtitle {
   color: #e4545d;
   opacity: 0.6;
 }
@@ -616,7 +616,7 @@ button.submit-button {
   background: white;
   color: #4388f8;
   padding: 0 12px;
-  height: 28px;
+  height: 24px;
   white-space: nowrap;
 }
 
@@ -636,6 +636,11 @@ button.submit-button {
 .complete-tiny-tab {
   color: white;
   background: #ffd553;
+}
+
+.warning-tiny-tab {
+  color: #ffd553;
+  background: #fdf4e0;
 }
 
 .ul.large-list li.past-due-list-item .complete-tiny-tab {

@@ -141,6 +141,8 @@ const CustomerPage = () => {
         4,
         6
       )}/${rawShipDate.node.value.substring(6, 8)}`;
+  let isLate = currentDate < new Date(shiptDate);
+  console.log("is late: ", isLate);
 
   // let resaleNumberObj = matafieldsArr.find(
   //   (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
@@ -168,7 +170,7 @@ const CustomerPage = () => {
                   className={`tinny-tag flex-center-center ${
                     !data.order.fullyPaid
                       ? "complete-tiny-tab"
-                      : "dissabled-tiny-tab"
+                      : "warning-tiny-tab"
                   }`}
                 >
                   {!data.order.fullyPaid ? "Unpaid" : "Paid"}
@@ -178,18 +180,16 @@ const CustomerPage = () => {
                   className={`tinny-tag flex-center-center ${
                     !data.order.fulfillable
                       ? "dissabled-tiny-tab"
-                      : currentDate < shiptDate
+                      : isLate
                       ? "late-date"
-                      : "complete-tiny-tab"
+                      : "warning-tiny-tab"
                   }`}
                 >
                   {data.order.fulfillable ? "Unfulfilled" : "Fulfilled"}
                 </div>
               </div>
               <h2
-                className={`subtitle ${
-                  currentDate < shiptDate ? "late-date" : ""
-                }`}
+                className={`subtitle ${isLate ? "late-date" : ""}`}
                 style={{ fontSize: "16px" }}
               >
                 <i>
@@ -212,23 +212,61 @@ const CustomerPage = () => {
 
           <div className="order-header">
             <div>
-              <h2>Customer</h2>
+              <Link
+                href={`/customers/${data.order.customer.id.replace(
+                  "gid://shopify/Customer/",
+                  ""
+                )}`}
+              >
+                <div className="flex-center-btw">
+                  <h2>Customer</h2>
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      opacity="0.3"
+                      x="15.8892"
+                      y="7.19678"
+                      width="2"
+                      height="14"
+                      rx="1"
+                      transform="rotate(45 15.8892 7.19678)"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M8.11084 8.90381C7.55856 8.90381 7.11084 8.45609 7.11084 7.90381C7.11084 7.35152 7.55856 6.90381 8.11084 6.90381L16.5961 6.90381C17.1315 6.90381 17.5719 7.32549 17.5952 7.86037L17.9487 15.9921C17.9727 16.5439 17.5449 17.0106 16.9931 17.0346C16.4413 17.0586 15.9746 16.6307 15.9506 16.079L15.6387 8.90381H8.11084Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+              </Link>
               <p>
                 {data.order.customer.firstName} {data.order.customer.lastName}
                 <br />
-                {data.order.customer.defaultAddress.company}
+                <i style={{ marginTop: "-4px" }}>
+                  {data.order.customer.defaultAddress.company}
+                </i>
                 <br />
-                <span className="subtitle">Customer #: </span>
+                <span className="subtitle">Customer # </span>
                 {data.order.customer.cus_no
                   ? data.order.customer.cus_no.value
                   : "-"}
                 <br />
-                <span className="subtitle">Resale #: </span>
+                <span className="subtitle">Resale # </span>
                 {data.order.customer.res_no
                   ? data.order.customer.res_no.value
                   : "-"}
                 <br />
-                <span className="subtitle">Shopify #: </span>
+                <span
+                  className="subtitle"
+                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                >
+                  Shopify ID{" "}
+                </span>
                 {data.order.customer.id.replace("gid://shopify/Customer/", "")}
               </p>
             </div>
