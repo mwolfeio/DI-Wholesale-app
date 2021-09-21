@@ -218,13 +218,14 @@ const CustomerPage = () => {
           </div>
 
           <div className="order-page-header">
-            <div className="clickable-card">
-              <Link
-                href={`/customers/${data.order.customer.id.replace(
-                  "gid://shopify/Customer/",
-                  ""
-                )}`}
-              >
+            {" "}
+            <Link
+              href={`/customers/${data.order.customer.id.replace(
+                "gid://shopify/Customer/",
+                ""
+              )}`}
+            >
+              <div className="clickable-card">
                 <div className=" flex-center-btw">
                   <h2>Customer</h2>
                   <svg
@@ -250,49 +251,53 @@ const CustomerPage = () => {
                     />
                   </svg>
                 </div>
-              </Link>
-              <p>
-                {data.order.customer.firstName} {data.order.customer.lastName}
-              </p>
-              <p>
-                <i style={{ marginTop: "-4px" }}>
-                  {data.order.customer.defaultAddress.company}
-                </i>
-              </p>
 
-              <p
-                className="subtitle"
-                style={{ marginBottom: "-4px", fontSize: "12px" }}
-              >
-                Customer #
-              </p>
-              <p>
-                {data.order.customer.cus_no
-                  ? data.order.customer.cus_no.value
-                  : "-"}
-              </p>
-              <p
-                className="subtitle"
-                style={{ marginBottom: "-4px", fontSize: "12px" }}
-              >
-                Resale #
-              </p>
+                <p>
+                  {data.order.customer.firstName} {data.order.customer.lastName}
+                </p>
+                <p>
+                  <i style={{ marginTop: "-4px" }}>
+                    {data.order.customer.defaultAddress.company}
+                  </i>
+                </p>
 
-              <p>
-                {data.order.customer.res_no
-                  ? data.order.customer.res_no.value
-                  : "-"}
-              </p>
-              <p
-                className="subtitle"
-                style={{ marginBottom: "-4px", fontSize: "12px" }}
-              >
-                Shopify ID
-              </p>
-              <p>
-                {data.order.customer.id.replace("gid://shopify/Customer/", "")}
-              </p>
-            </div>
+                <p
+                  className="subtitle"
+                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                >
+                  Customer #
+                </p>
+                <p>
+                  {data.order.customer.cus_no
+                    ? data.order.customer.cus_no.value
+                    : "-"}
+                </p>
+                <p
+                  className="subtitle"
+                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                >
+                  Resale #
+                </p>
+
+                <p>
+                  {data.order.customer.res_no
+                    ? data.order.customer.res_no.value
+                    : "-"}
+                </p>
+                <p
+                  className="subtitle"
+                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                >
+                  Shopify ID
+                </p>
+                <p>
+                  {data.order.customer.id.replace(
+                    "gid://shopify/Customer/",
+                    ""
+                  )}
+                </p>
+              </div>{" "}
+            </Link>
             <div>
               <h2>Address</h2>
               <p>{data.order.shippingAddress.formatted}</p>
