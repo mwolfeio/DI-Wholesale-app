@@ -726,12 +726,26 @@ button.submit-button {
   color: #4e5d78 !important;
 }
 
+.orders-page-product-card {
+  display: grid;
+  grid-gap: 24px;
+  width: 100%;
+  transition: 0.15s ease;
+  grid-template-columns: 80px 1fr 80px 80px;
+}
+
+.orders-page-product-card:hover {
+  box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
+}
+
 .orders-page-product-card img {
-  width: 96px;
-  height: 96px;
+  width: 80px;
+  height: 80px;
   object-fit: cover;
   border-radius: 10px;
-  margin-right: 24px;
+}
+.orders-page-product-card > * {
+  align-self: start;
 }
 
 /* FLEXBOX-------------------- */

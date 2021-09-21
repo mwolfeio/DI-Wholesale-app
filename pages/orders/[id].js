@@ -57,6 +57,10 @@ const GET_ORDER = gql`
             sku
             title
             vendor
+            product {
+              id
+              onlineStoreUrl
+            }
           }
         }
       }

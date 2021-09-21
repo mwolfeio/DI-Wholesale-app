@@ -160,7 +160,9 @@ const Section = (props) => {
                     {order.node.lineItems.edges.map((product) => (
                       <a
                         target="blank"
-                        href={`https://di-wholesale.myshopify.com/admin/products/${product.node.product.id.replace(
+                        href={`${
+                          process.env.HOST
+                        }/admin/products/${product.node.product.id.replace(
                           "gid://shopify/Product/",
                           ""
                         )}`}
