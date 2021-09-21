@@ -77,7 +77,7 @@ const GET_ORDER = gql`
         address2
         city
         company
-        countryCode
+        country
         name
         phone
         provinceCode
@@ -88,7 +88,7 @@ const GET_ORDER = gql`
         address2
         city
         company
-        countryCode
+        country
         name
         phone
         provinceCode
