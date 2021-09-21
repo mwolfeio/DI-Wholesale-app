@@ -1,6 +1,5 @@
 import { useState } from "react";
 import SectionHeader from "./SectionHeader.js";
-import Link from "next/link";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -46,7 +45,7 @@ const CustomerPage = (props) => {
                       SKU: {product.sku} • {product.vendor}
                     </p>
                     <div className="flex-center-left">
-                      <Link target="_blank" href={url}>
+                      <a target="_blank" href={url}>
                         <button
                           style={{
                             height: "28px",
@@ -57,8 +56,8 @@ const CustomerPage = (props) => {
                         >
                           View
                         </button>
-                      </Link>
-                      <Link
+                      </a>
+                      <a
                         target="_blank"
                         href={`${process.env.HOST}/admin/products/${id}`}
                       >
@@ -68,7 +67,7 @@ const CustomerPage = (props) => {
                         >
                           Edit
                         </button>
-                      </Link>
+                      </a>
                     </div>
                   </div>
                   <p style={{ color: "#b0b7c3" }}>

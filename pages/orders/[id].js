@@ -152,6 +152,9 @@ const CustomerPage = () => {
   let matafieldsArr = data.order.metafields.edges;
   let lineItemArr = data.order.lineItems.edges;
   let notes = matafieldsArr.find((o) => o.node.key === "notes");
+  let rawDropShip = matafieldsArr.find((o) => o.node.key === "drop_ship");
+  let isDropShipping =
+    rawDropShip && rawDropShip.value === "true" ? true : false;
   let rawShipDate = matafieldsArr.find((o) => o.node.key === "ship_date");
   let shiptDateStr = !rawShipDate
     ? null
@@ -176,13 +179,19 @@ const CustomerPage = () => {
   // );
   // let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
 
+  let tag = (
+    <h1 style={{ marginBottom: 0, color: isDropShipping ? "#4388f8" : "" }}>
+      {isDropShipping ? "Drop Shipping" : "Wholesale Order"}
+    </h1>
+  );
+
   return (
     <main>
       <ButtonNav
         back="customers"
         cnumb={{
           display: false,
-          text: data.order.name,
+          text: tag,
           globalId: globalId,
         }}
       />
