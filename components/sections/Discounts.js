@@ -13,9 +13,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 const Section = ({ name, discountObj }) => {
   const [open, setOpen] = useState(true);
   const [discount, setDiscount] = useState(
-    discountObj
-      ? `${(Math.round(discountObj.value * 100) / 100).toFixed(2)}%`
-      : ""
+    discountObj ? (Math.round(discountObj.value * 100) / 100).toFixed(2) : ""
   );
 
   const toggleOpen = () => {
@@ -24,14 +22,12 @@ const Section = ({ name, discountObj }) => {
   };
   const handleInput = (e) => {
     console.log("running handleInput");
-    let valueStr = e.target.value.replace("%", "");
-    let valueInt = valueStr.parseInt();
+    let value = e.target.value;
     let finalValue;
-    console.log("finalValue: ", finalValue);
-    if (valueInt > 100) finalValue = 100;
-    if (valueInt < 0) finalValue = 0;
+    if (value > 100) finalValue = 100;
+    if (value < 0) finalValue = 0;
 
-    setDiscount(`${(Math.round(finalValue * 100) / 100).toFixed(2)}%`);
+    setDiscount((Math.round(finalValue * 100) / 100).toFixed(2));
   };
 
   return (
@@ -39,7 +35,7 @@ const Section = ({ name, discountObj }) => {
       <SectionHeader
         status={open}
         minimize={toggleOpen}
-        title="Custoemr Discount"
+        title="Customer Discount"
       />
 
       {open ? (
@@ -48,14 +44,17 @@ const Section = ({ name, discountObj }) => {
             className="flex-center-center discount-text"
             style={{ color: "#b0b7c3" }}
           >
-            <p>Customers Name will recieve a</p>
+            <p>{name} will recieve a</p>
             <input
-              type="text"
+              type="number"
+              step="0.01"
+              max="100"
+              min="0"
               value={discount}
               onChange={handleInput}
-              placeholder="00.00%"
+              placeholder="00.00"
             />
-            <p>discount on all orders.</p>
+            <p>% discount on all orders.</p>
           </div>
         </div>
       ) : (
