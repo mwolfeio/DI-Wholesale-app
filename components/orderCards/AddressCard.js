@@ -25,7 +25,10 @@ const CustomerPage = ({ shipping, billing }) => {
           </span>
         </div>
       </div>
-      <p className="subtitle" style={{ margin: "0 0 -6px", fontSize: "12px" }}>
+      <p
+        className="subtitle"
+        style={{ margin: "4px 0 -6px", fontSize: "12px" }}
+      >
         {showShipping ? "Shipping Address:" : "Billing Address:"}
       </p>
       <AddressBlock address={showShipping ? shipping : billing} />

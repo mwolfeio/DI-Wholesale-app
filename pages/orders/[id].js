@@ -10,6 +10,7 @@ import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
 import AddressCard from "../../components/orderCards/AddressCard.js";
+import LineItems from "../../components/sections/LineItems.js";
 
 const GET_ORDER = gql`
   query getOrder($id: ID!) {
@@ -268,10 +269,13 @@ const CustomerPage = () => {
                   </svg>
                 </div>
 
-                <p className="order-page-customer-card-titile">
+                <p
+                  className="order-page-customer-card-titile"
+                  style={{ display: "block" }}
+                >
                   {data.order.customer.firstName} {data.order.customer.lastName}
                   <br />
-                  <i style={{ marginTop: "-6px" }}>
+                  <i style={{ display: "block", margin: "-6px 0 4px" }}>
                     {data.order.customer.defaultAddress.company}
                   </i>
                 </p>
@@ -322,6 +326,7 @@ const CustomerPage = () => {
               <p>{notes ? notes.node.value : "no notes"}</p>
             </div>
           </div>
+          <LineItems items={lineItemArr} />
         </section>
 
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />

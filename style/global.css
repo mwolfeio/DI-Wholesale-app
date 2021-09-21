@@ -700,9 +700,14 @@ button.submit-button {
 }
 
 .orders-page-address-card-address-wrapper {
-  padding: 8px;
+  padding: 12px;
+  margin-top: 8px;
   background: #f4f6f8;
   border-radius: 15px;
+}
+.orders-page-address-card-address-wrapper p {
+  font-size: 12px;
+  line-height: 20px;
 }
 .order-page-shipping-toggle {
   height: 24px;
@@ -719,6 +724,14 @@ button.submit-button {
 }
 .order-page-shipping-toggle span:hover {
   color: #4e5d78 !important;
+}
+
+.orders-page-product-card img {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 24px;
 }
 
 /* FLEXBOX-------------------- */

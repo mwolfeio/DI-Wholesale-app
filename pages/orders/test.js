@@ -9,6 +9,7 @@ import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
+import LineItems from "../../components/sections/LineItems.js";
 // import AddressCard from "../../components/orderCards/AddressCard.js";
 
 var formatter = new Intl.NumberFormat("en-US", {
@@ -260,6 +261,7 @@ const CustomerPage = () => {
               <p>{notes ? notes.node.value : "no notes"}</p>
             </div>
           </div>
+          <LineItems items={lineItemArr} />
         </section>
 
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />
