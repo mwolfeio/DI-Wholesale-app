@@ -693,8 +693,32 @@ button.submit-button {
   background: #fafbfc;
 }
 .clickable-card:hover svg path,
-.clickable-card:hover svg rect {
+.clickable-card:hover svg rect,
+.clickable-card:hover .order-page-customer-card-titile {
   fill: #4388f8;
+  color: #4388f8;
+}
+
+.orders-page-address-card-address-wrapper {
+  padding: 8px;
+  background: #f4f6f8;
+  border-radius: 15px;
+}
+.order-page-shipping-toggle {
+  height: 24px;
+  background: #f4f6f8;
+  border-radius: 10px;
+}
+.order-page-shipping-toggle span {
+  height: 24px;
+  padding: 0px 8px;
+  cursor: pointer;
+  transition: 0.15s ease;
+  font-size: 12px;
+  margin: 0;
+}
+.order-page-shipping-toggle span:hover {
+  color: #4e5d78 !important;
 }
 
 /* FLEXBOX-------------------- */

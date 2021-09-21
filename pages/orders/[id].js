@@ -9,13 +9,11 @@ import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
+import AddressCard from "../../components/orderCards/AddressCard.js";
 
 const GET_ORDER = gql`
   query getOrder($id: ID!) {
     order(id: $id) {
-      billingAddress {
-        formatted(withCompany: false, withName: false)
-      }
       createdAt
       currentSubtotalLineItemsQuantity
       customer {
@@ -75,7 +73,26 @@ const GET_ORDER = gql`
       name
       phone
       shippingAddress {
-        formatted(withCompany: true, withName: true)
+        address1
+        address2
+        city
+        company
+        countryCode
+        name
+        phone
+        provinceCode
+        zip
+      }
+      billingAddress {
+        address1
+        address2
+        city
+        company
+        countryCode
+        name
+        phone
+        provinceCode
+        zip
       }
       totalPrice
       fullyPaid
@@ -252,18 +269,17 @@ const CustomerPage = () => {
                   </svg>
                 </div>
 
-                <p>
+                <p className="order-page-customer-card-titile">
                   {data.order.customer.firstName} {data.order.customer.lastName}
-                </p>
-                <p>
-                  <i style={{ marginTop: "-4px" }}>
+                  <br />
+                  <i style={{ marginTop: "-6px" }}>
                     {data.order.customer.defaultAddress.company}
                   </i>
                 </p>
 
                 <p
                   className="subtitle"
-                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                  style={{ margin: "0 0 -6px", fontSize: "12px" }}
                 >
                   Customer #
                 </p>
@@ -274,7 +290,7 @@ const CustomerPage = () => {
                 </p>
                 <p
                   className="subtitle"
-                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                  style={{ margin: "0 0 -6px", fontSize: "12px" }}
                 >
                   Resale #
                 </p>
@@ -286,7 +302,7 @@ const CustomerPage = () => {
                 </p>
                 <p
                   className="subtitle"
-                  style={{ marginBottom: "-4px", fontSize: "12px" }}
+                  style={{ margin: "0 0 -6px", fontSize: "12px" }}
                 >
                   Shopify ID
                 </p>
@@ -298,10 +314,10 @@ const CustomerPage = () => {
                 </p>
               </div>{" "}
             </Link>
-            <div>
-              <h2>Address</h2>
-              <p>{data.order.shippingAddress.formatted}</p>
-            </div>
+            <AddressCard
+              shipping={data.order.shippingAddress}
+              billing={data.order.billingAddress}
+            />
             <div>
               <h2>Notes</h2>
               <p>{notes ? notes.node.value : "no notes"}</p>
