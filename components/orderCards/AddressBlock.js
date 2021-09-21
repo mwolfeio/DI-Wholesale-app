@@ -1,8 +1,6 @@
-import React from "react";
-
 const CustomerPage = (props) => {
   return (
-    <React.Fragment>
+    <div>
       <div className="orders-page-address-card-address-wrapper">
         <p>
           {props.address.name}
@@ -30,7 +28,7 @@ const CustomerPage = (props) => {
       <div className="orders-page-address-card-address-wrapper">
         {props.address.phone && <p>{props.address.phone}</p>}{" "}
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 
