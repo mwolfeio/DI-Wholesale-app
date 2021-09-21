@@ -9,96 +9,7 @@ import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
-import AddressCard from "../../components/orderCards/AddressCard.js";
-
-const GET_ORDER = gql`
-  query getOrder($id: ID!) {
-    order(id: $id) {
-      createdAt
-      currentSubtotalLineItemsQuantity
-      customer {
-        firstName
-        id
-        lastName
-        email
-        phone
-        defaultAddress {
-          company
-          phone
-        }
-        res_no: metafield(key: "res_no", namespace: "Resale Number") {
-          value
-        }
-        cus_no: metafield(key: "cus_no", namespace: "Customer Number") {
-          value
-        }
-        ordersCount
-        totalSpent
-      }
-      displayFulfillmentStatus
-      email
-      fulfillable
-      name
-      fullyPaid
-      id
-      lineItems(first: 50) {
-        edges {
-          cursor
-          node {
-            image(maxWidth: 500, maxHeight: 500) {
-              src
-            }
-            fulfillmentStatus
-            name
-            originalTotal
-            originalUnitPrice
-            quantity
-            sku
-            title
-            vendor
-          }
-        }
-      }
-      metafields(first: 20) {
-        edges {
-          node {
-            value
-            key
-            id
-            namespace
-            valueType
-          }
-        }
-      }
-      name
-      phone
-      shippingAddress {
-        address1
-        address2
-        city
-        company
-        country
-        name
-        phone
-        provinceCode
-        zip
-      }
-      billingAddress {
-        address1
-        address2
-        city
-        company
-        country
-        name
-        phone
-        provinceCode
-        zip
-      }
-      totalPrice
-      fullyPaid
-    }
-  }
-`;
+// import AddressCard from "../../components/orderCards/AddressCard.js";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -110,37 +21,66 @@ const CustomerPage = () => {
   console.log(id);
   let globalId = `gid://shopify/Order/${id}`;
 
-  const { loading, error, data } = useQuery(GET_ORDER, {
-    fetchPolicy: "no-cache",
-    variables: { id: globalId },
-  });
-
-  if (loading) {
-    return (
-      <main>
-        <ButtonNav back="customers" />
-        <div
-          style={{ height: "100%", width: "100%" }}
-          className="flex-center-center"
-        >
-          <Loader />
-        </div>
-      </main>
-    );
-  }
-  if (error) {
-    return (
-      <main>
-        <ButtonNav back="customers" />
-        <div
-          style={{ height: "100%", width: "100%" }}
-          className="flex-center-center"
-        >
-          {error.message}
-        </div>
-      </main>
-    );
-  }
+  let data = {
+    order: {
+      createdAt: "2020-09-01T19:00:37Z",
+      currentSubtotalLineItemsQuantity: 1,
+      customer: {
+        firstName: "Deshawn",
+        id: "gid://shopify/Customer/1310293983254",
+        lastName: "Halvorson",
+        email: "deshawn.halvorson@testemail.com",
+        phone: null,
+        defaultAddress: null,
+        res_no: null,
+        cus_no: null,
+        ordersCount: "3",
+        totalSpent: "146.00",
+      },
+      displayFulfillmentStatus: "FULFILLED",
+      email: "deshawn.halvorson@testemail.com",
+      fulfillable: false,
+      name: "#1003",
+      fullyPaid: true,
+      id: "gid://shopify/Order/1984311263254",
+      lineItems: {
+        edges: [
+          {
+            cursor:
+              "eyJsYXN0X2lkIjo0NTU3MjU3NzAzNDQ2LCJsYXN0X3ZhbHVlIjo0NTU3MjU3NzAzNDQ2fQ==",
+            node: {
+              image: null,
+              fulfillmentStatus: "fulfilled",
+              name: "Aged Wood Wallet",
+              originalTotal: "66.00",
+              originalUnitPrice: "66.00",
+              quantity: 1,
+              sku: "",
+              title: "Aged Wood Wallet",
+              vendor: "graphql-admin",
+            },
+          },
+        ],
+      },
+      metafields: {
+        edges: [],
+      },
+      phone: null,
+      shippingAddress: {
+        address1: "123 Fake Street",
+        address2: "",
+        city: "Ottawa",
+        company: "Company",
+        country: "Canada",
+        name: "John Do",
+        phone: "6045555555",
+        provinceCode: "BC",
+        zip: "V6A0C7",
+      },
+      billingAddress: null,
+      totalPrice: "66.00",
+    },
+  };
 
   console.log("order: ", data);
   let currentDate = new Date();
@@ -272,7 +212,9 @@ const CustomerPage = () => {
                   {data.order.customer.firstName} {data.order.customer.lastName}
                   <br />
                   <i style={{ marginTop: "-6px" }}>
-                    {data.order.customer.defaultAddress.company}
+                    {data.order.customer.defaultAddress
+                      ? data.order.customer.defaultAddress.company
+                      : ""}
                   </i>
                 </p>
 
@@ -313,10 +255,6 @@ const CustomerPage = () => {
                 </p>
               </div>
             </Link>
-            <AddressCard
-              shipping={data.order.shippingAddress}
-              billing={data.order.billingAddress}
-            />
             <div>
               <h2>Notes</h2>
               <p>{notes ? notes.node.value : "no notes"}</p>
@@ -330,33 +268,3 @@ const CustomerPage = () => {
   );
 };
 export default CustomerPage;
-
-// <div className="flex-top-btw">
-//   <div style={{ display: "table" }}>
-//     {data.order.customer.cus_no ? (
-//       <h3>{data.order.customer.cus_no.value}</h3>
-//     ) : (
-//       ""
-//     )}
-//     {data.order.customer.res_no ? (
-//       <h3>{data.order.customer.res_no.value}</h3>
-//     ) : (
-//       ""
-//     )}
-//     <h3>Shopify id: {id}</h3>{" "}
-//     <h3>Email: {data.order.customer.email}</h3>
-//     <h3>
-//       Phone:{" "}
-//       {data.order.customer.phone
-//         ? data.order.customer.phone
-//         : data.order.customer.defaultAddress.phone}
-//     </h3>
-//   </div>
-//   <div style={{ textAlign: "right" }}>
-//     <h3 style={{ textAlign: "right" }}>
-//       {data.order.customer.ordersCount} Orders <br />
-//       <br />
-//       {data.order.customer.totalSpent} spent
-//     </h3>
-//   </div>
-// </div>

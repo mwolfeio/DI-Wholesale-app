@@ -20,14 +20,16 @@ const CustomerPage = (props) => {
       {props.address.phone && (
         <p
           className="subtitle"
-          style={{ margin: "0 0 -6px", fontSize: "12px" }}
+          style={{ margin: "8px 0 -6px", fontSize: "12px" }}
         >
           Phone:
         </p>
       )}
-      <div className="orders-page-address-card-address-wrapper">
-        {props.address.phone && <p>{props.address.phone}</p>}{" "}
-      </div>
+      {props.address.phone && (
+        <div className="orders-page-address-card-address-wrapper">
+          <p>{props.address.phone}</p>}
+        </div>
+      )}
     </div>
   );
 };
