@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AddressBlock form "./AddressBlock.js"
+import AddressBlock from "./AddressBlock.js";
 
 const CustomerPage = ({ shipping, billing }) => {
   const [showShipping, setShowShipping] = useState(true);
@@ -32,6 +32,5 @@ const CustomerPage = ({ shipping, billing }) => {
     </div>
   );
 };
-
 
 export default CustomerPage;
