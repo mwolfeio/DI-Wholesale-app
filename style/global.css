@@ -731,7 +731,7 @@ button.submit-button {
   grid-gap: 24px;
   width: 100%;
   transition: 0.15s ease;
-  grid-template-columns: 80px 1fr 80px 80px;
+  grid-template-columns: 80px 1fr 120px 80px;
 }
 
 .orders-page-product-card:hover {
