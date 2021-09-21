@@ -169,7 +169,7 @@ const Section = (props) => {
                         style={{ textDecoration: "none" }}
                         className="order-product-wrapper flex-center-column"
                       >
-                        <span className="order-quant-badge flex-center-center">
+                        <span className="order-quant-badge active-tiny-tab flex-center-center">
                           QT: {product.node.quantity}
                         </span>
                         <img src={product.node.image.originalSrc} />

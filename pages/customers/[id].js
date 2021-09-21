@@ -8,6 +8,7 @@ import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
+import Discounts from "../../components/sections/Discounts.js";
 
 const GET_CUSTOMER = gql`
   query getCustomer($id: ID!) {
@@ -233,6 +234,10 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
+        <Discounts
+          name={`${data.customer.firstName} ${data.customer.lastName}`}
+          discountObj={{ value: 5 }}
+        />
         <Orders fields={ordersArr} />
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />
         <section className="disabled">Wishlist</section>
