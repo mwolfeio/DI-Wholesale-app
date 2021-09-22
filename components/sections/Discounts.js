@@ -24,8 +24,10 @@ const Section = ({ name, discountObj }) => {
     console.log("running handleInput");
     let value = e.target.value;
     let finalValue;
+
     if (value > 100) finalValue = 100;
-    if (value < 0) finalValue = 0;
+    else if (value < 0) finalValue = 0;
+    else finalValue = value;
 
     setDiscount((Math.round(finalValue * 100) / 100).toFixed(2));
   };

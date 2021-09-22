@@ -59,7 +59,7 @@ const CustomerPage = (props) => {
                       </a>
                       <a
                         target="_blank"
-                        href={`${process.env.HOST}/admin/products/${id}`}
+                        href={`https://di-wholesale.myshopify.com/admin/products/${id}`}
                       >
                         <button
                           style={{ height: "28px", padding: "0 12px" }}
