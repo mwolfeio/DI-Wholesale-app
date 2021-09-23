@@ -1,21 +1,64 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { useQuery } from "react-apollo";
+import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import SectionHeader from "./SectionHeader.js";
+
+//graphql
+const UPDATE_CUSTOEMR_TAGS = gql`
+  mutation customerUpdate($input: CustomerInput!) {
+    customerUpdate(input: $input) {
+      customer {
+        tags
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
 
+const formatDiscount = (rawDiscount) => {
+  return (Math.round(rawDiscount * 100) / 100).toFixed(2);
+};
+
 const Section = ({ name, discountObj }) => {
   const [open, setOpen] = useState(true);
+  const [oldDiscount, setOldDiscount] = useState(
+    discountObj ? formatDiscount(discountObj.value) : ""
+  );
   const [discount, setDiscount] = useState(
-    discountObj ? (Math.round(discountObj.value * 100) / 100).toFixed(2) : ""
+    discountObj ? formatDiscount(discountObj.value) : ""
   );
 
+  //Query
+  const [customerUpdate, { loading, error, data }] =
+    useMutation(UPDATE_CUSTOEMR_TAGS);
+
+  //functions
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitting: ", discount);
+
+    let payload = {
+      variables: {
+        input: {
+          id: props.cusId,
+          tags: ["string together tags"],
+        },
+      },
+    };
+
+    customerUpdate(payload);
+    setOldDiscount(discount);
+  };
   const toggleOpen = () => {
     console.log("clicked");
     setOpen(!open);
@@ -31,7 +74,11 @@ const Section = ({ name, discountObj }) => {
 
     setDiscount((Math.round(finalValue * 100) / 100).toFixed(2));
   };
-
+  const erase = (e) => {
+    e.preventDefault();
+    setDiscount(oldDiscount);
+  };
+  let needsSaving = discount !== oldDiscount;
   return (
     <section>
       <SectionHeader
@@ -42,7 +89,7 @@ const Section = ({ name, discountObj }) => {
 
       {open ? (
         <div className="card-container">
-          <div
+          <form
             className="flex-center-center discount-text"
             style={{ color: "#b0b7c3" }}
           >
@@ -57,7 +104,23 @@ const Section = ({ name, discountObj }) => {
               placeholder="00.00"
             />
             <p>% discount on all orders.</p>
-          </div>
+            {needsSaving ? (
+              <div className="flex-center-center">
+                <button onClick={erase}>X</button>
+                <button
+                  className="submit-button"
+                  style={{
+                    marginLeft: "4px",
+                  }}
+                  type="submit"
+                >
+                  {loading ? <Loader size={24} /> : "✔"}
+                </button>
+              </div>
+            ) : (
+              ""
+            )}
+          </form>
         </div>
       ) : (
         ""

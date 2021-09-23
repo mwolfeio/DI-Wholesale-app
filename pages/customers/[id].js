@@ -240,15 +240,16 @@ const CustomerPage = () => {
         />
         <Orders fields={ordersArr} />
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />
-        <section className="disabled">Wishlist</section>
-        <section className="disabled">Interests</section>
-        <section className="disabled">Reviews</section>
-        <section className="disabled">Alerts</section>
-        <section className="disabled">Rewards</section>
       </div>
     </main>
   );
 };
 export default CustomerPage;
+
+// <section className="disabled">Wishlist</section>
+// <section className="disabled">Interests</section>
+// <section className="disabled">Reviews</section>
+// <section className="disabled">Alerts</section>
+// <section className="disabled">Rewards</section>
 
 // /<h3>Jained {data.customer.lifetimeDuration} ago</h3>
