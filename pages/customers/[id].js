@@ -236,7 +236,8 @@ const CustomerPage = () => {
         </section>
         <Discounts
           name={`${data.customer.firstName} ${data.customer.lastName}`}
-          discountObj={{ value: 5 }}
+          customerId={globalId}
+          tags={data.customer.tags ? data.customer.tags.split(",") : []}
         />
         <Orders fields={ordersArr} />
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />

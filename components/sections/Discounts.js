@@ -20,23 +20,34 @@ const UPDATE_CUSTOEMR_TAGS = gql`
   }
 `;
 
-var formatter = new Intl.NumberFormat("en-US", {
+const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
-
 const formatDiscount = (rawDiscount) => {
   return (Math.round(rawDiscount * 100) / 100).toFixed(2);
 };
+const getDiscount = (arr, subString) => {
+  if (!arr) return null;
+  let filteredArr = arr.filter((s) => s.includes(subString));
+  return filteredArr.length > 0 ? filteredArr[0].replace(subString, "") : null;
+};
+const replaceDiscount = (arr, subString, discount) => {
+  let discountTag = `${discount}${subString}`;
+  let index = arr.findIndex((a) => a.includes(subString));
 
-const Section = ({ name, discountObj }) => {
+  if (index > -1) arr[index] = discountTag;
+  else arr.push(discountTag);
+
+  return arr.join(", ");
+};
+
+const Section = ({ name, tags, customerId }) => {
   const [open, setOpen] = useState(true);
   const [oldDiscount, setOldDiscount] = useState(
-    discountObj ? formatDiscount(discountObj.value) : ""
+    getDiscount(tags, "_Discount")
   );
-  const [discount, setDiscount] = useState(
-    discountObj ? formatDiscount(discountObj.value) : ""
-  );
+  const [discount, setDiscount] = useState(getDiscount(tags, "_Discount"));
 
   //Query
   const [customerUpdate, { loading, error, data }] =
@@ -50,8 +61,8 @@ const Section = ({ name, discountObj }) => {
     let payload = {
       variables: {
         input: {
-          id: props.cusId,
-          tags: ["string together tags"],
+          id: customerId,
+          tags: replaceDiscount(tags, "_Discount", discount),
         },
       },
     };
@@ -72,20 +83,40 @@ const Section = ({ name, discountObj }) => {
     else if (value < 0) finalValue = 0;
     else finalValue = value;
 
-    setDiscount((Math.round(finalValue * 100) / 100).toFixed(2));
+    setDiscount(finalValue);
+    // setDiscount((Math.round(finalValue * 100) / 100).toFixed(2));
   };
   const erase = (e) => {
     e.preventDefault();
     setDiscount(oldDiscount);
   };
-  let needsSaving = discount !== oldDiscount;
+  const needsSaving = discount !== oldDiscount;
+  if (error) console.log("error: ", error);
+
   return (
     <section>
       <SectionHeader
         status={open}
         minimize={toggleOpen}
         title="Customer Discount"
-      />
+      >
+        {needsSaving ? (
+          <div className="flex-center-center">
+            <button onClick={erase}>Clear</button>
+            <button
+              className="submit-button"
+              style={{
+                marginLeft: "4px",
+              }}
+              type="submit"
+            >
+              {loading ? <Loader size={24} /> : "Submit"}
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
+      </SectionHeader>
 
       {open ? (
         <div className="card-container">
@@ -96,7 +127,7 @@ const Section = ({ name, discountObj }) => {
             <p>{name} will recieve a</p>
             <input
               type="number"
-              step="0.01"
+              step="1"
               max="100"
               min="0"
               value={discount}
@@ -104,22 +135,6 @@ const Section = ({ name, discountObj }) => {
               placeholder="00.00"
             />
             <p>% discount on all orders.</p>
-            {needsSaving ? (
-              <div className="flex-center-center">
-                <button onClick={erase}>X</button>
-                <button
-                  className="submit-button"
-                  style={{
-                    marginLeft: "4px",
-                  }}
-                  type="submit"
-                >
-                  {loading ? <Loader size={24} /> : "✔"}
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
           </form>
         </div>
       ) : (
@@ -129,10 +144,3 @@ const Section = ({ name, discountObj }) => {
   );
 };
 export default Section;
-
-// <select name="order-type" id="order-type">
-//   <option value="all">All orders</option>
-//   <option value="wholesale">Wholesale orders</option>
-//   <option value="drop">Drop Shipping orders</option>
-// </select>
-// <p>.</p>
