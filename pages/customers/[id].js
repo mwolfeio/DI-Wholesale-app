@@ -237,7 +237,7 @@ const CustomerPage = () => {
         <Discounts
           name={`${data.customer.firstName} ${data.customer.lastName}`}
           customerId={globalId}
-          tags={data.customer.tags ? data.customer.tags.split(",") : []}
+          tags={data.customer.tags ? data.customer.tags : []}
         />
         <Orders fields={ordersArr} />
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />

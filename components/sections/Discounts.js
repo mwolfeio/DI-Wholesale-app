@@ -39,7 +39,7 @@ const replaceDiscount = (arr, subString, discount) => {
   if (index > -1) arr[index] = discountTag;
   else arr.push(discountTag);
 
-  return arr.join(", ");
+  return arr;
 };
 
 const Section = ({ name, tags, customerId }) => {
