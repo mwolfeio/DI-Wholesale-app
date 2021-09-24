@@ -104,6 +104,7 @@ const Section = ({ name, tags, customerId }) => {
           <div className="flex-center-center">
             <button onClick={erase}>Clear</button>
             <button
+              onClick={handleSubmit}
               className="submit-button"
               style={{
                 marginLeft: "4px",
@@ -120,8 +121,7 @@ const Section = ({ name, tags, customerId }) => {
 
       {open ? (
         <div className="card-container">
-          <form
-            onSubmit={handleSubmit}
+          <div
             className="flex-center-center discount-text"
             style={{ color: "#b0b7c3" }}
           >
@@ -136,7 +136,7 @@ const Section = ({ name, tags, customerId }) => {
               placeholder="00.00"
             />
             <p>% discount on all orders.</p>
-          </form>
+          </div>
         </div>
       ) : (
         ""
