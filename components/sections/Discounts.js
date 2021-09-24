@@ -121,6 +121,7 @@ const Section = ({ name, tags, customerId }) => {
       {open ? (
         <div className="card-container">
           <form
+            onSubmit={handleSubmit}
             className="flex-center-center discount-text"
             style={{ color: "#b0b7c3" }}
           >
