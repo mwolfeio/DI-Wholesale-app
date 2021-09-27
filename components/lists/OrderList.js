@@ -89,6 +89,9 @@ export default function SpecialPage(props) {
             {formatter.format(props.order.totalSpent)}
           </p>
         </div>
+        <div>
+          <p>CN</p>
+        </div>
         <div
           className="list-name flex-right-column"
           style={{
@@ -102,7 +105,10 @@ export default function SpecialPage(props) {
               Unfulfilled
             </div>
           ) : (
-            <div className="tinny-tag flex-center-center dissabled-tiny-tab">
+            <div
+              style={{ padding: "0 10px", width: "auto" }}
+              className="tinny-tag flex-center-center dissabled-tiny-tab"
+            >
               Fulfilled
             </div>
           )}
