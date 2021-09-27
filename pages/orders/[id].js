@@ -201,16 +201,7 @@ const CustomerPage = () => {
             <div style={{ textAlign: "left" }}>
               <div className="flex-center-left">
                 <h1>{data.order.name}</h1>
-                <div
-                  style={{ marginLeft: "16px" }}
-                  className={`tinny-tag flex-center-center ${
-                    !data.order.fullyPaid
-                      ? "warning-tiny-tab"
-                      : "dissabled-tiny-tab"
-                  }`}
-                >
-                  {!data.order.fullyPaid ? "Unpaid" : "Paid"}
-                </div>
+
                 <div
                   style={{ marginLeft: "8px" }}
                   className={`tinny-tag flex-center-center ${
@@ -348,6 +339,17 @@ const CustomerPage = () => {
   );
 };
 export default CustomerPage;
+
+// <div
+//   style={{ marginLeft: "16px" }}
+//   className={`tinny-tag flex-center-center ${
+//     !data.order.fullyPaid
+//       ? "warning-tiny-tab"
+//       : "dissabled-tiny-tab"
+//   }`}
+// >
+//   {!data.order.fullyPaid ? "Unpaid" : "Paid"}
+// </div>
 
 // <div className="flex-top-btw">
 //   <div style={{ display: "table" }}>

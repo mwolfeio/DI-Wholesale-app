@@ -27,7 +27,7 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 const Section = (props) => {
   //State
   const [varfied, setVarified] = useState(
-    props.varfiedValue === "true" ? true : false
+    props.varfiedValue == "true" ? true : false
   );
   const [customerNumber, setCustomerNumber] = useState(
     props.cnumb ? `#${props.cnumb}` : ""
@@ -42,6 +42,10 @@ const Section = (props) => {
   );
 
   console.log("props.varfiedValue: ", props.varfiedValue);
+  console.log(
+    "props.varfiedValue == `true` ",
+    props.varfiedValue == "true" ? true : false
+  );
   console.log("varfied: ", varfied);
 
   //Handle input
@@ -131,7 +135,8 @@ const Section = (props) => {
   }, [props.cnumb]);
 
   useEffect(() => {
-    setVarified(props.varfiedValue === "true" ? true : false);
+    console.log("resetting value------------------");
+    setVarified(props.varfiedValue == "true" ? true : false);
   }, [props.varfiedValue]);
 
   //return component
