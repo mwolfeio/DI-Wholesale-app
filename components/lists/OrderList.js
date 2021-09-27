@@ -85,12 +85,6 @@ export default function SpecialPage(props) {
 
         <ListInput
           cusId={props.order.gid}
-          fieldId={props.order.fieldId}
-          cnumb={props.order.cusnumb}
-        />
-
-        <ListInput
-          cusId={props.order.gid}
           fieldId={props.order.customerNumber.id}
           cnumb={props.order.customerNumber.value}
           varifyId={props.order.customerNumberVarified.id}
