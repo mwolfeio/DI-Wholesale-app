@@ -300,7 +300,8 @@ const CustomerPage = () => {
                       : "-"}
                   </p>
 
-                  {cus_var && cus_var.value ? (
+                  {data.order.customer.cus_var &&
+                  data.order.customer.cus_var.value ? (
                     ""
                   ) : (
                     <div

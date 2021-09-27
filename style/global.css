@@ -167,8 +167,11 @@ button {
   gap: 8px;
   transition: 0.15s;
   cursor: pointer;
-  text-decoration: none;
   white-space: nowrap;
+}
+
+a button {
+  text-decoration: none;
 }
 
 button:hover {
