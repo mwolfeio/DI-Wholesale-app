@@ -101,7 +101,10 @@ export default function SpecialPage(props) {
           }}
         >
           {props.order.fulfillable ? (
-            <div className="tinny-tag flex-center-center complete-tiny-tab ">
+            <div
+              style={{ fontSize: "10px" }}
+              className="tinny-tag flex-center-center complete-tiny-tab "
+            >
               Unfulfilled
             </div>
           ) : (
