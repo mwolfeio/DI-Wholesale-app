@@ -27,7 +27,7 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 const Section = (props) => {
   //State
   const [varfied, setVarified] = useState(
-    props.varfiedValue && props.varfiedValue === "true" ? true : false
+    props.varfiedValue === "true" ? true : false
   );
   const [customerNumber, setCustomerNumber] = useState(
     props.cnumb ? `#${props.cnumb}` : ""
@@ -40,6 +40,9 @@ const Section = (props) => {
   const [customerUpdate, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
+
+  console.log("props.varfiedValue: ", props.varfiedValue);
+  console.log("varfied: ", varfied);
 
   //Handle input
   const changeHandler = (e) => {
@@ -126,6 +129,10 @@ const Section = (props) => {
     setCustomerNumber(props.cnumb ? `#${props.cnumb}` : "");
     setOldCustomerNumber(props.cnumb ? `#${props.cnumb}` : "");
   }, [props.cnumb]);
+
+  useEffect(() => {
+    setVarified(props.varfiedValue === "true" ? true : false);
+  }, [props.varfiedValue]);
 
   //return component
   let needsSaving = customerNumber !== oldCustomerNumber;
