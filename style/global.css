@@ -669,6 +669,12 @@ button.submit-button {
   background: #fff6f4;
 }
 
+.varfied-list-tag {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+}
+
 /* ORDER PAGE---------------- */
 .order-page-header {
   display: grid;

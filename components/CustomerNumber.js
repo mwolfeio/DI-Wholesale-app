@@ -89,11 +89,15 @@ const Section = (props) => {
         };
 
     customerUpdate(payload);
+    submitVarification();
     setOldCustomerNumber(customerNumber);
   };
-  const varifyCustomerNumber = (e) => {
-    e.preventDefault();
+  // const varifyCustomerNumber = (e) => {
+  //   e.preventDefault();
+  //   submitVarification();
+  // };
 
+  const submitVarification = () => {
     let payload = props.data.varifiedObj.id
       ? {
           variables: {
@@ -175,7 +179,7 @@ const Section = (props) => {
       </div>
       {!varfied && oldCustomerNumber && (
         <button
-          onClick={varifyCustomerNumber}
+          onClick={submitVarification}
           style={{ marginLeft: "8px" }}
           className="primary"
         >

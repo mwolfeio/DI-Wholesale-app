@@ -35,6 +35,20 @@ const GET_CUSTOMENTS = gql`
             value
             id
           }
+          customerNumber: metafield(
+            key: "cus_no"
+            namespace: "Customer Number"
+          ) {
+            id
+            value
+          }
+          custoemrNumberVarified: metafield(
+            key: "cus_var"
+            namespace: "CN Varified"
+          ) {
+            id
+            value
+          }
           ordersCount
           lifetimeDuration
           marketingOptInLevel
@@ -122,17 +136,23 @@ const SpecialPage = ({}) => {
           ? cus.node.defaultAddress.company
           : "-";
         let cusNumb =
-          cus.node.metafield && cus.node.metafield.value
-            ? cus.node.metafield.value
+          cus.node.customerNumber && cus.node.customerNumber.value
+            ? cus.node.customerNumber.value
             : "";
         let fieldId =
-          cus.node.metafield && cus.node.metafield.id
-            ? cus.node.metafield.id
+          cus.node.customerNumber && cus.node.customerNumber.id
+            ? cus.node.customerNumber.id
             : "";
 
+        let varified =
+          cus.node.custoemrNumberVarified &&
+          cus.node.custoemrNumberVarified.value
+            ? cus.node.custoemrNumberVarified.value
+            : false;
+
         console.log(
-          "Index raw metafield: ",
-          cus.node.metafield ? cus.node.metafield.value : "-"
+          "Index raw customerNumber: ",
+          cus.node.customerNumber ? cus.node.customerNumber.value : "-"
         );
         console.log("Index cusNumb: ", cusNumb);
 
@@ -151,6 +171,7 @@ const SpecialPage = ({}) => {
               company: company,
               totalSpent: cus.node.totalSpent,
               fieldId: fieldId,
+              varified: varified,
             }}
           />
         );

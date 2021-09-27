@@ -37,12 +37,20 @@ export default function SpecialPage(props) {
           <p>{props.customer.company}</p>
           <p className="subtitle">{truncate(props.customer.address)}</p>
         </div>
-
-        <ListInput
-          cusId={props.customer.gid}
-          fieldId={props.customer.fieldId}
-          cnumb={props.customer.cusnumb}
-        />
+        <div style={{ position: "relative" }}>
+          <ListInput
+            cusId={props.customer.gid}
+            fieldId={props.customer.fieldId}
+            cnumb={props.customer.cusnumb}
+          />
+          {props.customer.varified ? (
+            ""
+          ) : (
+            <div className="tinny-tag error-tab flex-center-center varfied-list-tag">
+              Unvarified
+            </div>
+          )}
+        </div>
         <div className="list-name flex-center-column">
           <p>{props.customer.orders}</p>
           <p className="subtitle flex-center-column">
