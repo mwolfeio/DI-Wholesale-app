@@ -36,7 +36,8 @@ export default function SpecialPage(props) {
 
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{props.customer.company}</p>
-          <p className="subtitle">{truncate(props.customer.address)}</p>
+          <p className="subtitle">{truncate(props.customer.address1)}</p>
+          <p className="subtitle">{truncate(props.customer.address2)}</p>
         </div>
         <div style={{ position: "relative" }}>
           <ListInput

@@ -179,7 +179,7 @@ const Section = (props) => {
           ""
         )}
       </form>
-      {varfied || needsSaving ? (
+      {varfied || needsSaving || !customerNumber ? (
         ""
       ) : (
         <div

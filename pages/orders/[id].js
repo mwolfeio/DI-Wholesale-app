@@ -33,6 +33,9 @@ const GET_ORDER = gql`
         cus_no: metafield(key: "cus_no", namespace: "Customer Number") {
           value
         }
+        cus_var: metafield(key: "cus_var", namespace: "CN Varified") {
+          value
+        }
         ordersCount
         totalSpent
       }
@@ -290,11 +293,24 @@ const CustomerPage = () => {
                 >
                   Customer #
                 </p>
-                <p>
-                  {data.order.customer.cus_no
-                    ? data.order.customer.cus_no.value
-                    : "-"}
-                </p>
+                <div>
+                  <p>
+                    {data.order.customer.cus_no
+                      ? data.order.customer.cus_no.value
+                      : "-"}
+                  </p>
+
+                  {cus_var && cus_var.value ? (
+                    ""
+                  ) : (
+                    <div
+                      style={{ marginLeft: "8px" }}
+                      className="error-tab tinny-tag flex-center-center"
+                    >
+                      Unverified
+                    </div>
+                  )}
+                </div>
                 <p
                   className="subtitle"
                   style={{ margin: "0 0 -6px", fontSize: "12px" }}

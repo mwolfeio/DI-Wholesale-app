@@ -272,21 +272,7 @@ const SpecialPage = ({}) => {
               <span>Customer</span>
               {direction("A", "Z")}
             </p>
-            <p
-              onClick={() => {
-                if (sort == "TOTAL_PRICE") {
-                  setReverseSort(!reverseSort);
-                }
-                setSort("TOTAL_PRICE");
-              }}
-              style={{ justifySelf: "flex-end" }}
-              className={`flex-center-right sortable ${
-                sort == "TOTAL_PRICE" ? "active-sort" : ""
-              }`}
-            >
-              <span>items</span>
-              {direction("0", "1")}
-            </p>
+            <p>items</p>
             <p
               onClick={() => {
                 if (sort == "FULFILLMENT_STATUS") {
