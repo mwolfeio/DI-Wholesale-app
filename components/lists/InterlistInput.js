@@ -89,6 +89,7 @@ const Section = (props) => {
   };
   const submitVarification = (e) => {
     e.preventDefault();
+    console.log("varifying");
     let payload = props.varifyId
       ? {
           variables: {
@@ -169,7 +170,7 @@ const Section = (props) => {
         ""
       ) : (
         <div
-          onCLick={submitVarification}
+          onClick={submitVarification}
           className="tinny-tag active-tiny-tab flex-center-center varfied-list-tag"
         >
           varify
