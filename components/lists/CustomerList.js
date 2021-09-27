@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import CustomersIcon from "../../media/icons/Customers.js";
 import ListInput from "./InterlistInput.js";
+// import Varify from "./InterlistVarify.js";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -42,14 +43,9 @@ export default function SpecialPage(props) {
             cusId={props.customer.gid}
             fieldId={props.customer.fieldId}
             cnumb={props.customer.cusnumb}
+            varifyId={props.customer.varified.id}
+            varfiedValue={props.customer.varified.value}
           />
-          {props.customer.varified ? (
-            ""
-          ) : (
-            <div className="tinny-tag error-tab flex-center-center varfied-list-tag">
-              Unvarified
-            </div>
-          )}
         </div>
         <div className="list-name flex-center-column">
           <p>{props.customer.orders}</p>
@@ -71,3 +67,10 @@ export default function SpecialPage(props) {
     </Link>
   );
 }
+
+// <Varify
+//   cusId={props.customer.varified.id}
+//   fieldId={props.customer.varified.id}
+//   cnumb={props.customer.cusnumb}
+//   varfied={props.customer.varified.id}
+// />

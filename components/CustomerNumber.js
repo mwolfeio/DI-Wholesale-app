@@ -43,11 +43,6 @@ const Section = (props) => {
     UPDATE_CUSTOEMR_NUMBER
   );
 
-  // console.log("customer Number customerNumber: ", customerNumber);
-  // console.log("customer Number loading: ", loading);
-  // console.log("customer Number error: ", error);
-  // console.log("customer Number data: ", data ? data : "No Data");
-
   //Handle input
   const changeHandler = (e) => {
     console.log(`CN: ${e.target.value.replace("CN: ", "")}`);
@@ -92,12 +87,8 @@ const Section = (props) => {
     submitVarification();
     setOldCustomerNumber(customerNumber);
   };
-  // const varifyCustomerNumber = (e) => {
-  //   e.preventDefault();
-  //   submitVarification();
-  // };
-
-  const submitVarification = () => {
+  const submitVarification = (e) => {
+    e.preventDefault();
     let payload = props.data.varifiedObj.id
       ? {
           variables: {
@@ -124,8 +115,6 @@ const Section = (props) => {
             },
           },
         };
-
-    console.log("submitting payload: ", payload);
 
     customerUpdate(payload);
     setVarified(true);

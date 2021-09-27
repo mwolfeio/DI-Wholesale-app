@@ -26,6 +26,9 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 
 const Section = (props) => {
   //State
+  const [varfied, setVarified] = useState(
+    props.varfiedValue ? props.varfiedValue : false
+  );
   const [customerNumber, setCustomerNumber] = useState(
     props.cnumb ? `#${props.cnumb}` : ""
   );
@@ -37,8 +40,6 @@ const Section = (props) => {
   const [customerUpdate, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
-
-  if (error) console.log("error: ", error);
 
   //Handle input
   const changeHandler = (e) => {
@@ -52,10 +53,6 @@ const Section = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitting: ", customerNumber.replace("#", ""));
-    console.log(
-      "There is already a customer number: ",
-      props.fieldId ? true : false
-    );
 
     let payload = props.fieldId
       ? {
@@ -75,8 +72,8 @@ const Section = (props) => {
             input: {
               id: props.cusId,
               metafields: {
-                namespace: "Customer Number",
-                key: "cus_no",
+                namespace: "Customer",
+                key: "Number",
                 value: customerNumber.replace("#", ""),
                 valueType: "STRING",
               },
@@ -89,6 +86,38 @@ const Section = (props) => {
   };
   const preventClickthrough = (e) => {
     e.stopPropagation();
+  };
+  const submitVarification = (e) => {
+    e.preventDefault();
+    let payload = props.varifyId
+      ? {
+          variables: {
+            input: {
+              id: props.cusId,
+              metafields: {
+                id: props.varifyId,
+                value: "true",
+                valueType: "BOOLEAN",
+              },
+            },
+          },
+        }
+      : {
+          variables: {
+            input: {
+              id: props.cusId,
+              metafields: {
+                namespace: "CN Varified",
+                key: "cus_var",
+                value: "true",
+                valueType: "BOOLEAN",
+              },
+            },
+          },
+        };
+
+    customerUpdate(payload);
+    setVarified(true);
   };
 
   useEffect(() => {
@@ -136,6 +165,16 @@ const Section = (props) => {
           ""
         )}
       </form>
+      {varfied ? (
+        ""
+      ) : (
+        <div
+          onCLick={submitVarification}
+          className="tinny-tag active-tiny-tab flex-center-center varfied-list-tag"
+        >
+          varify
+        </div>
+      )}
     </div>
   );
 };

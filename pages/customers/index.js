@@ -171,7 +171,9 @@ const SpecialPage = ({}) => {
               company: company,
               totalSpent: cus.node.totalSpent,
               fieldId: fieldId,
-              varified: varified,
+              varified: cus.node.custoemrNumberVarified
+                ? cus.node.custoemrNumberVarified
+                : {},
             }}
           />
         );
