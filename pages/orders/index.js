@@ -272,19 +272,34 @@ const SpecialPage = ({}) => {
               <span>Customer</span>
               {direction("A", "Z")}
             </p>
-            <p>CN</p>
             <p>items</p>
-            <p>Status</p>
+            <p
+              onClick={() => {
+                if (sort == "FULFILLMENT_STATUS") {
+                  setReverseSort(!reverseSort);
+                }
+                setSort("FULFILLMENT_STATUS");
+              }}
+              style={{ justifySelf: "flex-end" }}
+              className={`flex-center-right sortable ${
+                sort == "FULFILLMENT_STATUS" ? "active-sort" : ""
+              }`}
+            >
+              <span>Status </span>
+              {direction("T", "F")}
+            </p>
           </li>
           {list}
         </ul>
         <div className="flex-center-center">
-          {data && data.customers && data.customers.pageInfo.hasNextPage ? (
+          {loading || error ? (
+            <Loader size="24" />
+          ) : data.orders.pageInfo.hasNextPage ? (
             <button onClick={loadMore}>
-              {loadingMore ? <Loader size="24" /> : "Load more"}
+              {loading ? <Loader size="24" /> : "Load more"}
             </button>
           ) : (
-            <p className="subtitle">No more customers</p>
+            ""
           )}
         </div>
       </section>
@@ -292,19 +307,3 @@ const SpecialPage = ({}) => {
   );
 };
 export default SpecialPage;
-
-// <p
-//   onClick={() => {
-//     if (sort == "FULFILLMENT_STATUS") {
-//       setReverseSort(!reverseSort);
-//     }
-//     setSort("FULFILLMENT_STATUS");
-//   }}
-//   style={{ justifySelf: "flex-end" }}
-//   className={`flex-center-right sortable ${
-//     sort == "FULFILLMENT_STATUS" ? "active-sort" : ""
-//   }`}
-// >
-//   <span>Status </span>
-//   {direction("T", "F")}
-// </p>
