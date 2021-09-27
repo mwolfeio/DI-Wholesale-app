@@ -285,7 +285,7 @@ const SpecialPage = ({}) => {
           {list}
         </ul>
         <div className="flex-center-center">
-          {data.customers.pageInfo.hasNextPage ? (
+          {data && data.customers.pageInfo.hasNextPage ? (
             <button onClick={loadMore}>
               {loading ? <Loader size="24" /> : "Load more"}
             </button>
