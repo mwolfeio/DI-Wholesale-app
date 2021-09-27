@@ -82,16 +82,16 @@ export default function SpecialPage(props) {
           <p>{props.order.name}</p>
           <p className="subtitle">{truncate(props.order.company)}</p>
         </div>
-
+        <div>
+          <p>CN</p>
+        </div>
         <div className="list-name flex-center-column">
           <p>{props.order.orders}</p>
           <p className="subtitle flex-center-column">
             {formatter.format(props.order.totalSpent)}
           </p>
         </div>
-        <div>
-          <p>CN</p>
-        </div>
+
         <div
           className="list-name flex-right-column"
           style={{

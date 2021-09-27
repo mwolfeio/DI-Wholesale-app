@@ -272,22 +272,9 @@ const SpecialPage = ({}) => {
               <span>Customer</span>
               {direction("A", "Z")}
             </p>
+            <p>CN</p>
             <p>items</p>
-            <p
-              onClick={() => {
-                if (sort == "FULFILLMENT_STATUS") {
-                  setReverseSort(!reverseSort);
-                }
-                setSort("FULFILLMENT_STATUS");
-              }}
-              style={{ justifySelf: "flex-end" }}
-              className={`flex-center-right sortable ${
-                sort == "FULFILLMENT_STATUS" ? "active-sort" : ""
-              }`}
-            >
-              <span>Status </span>
-              {direction("T", "F")}
-            </p>
+            <p>Status</p>
           </li>
           {list}
         </ul>
@@ -317,3 +304,19 @@ export default SpecialPage;
 // ) : (
 //   ""
 // )
+
+// <p
+//   onClick={() => {
+//     if (sort == "FULFILLMENT_STATUS") {
+//       setReverseSort(!reverseSort);
+//     }
+//     setSort("FULFILLMENT_STATUS");
+//   }}
+//   style={{ justifySelf: "flex-end" }}
+//   className={`flex-center-right sortable ${
+//     sort == "FULFILLMENT_STATUS" ? "active-sort" : ""
+//   }`}
+// >
+//   <span>Status </span>
+//   {direction("T", "F")}
+// </p>
