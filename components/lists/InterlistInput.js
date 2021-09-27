@@ -82,6 +82,7 @@ const Section = (props) => {
         };
 
     customerUpdate(payload);
+    setVarified(true);
     setOldCustomerNumber(customerNumber);
   };
   const preventClickthrough = (e) => {
@@ -166,7 +167,7 @@ const Section = (props) => {
           ""
         )}
       </form>
-      {varfied ? (
+      {!varfied && !needsSaving ? (
         ""
       ) : (
         <div
