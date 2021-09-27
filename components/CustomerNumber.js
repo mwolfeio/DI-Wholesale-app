@@ -101,7 +101,7 @@ const Section = (props) => {
               id: props.data.globalId,
               metafields: {
                 id: props.data.varifiedObj.id,
-                value: true,
+                value: "true",
                 valueType: "BOOLEAN",
               },
             },
@@ -114,12 +114,14 @@ const Section = (props) => {
               metafields: {
                 namespace: "CN Varified",
                 key: "cus_var",
-                value: true,
+                value: "true",
                 valueType: "BOOLEAN",
               },
             },
           },
         };
+
+    console.log("submitting payload: ", payload);
 
     customerUpdate(payload);
     setVarified(true);
