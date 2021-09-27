@@ -34,7 +34,9 @@ const Section = (props) => {
   const [oldCustomerNumber, setOldCustomerNumber] = useState(
     props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
   );
-  const [varfied, setVarified] = useState(props.data.varifiedObj.value);
+  const [varfied, setVarified] = useState(
+    props.data.varifiedObj ? props.data.varifiedObj.value : false
+  );
 
   //Query
   const [customerUpdate, { loading, error, data }] = useMutation(
