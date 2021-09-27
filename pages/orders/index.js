@@ -292,12 +292,12 @@ const SpecialPage = ({}) => {
           {list}
         </ul>
         <div className="flex-center-center">
-          {loading || error ? (
-            <Loader size="24" />
+          {results.length < 1 ? (
+            ""
+          ) : loading || error ? (
+            <Loader />
           ) : data.orders.pageInfo.hasNextPage ? (
-            <button onClick={loadMore}>
-              {loading ? <Loader size="24" /> : "Load more"}
-            </button>
+            <button onClick={loadMore}>Load more</button>
           ) : (
             ""
           )}
@@ -307,3 +307,13 @@ const SpecialPage = ({}) => {
   );
 };
 export default SpecialPage;
+
+// {(loading || error) && results.length < 1 ?  <Loader /> (
+//   ""
+// ) : data.orders.pageInfo.hasNextPage ? (
+//   <button onClick={loadMore}>
+//     {loading ? <Loader size="24" /> : "Load more"}
+//   </button>
+// ) : (
+//   ""
+// )

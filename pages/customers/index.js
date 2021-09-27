@@ -285,12 +285,12 @@ const SpecialPage = ({}) => {
           {list}
         </ul>
         <div className="flex-center-center">
-          {loading || error ? (
-            <Loader size="24" />
+          {results.length < 1 ? (
+            ""
+          ) : loading || error ? (
+            <Loader />
           ) : data.customers.pageInfo.hasNextPage ? (
-            <button onClick={loadMore}>
-              {loading ? <Loader size="24" /> : "Load more"}
-            </button>
+            <button onClick={loadMore}>Load more</button>
           ) : (
             ""
           )}
