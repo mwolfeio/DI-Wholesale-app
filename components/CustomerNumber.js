@@ -35,7 +35,9 @@ const Section = (props) => {
     props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
   );
   const [varfied, setVarified] = useState(
-    props.data.varifiedObj ? props.data.varifiedObj.value : false
+    props.data.varifiedObj && props.data.varifiedObj.value === "true"
+      ? true
+      : false
   );
 
   //Query
@@ -152,7 +154,7 @@ const Section = (props) => {
                 {loading ? (
                   <Loader size={24} />
                 ) : (
-                  `Save ${!varfied ? "& Varify" : ""}`
+                  `Save ${!varfied ? "& Verify" : ""}`
                 )}
               </button>
             </div>
@@ -173,7 +175,7 @@ const Section = (props) => {
           style={{ marginLeft: "8px" }}
           className="primary"
         >
-          Varify CN
+          Verify CN
         </button>
       )}
     </div>

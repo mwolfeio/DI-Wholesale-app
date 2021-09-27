@@ -27,7 +27,7 @@ const UPDATE_CUSTOEMR_NUMBER = gql`
 const Section = (props) => {
   //State
   const [varfied, setVarified] = useState(
-    props.varfiedValue ? props.varfiedValue : false
+    props.varfiedValue && props.varfiedValue === "true" ? true : false
   );
   const [customerNumber, setCustomerNumber] = useState(
     props.cnumb ? `#${props.cnumb}` : ""
@@ -173,7 +173,7 @@ const Section = (props) => {
           onClick={submitVarification}
           className="tinny-tag active-tiny-tab flex-center-center varfied-list-tag"
         >
-          varify
+          Verify
         </div>
       )}
     </div>
