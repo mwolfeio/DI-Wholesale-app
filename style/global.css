@@ -24,6 +24,10 @@ section.clear {
   padding: 36px 8px;
 }
 
+a {
+  text-decoration: none;
+}
+
 /* FONT---------------------- */
 
 @import url("https://rsms.me/inter/inter.css");

@@ -293,7 +293,7 @@ const CustomerPage = () => {
                 >
                   Customer #
                 </p>
-                <div>
+                <div className="flex-center-left">
                   <p>
                     {data.order.customer.cus_no
                       ? data.order.customer.cus_no.value
