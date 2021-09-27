@@ -54,6 +54,14 @@ const GET_ORDERS = gql`
             email
             lastName
             id
+            cus_no: metafield(namespace: "Customer Number", key: "cus_no") {
+              id
+              value
+            }
+            cus_var: metafield(namespace: "CN Varified", key: "cus_var") {
+              id
+              value
+            }
           }
         }
       }
@@ -159,6 +167,8 @@ const SpecialPage = ({}) => {
               gid: ord.node.id,
               number: ord.node.name,
               customerId: ord.node.customer.id,
+              customerNumber: ord.node.customer.cus_no,
+              customerNumberVarified: ord.node.customer.cus_var,
               name: `${ord.node.customer.lastName}, ${ord.node.customer.firstName}`,
               email: ord.node.email,
               dropShip: dropShip,

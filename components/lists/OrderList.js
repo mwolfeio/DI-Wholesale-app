@@ -82,9 +82,23 @@ export default function SpecialPage(props) {
           <p>{props.order.name}</p>
           <p className="subtitle">{truncate(props.order.company)}</p>
         </div>
-        <div>
-          <p>CN</p>
+
+        <div className="list-name flex-center-column">
+          <p>
+            {props.order.customerNumber
+              ? props.order.customerNumber.value
+              : "no CN"}
+          </p>
+          <p className="subtitle flex-center-column">
+            {props.order.customerNumberVarified &&
+            props.order.customerNumberVarified.value == "true" ? (
+              "Verified"
+            ) : (
+              <span style={{ color: "#e4545d" }}>Unverified</span>
+            )}
+          </p>
         </div>
+
         <div className="list-name flex-center-column">
           <p>{props.order.orders}</p>
           <p className="subtitle flex-center-column">
@@ -102,7 +116,7 @@ export default function SpecialPage(props) {
         >
           {props.order.fulfillable ? (
             <div
-              style={{ fontSize: "10px" }}
+              style={{ fontSize: "10px", padding: "0 10px", width: "auto" }}
               className="tinny-tag flex-center-center complete-tiny-tab "
             >
               Unfulfilled
