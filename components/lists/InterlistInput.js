@@ -38,6 +38,8 @@ const Section = (props) => {
     UPDATE_CUSTOEMR_NUMBER
   );
 
+  if (error) console.log("error: ", error);
+
   //Handle input
   const changeHandler = (e) => {
     console.log(`#${e.target.value.replace("#", "")}`);
@@ -50,6 +52,10 @@ const Section = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitting: ", customerNumber.replace("#", ""));
+    console.log(
+      "There is already a customer number: ",
+      props.fieldId ? true : false
+    );
 
     let payload = props.fieldId
       ? {
@@ -69,8 +75,8 @@ const Section = (props) => {
             input: {
               id: props.cusId,
               metafields: {
-                namespace: "Customer",
-                key: "Number",
+                namespace: "Customer Number",
+                key: "cus_no",
                 value: customerNumber.replace("#", ""),
                 valueType: "STRING",
               },
