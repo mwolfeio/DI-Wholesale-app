@@ -6,7 +6,7 @@
 
 main {
   padding: 16px;
-  max-width: 806px;
+  max-width: 960px;
   width: 96vw;
   box-sizing: border-box;
 }
@@ -460,7 +460,7 @@ ul.customer-list li {
   grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
 }
 ul.order-list li {
-  grid-template-columns: 1fr 1fr 1fr 2fr 60px 60px 76px;
+  grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr 1fr;
 }
 
 .cus-numb-edit {

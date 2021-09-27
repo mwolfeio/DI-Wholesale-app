@@ -164,7 +164,7 @@ const Section = (props) => {
                 varfied ? "drop-ship-tiny-tab" : "error-tab"
               } tinny-tag  flex-center-center`}
             >
-              {varfied ? "Varified" : "Unvarified"}
+              {varfied ? "Verified" : "Unverified"}
             </div>
           )}
         </form>

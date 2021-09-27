@@ -167,8 +167,12 @@ const SpecialPage = ({}) => {
               gid: ord.node.id,
               number: ord.node.name,
               customerId: ord.node.customer.id,
-              customerNumber: ord.node.customer.cus_no,
-              customerNumberVarified: ord.node.customer.cus_var,
+              customerNumber: ord.node.customer.cus_no
+                ? ord.node.customer.cus_no
+                : {},
+              customerNumberVarified: ord.node.customer.cus_var
+                ? ord.node.customer.cus_var
+                : {},
               name: `${ord.node.customer.lastName}, ${ord.node.customer.firstName}`,
               email: ord.node.email,
               dropShip: dropShip,

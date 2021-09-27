@@ -83,21 +83,19 @@ export default function SpecialPage(props) {
           <p className="subtitle">{truncate(props.order.company)}</p>
         </div>
 
-        <div className="list-name flex-center-column">
-          <p>
-            {props.order.customerNumber
-              ? props.order.customerNumber.value
-              : "no CN"}
-          </p>
-          <p className="subtitle flex-center-column">
-            {props.order.customerNumberVarified &&
-            props.order.customerNumberVarified.value == "true" ? (
-              "Verified"
-            ) : (
-              <span style={{ color: "#e4545d" }}>Unverified</span>
-            )}
-          </p>
-        </div>
+        <ListInput
+          cusId={props.order.gid}
+          fieldId={props.order.fieldId}
+          cnumb={props.order.cusnumb}
+        />
+
+        <ListInput
+          cusId={props.order.gid}
+          fieldId={props.order.customerNumber.id}
+          cnumb={props.order.customerNumber.value}
+          varifyId={props.order.customerNumberVarified.id}
+          varfiedValue={props.order.customerNumberVarified.value}
+        />
 
         <div className="list-name flex-center-column">
           <p>{props.order.orders}</p>
@@ -140,6 +138,24 @@ export default function SpecialPage(props) {
 //   fieldId={props.order.fieldId}
 //   cnumb={props.order.cusnumb}
 // />
+
+// <div className="list-name flex-center-column">
+//   <p>
+//     {props.order.customerNumber
+//       ? `#${props.order.customerNumber.value}`
+//       : "no CN"}
+//   </p>
+//
+//   {props.order.customerNumberVarified &&
+//     props.order.customerNumberVarified.value == "true" && (
+//       <p
+//         className="subtitle flex-center-column"
+//         style={{ color: "#e4545d" }}
+//       >
+//         Unverified
+//       </p>
+//     )}
+// </div>
 
 // <div
 //   className="tinny-tag active-tiny-tab flex-center-center"
