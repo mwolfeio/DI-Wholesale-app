@@ -168,6 +168,7 @@ button {
   transition: 0.15s;
   cursor: pointer;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 button:hover {
@@ -261,11 +262,20 @@ input.customer-number-input:focus {
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
 }
 
+.varified-msg {
+  position: absolute;
+  right: 8px;
+  bottom: -20px;
+  font-size: 12px;
+  color: #e4545d;
+  cursor: default;
+}
 .inter-list-link {
   padding: 8px;
   margin: -8px;
   transition: 0.15s ease;
   border-radius: 8px;
+  color: ;
 }
 .inter-list-link:hover {
   background: #f4f6f8;
@@ -653,7 +663,8 @@ button.submit-button {
   background: #fdf4e0;
 }
 
-.ul.large-list li.past-due-list-item .complete-tiny-tab {
+.ul.large-list li.past-due-list-item .complete-tiny-tab,
+.error-tab {
   color: #e4545d;
   background: #fff6f4;
 }

@@ -424,6 +424,7 @@ const CustomerPage = () => {
           display: true,
           cnumbObj: customerNumberObj ? customerNumberObj.node : {},
           globalId: globalId,
+          varified: true,
         }}
       />
       <div style={{ width: "100%" }}>

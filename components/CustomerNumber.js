@@ -34,28 +34,27 @@ const Section = (props) => {
   const [oldCustomerNumber, setOldCustomerNumber] = useState(
     props.data.cnumbObj.value ? `CN: ${props.data.cnumbObj.value}` : ""
   );
+  const [varfied, setVarified] = useState(props.data.varifiedObj.value);
 
   //Query
   const [customerUpdate, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
 
-  console.log("customer Number customerNumber: ", customerNumber);
-  console.log("customer Number loading: ", loading);
-  console.log("customer Number error: ", error);
-  console.log("customer Number data: ", data ? data : "No Data");
+  // console.log("customer Number customerNumber: ", customerNumber);
+  // console.log("customer Number loading: ", loading);
+  // console.log("customer Number error: ", error);
+  // console.log("customer Number data: ", data ? data : "No Data");
 
   //Handle input
   const changeHandler = (e) => {
     console.log(`CN: ${e.target.value.replace("CN: ", "")}`);
     setCustomerNumber(`CN: ${e.target.value.replace("CN: ", "")}`);
   };
-
   const erase = (e) => {
     e.preventDefault();
     setCustomerNumber(oldCustomerNumber);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submitting: ", customerNumber.replace("CN: ", ""));
@@ -90,41 +89,95 @@ const Section = (props) => {
     customerUpdate(payload);
     setOldCustomerNumber(customerNumber);
   };
+  const varifyCustomerNumber = (e) => {
+    e.preventDefault();
+
+    let payload = props.data.varifiedObj.id
+      ? {
+          variables: {
+            input: {
+              id: props.data.globalId,
+              metafields: {
+                id: props.data.varifiedObj.id,
+                value: true,
+                valueType: "BOOLEAN",
+              },
+            },
+          },
+        }
+      : {
+          variables: {
+            input: {
+              id: props.data.globalId,
+              metafields: {
+                namespace: "CN Varified",
+                key: "cus_var",
+                value: true,
+                valueType: "BOOLEAN",
+              },
+            },
+          },
+        };
+
+    customerUpdate(payload);
+    setVarified(true);
+  };
 
   //return component
   let needsSaving = customerNumber !== oldCustomerNumber;
   return (
-    <div style={{ position: "relative", height: "43px", width: "248px" }}>
-      <form
-        className={`customer-number-wrapper ${
-          needsSaving ? "customerNumber-form-open" : ""
-        }`}
-        onSubmit={handleSubmit}
-      >
-        <input
-          onChange={changeHandler}
-          className="customer-number-input"
-          type="text"
-          placeholder="No Customer #"
-          value={customerNumber}
-        />
-        {needsSaving ? (
-          <div className="flex-center-center">
-            <button onClick={erase} style={{ height: "36px", width: "100%" }}>
-              Cancel
-            </button>
-            <button
-              className="submit-button"
-              style={{ height: "36px", marginLeft: "8px", width: "100%" }}
-              type="submit"
+    <div className="flex-center-center">
+      <div style={{ position: "relative", height: "43px", width: "248px" }}>
+        <form
+          className={`customer-number-wrapper  ${
+            needsSaving ? "customerNumber-form-open" : ""
+          }`}
+          onSubmit={handleSubmit}
+        >
+          <input
+            onChange={changeHandler}
+            className="customer-number-input"
+            type="text"
+            placeholder="No Customer #"
+            value={customerNumber}
+          />
+          {needsSaving ? (
+            <div className="flex-center-center">
+              <button onClick={erase} style={{ height: "36px", width: "100%" }}>
+                Cancel
+              </button>
+              <button
+                className="submit-button"
+                style={{ height: "36px", marginLeft: "8px", width: "100%" }}
+                type="submit"
+              >
+                {loading ? (
+                  <Loader size={24} />
+                ) : (
+                  `Save ${!varfied ? "& Varify" : ""}`
+                )}
+              </button>
+            </div>
+          ) : (
+            <div
+              className={`varified-msg ${
+                varfied ? "drop-ship-tiny-tab" : "error-tab"
+              } tinny-tag  flex-center-center`}
             >
-              {loading ? <Loader size={24} /> : "Save"}
-            </button>
-          </div>
-        ) : (
-          ""
-        )}
-      </form>
+              {varfied ? "Varified" : "Unvarified"}
+            </div>
+          )}
+        </form>
+      </div>
+      {!varfied && oldCustomerNumber && (
+        <button
+          onClick={varifyCustomerNumber}
+          style={{ marginLeft: "8px" }}
+          className="primary"
+        >
+          Varify CN
+        </button>
+      )}
     </div>
   );
 };

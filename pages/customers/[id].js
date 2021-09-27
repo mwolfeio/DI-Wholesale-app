@@ -167,7 +167,11 @@ const CustomerPage = () => {
   let resaleNumberObj = matafieldsArr.find(
     (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
   );
+  let varifiedObj = matafieldsArr.find(
+    (o) => o.node.namespace === "CN Varified" && o.node.key === "cus_var"
+  );
   let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
+  // let varifiedCn = varifiedObj ? varifiedObj.node.value : false;
 
   return (
     <main>
@@ -177,6 +181,7 @@ const CustomerPage = () => {
           display: true,
           cnumbObj: customerNumberObj ? customerNumberObj.node : {},
           globalId: globalId,
+          varifiedObj: varifiedObj ? varifiedObj.node : {},
         }}
       />
       <div style={{ width: "100%" }}>
