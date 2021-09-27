@@ -88,6 +88,7 @@ const Section = (props) => {
     setOldCustomerNumber(customerNumber);
   };
   const submitVarification = (e) => {
+    console.log("varifying");
     e.preventDefault();
     let payload = props.data.varifiedObj.id
       ? {
