@@ -34,11 +34,15 @@ const Section = (props) => {
               <div className="flex-center-btw">
                 <div className="flex-center-left">
                   <p>
-                    <span className="subtitle">Namespace: </span>
+                    <span className="subtitle" style={{ marginRight: "8px" }}>
+                      Namespace:{" "}
+                    </span>
                   </p>
                   <input type="text" placeholder="" />
                   <p style={{ marginLeft: "16px" }}>
-                    <span className="subtitle">key: </span>
+                    <span className="subtitle" style={{ marginRight: "8px" }}>
+                      key:{" "}
+                    </span>
                   </p>
                   <input type="text" placeholder="" />
                 </div>
@@ -75,8 +79,16 @@ const Section = (props) => {
               <div className="card">
                 <div className="flex-center-btw">
                   <p>
-                    <span className="subtitle">Namespace: </span> {namespace}{" "}
-                    <span className="subtitle">key: </span>
+                    <span className="subtitle" style={{ marginRight: "8px" }}>
+                      Namespace:{" "}
+                    </span>{" "}
+                    {namespace}{" "}
+                    <span
+                      className="subtitle"
+                      style={{ margin: " 0 8px 0 16px" }}
+                    >
+                      key:{" "}
+                    </span>
                     {metafieldKey}
                   </p>
                   <p className="subtitle">{metafield.node.valueType}</p>
