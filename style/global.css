@@ -140,7 +140,7 @@ p a {
   text-decoration: none;
 }
 
-.past-due-list-item p {
+.past-due-list-item p.hilight {
   color: #e4545d;
 }
 .past-due-list-item .subtitle {

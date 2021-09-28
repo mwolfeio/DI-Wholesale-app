@@ -41,13 +41,6 @@ const Section = (props) => {
     UPDATE_CUSTOEMR_NUMBER
   );
 
-  console.log("props.varfiedValue: ", props.varfiedValue);
-  console.log(
-    "props.varfiedValue == `true` ",
-    props.varfiedValue == "true" ? true : false
-  );
-  console.log("varfied: ", varfied);
-
   //Handle input
   const changeHandler = (e) => {
     console.log(`#${e.target.value.replace("#", "")}`);
@@ -59,7 +52,6 @@ const Section = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitting: ", customerNumber.replace("#", ""));
 
     let payload = props.fieldId
       ? {
@@ -97,7 +89,7 @@ const Section = (props) => {
   };
   const submitVarification = (e) => {
     e.preventDefault();
-    console.log("varifying");
+
     let payload = props.varifyId
       ? {
           variables: {
@@ -135,7 +127,6 @@ const Section = (props) => {
   }, [props.cnumb]);
 
   useEffect(() => {
-    console.log("resetting value------------------");
     setVarified(props.varfiedValue == "true" ? true : false);
   }, [props.varfiedValue]);
 

@@ -22,7 +22,7 @@ let animationDelayCalc = (index) => {
 
 const customerLink = (id, e) => {
   e.stopPropagation();
-  console.log("clicked and going to /customers/", id);
+
   window.location.href = `/customers/${id}`;
 };
 
@@ -64,7 +64,7 @@ export default function SpecialPage(props) {
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>
+          <p className="hilight">
             {props.order.shiptDate
               ? moment(shiptDate).format("MMM D, YYYY")
               : shiptDate}
