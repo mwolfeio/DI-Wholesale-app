@@ -1,23 +1,84 @@
 import { useState } from "react";
-import { useQuery } from "react-apollo";
+import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import SectionHeader from "./SectionHeader.js";
 import MetafieldInput from "./MetafieldInput.js";
 
+//graphql
+const UPDATE_ITEM = gql`
+  mutation customerUpdate(
+    $input: CustomerInput!
+    $namespace: String!
+    $key: String!
+  ) {
+    customerUpdate(input: $input) {
+      customer {
+        metafield(namespace: $namespace, key: $key) {
+          id
+          namespace
+          key
+          value
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 const Section = (props) => {
   const [open, setOpen] = useState(true);
   const [addCard, setAddCard] = useState(false);
-  let fieldsArr = props.fields ? props.fields : [];
+  const [fieldsArr, setFieldsArr] = useState(props.fields ? props.fields : []);
 
+  const [namespace, setNamespace] = useState("");
+  const [key, setKey] = useState("");
+  const [type, setType] = useState("");
+  const [value, setValue] = useState("");
+  // let fieldsArr = props.fields ? props.fields : [];
+
+  console.log("fieldsArr: ", fieldsArr);
+
+  //Query
+  const [itemUpdate, { loading, error, data }] = useMutation(UPDATE_METAFIELD);
+
+  //handlers
   const toggleOpen = () => {
     setOpen(!open);
   };
-
   const addMetafield = () => {
     console.log("clicked");
     setAddCard(true);
   };
+  const submitNewMetafield = () => {
+    let payload = {
+      variables: {
+        namespace: namespace,
+        key: key,
+        input: {
+          id: props.customerId,
+          metafields: {
+            namespace: namespace,
+            key: key,
+            value: value,
+            valueType: type,
+          },
+        },
+      },
+    };
+
+    console.log("submitting: ", payload);
+    itemUpdate(payload);
+
+    // setFieldsArr([...fieldsArr, newElement]);
+  };
+
+  useEffect(() => {
+    setFieldsArr(props.fields ? props.fields : []);
+  }, [props.fields]);
 
   return (
     <section>
@@ -30,7 +91,7 @@ const Section = (props) => {
       {open ? (
         <div className="card-container">
           {addCard && (
-            <div className="card">
+            <div className="card input-card">
               <div className="flex-center-btw">
                 <div className="flex-center-left">
                   <p>
@@ -38,20 +99,36 @@ const Section = (props) => {
                       Namespace:{" "}
                     </span>
                   </p>
-                  <input type="text" placeholder="" />
+                  <input
+                    type="text"
+                    placeholder="add a name"
+                    value={namespace}
+                    onChange={(e) => setNamespace(e.target.value)}
+                  />
                   <p style={{ marginLeft: "16px" }}>
                     <span className="subtitle" style={{ marginRight: "8px" }}>
-                      key:{" "}
+                      Key:{" "}
                     </span>
                   </p>
-                  <input type="text" placeholder="" />
+                  <input
+                    type="text"
+                    placeholder="add a type"
+                    value={key}
+                    onChange={(e) => setKey(e.target.value)}
+                  />
                 </div>
 
                 <div className="flex-center-left">
                   <p style={{ marginLeft: "16px" }}>
-                    <span className="subtitle">key: </span>
+                    <span className="subtitle">Type: </span>
                   </p>
-                  <select>
+                  <select
+                    value={type}
+                    onChange={(e) => setType(e.target.value)}
+                  >
+                    <option value="" disabled selected>
+                      Choose a type
+                    </option>
                     <option value="STRING">String</option>
                     <option value="INTEGER">Integer</option>
                     <option value="JSON_STRING">JSON String</option>
@@ -59,13 +136,26 @@ const Section = (props) => {
                   </select>
                 </div>
               </div>
-              <input type="text" placeholder="Add a value" />
+              <input
+                style={{ margin: "16px 0" }}
+                type="text"
+                placeholder="Add a value"
+              />
               <div className="flex-center-right">
                 <div className="flex-center-center">
-                  <button className="" onClick={() => setAddCard(false)}>
+                  <button
+                    className=""
+                    onClick={() => setAddCard(false)}
+                    style={{ marginRight: "8px" }}
+                  >
                     Cancel
                   </button>
-                  <button className="submit-button">Submit</button>
+                  <button
+                    className="submit-button"
+                    onClick={submitNewMetafield}
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
             </div>
