@@ -113,7 +113,7 @@ const ProductPage = () => {
   let tagArr = product.tags;
   let varriantArr = product.variants.edges;
   let imgSrc = product.images
-    ? product.images.edge[0].node.src
+    ? product.images.edges[0].node.src
     : "https://i.stack.imgur.com/y9DpT.jpg";
 
   let tag = (
