@@ -488,6 +488,7 @@ ul.product-list li {
 ul.product-list li img {
   height: 58px;
   width: 58px;
+  border-radius: 10px;
   object-fit: cover;
 }
 
@@ -733,9 +734,6 @@ button.submit-button {
 
 .late-date {
   color: #e4545d;
-  /* background: #fff6f4;
-  padding: 8px;
-  margin: -8px; */
   border-radius: 10px;
 }
 .clickable-card {
@@ -854,6 +852,15 @@ button.submit-button {
 .dropdown-wrapper > *:hover {
   color: #4388f8;
   background: #fafbfc;
+}
+
+/* PRODUCT PAGE---------------- */
+.prdocut-page-img {
+  height: 67px;
+  width: 67px;
+  object-fit: cover;
+  margin-right: 24px;
+  border-radius: 15px;
 }
 /* FLEXBOX-------------------- */
 .flex-center-left {

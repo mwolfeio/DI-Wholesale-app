@@ -61,11 +61,11 @@ export default function SpecialPage({ product, index }) {
           </p>
         </div>
 
-        <div className="list-name" style={{ justifySelf: "start" }}>
+        <div className="list-name">
           <p>{product.type}</p>
         </div>
 
-        <div className="list-name" style={{ justifySelf: "start" }}>
+        <div className="list-name">
           <p>{product.vendor}</p>
         </div>
 
