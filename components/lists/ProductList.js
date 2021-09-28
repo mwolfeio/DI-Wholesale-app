@@ -41,7 +41,7 @@ export default function SpecialPage({ product, index }) {
 
   console.log("ProductList: ", product);
   return (
-    <Link href={`/product/${product.id}`} passHref>
+    <Link href={`/products/${product.id}`} passHref>
       <li
         className=""
         style={{ animationDelay: `${animationDelayCalc(index)}s` }}
