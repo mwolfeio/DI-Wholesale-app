@@ -35,13 +35,13 @@ export default function SpecialPage({ product, index }) {
 
   let skuString = getSkuString(product.variants);
 
-  console.log("CustomerList: ", props);
+  console.log("CustomerList: ", product);
   return (
     <Link href={`/customers/${product.id}`} passHref>
       <li
         className=""
         style={{ animationDelay: `${animationDelayCalc(index)}s` }}
-        key={`customer-list-item-${props.index}`}
+        key={`customer-list-item-${index}`}
       >
         <img src={src} />
 
