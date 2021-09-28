@@ -8,7 +8,7 @@ import MetafieldInput from "./MetafieldInput.js";
 import MoreButton from "../MoreButton.js";
 
 //graphql
-const UPDATE_ITEM = gql`
+const UPDATE_CUSTOMER = gql`
   mutation customerUpdate(
     $input: CustomerInput!
     $namespace: String!
@@ -16,6 +16,28 @@ const UPDATE_ITEM = gql`
   ) {
     customerUpdate(input: $input) {
       customer {
+        metafield(namespace: $namespace, key: $key) {
+          id
+          namespace
+          key
+          value
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+const UPDATE_ORDER = gql`
+  mutation orderUpdate(
+    $input: OrderInput!
+    $namespace: String!
+    $key: String!
+  ) {
+    orderUpdate(input: $input) {
+      order {
         metafield(namespace: $namespace, key: $key) {
           id
           namespace
@@ -56,10 +78,11 @@ const Section = (props) => {
   console.log("fieldsArr: ", fieldsArr);
 
   //Query
-  const [itemUpdate, { loading, error, data }] = useMutation(UPDATE_ITEM);
+  const [customerUpdate, { customerLoading, customerError, customerData }] =
+    useMutation(UPDATE_CUSTOMER);
+  const [orderUpdate, { orderLoading, orderError, orderData }] =
+    useMutation(UPDATE_ORDER);
   const [deleteField, { load, erro, da }] = useMutation(DELETE_FIELD);
-
-  if (error) console.log("error: ", error);
 
   //handlers
   const toggleOpen = () => {
@@ -75,7 +98,7 @@ const Section = (props) => {
         namespace: namespace,
         key: key,
         input: {
-          id: props.customerId,
+          id: props.globalId,
           metafields: {
             namespace: namespace,
             key: key,
@@ -85,27 +108,17 @@ const Section = (props) => {
         },
       },
     };
+    console.log("for this ", props.type, " submitting: ", payload);
 
-    console.log("submitting: ", payload);
-    itemUpdate(payload)
-      .then((returnedData) => {
-        console.log("submitted! ", returnedData);
-        let newField = {
-          node: returnedData.data.customerUpdate.customer.metafield,
-        };
-
-        newField.node.valueType = type;
-
-        setFieldsArr([newField, ...fieldsArr]);
-        setNamespace("");
-        setKey("");
-        setType("");
-        setValue("");
-        setAddCard(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (props.type === "order") {
+      orderUpdate(payload)
+        .then((returnedData) => updateState(returnedData))
+        .catch((err) => console.log(err));
+    } else if (props.type === "customer") {
+      customerUpdate(payload)
+        .then((returnedData) => updateState(returnedData))
+        .catch((err) => console.log(err));
+    } else console.log("no type specified or unrecognized type");
   };
   const deleteMetafield = (id) => {
     let payload = {
@@ -123,6 +136,21 @@ const Section = (props) => {
       .catch((err) => {
         console.log(err);
       });
+  };
+  const updateState = (newdata) => {
+    console.log("submitted! ", newdata);
+    let newField = {
+      node: newdata.data.customerUpdate.customer.metafield,
+    };
+
+    newField.node.valueType = type;
+
+    setFieldsArr([newField, ...fieldsArr]);
+    setNamespace("");
+    setKey("");
+    setType("");
+    setValue("");
+    setAddCard(false);
   };
 
   useEffect(() => {
@@ -245,8 +273,9 @@ const Section = (props) => {
                   </div>
                 </div>
                 <MetafieldInput
-                  customerId={props.customerId}
+                  globalId={props.globalId}
                   field={metafield.node}
+                  type={props.type}
                 />
               </div>
             );

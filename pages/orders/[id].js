@@ -356,7 +356,11 @@ const CustomerPage = () => {
           <LineItems items={lineItemArr} />
         </section>
 
-        <MatafieldSection fields={matafieldsArr} customerId={globalId} />
+        <MatafieldSection
+          fields={matafieldsArr}
+          type="order"
+          globalId={globalId}
+        />
       </div>
     </main>
   );

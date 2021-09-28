@@ -143,7 +143,7 @@ p a {
 .past-due-list-item p.hilight {
   color: #e4545d;
 }
-.past-due-list-item .subtitle {
+.past-due-list-item .subtitle.hilight {
   color: #e4545d;
   opacity: 0.6;
 }

@@ -69,7 +69,7 @@ export default function SpecialPage(props) {
               ? moment(shiptDate).format("MMM D, YYYY")
               : shiptDate}
           </p>
-          <p className="subtitle">
+          <p className="subtitle hilight">
             {props.order.shiptDate ? moment(shiptDate).fromNow() : "-"}
           </p>
         </div>

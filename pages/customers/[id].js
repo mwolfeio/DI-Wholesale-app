@@ -241,7 +241,11 @@ const CustomerPage = () => {
           tags={data.customer.tags ? data.customer.tags : []}
         />
         <Orders fields={ordersArr} />
-        <MatafieldSection fields={matafieldsArr} customerId={globalId} />
+        <MatafieldSection
+          fields={matafieldsArr}
+          type="customer"
+          globalId={globalId}
+        />
       </div>
     </main>
   );

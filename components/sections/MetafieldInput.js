@@ -3,7 +3,7 @@ import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
 //graphql
-const UPDATE_METAFIELD = gql`
+const UPDATE_CUSTOMER_METAFIELD = gql`
   mutation customerUpdate(
     $input: CustomerInput!
     $namespace: String!
@@ -26,14 +26,40 @@ const UPDATE_METAFIELD = gql`
   }
 `;
 
+const UPDATE_ORDER_METAFIELD = gql`
+  mutation orderrUpdate(
+    $input: OrderInput!
+    $namespace: String!
+    $key: String!
+  ) {
+    orderrUpdate(input: $input) {
+      order {
+        metafield(namespace: $namespace, key: $key) {
+          id
+          namespace
+          key
+          value
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
+
 const Section = (props) => {
   //State
   const [metafield, setMetafield] = useState(props.field.value);
   const [oldMetafield, setOldMetafield] = useState(props.field.value);
 
   //Query
-  const [customerUpdate, { loading, error, data }] =
-    useMutation(UPDATE_METAFIELD);
+  const [customerUpdate, { customerLoading, customerError, customerData }] =
+    useMutation(UPDATE_CUSTOMER_METAFIELD);
+  const [orderUpdate, { orderLoading, orderError, orderData }] = useMutation(
+    UPDATE_ORDER_METAFIELD
+  );
 
   //Handle input
   const changeHandler = (e) => {
@@ -51,22 +77,30 @@ const Section = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("submitting: ", metafield);
-    setOldMetafield(metafield);
-
-    customerUpdate({
+    let payload = {
       variables: {
         namespace: props.field.namespace,
         key: props.field.key,
         input: {
-          id: props.customerId,
+          id: props.globalId,
           metafields: {
             id: props.field.id,
             value: metafield,
-            valueType: "STRING",
+            valueType: props.field.valueType,
           },
         },
       },
-    });
+    };
+
+    if (props.type === "order") {
+      orderUpdate(payload)
+        .then(() => setOldMetafield(metafield))
+        .catch((err) => console.log(err));
+    } else if (props.type === "customer") {
+      customerUpdate(payload)
+        .then(() => setOldMetafield(metafield))
+        .catch((err) => console.log(err));
+    } else console.log("no type specified or unrecognized type");
   };
 
   useEffect(() => {
@@ -98,7 +132,7 @@ const Section = (props) => {
             style={{ height: "48px", marginLeft: "8px" }}
             type="submit"
           >
-            {loading ? <Loader size={24} /> : "Save"}
+            {customerLoading || orderLoading ? <Loader size={24} /> : "Save"}
           </button>
         </div>
       ) : (
