@@ -73,7 +73,23 @@ const Section = (props) => {
     };
 
     console.log("submitting: ", payload);
-    itemUpdate(payload);
+    itemUpdate(payload)
+      .then(() => {
+        console.log("submitted!");
+        let newField = {
+          node: {
+            namespace: namespace,
+            key: key,
+            value: value,
+            valueType: type,
+          },
+        };
+
+        setFieldsArr([...fieldsArr, newField]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // setFieldsArr([...fieldsArr, payload.variables]);
   };
 
