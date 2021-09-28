@@ -60,6 +60,12 @@ const GET_ORDER = gql`
             sku
             title
             vendor
+            variantTitle
+            variant {
+              image(maxWidth: 500, maxHeight: 500) {
+                src
+              }
+            }
             product {
               id
               onlineStoreUrl

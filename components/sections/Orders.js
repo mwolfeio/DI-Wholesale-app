@@ -50,7 +50,7 @@ const Section = (props) => {
                 <div className="card order-wrapper ">
                   <div className="order-header flex-btw-column">
                     <div>
-                      <h2>Oder: {order.node.name}</h2>
+                      <h2>Order: {order.node.name}</h2>
                       <p className="subtitle" style={{ fontSize: "14px" }}>
                         {date.toLocaleDateString("en-US", {
                           year: "numeric",
@@ -175,10 +175,7 @@ const Section = (props) => {
                         <img src={product.node.image.originalSrc} />
                         <p style={{ margin: "8px 0" }}>{product.node.title}</p>
                         <p className="subtitle">
-                          {formatter.format(
-                            product.node.product.priceRange.maxVariantPrice
-                              .amount
-                          )}
+                          {formatter.format(product.node.originalUnitPrice)}
                         </p>
                       </a>
                     ))}

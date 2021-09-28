@@ -88,12 +88,8 @@ const GET_CUSTOMER = gql`
                   }
                   product {
                     id
-                    priceRange {
-                      maxVariantPrice {
-                        amount
-                      }
-                    }
                   }
+                  originalUnitPrice
                   originalTotal
                   quantity
                   sku

@@ -138,7 +138,7 @@ const SpecialPage = ({}) => {
           ? ord.node.displayAddress.company
           : "-";
         let shiptDate =
-          ord.node.metafield_1 == null
+          ord.node.metafield_1 == null || ord.node.metafield_1 === "-"
             ? null
             : ord.node.metafield_1.value.indexOf("-") > -1
             ? ord.node.metafield_1.value.replace("-", "/")
@@ -293,7 +293,7 @@ const SpecialPage = ({}) => {
           {list}
         </ul>
         <div className="flex-center-center">
-          {results.length < 1 ? (
+          {results.length < 1 && !searchTerm ? (
             ""
           ) : loading || error ? (
             <Loader />

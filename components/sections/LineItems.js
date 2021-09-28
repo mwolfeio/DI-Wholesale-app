@@ -28,21 +28,22 @@ const CustomerPage = (props) => {
               let id = product.product
                 ? product.product.id.replace("gid://shopify/Product/", "")
                 : "";
+              let img =
+                product.variant && product.variant.image
+                  ? product.variant.image.src
+                  : product.image
+                  ? product.image.src
+                  : "https://i.stack.imgur.com/y9DpT.jpg";
 
               console.log("product: ", product);
               return (
                 <div className="card orders-page-product-card">
-                  <img
-                    src={
-                      product.image
-                        ? product.image.src
-                        : "https://i.stack.imgur.com/y9DpT.jpg"
-                    }
-                  />
+                  <img src={img} />
                   <div>
                     <h2>{product.title}</h2>
                     <p className="subtitle">
-                      SKU: {product.sku} • {product.vendor}
+                      SKU: {product.sku} • {product.variantTitle} •{" "}
+                      {product.vendor}
                     </p>
                     <div className="flex-center-left">
                       <a target="_blank" href={url}>

@@ -286,7 +286,7 @@ const SpecialPage = ({}) => {
           {list}
         </ul>
         <div className="flex-center-center">
-          {results.length < 1 ? (
+          {results.length < 1 && !searchTerm ? (
             ""
           ) : loading || error ? (
             <Loader />
