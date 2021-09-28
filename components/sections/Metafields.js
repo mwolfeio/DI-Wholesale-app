@@ -93,6 +93,7 @@ const Section = (props) => {
     setAddCard(true);
   };
   const submitNewMetafield = () => {
+    e.preventDefault();
     let payload = {
       variables: {
         namespace: namespace,
@@ -172,7 +173,7 @@ const Section = (props) => {
       {open ? (
         <div className="card-container">
           {addCard && (
-            <div className="card input-card">
+            <form className="card input-card" onSubmit={submitNewMetafield}>
               <div className="flex-center-btw">
                 <div className="flex-center-left">
                   <p>
@@ -181,6 +182,7 @@ const Section = (props) => {
                     </span>
                   </p>
                   <input
+                    required
                     type="text"
                     placeholder="add a name"
                     value={namespace}
@@ -192,8 +194,9 @@ const Section = (props) => {
                     </span>
                   </p>
                   <input
+                    required
                     type="text"
-                    placeholder="add a type"
+                    placeholder="add a key"
                     value={key}
                     onChange={(e) => setKey(e.target.value)}
                   />
@@ -201,14 +204,17 @@ const Section = (props) => {
 
                 <div className="flex-center-left">
                   <p style={{ marginLeft: "16px" }}>
-                    <span className="subtitle">Type: </span>
+                    <span className="subtitle" style={{ marginRight: "8px" }}>
+                      Type:{" "}
+                    </span>
                   </p>
                   <select
                     value={type}
+                    required
                     onChange={(e) => setType(e.target.value)}
                   >
                     <option value="" disabled selected>
-                      Choose a type
+                      Select type
                     </option>
                     <option value="STRING">String</option>
                     <option value="INTEGER">Integer</option>
@@ -217,13 +223,25 @@ const Section = (props) => {
                   </select>
                 </div>
               </div>
-              <input
-                style={{ margin: "16px 0" }}
-                type="text"
-                placeholder="Add a value"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
-              />
+              {type === "BOOLEAN" ? (
+                <select
+                  value={value}
+                  required
+                  onChange={(e) => setValue(e.target.value)}
+                >
+                  <option value="true">True</option>
+                  <option value="false">False</option>
+                </select>
+              ) : (
+                <input
+                  required
+                  style={{ margin: "16px 0" }}
+                  type={type === "INTEGER" ? "number" : "text"}
+                  placeholder="Add a value"
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                />
+              )}
               <div className="flex-center-right">
                 <div className="flex-center-center">
                   <button
@@ -233,15 +251,12 @@ const Section = (props) => {
                   >
                     Cancel
                   </button>
-                  <button
-                    className="submit-button"
-                    onClick={submitNewMetafield}
-                  >
+                  <button type="submit" className="submit-button">
                     Submit
                   </button>
                 </div>
               </div>
-            </div>
+            </form>
           )}
 
           {fieldsArr.map((metafield) => {

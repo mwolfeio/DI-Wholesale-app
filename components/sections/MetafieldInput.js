@@ -111,14 +111,22 @@ const Section = (props) => {
   //return component
   return (
     <form onSubmit={submitHandler} style={{ display: "flex" }}>
-      <input
-        onChange={changeHandler}
-        style={{ borderRadius: "10px" }}
-        className=""
-        type="text"
-        placeholder="No Metafield"
-        value={metafield}
-      />
+      {props.field.valueType === "BOOLEAN" ? (
+        <select value={metafield} required onChange={changeHandler}>
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      ) : (
+        <input
+          required
+          onChange={changeHandler}
+          style={{ borderRadius: "10px" }}
+          className=""
+          type={props.field.valueType === "INTEGER" ? "number" : "text"}
+          placeholder="No Metafield"
+          value={metafield}
+        />
+      )}
       {metafield !== oldMetafield ? (
         <div style={{ display: "flex" }}>
           <button
