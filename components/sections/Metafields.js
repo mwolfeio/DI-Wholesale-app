@@ -28,6 +28,17 @@ const UPDATE_ITEM = gql`
     }
   }
 `;
+const DELETE_FIELD = gql`
+  mutation MetafieldDelete($input: MetafieldDeleteInput!) {
+    metafieldDelete(input: $input) {
+      deletedId
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
 
 const Section = (props) => {
   const [open, setOpen] = useState(true);
@@ -44,6 +55,7 @@ const Section = (props) => {
 
   //Query
   const [itemUpdate, { loading, error, data }] = useMutation(UPDATE_ITEM);
+  const [deleteField, { load, erro, da }] = useMutation(DELETE_FIELD);
 
   if (error) console.log("error: ", error);
 
@@ -77,20 +89,32 @@ const Section = (props) => {
       .then((returnedData) => {
         console.log("submitted! ", returnedData);
         let newField = {
-          node: {
-            namespace: namespace,
-            key: key,
-            value: value,
-            valueType: type,
-          },
+          node: returnedData.data.customerUpdate.customer.metafield,
         };
 
-        setFieldsArr([...fieldsArr, newField]);
+        setFieldsArr([newField, ...fieldsArr]);
       })
       .catch((err) => {
         console.log(err);
       });
     // setFieldsArr([...fieldsArr, payload.variables]);
+  };
+  const deleteMetafield = (id) => {
+    let payload = {
+      variables: {
+        input: {
+          id: id,
+        },
+      },
+    };
+    console.log("deleting: ", payload);
+    deleteField(payload)
+      .then(() => {
+        setFieldsArr(fieldsArr.filter((field) => field.node.id === id));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -200,7 +224,12 @@ const Section = (props) => {
                     </span>
                     {metafieldKey}
                   </p>
-                  <p className="subtitle">{metafield.node.valueType}</p>
+                  <div className="flex-center-center">
+                    <p className="subtitle">{metafield.node.valueType}</p>
+                    <button onClick={() => deleteMetafield(metafield.node.id)}>
+                      Delete
+                    </button>
+                  </div>
                 </div>
                 <MetafieldInput
                   customerId={props.customerId}
