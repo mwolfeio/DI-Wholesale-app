@@ -251,11 +251,3 @@ const CustomerPage = () => {
   );
 };
 export default CustomerPage;
-
-// <section className="disabled">Wishlist</section>
-// <section className="disabled">Interests</section>
-// <section className="disabled">Reviews</section>
-// <section className="disabled">Alerts</section>
-// <section className="disabled">Rewards</section>
-
-// /<h3>Jained {data.customer.lifetimeDuration} ago</h3>
