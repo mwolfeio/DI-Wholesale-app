@@ -25,7 +25,11 @@ let getSkuString = (arr) => {
     skuArr.push(varriant.node.sku);
   });
 
-  return skuArr.length > 1 ? skuArr.join(", ") : "No SKUs";
+  return skuArr.length > 1
+    ? skuArr.join(", ")
+    : skuArr.length > 0
+    ? skuArr[0]
+    : "No SKUs";
 };
 
 export default function SpecialPage({ product, index }) {
@@ -48,10 +52,6 @@ export default function SpecialPage({ product, index }) {
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{product.title}</p>
           <p className="subtitle">{truncate(skuString)}</p>
-        </div>
-
-        <div>
-          <p></p>
         </div>
 
         <div className="list-name flex-center-column">
