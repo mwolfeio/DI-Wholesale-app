@@ -34,6 +34,9 @@ const GET_PRODUCT = gql`
         }
       }
       productType
+      minQT: metafield(key: "min_qt", namespace: "global") {
+        value
+      }
       status
       storefrontId
       title
@@ -118,8 +121,13 @@ const ProductPage = () => {
 
   let tag = (
     <h1
-      style={{ marginBottom: 0, padding: "8px 24px", borderRadius: "100px" }}
-      className={` flex-center-center${
+      style={{
+        marginBottom: 0,
+        padding: "8px 24px",
+        fontSize: "24px",
+        borderRadius: "100px",
+      }}
+      className={` flex-center-center ${
         product.status === "ACTIVE" ? "drop-ship-tiny-tab" : "warning-tiny-tab"
       }`}
     >
@@ -144,12 +152,14 @@ const ProductPage = () => {
               <div style={{ textAlign: "left" }}>
                 <h1>{product.title}</h1>
                 <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                  <i>{product.productType}</i>
+                  <i>
+                    {product.vendor} • {product.productType}{" "}
+                  </i>
                 </h2>
               </div>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
-              <h1 style={{ fontSize: "20px" }}>{product.vendor}</h1>
+              <h1 style={{ fontSize: "20px" }}>{product.minQT} item min</h1>
               <div style={{ height: "29px" }} className="flex-center-right">
                 <a href={product.onlineStoreUrl} target="_blank">
                   <button
@@ -173,16 +183,23 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
-          <div style={{ height: "29px" }} className="flex-center-left">
+          <div
+            style={{ height: "32px", marginTop: "8px" }}
+            className="flex-center-left"
+          >
             <p style={{ margin: "0 12px 0 0" }}>Tags:</p>
-            {tagArr.map((tagTag) => (
-              <div
-                className="tinny-tag felx-center-center dissabled-tiny-tab"
-                style={{ marginLeft: "8px" }}
-              >
-                {tagTag}
-              </div>
-            ))}
+            {tagArr.map((tagTag) => {
+              let strAr = tagTag.split("_");
+              return (
+                <div
+                  className="tinny-tag felx-center-center dissabled-tiny-tab"
+                  style={{ marginLeft: "8px" }}
+                >
+                  {strAr[0]}_
+                  <span style={{ color: "#4e5d78" }}>{strAr[1]}</span>
+                </div>
+              );
+            })}
           </div>
           <Variants items={varriantArr} />
         </section>
