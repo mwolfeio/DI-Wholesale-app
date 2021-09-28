@@ -5,6 +5,8 @@ import { gql } from "apollo-boost";
 import SectionHeader from "./SectionHeader.js";
 import MetafieldInput from "./MetafieldInput.js";
 
+import MoreButton from "../MoreButton.js";
+
 //graphql
 const UPDATE_ITEM = gql`
   mutation customerUpdate(
@@ -92,12 +94,18 @@ const Section = (props) => {
           node: returnedData.data.customerUpdate.customer.metafield,
         };
 
+        newField.node.valueType = type;
+
         setFieldsArr([newField, ...fieldsArr]);
+        setNamespace("");
+        setKey("");
+        setType("");
+        setValue("");
+        setAddCard(false);
       })
       .catch((err) => {
         console.log(err);
       });
-    // setFieldsArr([...fieldsArr, payload.variables]);
   };
   const deleteMetafield = (id) => {
     let payload = {
@@ -110,7 +118,7 @@ const Section = (props) => {
     console.log("deleting: ", payload);
     deleteField(payload)
       .then(() => {
-        setFieldsArr(fieldsArr.filter((field) => field.node.id === id));
+        setFieldsArr(fieldsArr.filter((field) => field.node.id !== id));
       })
       .catch((err) => {
         console.log(err);
@@ -226,9 +234,11 @@ const Section = (props) => {
                   </p>
                   <div className="flex-center-center">
                     <p className="subtitle">{metafield.node.valueType}</p>
-                    <button onClick={() => deleteMetafield(metafield.node.id)}>
-                      Delete
-                    </button>
+                    <MoreButton>
+                      <span onClick={() => deleteMetafield(metafield.node.id)}>
+                        Delete
+                      </span>
+                    </MoreButton>
                   </div>
                 </div>
                 <MetafieldInput

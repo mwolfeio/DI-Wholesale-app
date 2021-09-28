@@ -811,6 +811,34 @@ button.submit-button {
 .discount-text select {
   max-width: 220px;
 }
+
+/* DROPDOWN------------------- */
+.dropdown-wrapper {
+  position: absolute;
+  bottom: -4px;
+  right: 0;
+  border-radius: 10px;
+  background: white;
+  z-index: 130;
+  box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
+  max-width: 240px;
+  padding: 16px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.dropdown-wrapper > * {
+  height: 32px;
+  width: 100%;
+  transition: 0.5s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.dropdown-wrapper > *:hover {
+  color: #4388f8;
+  background: #fff6f4;
+}
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;

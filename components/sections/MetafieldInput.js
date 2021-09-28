@@ -69,6 +69,11 @@ const Section = (props) => {
     });
   };
 
+  useEffect(() => {
+    setMetafield(props.field.value);
+    setOldMetafield(props.field.value);
+  }, [props.field]);
+
   //return component
   return (
     <form onSubmit={submitHandler} style={{ display: "flex" }}>
