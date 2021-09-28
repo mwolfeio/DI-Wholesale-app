@@ -224,6 +224,9 @@ select {
   color: #4e5d78;
   transition: 0.15s ease;
 }
+input.input-error {
+  border-color: #e4545d !important;
+}
 
 input:hover,
 select:hover {

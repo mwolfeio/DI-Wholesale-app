@@ -7,15 +7,14 @@ import MetafieldInput from "./MetafieldInput.js";
 
 import MoreButton from "../MoreButton.js";
 
-//graphql
-const UPDATE_CUSTOMER = gql`
-  mutation customerUpdate(
-    $input: CustomerInput!
+const UPDATE_PRODUCT = gql`
+  mutation productUpdate(
+    $input: ProductInput!
     $namespace: String!
     $key: String!
   ) {
-    customerUpdate(input: $input) {
-      customer {
+    productUpdate(input: $input) {
+      product {
         metafield(namespace: $namespace, key: $key) {
           id
           namespace
@@ -30,29 +29,7 @@ const UPDATE_CUSTOMER = gql`
     }
   }
 `;
-const UPDATE_ORDER = gql`
-  mutation orderUpdate(
-    $input: OrderInput!
-    $namespace: String!
-    $key: String!
-  ) {
-    orderUpdate(input: $input) {
-      order {
-        metafield(namespace: $namespace, key: $key) {
-          id
-          namespace
-          key
-          value
-        }
-      }
-      userErrors {
-        field
-        message
-      }
-    }
-  }
-`;
-// const UPDATE_Product = gql`
+// const UPDATE_PRODUCT_VARIANT = gql`
 //   mutation productUpdate(
 //     $input: ProductInput!
 //     $namespace: String!
@@ -60,11 +37,17 @@ const UPDATE_ORDER = gql`
 //   ) {
 //     productUpdate(input: $input) {
 //       product {
-//         metafield(namespace: $namespace, key: $key) {
-//           id
-//           namespace
-//           key
-//           value
+//         variants {
+//           edges {
+//             node {
+//               metafield(namespace: $namespace, key: $key) {
+//                 id
+//                 namespace
+//                 key
+//                 value
+//               }
+//             }
+//           }
 //         }
 //       }
 //       userErrors {
@@ -95,15 +78,27 @@ const Section = (props) => {
   const [key, setKey] = useState("");
   const [type, setType] = useState("");
   const [value, setValue] = useState("");
-  const [validJson, setValidJason] = useState(false);
+  // let fieldsArr = props.fields ? props.fields : [];
+  const regex = new RegExp(`(?(DEFINE)
+# Note that everything is atomic, JSON does not need backtracking if it's valid
+# and this prevents catastrophic backtracking
+(?<json>(?>\s*(?&object)\s*|\s*(?&array)\s*))
+(?<object>(?>\{\s*(?>(?&pair)(?>\s*,\s*(?&pair))*)?\s*\}))
+(?<pair>(?>(?&STRING)\s*:\s*(?&value)))
+(?<array>(?>\[\s*(?>(?&value)(?>\s*,\s*(?&value))*)?\s*\]))
+(?<value>(?>true|false|null|(?&STRING)|(?&NUMBER)|(?&object)|(?&array)))
+(?<STRING>(?>"(?>\\(?>["\\\/bfnrt]|u[a-fA-F0-9]{4})|[^"\\\0-\x1F\x7F]+)*"))
+(?<NUMBER>(?>-?(?>0|[1-9][0-9]*)(?>\.[0-9]+)?(?>[eE][+-]?[0-9]+)?))
+)
+\A(?&json)\z`);
 
   console.log("fieldsArr: ", fieldsArr);
 
   //Query
-  const [customerUpdate, { customerLoading, customerError, customerData }] =
-    useMutation(UPDATE_CUSTOMER);
-  const [orderUpdate, { orderLoading, orderError, orderData }] =
-    useMutation(UPDATE_ORDER);
+  const [producteUpdate, { producteLoading, producteError, producteData }] =
+    useMutation(UPDATE_PRODUCT);
+  // const [orderUpdate, { orderLoading, orderError, orderData }] =
+  //   useMutation(UPDATE_ORDER);
   const [deleteField, { load, erro, da }] = useMutation(DELETE_FIELD);
 
   //handlers
@@ -116,7 +111,6 @@ const Section = (props) => {
   };
   const submitHandler = () => {
     e.preventDefault();
-    if (type === "JSON_STRING" && !validJson) return;
     let payload = {
       variables: {
         namespace: namespace,
@@ -134,10 +128,12 @@ const Section = (props) => {
     };
     console.log("for this ", props.type, " submitting: ", payload);
 
-    if (props.type === "order") {
+    if (props.type === "product") {
       orderUpdate(payload)
         .then((returnedData) =>
-          updateState(returnedData.data.orderUpdate.order.metafield)
+          updateState(
+            returnedData.data.producteUpdateUpdate.producteUpdate.metafield
+          )
         )
         .catch((err) => console.log(err));
     } else if (props.type === "customer") {
@@ -179,14 +175,6 @@ const Section = (props) => {
     setType("");
     setValue("");
     setAddCard(false);
-  };
-  const IsJsonString = (str) => {
-    try {
-      JSON.parse(str);
-    } catch (e) {
-      setValidJason(false);
-    }
-    setValidJason(true);
   };
 
   useEffect(() => {
@@ -267,17 +255,11 @@ const Section = (props) => {
               ) : (
                 <input
                   required
-                  className={
-                    type === "JSON_STRING" && !validJson ? "input-error" : ""
-                  }
                   style={{ margin: "16px 0" }}
                   type={type === "INTEGER" ? "number" : "text"}
                   placeholder="Add a value"
                   value={value}
-                  onChange={(e) => {
-                    if (type === "JSON_STRING") IsJsonString();
-                    setValue(e.target.value);
-                  }}
+                  onChange={(e) => setValue(e.target.value)}
                 />
               )}
               <div className="flex-center-right">
