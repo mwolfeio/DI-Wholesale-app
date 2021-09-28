@@ -55,6 +55,7 @@ const GET_CUSTOMENTS = gql`
           defaultAddress {
             company
             address1
+            address2
             city
             provinceCode
             country

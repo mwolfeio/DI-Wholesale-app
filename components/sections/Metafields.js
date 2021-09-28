@@ -45,6 +45,8 @@ const Section = (props) => {
   //Query
   const [itemUpdate, { loading, error, data }] = useMutation(UPDATE_ITEM);
 
+  if (error) console.log("error: ", error);
+
   //handlers
   const toggleOpen = () => {
     setOpen(!open);
@@ -72,8 +74,7 @@ const Section = (props) => {
 
     console.log("submitting: ", payload);
     itemUpdate(payload);
-
-    // setFieldsArr([...fieldsArr, newElement]);
+    // setFieldsArr([...fieldsArr, payload.variables]);
   };
 
   useEffect(() => {
