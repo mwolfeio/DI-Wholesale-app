@@ -92,7 +92,7 @@ const Section = (props) => {
     console.log("clicked");
     setAddCard(true);
   };
-  const submitNewMetafield = () => {
+  const submitHandler = () => {
     e.preventDefault();
     let payload = {
       variables: {
@@ -173,7 +173,7 @@ const Section = (props) => {
       {open ? (
         <div className="card-container">
           {addCard && (
-            <form className="card input-card" onSubmit={submitNewMetafield}>
+            <form onSubmit={submitHandler} className="card input-card">
               <div className="flex-center-btw">
                 <div className="flex-center-left">
                   <p>
@@ -227,6 +227,7 @@ const Section = (props) => {
                 <select
                   value={value}
                   required
+                  style={{ margin: "16px 0" }}
                   onChange={(e) => setValue(e.target.value)}
                 >
                   <option value="true">True</option>
