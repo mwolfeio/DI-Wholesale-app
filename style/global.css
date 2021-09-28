@@ -226,6 +226,7 @@ select {
 }
 input.input-error {
   border-color: #e4545d !important;
+  background: #fff6f4 !important;
 }
 
 input:hover,

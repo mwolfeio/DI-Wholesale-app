@@ -184,7 +184,7 @@ const Section = (props) => {
     try {
       JSON.parse(str);
     } catch (e) {
-      setValidJason(false);
+      return setValidJason(false);
     }
     setValidJason(true);
   };
@@ -268,7 +268,9 @@ const Section = (props) => {
                 <input
                   required
                   className={
-                    type === "JSON_STRING" && !validJson ? "input-error" : ""
+                    type === "JSON_STRING" && value && !validJson
+                      ? "input-error"
+                      : ""
                   }
                   style={{ margin: "16px 0" }}
                   type={type === "INTEGER" ? "number" : "text"}

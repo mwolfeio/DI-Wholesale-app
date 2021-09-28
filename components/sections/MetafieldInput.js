@@ -53,6 +53,7 @@ const Section = (props) => {
   //State
   const [metafield, setMetafield] = useState(props.field.value);
   const [oldMetafield, setOldMetafield] = useState(props.field.value);
+  const [validJson, setValidJason] = useState(false);
 
   //Query
   const [customerUpdate, { customerLoading, customerError, customerData }] =
@@ -61,22 +62,27 @@ const Section = (props) => {
     UPDATE_ORDER_METAFIELD
   );
 
-  //Handle input
+  //Handlers
   const changeHandler = (e) => {
     console.log(e.target.value);
     setMetafield(e.target.value);
   };
-
-  //Handle cancelation
   const cancel = (e) => {
     e.preventDefault();
     setMetafield(oldMetafield);
   };
-
-  //Sumbit
+  const IsJsonString = (str) => {
+    try {
+      JSON.parse(str);
+    } catch (e) {
+      return setValidJason(false);
+    }
+    setValidJason(true);
+  };
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("submitting: ", metafield);
+    if (props.field.valueType === "JSON_STRING" && !validJson) return;
     let payload = {
       variables: {
         namespace: props.field.namespace,
@@ -119,9 +125,16 @@ const Section = (props) => {
       ) : (
         <input
           required
-          onChange={changeHandler}
+          onChange={(e) => {
+            if (props.field.valueType === "JSON_STRING") IsJsonString();
+            changeHandler();
+          }}
           style={{ borderRadius: "10px" }}
-          className=""
+          className={
+            props.field.valueType === "JSON_STRING" && metafield && !validJson
+              ? "input-error"
+              : ""
+          }
           type={props.field.valueType === "INTEGER" ? "number" : "text"}
           placeholder="No Metafield"
           value={metafield}
