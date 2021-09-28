@@ -218,7 +218,10 @@ const Section = (props) => {
 
             return (
               <div className="card">
-                <div className="flex-center-btw">
+                <div
+                  className="flex-center-btw"
+                  style={{ marginBottom: "8px" }}
+                >
                   <p>
                     <span className="subtitle" style={{ marginRight: "8px" }}>
                       Namespace:{" "}
