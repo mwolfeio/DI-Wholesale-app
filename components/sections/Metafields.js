@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
@@ -43,7 +43,7 @@ const Section = (props) => {
   console.log("fieldsArr: ", fieldsArr);
 
   //Query
-  const [itemUpdate, { loading, error, data }] = useMutation(UPDATE_METAFIELD);
+  const [itemUpdate, { loading, error, data }] = useMutation(UPDATE_ITEM);
 
   //handlers
   const toggleOpen = () => {
