@@ -114,7 +114,7 @@ const Section = (props) => {
     console.log("clicked");
     setAddCard(true);
   };
-  const submitHandler = () => {
+  const submitHandler = (e) => {
     e.preventDefault();
     if (type === "JSON_STRING" && !validJson) return;
     let payload = {
@@ -277,8 +277,9 @@ const Section = (props) => {
                   placeholder="Add a value"
                   value={value}
                   onChange={(e) => {
-                    if (type === "JSON_STRING") IsJsonString();
-                    setValue(e.target.value);
+                    let str = e.target.value;
+                    if (type === "JSON_STRING") IsJsonString(str);
+                    setValue(str);
                   }}
                 />
               )}

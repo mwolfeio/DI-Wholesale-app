@@ -126,8 +126,9 @@ const Section = (props) => {
         <input
           required
           onChange={(e) => {
-            if (props.field.valueType === "JSON_STRING") IsJsonString();
-            changeHandler();
+            let str = e.target.value;
+            if (props.field.valueType === "JSON_STRING") IsJsonString(str);
+            changeHandler(e);
           }}
           style={{ borderRadius: "10px" }}
           className={
