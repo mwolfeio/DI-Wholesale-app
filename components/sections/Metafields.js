@@ -74,8 +74,8 @@ const Section = (props) => {
 
     console.log("submitting: ", payload);
     itemUpdate(payload)
-      .then(() => {
-        console.log("submitted!");
+      .then((returnedData) => {
+        console.log("submitted! ", returnedData);
         let newField = {
           node: {
             namespace: namespace,
@@ -157,6 +157,8 @@ const Section = (props) => {
                 style={{ margin: "16px 0" }}
                 type="text"
                 placeholder="Add a value"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
               />
               <div className="flex-center-right">
                 <div className="flex-center-center">
