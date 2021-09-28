@@ -164,11 +164,11 @@ const SpecialPage = ({}) => {
     if (loading || !data) return;
     if (loadingMore) {
       console.log("loading more to resutls");
-      setResults([...results, ...data.customers.edges]);
+      setResults([...results, ...data.products.edges]);
       setLoadingMore(false);
     } else {
       console.log("resetting resutls");
-      setResults(data.customers.edges);
+      setResults(data.products.edges);
     }
   }, [data]);
 
@@ -217,7 +217,7 @@ const SpecialPage = ({}) => {
             ""
           ) : loading || error ? (
             <Loader />
-          ) : data.customers.pageInfo.hasNextPage ? (
+          ) : data.products.pageInfo.hasNextPage ? (
             <button onClick={loadMore}>Load more</button>
           ) : (
             ""
