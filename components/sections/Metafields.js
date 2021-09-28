@@ -112,11 +112,15 @@ const Section = (props) => {
 
     if (props.type === "order") {
       orderUpdate(payload)
-        .then((returnedData) => updateState(returnedData))
+        .then((returnedData) =>
+          updateState(returnedData.data.customerUpdate.order.metafield)
+        )
         .catch((err) => console.log(err));
     } else if (props.type === "customer") {
       customerUpdate(payload)
-        .then((returnedData) => updateState(returnedData))
+        .then((returnedData) =>
+          updateState(returnedData.data.customerUpdate.customer.metafield)
+        )
         .catch((err) => console.log(err));
     } else console.log("no type specified or unrecognized type");
   };
@@ -140,7 +144,7 @@ const Section = (props) => {
   const updateState = (newdata) => {
     console.log("submitted! ", newdata);
     let newField = {
-      node: newdata.data.customerUpdate.customer.metafield,
+      node: newdata,
     };
 
     newField.node.valueType = type;

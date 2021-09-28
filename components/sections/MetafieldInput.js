@@ -27,12 +27,12 @@ const UPDATE_CUSTOMER_METAFIELD = gql`
 `;
 
 const UPDATE_ORDER_METAFIELD = gql`
-  mutation orderrUpdate(
+  mutation orderUpdate(
     $input: OrderInput!
     $namespace: String!
     $key: String!
   ) {
-    orderrUpdate(input: $input) {
+    orderUpdate(input: $input) {
       order {
         metafield(namespace: $namespace, key: $key) {
           id
