@@ -50,6 +50,10 @@ export default function SpecialPage({ product, index }) {
           <p className="subtitle">{truncate(skuString)}</p>
         </div>
 
+        <div>
+          <p></p>
+        </div>
+
         <div className="list-name flex-center-column">
           <p>{formatter.format(product.price)}</p>
           <p className="subtitle flex-center-column">

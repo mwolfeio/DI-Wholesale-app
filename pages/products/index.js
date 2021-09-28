@@ -124,11 +124,15 @@ const SpecialPage = ({}) => {
               gid: prod.node.id,
               title: prod.node.title,
               imgSrc: prod.node.featuredImage.src,
-              variants: prod.node.variants.edges,
+              variants: prod.node.variants ? prod.node.variants.edges : [],
               inventory: prod.node.totalInventory,
-              price: prod.node.variants.edges[0].node.price,
+              price:
+                prod.node.variants && prod.node.variants.edges.length
+                  ? prod.node.variants.edges[0].node.price
+                  : 0,
               status: prod.node.status,
               type: prod.node.productType,
+              vendor: prod.node.vendor,
             }}
           />
         );
