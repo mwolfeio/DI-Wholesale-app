@@ -68,7 +68,6 @@ const DELETE_FIELD = gql`
     }
   }
 `;
-
 const Section = (props) => {
   const [open, setOpen] = useState(true);
   const [addCard, setAddCard] = useState(false);
@@ -78,27 +77,15 @@ const Section = (props) => {
   const [key, setKey] = useState("");
   const [type, setType] = useState("");
   const [value, setValue] = useState("");
-  // let fieldsArr = props.fields ? props.fields : [];
-  const regex = new RegExp(`(?(DEFINE)
-# Note that everything is atomic, JSON does not need backtracking if it's valid
-# and this prevents catastrophic backtracking
-(?<json>(?>\s*(?&object)\s*|\s*(?&array)\s*))
-(?<object>(?>\{\s*(?>(?&pair)(?>\s*,\s*(?&pair))*)?\s*\}))
-(?<pair>(?>(?&STRING)\s*:\s*(?&value)))
-(?<array>(?>\[\s*(?>(?&value)(?>\s*,\s*(?&value))*)?\s*\]))
-(?<value>(?>true|false|null|(?&STRING)|(?&NUMBER)|(?&object)|(?&array)))
-(?<STRING>(?>"(?>\\(?>["\\\/bfnrt]|u[a-fA-F0-9]{4})|[^"\\\0-\x1F\x7F]+)*"))
-(?<NUMBER>(?>-?(?>0|[1-9][0-9]*)(?>\.[0-9]+)?(?>[eE][+-]?[0-9]+)?))
-)
-\A(?&json)\z`);
+  const [validJson, setValidJason] = useState(true);
 
   console.log("fieldsArr: ", fieldsArr);
 
   //Query
-  const [producteUpdate, { producteLoading, producteError, producteData }] =
+  const [productUpdate, { productLoading, productError, productData }] =
     useMutation(UPDATE_PRODUCT);
-  // const [orderUpdate, { orderLoading, orderError, orderData }] =
-  //   useMutation(UPDATE_ORDER);
+  const [orderUpdate, { orderLoading, orderError, orderData }] =
+    useMutation(UPDATE_ORDER);
   const [deleteField, { load, erro, da }] = useMutation(DELETE_FIELD);
 
   //handlers
@@ -109,8 +96,9 @@ const Section = (props) => {
     console.log("clicked");
     setAddCard(true);
   };
-  const submitHandler = () => {
+  const submitHandler = (e) => {
     e.preventDefault();
+    if (type === "JSON_STRING" && !validJson) return;
     let payload = {
       variables: {
         namespace: namespace,
@@ -128,12 +116,10 @@ const Section = (props) => {
     };
     console.log("for this ", props.type, " submitting: ", payload);
 
-    if (props.type === "product") {
+    if (props.type === "order") {
       orderUpdate(payload)
         .then((returnedData) =>
-          updateState(
-            returnedData.data.producteUpdateUpdate.producteUpdate.metafield
-          )
+          updateState(returnedData.data.orderUpdate.order.metafield)
         )
         .catch((err) => console.log(err));
     } else if (props.type === "customer") {
@@ -175,6 +161,14 @@ const Section = (props) => {
     setType("");
     setValue("");
     setAddCard(false);
+  };
+  const IsJsonString = (str) => {
+    try {
+      JSON.parse(str);
+    } catch (e) {
+      return setValidJason(false);
+    }
+    setValidJason(true);
   };
 
   useEffect(() => {
@@ -255,11 +249,20 @@ const Section = (props) => {
               ) : (
                 <input
                   required
+                  className={
+                    type === "JSON_STRING" && value && !validJson
+                      ? "input-error"
+                      : ""
+                  }
                   style={{ margin: "16px 0" }}
                   type={type === "INTEGER" ? "number" : "text"}
                   placeholder="Add a value"
                   value={value}
-                  onChange={(e) => setValue(e.target.value)}
+                  onChange={(e) => {
+                    let str = e.target.value;
+                    if (type === "JSON_STRING") IsJsonString(str);
+                    setValue(str);
+                  }}
                 />
               )}
               <div className="flex-center-right">

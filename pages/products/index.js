@@ -7,17 +7,17 @@ import Link from "next/link";
 
 import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
-import CustomerList from "../../components/lists/CustomerList.js";
+import ProductList from "../../components/lists/ProductList.js";
 
 const GET_CUSTOMENTS = gql`
-  query getCustomers(
+  query getProducts(
     $first: Int = 50
     $after: String = null
     $srch: String!
-    $srt: CustomerSortKeys!
+    $srt: ProductSortKeys!
     $rev: Boolean!
   ) {
-    customers(
+    products(
       first: $first
       after: $after
       query: $srch
@@ -25,43 +25,28 @@ const GET_CUSTOMENTS = gql`
       reverse: $rev
     ) {
       edges {
-        cursor
         node {
+          featuredImage {
+            src
+          }
+          handle
           id
-          firstName
-          lastName
-          email
-          metafield(key: "cus_no", namespace: "Customer Number") {
-            value
-            id
+          onlineStoreUrl
+          productType
+          status
+          title
+          totalInventory
+          vendor
+          variants(first: 10) {
+            edges {
+              node {
+                sku
+                price
+              }
+            }
           }
-          customerNumber: metafield(
-            key: "cus_no"
-            namespace: "Customer Number"
-          ) {
-            id
-            value
-          }
-          custoemrNumberVarified: metafield(
-            key: "cus_var"
-            namespace: "CN Varified"
-          ) {
-            id
-            value
-          }
-          ordersCount
-          lifetimeDuration
-          marketingOptInLevel
-          defaultAddress {
-            company
-            address1
-            address2
-            city
-            provinceCode
-            country
-          }
-          totalSpent
         }
+        cursor
       }
       pageInfo {
         hasNextPage
@@ -128,57 +113,22 @@ const SpecialPage = ({}) => {
     ) : error ? (
       `Error! ${error.message}`
     ) : results.length ? (
-      results.map((cus, i) => {
-        let id = cus.node.id.replace("gid://shopify/Customer/", "");
-        let address1 = cus.node.defaultAddress
-          ? `${cus.node.defaultAddress.address1} ${cus.node.defaultAddress.address2}, `
-          : "";
-        let address2 = cus.node.defaultAddress
-          ? `${cus.node.defaultAddress.city}, ${cus.node.defaultAddress.provinceCode}`
-          : "";
-        let company = cus.node.defaultAddress
-          ? cus.node.defaultAddress.company
-          : "-";
-        let cusNumb =
-          cus.node.customerNumber && cus.node.customerNumber.value
-            ? cus.node.customerNumber.value
-            : "";
-        let fieldId =
-          cus.node.customerNumber && cus.node.customerNumber.id
-            ? cus.node.customerNumber.id
-            : "";
-
-        let varified =
-          cus.node.custoemrNumberVarified &&
-          cus.node.custoemrNumberVarified.value
-            ? cus.node.custoemrNumberVarified.value
-            : false;
-
-        console.log(
-          "Index raw customerNumber: ",
-          cus.node.customerNumber ? cus.node.customerNumber.value : "-"
-        );
-        console.log("Index cusNumb: ", cusNumb);
+      results.map((prod, i) => {
+        let id = prod.node.id.replace("gid://shopify/Product/", "");
 
         return (
-          <CustomerList
+          <ProductList
             index={i}
-            customer={{
+            product={{
               id: id,
-              gid: cus.node.id,
-              name: `${cus.node.lastName}, ${cus.node.firstName}`,
-              email: cus.node.email,
-              cusnumb: cusNumb,
-              orders: cus.node.ordersCount,
-              age: cus.node.lifetimeDuration,
-              address1: address1,
-              address2: address2,
-              company: company,
-              totalSpent: cus.node.totalSpent,
-              fieldId: fieldId,
-              varified: cus.node.custoemrNumberVarified
-                ? cus.node.custoemrNumberVarified
-                : {},
+              gid: prod.node.id,
+              title: prod.node.title,
+              imgSrc: prod.node.featuredImage.src,
+              variants: prod.node.variants.edges,
+              inventory: prod.node.totalInventory,
+              price: prod.node.variants.edges[0].node.price,
+              status: prod.node.status,
+              type: prod.node.productType,
             }}
           />
         );
@@ -222,66 +172,39 @@ const SpecialPage = ({}) => {
     <main>
       <ButtonNav />
       <section>
-        <h1>Customers</h1>
+        <h1>Products</h1>
         <p className="light">
-          Search, sort and select a store customer from the list below to edit
-          things like customer number, metafields and membership points.
+          Search, sort and select a store product from the list below to view
+          product information & variants as well as edit metafields.
         </p>
         <input
           onChange={debouncedChangeHandler}
           className="list-search"
           type="text"
-          placeholder="Enter customer's name, number, company or email..."
+          placeholder="Enter a product's name sku, or type..."
         />
-        <ul className="large-list customer-list">
+        <ul className="large-list product-list">
           <li className="list-header">
+            <p>Image</p>
             <p
               className={`flex-center-left sortable ${
-                sort == "NAME" ? "active-sort" : ""
+                sort == "TITLE" ? "active-sort" : ""
               }`}
               onClick={() => {
-                if (sort == "NAME") {
+                if (sort == "TITLE") {
                   setReverseSort(!reverseSort);
                 }
-                setSort("NAME");
+                setSort("TITLE");
               }}
               style={{ justifySelf: "start" }}
             >
-              <span>Name</span>
+              <span>Title</span>
               {direction("A", "Z")}
             </p>
-
-            <p style={{ justifySelf: "start" }}>Company</p>
-            <p>CN</p>
-            <p
-              onClick={() => {
-                if (sort == "ORDERS_COUNT") {
-                  setReverseSort(!reverseSort);
-                }
-                setSort("ORDERS_COUNT");
-              }}
-              className={`sortable ${
-                sort == "ORDERS_COUNT" ? "active-sort" : ""
-              }`}
-            >
-              <span>Orders</span>
-              {direction("L", "H")}
-            </p>
-            <p
-              onClick={() => {
-                if (sort == "RELEVANCE") {
-                  setReverseSort(!reverseSort);
-                }
-                setSort("RELEVANCE");
-              }}
-              style={{ justifySelf: "flex-end" }}
-              className={`flex-center-right sortable ${
-                sort == "RELEVANCE" ? "active-sort" : ""
-              }`}
-            >
-              <span>Age</span>
-              {direction("N", "O")}
-            </p>
+            <p>Info</p>
+            <p>Type</p>
+            <p>Vendor</p>
+            <p>Status</p>
           </li>
           {list}
         </ul>

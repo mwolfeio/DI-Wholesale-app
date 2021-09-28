@@ -467,7 +467,8 @@ li p.sortable:hover {
 
 /* CUSTOEMR PAGE-------------- */
 ul.customer-list li,
-ul.order-list li {
+ul.order-list li,
+ul.product-list li {
   display: grid;
   width: 100%;
   grid-column-gap: 8px;
@@ -480,6 +481,14 @@ ul.customer-list li {
 }
 ul.order-list li {
   grid-template-columns: 1fr 1fr 1fr 2fr 1fr 1fr 76px;
+}
+ul.product-list li {
+  grid-template-columns: 56px 2fr 1fr 1fr 1fr 1fr;
+}
+ul.product-list li img {
+  height: 58px;
+  width: 58px;
+  object-fit: cover;
 }
 
 .cus-numb-edit {

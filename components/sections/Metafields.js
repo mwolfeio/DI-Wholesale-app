@@ -95,7 +95,7 @@ const Section = (props) => {
   const [key, setKey] = useState("");
   const [type, setType] = useState("");
   const [value, setValue] = useState("");
-  const [validJson, setValidJason] = useState(false);
+  const [validJson, setValidJason] = useState(true);
 
   console.log("fieldsArr: ", fieldsArr);
 

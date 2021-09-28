@@ -53,7 +53,7 @@ const Section = (props) => {
   //State
   const [metafield, setMetafield] = useState(props.field.value);
   const [oldMetafield, setOldMetafield] = useState(props.field.value);
-  const [validJson, setValidJason] = useState(false);
+  const [validJson, setValidJason] = useState(true);
 
   //Query
   const [customerUpdate, { customerLoading, customerError, customerData }] =
