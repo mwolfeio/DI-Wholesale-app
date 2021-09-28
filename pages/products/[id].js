@@ -159,7 +159,9 @@ const ProductPage = () => {
               </div>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
-              <h1 style={{ fontSize: "20px" }}>{product.minQT} item min</h1>
+              <h1 style={{ fontSize: "20px" }}>
+                {product.minQT.value} item min
+              </h1>
               <div style={{ height: "29px" }} className="flex-center-right">
                 <a href={product.onlineStoreUrl} target="_blank">
                   <button
