@@ -39,9 +39,9 @@ export default function SpecialPage({ product, index }) {
 
   let skuString = getSkuString(product.variants);
 
-  console.log("CustomerList: ", product);
+  console.log("ProductList: ", product);
   return (
-    <Link href={`/customers/${product.id}`} passHref>
+    <Link href={`/product/${product.id}`} passHref>
       <li
         className=""
         style={{ animationDelay: `${animationDelayCalc(index)}s` }}

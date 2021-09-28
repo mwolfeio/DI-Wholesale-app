@@ -67,7 +67,7 @@ var formatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
 });
 
-const CustomerPage = () => {
+const ProductPage = () => {
   const { id } = useRouter().query;
   const globalId = `gid://shopify/Product/${id}`;
 
@@ -80,7 +80,7 @@ const CustomerPage = () => {
   if (loading) {
     return (
       <main>
-        <ButtonNav back="customers" />
+        <ButtonNav />
         <div
           style={{ height: "100%", width: "100%" }}
           className="flex-center-center"
@@ -93,7 +93,7 @@ const CustomerPage = () => {
   if (error) {
     return (
       <main>
-        <ButtonNav back="customers" />
+        <ButtonNav />
         <div
           style={{ height: "100%", width: "100%" }}
           className="flex-center-center"
@@ -104,7 +104,8 @@ const CustomerPage = () => {
     );
   }
 
-  console.log(data);
+  console.log("product data for globalId: ", data);
+  if (!data) return <div>no data</div>;
 
   let product = data.product;
   let matafieldsArr = product.metafields.edges;
@@ -128,7 +129,6 @@ const CustomerPage = () => {
   return (
     <main>
       <ButtonNav
-        back="customers"
         cnumb={{
           display: false,
           text: tag,
@@ -171,4 +171,4 @@ const CustomerPage = () => {
     </main>
   );
 };
-export default CustomerPage;
+export default ProductPage;
