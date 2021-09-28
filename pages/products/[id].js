@@ -39,6 +39,7 @@ const GET_PRODUCT = gql`
       title
       totalInventory
       totalVariants
+      onlineStoreUrl
       variants(first: 50) {
         edges {
           node {
@@ -111,8 +112,8 @@ const ProductPage = () => {
   let matafieldsArr = product.metafields.edges;
   let tagArr = product.tags;
   let varriantArr = product.variants.edges;
-  let imgSrc = product.imgSrc
-    ? product.imgSrc
+  let imgSrc = product.images
+    ? product.images.edge[0].node.src
     : "https://i.stack.imgur.com/y9DpT.jpg";
 
   let tag = (
@@ -138,30 +139,54 @@ const ProductPage = () => {
       <div style={{ width: "100%" }}>
         <section className="clear">
           <div className="flex-bottom-btw underline">
-            <div style={{ textAlign: "left" }}>
-              <img cassName="prdocut-page-img" src={imgSrc} />
+            <div className="flex-center-left">
+              <img className="prdocut-page-img" src={imgSrc} />
               <div style={{ textAlign: "left" }}>
                 <h1>{product.title}</h1>
                 <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                  <i>{product.type}</i>
+                  <i>{product.productType}</i>
                 </h2>
               </div>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
               <h1 style={{ fontSize: "20px" }}>{product.vendor}</h1>
               <div style={{ height: "29px" }} className="flex-center-right">
-                {tagArr.map((tagTag) => (
-                  <div
-                    className="tinny-tag felx-center-center dissabled-tiny-tab"
-                    style={{ marginLeft: "8px" }}
-                  ></div>
-                ))}
+                <a href={product.onlineStoreUrl} target="_blank">
+                  <button
+                    className="text-button"
+                    style={{ height: "32px", margin: " -3px 8px -3px 0" }}
+                  >
+                    View
+                  </button>
+                </a>
+                <a
+                  href={`https://di-wholesale.myshopify.com/admin/products/${id}`}
+                  target="_blank"
+                >
+                  <button
+                    className="text-button"
+                    style={{ height: "32px", margin: " -3px 0" }}
+                  >
+                    Edit
+                  </button>
+                </a>
               </div>
             </div>
           </div>
+          <div style={{ height: "29px" }} className="flex-center-left">
+            <p style={{ margin: "0 12px 0 0" }}>Tags:</p>
+            {tagArr.map((tagTag) => (
+              <div
+                className="tinny-tag felx-center-center dissabled-tiny-tab"
+                style={{ marginLeft: "8px" }}
+              >
+                {tagTag}
+              </div>
+            ))}
+          </div>
+          <Variants items={varriantArr} />
         </section>
 
-        <Variants items={varriantArr} />
         <MatafieldSection
           fields={matafieldsArr}
           type="product"
