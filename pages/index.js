@@ -13,6 +13,7 @@ import Indexer from "../media/icons/Indexer.js";
 import Membership from "../media/icons/Membership.js";
 import Orders from "../media/icons/Orders.js";
 import Reviews from "../media/icons/Reviews.js";
+import Products from "../media/icons/Products.js";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 
@@ -29,6 +30,13 @@ let linkMap = [
     link: "orders",
     img: Orders,
     description: "Read and edit orders and their status.",
+    active: true,
+  },
+  {
+    title: "Products",
+    link: "products",
+    img: Products,
+    description: "Read and edit products and their metafields.",
     active: true,
   },
   {

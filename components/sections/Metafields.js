@@ -52,6 +52,28 @@ const UPDATE_ORDER = gql`
     }
   }
 `;
+// const UPDATE_Product = gql`
+//   mutation productUpdate(
+//     $input: ProductInput!
+//     $namespace: String!
+//     $key: String!
+//   ) {
+//     productUpdate(input: $input) {
+//       product {
+//         metafield(namespace: $namespace, key: $key) {
+//           id
+//           namespace
+//           key
+//           value
+//         }
+//       }
+//       userErrors {
+//         field
+//         message
+//       }
+//     }
+//   }
+// `;
 const DELETE_FIELD = gql`
   mutation MetafieldDelete($input: MetafieldDeleteInput!) {
     metafieldDelete(input: $input) {
