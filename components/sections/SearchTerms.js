@@ -174,12 +174,28 @@ const Section = ({ arr, id, globalId }) => {
               Submit
             </button>
           </div>
-          <div className="card-container" style={{ minHeight: "80px" }}>
+          <div
+            className="card-container flex-top-left "
+            style={{ minHeight: "80px" }}
+          >
             {searchTermArray.length ? (
               searchTermArray.map((term) => (
-                <div className="search-term-tag">
+                <div
+                  style={{ color: "#4e5d78" }}
+                  className="search-term-tag flex-center-center"
+                >
                   {term}
-                  <div>X</div>
+                  <div style={{ color: "#b0b7c3" }}>
+                    <svg
+                      viewBox="0 0 20 20"
+                      style={{ height: "18px", width: "18px" }}
+                    >
+                      <path
+                        fill="currentColor"
+                        d="m11.414 10 4.293-4.293a.999.999 0 1 0-1.414-1.414L10 8.586 5.707 4.293a.999.999 0 1 0-1.414 1.414L8.586 10l-4.293 4.293a.999.999 0 1 0 1.414 1.414L10 11.414l4.293 4.293a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L11.414 10z"
+                      ></path>
+                    </svg>
+                  </div>
                 </div>
               ))
             ) : (

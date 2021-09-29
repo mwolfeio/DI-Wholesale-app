@@ -876,7 +876,7 @@ ul.product-list li img {
 .search-term-tag {
   background: white;
   font-size: 14px;
-  padding: 0px 8px;
+  padding: 0px 8px 0px 12px;
   width: auto;
   margin: 0 8px 8px 0;
   border-radius: 100px;
@@ -896,7 +896,7 @@ ul.product-list li img {
   justify-content: center;
 }
 .search-term-tag div:hover {
-  color: #e4545d;
+  color: #e4545d !important;
   background: #fff6f4;
 }
 .search-term-tag:hover {
