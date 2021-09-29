@@ -196,6 +196,10 @@ button.primary {
   background: #4388f8;
   color: #ffffff;
 }
+button.submit-button {
+  background: #54e4a6;
+  color: white;
+}
 
 button.icon {
   padding: 9.5px;
@@ -533,10 +537,6 @@ ul.product-list li img {
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
 }
 
-button.submit-button {
-  background: #54e4a6;
-  color: white;
-}
 .customer-number-wrapper input {
   margin-left: 0 !important;
 }

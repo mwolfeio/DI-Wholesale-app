@@ -166,16 +166,14 @@ const ProductPage = () => {
                 <h1>{product.title}</h1>
                 <h2 className="subtitle" style={{ fontSize: "16px" }}>
                   <i>
-                    {product.vendor} • {product.productType}{" "}
+                    Minimum Order Quantity:{" "}
+                    {product.minQT !== null ? product.minQT.value : 1}
                   </i>
                 </h2>
               </div>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
-              <h1 style={{ fontSize: "20px" }}>
-                minimum order:{" "}
-                {product.minQT !== null ? product.minQT.value : 1}
-              </h1>
+              <h1 style={{ fontSize: "20px" }}>{product.vendor}</h1>
               <div style={{ height: "29px" }} className="flex-center-right">
                 <a href={product.onlineStoreUrl} target="_blank">
                   <button

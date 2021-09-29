@@ -9,14 +9,10 @@ import MoreButton from "../MoreButton.js";
 
 //graphql
 const UPDATE_PRODUCT = gql`
-  mutation productUpdate(
-    $input: ProductInput!
-    $namespace: String!
-    $key: String!
-  ) {
+  mutation productUpdate($input: ProductInput!) {
     productUpdate(input: $input) {
       product {
-        metafield(namespace: $namespace, key: $key) {
+        metafield(namespace: "Search Terms", key: "srch_trm") {
           id
           namespace
           key
@@ -46,6 +42,7 @@ const Section = ({ arr, id, globalId }) => {
   const [open, setOpen] = useState(true);
   const [searchTermArray, setSearchTermArray] = useState(arr);
   const [fieldId, setFieldId] = useState(id);
+  const [input, setInput] = useState(id);
 
   //Query
   const [deleteField, { load, erro, da }] = useMutation(DELETE_FIELD);
@@ -57,7 +54,10 @@ const Section = ({ arr, id, globalId }) => {
     setOpen(!open);
   };
   const submitHandler = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+
+    let newTermsArr = input.split(", ");
+    let allTermsArr = [...searchTermArray, ...newTermsArr];
 
     let payload = fieldId
       ? {
@@ -66,7 +66,7 @@ const Section = ({ arr, id, globalId }) => {
               id: globalId,
               metafields: {
                 id: fieldId,
-                value: searchTermArray.join(", "),
+                value: allTermsArr.join(", "),
                 valueType: "STRING",
               },
             },
@@ -79,7 +79,7 @@ const Section = ({ arr, id, globalId }) => {
               metafields: {
                 namespace: "Search Terms",
                 key: "srch_trm",
-                value: searchTermArray.join(", "),
+                value: allTermsArr.join(", "),
                 valueType: "STRING",
               },
             },
@@ -87,9 +87,12 @@ const Section = ({ arr, id, globalId }) => {
         };
 
     productUpdate(payload)
-      .then((returnedData) =>
-        updateState(returnedData.data.productUpdate.product.metafield)
-      )
+      .then((returnedData) => {
+        console.log(returnedData);
+        let resObj = returnedData.data.productUpdate.product.metafield;
+        setFieldId(resObj.id);
+        setSearchTermArray(resObj.value.split(","));
+      })
       .catch((err) => console.log(err));
   };
   const deleteMetafield = () => {
@@ -126,12 +129,63 @@ const Section = ({ arr, id, globalId }) => {
         title={`Search Terms (${searchTermArray.length})`}
       />
       {open && (
-        <div className="card-container">
-          <div className="card">
-            {" "}
-            {searchTermArray.map((term) => (
-              <div>term</div>
-            ))}{" "}
+        <div>
+          <p
+            className="subtitle"
+            style={{
+              lineHeight: "22px",
+              fontSize: "14px",
+              width: "700px",
+              margin: "-8px 0 20px",
+              maxWidth: "Calc(100% - 120px)",
+            }}
+          >
+            Add terms you would like to be associated with this product. These
+            terms will help customers locate your product when searching on your
+            storefront. You can submit multiple terms separated by a comma and a
+            space. Terms can contain spaces characters.
+          </p>
+          <div className="flex-center-center" style={{ marginBottom: "16px" }}>
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e)}
+              placeholder="Enter your terms (eg. term A, term B, etc..)"
+            />
+            <button
+              className=""
+              style={{ margin: "0 8px", opacity: input ? 1 : 0.5 }}
+              onClick={() => setInput("")}
+              disabled={input ? false : true}
+            >
+              clear
+            </button>
+            <button
+              onClick={submitHandler}
+              style={{ opacity: input ? 1 : 0.5 }}
+              className={input && "submit-button"}
+              disabled={input ? false : true}
+            >
+              Submit
+            </button>
+          </div>
+          <div className="card-container" style={{ minHeight: "120px" }}>
+            {searchTermArray.length ? (
+              <div className="card">
+                {searchTermArray.map((term) => (
+                  <div>term</div>
+                ))}
+              </div>
+            ) : (
+              <div
+                className="flex-center-center"
+                style={{ background: "none" }}
+              >
+                <p className="subtitle" style={{ fontSize: "14px" }}>
+                  No terms yet
+                </p>
+              </div>
+            )}
           </div>
         </div>
       )}
