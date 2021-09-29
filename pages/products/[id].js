@@ -217,7 +217,7 @@ const ProductPage = () => {
         <SearchTerms
           globalId={globalId}
           arr={searchTermsArr}
-          id={product.searchTerm ? product.searchTerm.id : ""}
+          id={product.searchTerms !== null ? product.searchTerms.id : ""}
         />
         <MatafieldSection
           fields={matafieldsArr}

@@ -42,7 +42,7 @@ const Section = ({ arr, id, globalId }) => {
   const [open, setOpen] = useState(true);
   const [searchTermArray, setSearchTermArray] = useState(arr);
   const [fieldId, setFieldId] = useState(id);
-  const [input, setInput] = useState(id);
+  const [input, setInput] = useState("");
 
   //Query
   const [deleteField, { load, erro, da }] = useMutation(DELETE_FIELD);
