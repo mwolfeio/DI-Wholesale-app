@@ -117,11 +117,10 @@ const Section = ({ arr, id, globalId }) => {
         let resObj = returnedData.data.productUpdate.product.metafield;
         setInput("");
         setFieldId(resObj.id);
-        setSearchTermArray(allTermsArr);
+        setSearchTermArray(resObj.value.split(","));
       })
       .catch((err) => console.log(err));
   };
-
   const removeTerm = (i) => {
     setSearchTermArray(searchTermArray.splice(i, 1));
     submitHandler();
@@ -163,7 +162,7 @@ const Section = ({ arr, id, globalId }) => {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Enter your terms (eg. term A, term B, etc..)"
+              placeholder="Enter your terms (ex. term A, term B, etc..)"
             />
             <button
               className=""
@@ -184,16 +183,19 @@ const Section = ({ arr, id, globalId }) => {
           </div>
           <div
             className="card-container flex-top-left "
-            style={{ minHeight: "80px" }}
+            style={{ minHeight: "80px", flexWrap: "wrap" }}
           >
             {searchTermArray.length ? (
-              searchTermArray.map((term) => (
+              searchTermArray.map((term, i) => (
                 <div
                   style={{ color: "#4e5d78" }}
                   className="search-term-tag flex-center-center"
                 >
                   {term}
-                  <div style={{ color: "#b0b7c3" }}>
+                  <div
+                    onClick={() => removeTerm(i)}
+                    style={{ color: "#b0b7c3" }}
+                  >
                     <svg
                       viewBox="0 0 20 20"
                       style={{ height: "18px", width: "18px" }}

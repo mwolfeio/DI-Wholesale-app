@@ -47,7 +47,10 @@ const Section = (props) => {
 
               let date = new Date(order.node.createdAt);
               return (
-                <div className="card order-wrapper ">
+                <div
+                  className="card order-wrapper "
+                  style={{ cursor: "pointer" }}
+                >
                   <div className="order-header flex-btw-column">
                     <div>
                       <h2>Order: {order.node.name}</h2>
@@ -158,26 +161,23 @@ const Section = (props) => {
                     className="flex-top-left order-line-item-wrapper"
                   >
                     {order.node.lineItems.edges.map((product) => (
-                      <a
-                        target="blank"
-                        href={`${
-                          process.env.HOST
-                        }/admin/products/${product.node.product.id.replace(
-                          "gid://shopify/Product/",
-                          ""
-                        )}`}
-                        style={{ textDecoration: "none" }}
-                        className="order-product-wrapper flex-center-column"
-                      >
-                        <span className="order-quant-badge active-tiny-tab flex-center-center">
-                          QT: {product.node.quantity}
-                        </span>
-                        <img src={product.node.image.originalSrc} />
-                        <p style={{ margin: "8px 0" }}>{product.node.title}</p>
-                        <p className="subtitle">
-                          {formatter.format(product.node.originalUnitPrice)}
-                        </p>
-                      </a>
+                      <Link href={`/products/${product.node.id}`}>
+                        <div
+                          style={{ textDecoration: "none" }}
+                          className="order-product-wrapper flex-center-column"
+                        >
+                          <span className="order-quant-badge active-tiny-tab flex-center-center">
+                            QT: {product.node.quantity}
+                          </span>
+                          <img src={product.node.image.originalSrc} />
+                          <p style={{ margin: "8px 0" }}>
+                            {product.node.title}
+                          </p>
+                          <p className="subtitle">
+                            {formatter.format(product.node.originalUnitPrice)}
+                          </p>
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </div>
@@ -192,3 +192,15 @@ const Section = (props) => {
   );
 };
 export default Section;
+
+// <a
+//   target="blank"
+//   href={`${
+//     process.env.HOST
+//   }/admin/products/${product.node.product.id.replace(
+//     "gid://shopify/Product/",
+//     ""
+//   )}`}
+//   style={{ textDecoration: "none" }}
+//   className="order-product-wrapper flex-center-column"
+// >

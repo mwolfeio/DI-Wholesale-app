@@ -786,6 +786,7 @@ ul.product-list li img {
   display: grid;
   grid-gap: 24px;
   width: 100%;
+  cursor: pointer;
   transition: 0.15s ease;
   grid-template-columns: 80px 1fr 120px 80px;
 }
@@ -876,13 +877,13 @@ ul.product-list li img {
 .search-term-tag {
   background: white;
   font-size: 14px;
-  padding: 0px 8px 0px 12px;
+  padding: 0px 3px 0px 12px;
   width: auto;
-  margin: 0 6px 8px 0;
+  margin: 0 8px 8px 0;
   border-radius: 100px;
   transition: 0.15s ease;
   cursor: default;
-  height: 24px;
+  height: 28px;
 }
 .search-term-tag div {
   cursor: pointer;

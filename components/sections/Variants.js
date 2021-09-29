@@ -40,9 +40,7 @@ const CustomerPage = (props) => {
                 <div className="card product-page-product-card">
                   <img src={img} />
                   <div>
-                    <h2 style={{ lineHeight: "22px" }}>
-                      {product.displayName}
-                    </h2>
+                    <h2 style={{ lineHeight: "22px" }}>{product.title}</h2>
                     <p className="subtitle">
                       SKU: {product.sku} • ID:{" "}
                       {product.id.replace("gid://shopify/ProductVariant/", "")}
@@ -54,13 +52,14 @@ const CustomerPage = (props) => {
                   </div>
                   <div className="flex-center-column">
                     <p style={{ lineHeight: "22px" }}>
-                      {product.selectedOptions
-                        ? product.selectedOptions.value
+                      {product.selectedOptions.length &&
+                      product.selectedOptions.length
+                        ? product.selectedOptions[0].value
                         : "Vlaue"}
                     </p>
                     <p className="subtitle">
                       {product.selectedOptions
-                        ? product.selectedOptions.name
+                        ? product.selectedOptions[0].name
                         : "Attribute"}
                     </p>
                   </div>
