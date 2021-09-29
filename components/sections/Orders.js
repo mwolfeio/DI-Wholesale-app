@@ -161,7 +161,12 @@ const Section = (props) => {
                     className="flex-top-left order-line-item-wrapper"
                   >
                     {order.node.lineItems.edges.map((product) => (
-                      <Link href={`/products/${product.node.id}`}>
+                      <Link
+                        href={`/products/${product.node.id.replace(
+                          "gid://shopify/Product/",
+                          ""
+                        )}`}
+                      >
                         <div
                           style={{ textDecoration: "none" }}
                           className="order-product-wrapper flex-center-column"

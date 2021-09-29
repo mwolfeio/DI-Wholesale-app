@@ -122,7 +122,10 @@ const Section = ({ arr, id, globalId }) => {
       .catch((err) => console.log(err));
   };
   const removeTerm = (i) => {
-    setSearchTermArray(searchTermArray.splice(i, 1));
+    let newArr = searchTermArray;
+    newArr.splice(i, 1);
+    console.log("newArr= ", newArr);
+    setSearchTermArray(newArr);
     submitHandler();
   };
 
