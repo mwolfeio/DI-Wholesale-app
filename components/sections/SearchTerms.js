@@ -59,6 +59,8 @@ const Section = ({ arr, id, globalId }) => {
     let newTermsArr = input.split(", ");
     let allTermsArr = [...searchTermArray, ...newTermsArr];
 
+    console.log("allTermsArr:", allTermsArr);
+
     let payload = fieldId
       ? {
           variables: {
@@ -85,6 +87,8 @@ const Section = ({ arr, id, globalId }) => {
             },
           },
         };
+
+    console.log("submitting: ", payload);
 
     productUpdate(payload)
       .then((returnedData) => {
@@ -149,7 +153,7 @@ const Section = ({ arr, id, globalId }) => {
             <input
               type="text"
               value={input}
-              onChange={(e) => setInput(e)}
+              onChange={(e) => setInput(e.target.value)}
               placeholder="Enter your terms (eg. term A, term B, etc..)"
             />
             <button
