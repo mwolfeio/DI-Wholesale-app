@@ -94,6 +94,7 @@ const Section = ({ arr, id, globalId }) => {
       .then((returnedData) => {
         console.log(returnedData);
         let resObj = returnedData.data.productUpdate.product.metafield;
+        setInput("");
         setFieldId(resObj.id);
         setSearchTermArray(resObj.value.split(","));
       })
@@ -173,13 +174,14 @@ const Section = ({ arr, id, globalId }) => {
               Submit
             </button>
           </div>
-          <div className="card-container" style={{ minHeight: "120px" }}>
+          <div className="card-container" style={{ minHeight: "80px" }}>
             {searchTermArray.length ? (
-              <div className="card">
-                {searchTermArray.map((term) => (
-                  <div>term</div>
-                ))}
-              </div>
+              searchTermArray.map((term) => (
+                <div className="search-term-tag">
+                  {term}
+                  <div>X</div>
+                </div>
+              ))
             ) : (
               <div
                 className="flex-center-center"
