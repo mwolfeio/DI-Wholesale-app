@@ -53,13 +53,34 @@ const Section = ({ arr, id, globalId }) => {
   const toggleOpen = () => {
     setOpen(!open);
   };
-  const submitHandler = (e) => {
+  const deleteMetafield = () => {
+    let payload = {
+      variables: {
+        input: {
+          id: fieldId,
+        },
+      },
+    };
+
+    console.log("deleting: ", payload);
+    deleteField(payload)
+      .then(() => {
+        setSearchTermArray([]);
+        setFieldId("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const submitHandler = () => {
     // e.preventDefault();
 
     let newTermsArr = input.split(", ");
     let allTermsArr = [...searchTermArray, ...newTermsArr];
 
+    console.log("fieldId:", fieldId);
     console.log("allTermsArr:", allTermsArr);
+    if (!allTermsArr.length) return deleteMetafield();
 
     let payload = fieldId
       ? {
@@ -92,31 +113,18 @@ const Section = ({ arr, id, globalId }) => {
 
     productUpdate(payload)
       .then((returnedData) => {
-        console.log(returnedData);
+        console.log("returnedData: ", returnedData);
         let resObj = returnedData.data.productUpdate.product.metafield;
         setInput("");
         setFieldId(resObj.id);
-        setSearchTermArray(resObj.value.split(","));
+        setSearchTermArray(allTermsArr);
       })
       .catch((err) => console.log(err));
   };
-  const deleteMetafield = () => {
-    let payload = {
-      variables: {
-        input: {
-          id: fieldId,
-        },
-      },
-    };
-    console.log("deleting: ", payload);
-    deleteField(payload)
-      .then(() => {
-        setSearchTermArray([]);
-        setFieldId("");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+  const removeTerm = (i) => {
+    setSearchTermArray(searchTermArray.splice(i, 1));
+    submitHandler();
   };
 
   useEffect(() => {

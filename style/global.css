@@ -870,7 +870,7 @@ ul.product-list li img {
   height: 57px;
   width: 57px;
   object-fit: cover;
-  margin-right: 24px;
+  margin-right: 28px;
   border-radius: 10px;
 }
 .search-term-tag {
@@ -878,7 +878,7 @@ ul.product-list li img {
   font-size: 14px;
   padding: 0px 8px 0px 12px;
   width: auto;
-  margin: 0 8px 8px 0;
+  margin: 0 6px 8px 0;
   border-radius: 100px;
   transition: 0.15s ease;
   cursor: default;

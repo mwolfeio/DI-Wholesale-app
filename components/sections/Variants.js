@@ -12,7 +12,7 @@ const CustomerPage = (props) => {
     setOpen(!open);
   };
   return (
-    <section style={{ margin: "24px 0 0 0" }}>
+    <section>
       <SectionHeader
         add={{ display: false }}
         status={open}

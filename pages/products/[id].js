@@ -212,9 +212,8 @@ const ProductPage = () => {
               );
             })}
           </div>
-
-          <Variants items={varriantArr} />
         </section>
+        <Variants items={varriantArr} />
         <SearchTerms
           globalId={globalId}
           arr={searchTermsArr}
