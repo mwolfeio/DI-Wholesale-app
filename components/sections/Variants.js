@@ -7,7 +7,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 const CustomerPage = (props) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const toggleOpen = () => {
     setOpen(!open);
   };
@@ -17,7 +17,7 @@ const CustomerPage = (props) => {
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Variants (${props.items.length})`}
+        title={`Product Variants (${props.items.length})`}
       />
       {open ? (
         <div className="card-container ">

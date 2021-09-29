@@ -71,8 +71,8 @@ const Section = (props) => {
             input: {
               id: props.cusId,
               metafields: {
-                namespace: "Customer",
-                key: "Number",
+                namespace: "Customer Number",
+                key: "cus_no",
                 value: customerNumber.replace("#", ""),
                 valueType: "STRING",
               },

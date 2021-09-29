@@ -52,28 +52,28 @@ const UPDATE_ORDER = gql`
     }
   }
 `;
-// const UPDATE_Product = gql`
-//   mutation productUpdate(
-//     $input: ProductInput!
-//     $namespace: String!
-//     $key: String!
-//   ) {
-//     productUpdate(input: $input) {
-//       product {
-//         metafield(namespace: $namespace, key: $key) {
-//           id
-//           namespace
-//           key
-//           value
-//         }
-//       }
-//       userErrors {
-//         field
-//         message
-//       }
-//     }
-//   }
-// `;
+const UPDATE_PRODUCT = gql`
+  mutation productUpdate(
+    $input: ProductInput!
+    $namespace: String!
+    $key: String!
+  ) {
+    productUpdate(input: $input) {
+      product {
+        metafield(namespace: $namespace, key: $key) {
+          id
+          namespace
+          key
+          value
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
 const DELETE_FIELD = gql`
   mutation MetafieldDelete($input: MetafieldDeleteInput!) {
     metafieldDelete(input: $input) {
@@ -104,6 +104,8 @@ const Section = (props) => {
     useMutation(UPDATE_CUSTOMER);
   const [orderUpdate, { orderLoading, orderError, orderData }] =
     useMutation(UPDATE_ORDER);
+  const [productUpdate, { productLoading, productError, productData }] =
+    useMutation(UPDATE_PRODUCT);
   const [deleteField, { load, erro, da }] = useMutation(DELETE_FIELD);
 
   //handlers
@@ -138,6 +140,12 @@ const Section = (props) => {
       orderUpdate(payload)
         .then((returnedData) =>
           updateState(returnedData.data.orderUpdate.order.metafield)
+        )
+        .catch((err) => console.log(err));
+    } else if (props.type === "product") {
+      productUpdate(payload)
+        .then((returnedData) =>
+          updateState(returnedData.data.productUpdate.product.metafield)
         )
         .catch((err) => console.log(err));
     } else if (props.type === "customer") {

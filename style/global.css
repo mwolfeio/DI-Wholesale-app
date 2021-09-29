@@ -21,7 +21,7 @@ section {
 
 section.clear {
   background: none;
-  padding: 36px 8px;
+  padding: 36px 0;
 }
 
 a {
@@ -860,7 +860,7 @@ button.submit-button {
   width: 57px;
   object-fit: cover;
   margin-right: 24px;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 /* FLEXBOX-------------------- */
 .flex-center-left {

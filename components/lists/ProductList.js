@@ -89,7 +89,8 @@ export default function SpecialPage({ product, index }) {
               style={{ padding: "0 10px", width: "auto" }}
               className="tinny-tag flex-center-center warning-tiny-tab"
             >
-              {product.status.charAt(0).toUpperCase() + product.status.slice(1)}
+              {product.status.charAt(0).toUpperCase() +
+                product.status.slice(1).toLowerCase()}
             </div>
           )}
         </div>

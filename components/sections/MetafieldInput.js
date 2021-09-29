@@ -48,6 +48,28 @@ const UPDATE_ORDER_METAFIELD = gql`
     }
   }
 `;
+const UPDATE_PRODUCT_METAFIELD = gql`
+  mutation productUpdate(
+    $input: productInput!
+    $namespace: String!
+    $key: String!
+  ) {
+    productUpdate(input: $input) {
+      product {
+        metafield(namespace: $namespace, key: $key) {
+          id
+          namespace
+          key
+          value
+        }
+      }
+      userErrors {
+        field
+        message
+      }
+    }
+  }
+`;
 
 const Section = (props) => {
   //State
@@ -61,6 +83,8 @@ const Section = (props) => {
   const [orderUpdate, { orderLoading, orderError, orderData }] = useMutation(
     UPDATE_ORDER_METAFIELD
   );
+  const [productUpdate, { productLoading, productError, productData }] =
+    useMutation(UPDATE_PRODUCT_METAFIELD);
 
   //Handlers
   const changeHandler = (e) => {
@@ -100,6 +124,10 @@ const Section = (props) => {
 
     if (props.type === "order") {
       orderUpdate(payload)
+        .then(() => setOldMetafield(metafield))
+        .catch((err) => console.log(err));
+    } else if (props.type === "product") {
+      productUpdate(payload)
         .then(() => setOldMetafield(metafield))
         .catch((err) => console.log(err));
     } else if (props.type === "customer") {
