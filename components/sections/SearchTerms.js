@@ -73,14 +73,15 @@ const Section = ({ arr, id, globalId }) => {
       });
   };
   const submitHandler = () => {
-    // e.preventDefault();
-
     let newTermsArr = input.split(", ");
     let allTermsArr = [...searchTermArray, ...newTermsArr];
 
-    console.log("fieldId:", fieldId);
-    console.log("allTermsArr:", allTermsArr);
-    if (!allTermsArr.length) return deleteMetafield();
+    submit(allTermsArr);
+  };
+  const submit = (arrayToSubmit) => {
+    console.log("arrayToSubmit:", arrayToSubmit);
+
+    if (!arrayToSubmit.length) return deleteMetafield();
 
     let payload = fieldId
       ? {
@@ -89,7 +90,7 @@ const Section = ({ arr, id, globalId }) => {
               id: globalId,
               metafields: {
                 id: fieldId,
-                value: allTermsArr.join(", "),
+                value: arrayToSubmit.join(","),
                 valueType: "STRING",
               },
             },
@@ -102,7 +103,7 @@ const Section = ({ arr, id, globalId }) => {
               metafields: {
                 namespace: "Search Terms",
                 key: "srch_trm",
-                value: allTermsArr.join(", "),
+                value: arrayToSubmit.join(","),
                 valueType: "STRING",
               },
             },
@@ -122,11 +123,11 @@ const Section = ({ arr, id, globalId }) => {
       .catch((err) => console.log(err));
   };
   const removeTerm = (i) => {
+    console.log("running removeTerm");
     let newArr = searchTermArray;
     newArr.splice(i, 1);
     console.log("newArr= ", newArr);
-    setSearchTermArray(newArr);
-    submitHandler();
+    submit(newArr);
   };
 
   useEffect(() => {
