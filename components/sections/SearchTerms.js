@@ -215,7 +215,7 @@ const Section = ({ arr, id, globalId }) => {
             ) : (
               <div
                 className="flex-center-center"
-                style={{ background: "none" }}
+                style={{ background: "none", width: "100%" }}
               >
                 <p className="subtitle" style={{ fontSize: "14px" }}>
                   No terms yet

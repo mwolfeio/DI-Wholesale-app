@@ -163,8 +163,8 @@ const Section = (props) => {
                     {order.node.lineItems.edges.map((product) => (
                       <Link
                         href={
-                          product.node.id
-                            ? `/products/${product.node.id.replace(
+                          product.node.product.id
+                            ? `/products/${product.node.product.id.replace(
                                 "gid://shopify/Product/",
                                 ""
                               )}`
