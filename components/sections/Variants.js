@@ -24,6 +24,9 @@ const CustomerPage = (props) => {
           {props.items &&
             props.items.map((item) => {
               let product = item.node;
+
+              if (!product) return <p>This product has no variants</p>;
+
               let url = product.product ? product.product.onlineStoreUrl : "";
               let id = product.product
                 ? product.product.id.replace("gid://shopify/Product/", "")
@@ -37,33 +40,43 @@ const CustomerPage = (props) => {
                 <div className="card product-page-product-card">
                   <img src={img} />
                   <div>
-                    <h2>{product.displayName}</h2>
+                    <h2 style={{ lineHeight: "22px" }}>
+                      {product.displayName}
+                    </h2>
                     <p className="subtitle">
-                      SKU: {product.sku} • id: {product.id}
+                      SKU: {product.sku} • ID:{" "}
+                      {product.id.replace("gid://shopify/ProductVariant/", "")}
                     </p>
+
                     <div className="flex-center-left">
-                      {product.status === "ACTIVE" ? (
-                        <div className="tinny-tag flex-center-center drop-ship-tiny-tab">
-                          Active
-                        </div>
-                      ) : (
-                        <div className="tinny-tag flex-center-center complete-tiny-tab">
-                          {product.status.charAt(0).toUpperCase() +
-                            product.status.slice(1).toLowerCase()}
-                        </div>
-                      )}
+                      Position: {product.position}
                     </div>
                   </div>
-                  <p style={{ color: "#b0b7c3" }}>
-                    {product.selectedOptions.value}
-                    <span className="subtitle">
-                      {product.selectedOptions.name}
-                    </span>
-                  </p>
-                  <p style={{ color: "#b0b7c3" }}>
-                    {formatter.format(product.price)}
-                  </p>
-                  <p>{product.inventoryQuantity}</p>
+                  <div className="flex-center-column">
+                    <p style={{ lineHeight: "22px" }}>
+                      {product.selectedOptions
+                        ? product.selectedOptions.value
+                        : "Vlaue"}
+                    </p>
+                    <p className="subtitle">
+                      {product.selectedOptions
+                        ? product.selectedOptions.name
+                        : "Attribute"}
+                    </p>
+                  </div>
+                  <div className="flex-center-column">
+                    <p style={{ lineHeight: "22px" }}>
+                      {formatter.format(product.price)}
+                    </p>
+                    <p className="subtitle">Price</p>
+                  </div>
+
+                  <div className="flex-center-column">
+                    <p style={{ lineHeight: "22px" }}>
+                      {product.inventoryQuantity}
+                    </p>
+                    <p className="subtitle">Quantity</p>
+                  </div>
                 </div>
               );
             })}
