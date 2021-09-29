@@ -790,6 +790,14 @@ button.submit-button {
   grid-template-columns: 80px 1fr 120px 80px;
 }
 
+.product-page-product-card {
+  display: grid;
+  grid-gap: 24px;
+  width: 100%;
+  transition: 0.15s ease;
+  grid-template-columns: 80px 2fr 1fr 1fr 1fr;
+}
+
 .orders-page-product-card:hover {
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
 }

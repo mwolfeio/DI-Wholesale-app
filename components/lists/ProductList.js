@@ -51,7 +51,7 @@ export default function SpecialPage({ product, index }) {
 
         <div className="list-name" style={{ justifySelf: "start" }}>
           <p>{product.title}</p>
-          <p className="subtitle">{truncate(skuString)}</p>
+          <p className="subtitle">SKU: {truncate(skuString)}</p>
         </div>
 
         <div className="list-name flex-center-column">

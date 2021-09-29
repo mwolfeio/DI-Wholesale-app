@@ -54,7 +54,7 @@ const GET_PRODUCT = gql`
             displayName
             barcode
             id
-            image(maxHeight: 40, maxWidth: 40) {
+            image(maxHeight: 400, maxWidth: 400) {
               src
             }
             inventoryQuantity
@@ -62,6 +62,11 @@ const GET_PRODUCT = gql`
             position
             sku
             storefrontId
+            title
+            selectedOptions {
+              name
+              value
+            }
           }
         }
       }

@@ -28,56 +28,42 @@ const CustomerPage = (props) => {
               let id = product.product
                 ? product.product.id.replace("gid://shopify/Product/", "")
                 : "";
-              let img =
-                product.variant && product.variant.image
-                  ? product.variant.image.src
-                  : product.image
-                  ? product.image.src
-                  : "https://i.stack.imgur.com/y9DpT.jpg";
+              let img = product.image
+                ? product.image.src
+                : "https://i.stack.imgur.com/y9DpT.jpg";
 
               console.log("product: ", product);
               return (
-                <div className="card orders-page-product-card">
+                <div className="card product-page-product-card">
                   <img src={img} />
                   <div>
-                    <h2>{product.title}</h2>
+                    <h2>{product.displayName}</h2>
                     <p className="subtitle">
-                      SKU: {product.sku} • {product.variantTitle} •{" "}
-                      {product.vendor}
+                      SKU: {product.sku} • id: {product.id}
                     </p>
                     <div className="flex-center-left">
-                      <a target="_blank" href={url}>
-                        <button
-                          style={{
-                            height: "28px",
-                            padding: "0 12px",
-                            marginLeft: "-12px",
-                          }}
-                          className="text-button"
-                        >
-                          View
-                        </button>
-                      </a>
-                      <a
-                        target="_blank"
-                        href={`https://di-wholesale.myshopify.com/admin/products/${id}`}
-                      >
-                        <button
-                          style={{ height: "28px", padding: "0 12px" }}
-                          className="text-button"
-                        >
-                          Edit
-                        </button>
-                      </a>
+                      {product.status === "ACTIVE" ? (
+                        <div className="tinny-tag flex-center-center drop-ship-tiny-tab">
+                          Active
+                        </div>
+                      ) : (
+                        <div className="tinny-tag flex-center-center complete-tiny-tab">
+                          {product.status.charAt(0).toUpperCase() +
+                            product.status.slice(1).toLowerCase()}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <p style={{ color: "#b0b7c3" }}>
-                    {formatter.format(product.originalUnitPrice)} ×{" "}
-                    {product.quantity}
+                    {product.selectedOptions.value}
+                    <span className="subtitle">
+                      {product.selectedOptions.name}
+                    </span>
                   </p>
-                  <p>
-                    <b>{formatter.format(product.originalTotal)}</b>
+                  <p style={{ color: "#b0b7c3" }}>
+                    {formatter.format(product.price)}
                   </p>
+                  <p>{product.inventoryQuantity}</p>
                 </div>
               );
             })}
