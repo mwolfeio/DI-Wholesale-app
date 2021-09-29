@@ -52,8 +52,7 @@ const CustomerPage = (props) => {
                   </div>
                   <div className="flex-center-column">
                     <p style={{ lineHeight: "22px" }}>
-                      {product.selectedOptions.length &&
-                      product.selectedOptions.length
+                      {product.selectedOptions && product.selectedOptions.length
                         ? product.selectedOptions[0].value
                         : "Vlaue"}
                     </p>
