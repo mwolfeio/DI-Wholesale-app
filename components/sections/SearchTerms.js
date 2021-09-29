@@ -112,7 +112,7 @@ const Section = ({ arr, id, globalId }) => {
   };
 
   useEffect(() => {
-    setFieldsArr(arr);
+    setSearchTermArray(arr);
   }, [arr]);
   useEffect(() => {
     setFieldId(id);
