@@ -38,10 +38,8 @@ const GET_ORDER = gql`
         }
         # ordersCount
         # totalSpent
-        totalPriceSet {
-          shopMoney {
-            amount
-          }
+        amountSpent {
+          amount
         }
       }
       displayFulfillmentStatus
