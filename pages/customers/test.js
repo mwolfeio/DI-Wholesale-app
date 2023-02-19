@@ -440,7 +440,7 @@ const CustomerPage = () => {
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
               <h1 style={{ fontSize: "20px" }}>
-                {formatter.format(data.customer.totalSpent)} spent
+                {formatter.format(data.customer.amountSpent?.amount ?? 0)} spent
               </h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
                 <i>{data.customer.ordersCount} Orders</i>
