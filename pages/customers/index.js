@@ -49,9 +49,12 @@ const GET_CUSTOMENTS = gql`
             id
             value
           }
-          ordersCount
+          # ordersCount
           lifetimeDuration
-          marketingOptInLevel
+          # marketingOptInLevel
+          # emailMarketingConsent {
+          #   marketingOptInLevel
+          # }
           defaultAddress {
             company
             address1
@@ -60,7 +63,10 @@ const GET_CUSTOMENTS = gql`
             provinceCode
             country
           }
-          totalSpent
+          # totalSpent
+          amountSpent {
+            amount
+          }
         }
       }
       pageInfo {
@@ -169,12 +175,12 @@ const SpecialPage = ({}) => {
               name: `${cus.node.lastName}, ${cus.node.firstName}`,
               email: cus.node.email,
               cusnumb: cusNumb,
-              orders: cus.node.ordersCount,
+              orders: 0, //cus.node.ordersCount,
               age: cus.node.lifetimeDuration,
               address1: address1,
               address2: address2,
               company: company,
-              totalSpent: cus.node.totalSpent,
+              totalSpent: cus.node.amountSpent?.amount,
               fieldId: fieldId,
               varified: cus.node.custoemrNumberVarified
                 ? cus.node.custoemrNumberVarified

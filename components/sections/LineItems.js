@@ -31,9 +31,9 @@ const CustomerPage = (props) => {
                 : "";
               let img =
                 product.variant && product.variant.image
-                  ? product.variant.image.src
+                  ? product.variant.image.url
                   : product.image
-                  ? product.image.src
+                  ? product.image.url
                   : "https://i.stack.imgur.com/y9DpT.jpg";
 
               console.log("product: ", product);
@@ -74,11 +74,17 @@ const CustomerPage = (props) => {
                       </div>
                     </div>
                     <p style={{ color: "#b0b7c3" }}>
-                      {formatter.format(product.originalUnitPrice)} ×{" "}
-                      {product.quantity}
+                      {formatter.format(
+                        product.originalUnitPriceSet?.shopMoney?.amount ?? 0
+                      )}{" "}
+                      × {product.quantity}
                     </p>
                     <p>
-                      <b>{formatter.format(product.originalTotal)}</b>
+                      <b>
+                        {formatter.format(
+                          product.originalTotalSet?.shopMoney?.amount ?? 0
+                        )}
+                      </b>
                     </p>
                   </div>
                 </Link>

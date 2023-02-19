@@ -65,7 +65,7 @@ const Section = (props) => {
               metafields: {
                 id: props.fieldId,
                 value: customerNumber.replace("#", ""),
-                valueType: "STRING",
+                type: "STRING",
               },
             },
           },
@@ -78,7 +78,7 @@ const Section = (props) => {
                 namespace: "Customer Number",
                 key: "cus_no",
                 value: customerNumber.replace("#", ""),
-                valueType: "STRING",
+                type: "STRING",
               },
             },
           },

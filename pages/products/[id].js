@@ -16,10 +16,11 @@ const GET_PRODUCT = gql`
     product(id: $id) {
       description
       id
-      images(first: 10, maxHeight: 500, maxWidth: 500) {
+      images(first: 10) {
         edges {
           node {
             src
+            url(transform: { maxHeight: 500, maxWidth: 500 })
           }
         }
       }
@@ -30,7 +31,7 @@ const GET_PRODUCT = gql`
             key
             namespace
             value
-            valueType
+            type
           }
         }
       }
@@ -54,8 +55,9 @@ const GET_PRODUCT = gql`
             displayName
             barcode
             id
-            image(maxHeight: 400, maxWidth: 400) {
+            image {
               src
+              url(transform: { maxHeight: 500, maxWidth: 500 })
             }
             inventoryQuantity
             price
@@ -128,7 +130,7 @@ const ProductPage = () => {
   let tagArr = product.tags;
   let varriantArr = product.variants.edges;
   let imgSrc = product.images.edges.length
-    ? product.images.edges[0].node.src
+    ? product.images.edges[0].node.url
     : "https://i.stack.imgur.com/y9DpT.jpg";
 
   let tag = (

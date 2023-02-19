@@ -109,7 +109,7 @@ const Section = (props) => {
             namespace: namespace,
             key: key,
             value: value,
-            valueType: type,
+            type: type,
           },
         },
       },
@@ -153,7 +153,7 @@ const Section = (props) => {
       node: newdata,
     };
 
-    newField.node.valueType = type;
+    newField.node.type = type;
 
     setFieldsArr([newField, ...fieldsArr]);
     setNamespace("");
@@ -306,7 +306,7 @@ const Section = (props) => {
                     {metafieldKey}
                   </p>
                   <div className="flex-center-center">
-                    <p className="subtitle">{metafield.node.valueType}</p>
+                    <p className="subtitle">{metafield.node.type}</p>
                     <MoreButton>
                       <span onClick={() => deleteMetafield(metafield.node.id)}>
                         Delete

@@ -28,6 +28,7 @@ const GET_CUSTOMENTS = gql`
         node {
           featuredImage {
             src
+            url
           }
           handle
           id
@@ -123,7 +124,7 @@ const SpecialPage = ({}) => {
               id: id,
               gid: prod.node.id,
               title: prod.node.title,
-              imgSrc: prod.node.featuredImage.src,
+              imgSrc: prod.node.featuredImage.url,
               variants: prod.node.variants ? prod.node.variants.edges : [],
               inventory: prod.node.totalInventory,
               price:

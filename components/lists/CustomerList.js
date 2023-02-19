@@ -51,7 +51,9 @@ export default function SpecialPage(props) {
         <div className="list-name flex-center-column">
           <p>{props.customer.orders}</p>
           <p className="subtitle flex-center-column">
-            {formatter.format(props.customer.totalSpent)}
+            {formatter.format(
+              props.customer.totalPriceSet?.shopMoney?.amount ?? 0
+            )}
           </p>
         </div>
         <div

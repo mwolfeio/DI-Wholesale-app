@@ -178,12 +178,18 @@ const Section = (props) => {
                           <span className="order-quant-badge active-tiny-tab flex-center-center">
                             QT: {product.node.quantity}
                           </span>
-                          <img src={product.node.image.originalSrc} />
+                          <img src={product.node.image.url} />
                           <p style={{ margin: "8px 0" }}>
                             {product.node.title}
                           </p>
                           <p className="subtitle">
-                            {formatter.format(product.node.originalUnitPrice)}
+                            {product.node.originalUnitPriceSet?.shopMoney
+                              ?.amount
+                              ? formatter.format(
+                                  product.node.originalUnitPriceSet?.shopMoney
+                                    ?.amount
+                                )
+                              : "0"}
                           </p>
                         </div>
                       </Link>

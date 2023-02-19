@@ -91,7 +91,7 @@ const Section = ({ arr, id, globalId }) => {
               metafields: {
                 id: fieldId,
                 value: arrayToSubmit.join(","),
-                valueType: "STRING",
+                type: "STRING",
               },
             },
           },
@@ -104,7 +104,7 @@ const Section = ({ arr, id, globalId }) => {
                 namespace: "Search Terms",
                 key: "srch_trm",
                 value: arrayToSubmit.join(","),
-                valueType: "STRING",
+                type: "STRING",
               },
             },
           },

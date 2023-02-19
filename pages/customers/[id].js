@@ -24,15 +24,15 @@ const GET_CUSTOMER = gql`
         province
         phone
       }
-      acceptsMarketing
+      # acceptsMarketing
       createdAt
       addresses(first: 1) {
         address1
         city
         company
         country
-        countryCode
-        countryCodeV2
+        # countryCode
+        # countryCodeV2
         phone
         provinceCode
         province
@@ -41,14 +41,14 @@ const GET_CUSTOMER = gql`
       displayName
       email
       firstName
-      hasNote
+      # hasNote
       hasTimelineComment
       image {
-        src
+        url
       }
       lastName
       lifetimeDuration
-      marketingOptInLevel
+      # marketingOptInLevel
       metafields(first: 10) {
         edges {
           node {
@@ -56,7 +56,7 @@ const GET_CUSTOMER = gql`
             key
             namespace
             value
-            valueType
+            # type
           }
         }
       }
@@ -66,13 +66,13 @@ const GET_CUSTOMER = gql`
           node {
             id
             name
-            totalPrice
+            # totalPrice
             shippingAddress {
               address1
               address2
               city
               company
-              countryCode
+              # countryCode
               provinceCode
               zip
             }
@@ -83,14 +83,28 @@ const GET_CUSTOMER = gql`
             lineItems(first: 4) {
               edges {
                 node {
-                  image(maxHeight: 500, maxWidth: 500) {
-                    originalSrc
+                  # image(maxHeight: 500, maxWidth: 500) {
+                  #   originalSrc
+                  # }
+                  image {
+                    src
+                    url(transform: { maxHeight: 500, maxWidth: 500 })
                   }
                   product {
                     id
                   }
-                  originalUnitPrice
-                  originalTotal
+                  # originalUnitPrice
+                  originalUnitPriceSet {
+                    shopMoney {
+                      amount
+                    }
+                  }
+                  # originalTotal
+                  originalTotalSet {
+                    shopMoney {
+                      amount
+                    }
+                  }
                   quantity
                   sku
                   title
@@ -103,11 +117,14 @@ const GET_CUSTOMER = gql`
         }
       }
       phone
-      ordersCount
+      # ordersCount
       tags
       taxExempt
       taxExemptions
-      totalSpent
+      # totalSpent
+      amountSpent {
+        amount
+      }
     }
   }
 `;
@@ -193,10 +210,10 @@ const CustomerPage = () => {
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
               <h1 style={{ fontSize: "20px" }}>
-                {formatter.format(data.customer.totalSpent)} spent
+                {formatter.format(data.customer.amountSpent?.amount ?? 0)} spent
               </h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                <i>{data.customer.ordersCount} Orders</i>
+                <i>N/A Orders</i>
               </h2>
             </div>
           </div>

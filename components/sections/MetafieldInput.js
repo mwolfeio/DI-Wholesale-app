@@ -106,7 +106,7 @@ const Section = (props) => {
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("submitting: ", metafield);
-    if (props.field.valueType === "JSON_STRING" && !validJson) return;
+    if (props.field.type === "JSON_STRING" && !validJson) return;
     let payload = {
       variables: {
         namespace: props.field.namespace,
@@ -116,7 +116,7 @@ const Section = (props) => {
           metafields: {
             id: props.field.id,
             value: metafield,
-            valueType: props.field.valueType,
+            type: props.field.type,
           },
         },
       },
@@ -145,7 +145,7 @@ const Section = (props) => {
   //return component
   return (
     <form onSubmit={submitHandler} style={{ display: "flex" }}>
-      {props.field.valueType === "BOOLEAN" ? (
+      {props.field.type === "BOOLEAN" ? (
         <select value={metafield} required onChange={changeHandler}>
           <option value="true">True</option>
           <option value="false">False</option>
@@ -155,16 +155,16 @@ const Section = (props) => {
           required
           onChange={(e) => {
             let str = e.target.value;
-            if (props.field.valueType === "JSON_STRING") IsJsonString(str);
+            if (props.field.type === "JSON_STRING") IsJsonString(str);
             changeHandler(e);
           }}
           style={{ borderRadius: "10px" }}
           className={
-            props.field.valueType === "JSON_STRING" && metafield && !validJson
+            props.field.type === "JSON_STRING" && metafield && !validJson
               ? "input-error"
               : ""
           }
-          type={props.field.valueType === "INTEGER" ? "number" : "text"}
+          type={props.field.type === "INTEGER" ? "number" : "text"}
           placeholder="No Metafield"
           value={metafield}
         />

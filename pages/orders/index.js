@@ -36,7 +36,12 @@ const GET_ORDERS = gql`
             value
           }
           name
-          totalPrice
+          # totalPrice
+          totalPriceSet {
+            shopMoney {
+              amount
+            }
+          }
           id
           currentSubtotalLineItemsQuantity
           fulfillable
@@ -180,7 +185,7 @@ const SpecialPage = ({}) => {
               orders: ord.node.currentSubtotalLineItemsQuantity,
               address: address,
               company: company,
-              totalSpent: ord.node.totalPrice,
+              totalSpent: ord.node.totalPriceSet?.shopMoney?.amount ?? 0,
               fieldId: fieldId,
               fulfillable: ord.node.fulfillable,
               createdAt: ord.node.createdAt,

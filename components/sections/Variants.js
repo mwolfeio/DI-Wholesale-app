@@ -32,7 +32,7 @@ const CustomerPage = (props) => {
                 ? product.product.id.replace("gid://shopify/Product/", "")
                 : "";
               let img = product.image
-                ? product.image.src
+                ? product.image.url
                 : "https://i.stack.imgur.com/y9DpT.jpg";
 
               console.log("product: ", product);
