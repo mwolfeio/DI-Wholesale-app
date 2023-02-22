@@ -35,11 +35,19 @@ const Section = (props) => {
   const [oldCustomerNumber, setOldCustomerNumber] = useState(
     props.cnumb ? `#${props.cnumb}` : ""
   );
+  console.log("customerNumber: ", customerNumber);
+  console.log("oldCustomerNumber: ", oldCustomerNumber);
+  console.log("varfied: ", varfied);
+  console.log("props: ", props);
 
   //Query
   const [customerUpdate, { loading, error, data }] = useMutation(
     UPDATE_CUSTOEMR_NUMBER
   );
+
+  console.log("loading: ", loading);
+  console.log("data: ", data);
+  console.log("error: ", error);
 
   //Handle input
   const changeHandler = (e) => {
@@ -84,6 +92,7 @@ const Section = (props) => {
           },
         };
 
+    console.oog("payload: ", payload);
     customerUpdate(payload);
     setVarified(true);
     setOldCustomerNumber(customerNumber);
