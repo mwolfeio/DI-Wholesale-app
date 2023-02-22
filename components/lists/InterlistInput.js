@@ -65,6 +65,18 @@ const Section = (props) => {
     console.log("fieldId: ", props.fieldId);
     console.log("cusId: ", props.cusId);
 
+    //"Type must be one of the following: color, date, date_time, json, weight,
+    //volume, dimension, money, number_integer, number_decimal, rating, file_reference,
+    //page_reference, product_reference, variant_reference, metaobject_reference,
+    //mixed_reference, collection_reference, customer_reference, order_reference,
+    //single_line_text_field, multi_line_text_field, rich_text_field, boolean, url,
+    //integer, string, float, json_string, list.boolean, list.collection_reference,
+    //list.color, list.date_time, list.date, list.dimension, list.file_reference,
+    //list.metaobject_reference, list.mixed_reference, list.multi_line_text_field,
+    //list.number_decimal, list.number_integer, list.page_reference,
+    //list.product_reference, list.rating, list.single_line_text_field, list.url,
+    //list.variant_reference, list.volume, list.weight."
+
     let payload = props.fieldId
       ? {
           variables: {
@@ -73,7 +85,7 @@ const Section = (props) => {
               metafields: {
                 id: props.fieldId,
                 value: customerNumber.replace("#", ""),
-                type: "STRING",
+                type: "string",
               },
             },
           },
@@ -86,7 +98,7 @@ const Section = (props) => {
                 namespace: "Customer Number",
                 key: "cus_no",
                 value: customerNumber.replace("#", ""),
-                type: "STRING",
+                type: "string",
               },
             },
           },
