@@ -126,39 +126,3 @@ export default function SpecialPage(props) {
     </Link>
   );
 }
-
-// <ListInput
-//   cusId={props.order.gid}
-//   fieldId={props.order.fieldId}
-//   cnumb={props.order.cusnumb}
-// />
-
-// <div className="list-name flex-center-column">
-//   <p>
-//     {props.order.customerNumber
-//       ? `#${props.order.customerNumber.value}`
-//       : "no CN"}
-//   </p>
-//
-//   {props.order.customerNumberVarified &&
-//     props.order.customerNumberVarified.value == "true" && (
-//       <p
-//         className="subtitle flex-center-column"
-//         style={{ color: "#e4545d" }}
-//       >
-//         Unverified
-//       </p>
-//     )}
-// </div>
-
-// <div
-//   className="tinny-tag active-tiny-tab flex-center-center"
-//   style={{
-//     position: "absolute",
-//     top: "-4px",
-//     left: "-4px",
-//     width: "auto",
-//   }}
-// >
-//   Drop Ship
-// </div>

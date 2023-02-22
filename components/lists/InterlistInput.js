@@ -53,6 +53,10 @@ const Section = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log("submitting");
+    console.log("fieldId: ", props.fieldId);
+    console.log("cusId: ", props.cusId);
+
     let payload = props.fieldId
       ? {
           variables: {
