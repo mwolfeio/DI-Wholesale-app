@@ -92,7 +92,7 @@ const Section = (props) => {
           },
         };
 
-    console.oog("payload: ", payload);
+    console.log("payload: ", payload);
     customerUpdate(payload);
     setVarified(true);
     setOldCustomerNumber(customerNumber);
